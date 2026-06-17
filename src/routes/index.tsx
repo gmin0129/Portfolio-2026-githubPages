@@ -356,13 +356,19 @@ function Projects() {
 
         <div className="divide-y divide-background/15">
           {PROJECTS.map((p, i) => (
-            <article key={p.title} className="grid md:grid-cols-12 gap-6 py-8 group hover:bg-background/[0.03] transition-colors -mx-4 px-4 rounded-lg">
+            <Link
+              key={p.slug}
+              to="/projects/$slug"
+              params={{ slug: p.slug }}
+              className="grid md:grid-cols-12 gap-6 py-8 group hover:bg-background/[0.03] transition-colors -mx-4 px-4 rounded-lg cursor-pointer"
+            >
               <div className="md:col-span-1 font-serif italic text-[var(--ochre)] text-xl">
                 {String(i + 1).padStart(2, "0")}
               </div>
               <div className="md:col-span-5">
                 <h3 className="font-serif text-2xl md:text-3xl group-hover:text-[var(--ochre)] transition-colors">
                   {p.title}
+                  <span className="inline-block ml-2 opacity-0 group-hover:opacity-100 transition-opacity text-[var(--ochre)]">→</span>
                 </h3>
                 <p className="text-sm text-background/60 mt-1">{p.sub}</p>
               </div>
@@ -382,7 +388,7 @@ function Projects() {
                 </div>
                 <div className="mt-3 text-xs text-background/50">{p.skills}</div>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </div>
