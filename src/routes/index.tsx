@@ -1,5 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import profileImg from "@/assets/profile.jpg";
+import { PROJECTS } from "@/lib/projects";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -88,49 +89,6 @@ const SKILLS = [
   { group: "Collaboration", items: ["Slack", "Notion"] },
   { group: "Design & Media", items: ["Fresco", "Premiere", "Canva", "Miricanvas"] },
   { group: "AI Tools", items: ["Gemini", "ChatGPT", "Genspark"] },
-];
-
-const PROJECTS = [
-  {
-    title: "<달찮은 하루> 전시회",
-    sub: "서울대학교 관정갤러리",
-    period: "2025.11.11 — 2025.11.18",
-    contribution: "전시 운영, 작가 매니징",
-    tags: ["#전시기획 및 운영", "#외부관계자 소통", "#데이터 정리"],
-    skills: "의사소통 · 창의력 · Premiere · Slack · Notion",
-  },
-  {
-    title: "PHOTOGRAY × 슝슝이",
-    sub: "대학생 맞춤형 프레임 기획",
-    period: "2022.03 — 2022.06",
-    contribution: "아이디어 제공 및 과제물 제작",
-    tags: ["#콘텐츠제작", "#광고전략수립", "#팀플레이어"],
-    skills: "창의 · 소통 · PPT",
-  },
-  {
-    title: "DIE BÜHNE 정기공연",
-    sub: "독일어 원어연극회",
-    period: "2022.07 — 2022.09",
-    contribution: "공연 기획 및 홍보물 제작",
-    tags: ["#콘텐츠디자인", "#타임라인수립", "#작품분석"],
-    skills: "Fresco · Photoshop · PPT · 창작",
-  },
-  {
-    title: "인문학소모임 A.D.T. 기획",
-    sub: "콘텐츠 기획 · 운영",
-    period: "2023.03 — 2024.12",
-    contribution: "운영 및 콘텐츠 기획",
-    tags: ["#소모임운영", "#콘텐츠기획"],
-    skills: "기획 · 운영 · 협업",
-  },
-  {
-    title: "<우리시각>",
-    sub: "콘텐츠 프로젝트",
-    period: "—",
-    contribution: "참여",
-    tags: ["#콘텐츠"],
-    skills: "—",
-  },
 ];
 
 const EXPERIENCES = [
@@ -398,13 +356,19 @@ function Projects() {
 
         <div className="divide-y divide-background/15">
           {PROJECTS.map((p, i) => (
-            <article key={p.title} className="grid md:grid-cols-12 gap-6 py-8 group hover:bg-background/[0.03] transition-colors -mx-4 px-4 rounded-lg">
+            <Link
+              key={p.slug}
+              to="/projects/$slug"
+              params={{ slug: p.slug }}
+              className="grid md:grid-cols-12 gap-6 py-8 group hover:bg-background/[0.03] transition-colors -mx-4 px-4 rounded-lg cursor-pointer"
+            >
               <div className="md:col-span-1 font-serif italic text-[var(--ochre)] text-xl">
                 {String(i + 1).padStart(2, "0")}
               </div>
               <div className="md:col-span-5">
                 <h3 className="font-serif text-2xl md:text-3xl group-hover:text-[var(--ochre)] transition-colors">
                   {p.title}
+                  <span className="inline-block ml-2 opacity-0 group-hover:opacity-100 transition-opacity text-[var(--ochre)]">→</span>
                 </h3>
                 <p className="text-sm text-background/60 mt-1">{p.sub}</p>
               </div>
@@ -424,7 +388,7 @@ function Projects() {
                 </div>
                 <div className="mt-3 text-xs text-background/50">{p.skills}</div>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </div>
