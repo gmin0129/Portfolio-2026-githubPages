@@ -273,9 +273,9 @@ function About() {
       <SectionHeader num="01 —" kicker="Who I am" title="About" />
       <div className="grid md:grid-cols-3 gap-10">
         <p className="md:col-span-2 font-serif text-2xl md:text-3xl leading-[1.2] text-foreground">
-          저는 사람과 사람 사이의 <span className="text-[var(--terracotta)]">공감</span>에서
-          시작해, 새로운 환경에 빠르게 스며드는 <span className="text-[var(--terracotta)]">적응력</span>과 끝까지 마무리하는 <span className="text-[var(--terracotta)]">끈기</span>를 가지고
-          기획과 운영을 합니다.
+          저는 사람과 사람 사이의 <span className="text-[var(--terracotta)]">공감</span>에서 시작해,<br />
+          새로운 환경에 빠르게 스며드는 <span className="text-[var(--terracotta)]">적응력</span>과<br />
+          끝까지 마무리하는 <span className="text-[var(--terracotta)]">끈기</span>를 가지고 기획과 운영을 합니다.
         </p>
         <div className="space-y-4 text-sm text-[var(--ink-soft)]">
           <Fact k="Based in" v="Seoul, KR" />
@@ -389,7 +389,7 @@ function Projects() {
         <div className="flex items-end justify-between mb-12 border-b border-background/20 pb-4">
           <div>
             <span className="font-serif italic text-lg text-[var(--ochre)]">04 —</span>
-            <h2 className="font-serif text-4xl md:text-5xl font-medium mt-1">Selected Projects</h2>
+            <h2 className="font-serif text-4xl md:text-5xl font-medium mt-1">Projects</h2>
           </div>
           <span className="text-xs tracking-[0.3em] uppercase text-background/60 hidden md:block">
             Things I built
