@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { getProject, PROJECTS } from "@/lib/projects";
+import { getProject, PROJECTS, type Project } from "@/lib/projects";
 
 export const Route = createFileRoute("/projects/$slug")({
   loader: ({ params }) => {
@@ -32,7 +32,7 @@ export const Route = createFileRoute("/projects/$slug")({
 });
 
 function ProjectDetail() {
-  const { project } = Route.useLoaderData();
+  const { project } = Route.useLoaderData() as { project: Project };
   const idx = PROJECTS.findIndex((p) => p.slug === project.slug);
   const prev = PROJECTS[(idx - 1 + PROJECTS.length) % PROJECTS.length];
   const next = PROJECTS[(idx + 1) % PROJECTS.length];
