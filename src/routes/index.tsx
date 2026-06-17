@@ -199,8 +199,8 @@ function Hero() {
             Portfolio · 2026
           </p>
           <h1 className="font-serif text-[clamp(2.6rem,7vw,5.5rem)] leading-[1.05] font-medium">
-            공감과 소통,<br />
-            <span className="italic text-[var(--terracotta)]">적응력</span>과 끈기,<br />
+            <span className="text-[var(--terracotta)]">공감</span>과 <span className="text-[var(--terracotta)]">소통</span>,<br />
+            <span className="italic text-[var(--terracotta)]">적응력</span>과 <span className="text-[var(--terracotta)]">끈기</span>,<br />
             그리고 <span className="underline-wavy">다양성</span>.
           </h1>
           <p className="mt-8 max-w-xl text-base md:text-lg text-[var(--ink-soft)] leading-relaxed">
