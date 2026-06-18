@@ -175,6 +175,13 @@ function Hero() {
               연락하기
             </a>
           </div>
+          <div className="mt-6 flex flex-wrap gap-2">
+            {["기획", "Communication", "전시 운영", "Branding", "콘텐츠", "Deutsch · English · 한국어", "Curation"].map((tag) => (
+              <span key={tag} className="text-xs border border-foreground/15 rounded-full px-3 py-1 bg-background/60 backdrop-blur text-foreground/80">
+                #{tag}
+              </span>
+            ))}
+          </div>
         </div>
         <div className="md:col-span-5 relative">
           <div className="absolute -inset-4 tile-2 shape-squircle -rotate-2 opacity-95 clay animate-galaxy-alive" />
@@ -190,7 +197,6 @@ function Hero() {
           </div>
         </div>
       </div>
-      <Marquee />
     </section>
   );
 }
