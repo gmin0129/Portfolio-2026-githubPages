@@ -3,7 +3,7 @@ import type { HTMLAttributes } from "react";
 import { getExperience, EXPERIENCES, type Experience } from "@/lib/experiences";
 import { SwipeTabs } from "@/components/SwipeTabs";
 import { useQuery } from "@tanstack/react-query";
-import { notionImagesQueryOptions } from "@/lib/notion-images.functions";
+import { notionPageQueryOptions } from "@/lib/notion-images.functions";
 
 export const Route = createFileRoute("/experiences/$slug")({
   loader: ({ params }) => {
@@ -40,8 +40,10 @@ function ExperienceDetail() {
   const idx = EXPERIENCES.findIndex((e) => e.slug === experience.slug);
   const prev = EXPERIENCES[(idx - 1 + EXPERIENCES.length) % EXPERIENCES.length];
   const next = EXPERIENCES[(idx + 1) % EXPERIENCES.length];
-  const { data, isLoading } = useQuery(notionImagesQueryOptions("experience", experience.slug));
+  const { data, isLoading } = useQuery(notionPageQueryOptions("experience", experience.slug));
   const images = data?.images?.length ? data.images : experience.images;
+  const overview = data?.summary?.trim() ? data.summary : experience.overview;
+  const role = data?.highlights?.length ? data.highlights : experience.role;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -66,17 +68,17 @@ function ExperienceDetail() {
           <Meta k="장소" v={experience.place} />
         </aside>
         <div className="md:col-span-2 space-y-12">
-          {experience.overview && (
+          {overview && (
             <div>
               <h2 className="font-serif text-2xl mb-3">Overview</h2>
-              <p className="text-[var(--ink-soft)] leading-relaxed">{experience.overview}</p>
+              <p className="text-[var(--ink-soft)] leading-relaxed">{overview}</p>
             </div>
           )}
-          {experience.role && experience.role.length > 0 && (
+          {role && role.length > 0 && (
             <div>
               <h2 className="font-serif text-2xl mb-3">My Role</h2>
               <ul className="space-y-2 text-[var(--ink-soft)]">
-                {experience.role.map((r) => (
+                {role.map((r) => (
                   <li key={r} className="flex gap-3">
                     <span className="text-[var(--terracotta)]">→</span>
                     <span>{r}</span>
