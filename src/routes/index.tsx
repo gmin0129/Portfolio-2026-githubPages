@@ -92,6 +92,16 @@ const SKILLS = [
   { group: "AI Tools", items: ["Gemini", "ChatGPT", "Genspark"] },
 ];
 
+const ABOUT_TAGS = [
+  { label: "기획", className: "text-xs px-3 py-1" },
+  { label: "Communication", className: "text-sm px-3.5 py-1.5" },
+  { label: "전시 운영", className: "text-xs px-3 py-1" },
+  { label: "Branding", className: "text-base px-4 py-2" },
+  { label: "콘텐츠", className: "text-xs px-3 py-1" },
+  { label: "Deutsch · English · 한국어", className: "text-sm px-3.5 py-1.5" },
+  { label: "Curation", className: "text-lg px-4 py-2" },
+];
+
 const TILES = ["tile-1", "tile-2", "tile-3", "tile-4", "tile-5", "tile-6"];
 const SHAPES = ["shape-squircle", "shape-blob", "shape-pebble", "shape-petal", "shape-leaf", "shape-arch"];
 const ROTATIONS = ["-rotate-1", "rotate-1", "-rotate-2", "rotate-2", "rotate-0", "-rotate-1"];
