@@ -93,18 +93,6 @@ export const PROJECTS: Project[] = [
       "콘텐츠 기획·운영 사이클 경험 축적",
     ],
   },
-  {
-    slug: "woori-sigak",
-    title: "<우리시각>",
-    sub: "콘텐츠 프로젝트",
-    period: "—",
-    contribution: "참여",
-    tags: ["#콘텐츠"],
-    skills: "—",
-    overview: "‘우리의 시각’으로 일상과 사회를 바라보는 콘텐츠 프로젝트에 참여했습니다.",
-    role: ["콘텐츠 기획 회의 참여", "리서치 및 자료 정리"],
-    outcome: ["프로젝트 콘텐츠 제작 기여"],
-  },
 ];
 
 export function getProject(slug: string) {
