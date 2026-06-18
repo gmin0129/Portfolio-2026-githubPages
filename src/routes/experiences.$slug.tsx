@@ -68,13 +68,9 @@ function ExperienceDetail() {
           <Meta k="장소" v={experience.place} />
           {experience.pdf && (
             <a
-              href={experience.pdf.url}
+              href={`/api/public/pdf/${experience.slug}`}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={(e) => {
-                e.preventDefault();
-                window.open(experience.pdf!.url, "_blank", "noopener,noreferrer");
-              }}
               className="group block rounded-2xl border border-border bg-background/60 backdrop-blur p-4 hover:border-[var(--terracotta)] transition-colors"
             >
               <div className="flex items-center gap-3">
