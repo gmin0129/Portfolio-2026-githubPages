@@ -56,22 +56,8 @@ function ExperienceDetail() {
         </div>
       </header>
 
-      <section className="sticky top-16 z-40 bg-background pb-4 shadow-[0_8px_30px_-12px_oklch(0.3_0.05_40/0.12)]">
-        <div className="mx-auto max-w-5xl px-4 md:px-6 pt-4">
-          <div className={`relative ${TILES[idx % TILES.length]} shape-squircle px-6 md:px-10 py-7 md:py-9 clay overflow-hidden animate-galaxy-pulse shadow-lg`}>
-            <div className="absolute inset-0 grain opacity-30 pointer-events-none" />
-            <div className="relative">
-              <div className="font-serif italic text-foreground/75 text-sm tracking-widest uppercase">
-                Experience · {String(idx + 1).padStart(2, "0")}
-              </div>
-              <h1 className="font-serif text-3xl md:text-5xl font-semibold mt-2 leading-[1.1] text-foreground drop-shadow-[1px_1px_0_oklch(1_0_0/0.55)]">
-                {experience.title}
-              </h1>
-              <p className="mt-2 text-foreground/80 text-base md:text-lg">{experience.place}</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <TitleCard experience={experience} idx={idx} className="fixed top-16 inset-x-0" />
+      <TitleCard experience={experience} idx={idx} className="invisible pointer-events-none" aria-hidden="true" />
 
       <SwipeTabs title={experience.title} images={images} loading={isLoading}>
       <section className="mx-auto max-w-5xl px-6 py-16 grid md:grid-cols-3 gap-12">
@@ -150,6 +136,27 @@ function Meta({ k, v }: { k: string; v: string }) {
       <div className="uppercase tracking-widest text-xs text-[var(--ink-soft)]">{k}</div>
       <div className="mt-1 text-foreground">{v}</div>
     </div>
+  );
+}
+
+function TitleCard({ experience, idx, className, ...props }: { experience: Experience; idx: number } & HTMLAttributes<HTMLElement>) {
+  return (
+    <section {...props} className={`top-16 z-40 bg-background pb-4 shadow-[0_8px_30px_-12px_oklch(0.3_0.05_40/0.12)] ${className ?? ""}`}>
+      <div className="mx-auto max-w-5xl px-4 md:px-6 pt-4">
+        <div className={`relative ${TILES[idx % TILES.length]} shape-squircle px-6 md:px-10 py-7 md:py-9 clay overflow-hidden animate-galaxy-pulse shadow-lg`}>
+          <div className="absolute inset-0 grain opacity-30 pointer-events-none" />
+          <div className="relative">
+            <div className="font-serif italic text-foreground/75 text-sm tracking-widest uppercase">
+              Experience · {String(idx + 1).padStart(2, "0")}
+            </div>
+            <h1 className="font-serif text-3xl md:text-5xl font-semibold mt-2 leading-[1.1] text-foreground drop-shadow-[1px_1px_0_oklch(1_0_0/0.55)]">
+              {experience.title}
+            </h1>
+            <p className="mt-2 text-foreground/80 text-base md:text-lg">{experience.place}</p>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
