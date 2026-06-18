@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getProject, PROJECTS, type Project } from "@/lib/projects";
-import { PhotoSlidePanel } from "@/components/PhotoSlidePanel";
+import { SwipeTabs } from "@/components/SwipeTabs";
 
 export const Route = createFileRoute("/projects/$slug")({
   loader: ({ params }) => {
@@ -39,9 +39,8 @@ function ProjectDetail() {
   const next = PROJECTS[(idx + 1) % PROJECTS.length];
 
   return (
-    <PhotoSlidePanel title={project.title} images={project.images}>
     <div className="min-h-screen bg-background text-foreground">
-      <header className="sticky top-0 z-40 backdrop-blur-md bg-[oklch(0.975_0.012_80/0.78)] border-b border-border">
+      <header className="sticky top-0 z-50 backdrop-blur-md bg-[oklch(0.975_0.012_80/0.78)] border-b border-border">
         <div className="mx-auto max-w-5xl px-6 h-16 flex items-center justify-between">
           <Link to="/" className="font-serif text-lg font-bold tracking-tight">
             윤지민<span className="text-[var(--terracotta)]">.</span>
@@ -52,16 +51,17 @@ function ProjectDetail() {
         </div>
       </header>
 
-      <section className="bg-foreground text-background">
-        <div className="mx-auto max-w-5xl px-6 py-20 md:py-28">
+      {/* Fixed project title area */}
+      <section className="sticky top-16 z-40 bg-foreground text-background border-b border-background/10">
+        <div className="mx-auto max-w-5xl px-6 py-10 md:py-14">
           <div className="font-serif italic text-[var(--ochre)] text-sm tracking-widest uppercase">
             Project · {String(idx + 1).padStart(2, "0")}
           </div>
-          <h1 className="font-serif text-4xl md:text-6xl font-medium mt-4 leading-[1.1]">
+          <h1 className="font-serif text-3xl md:text-5xl font-medium mt-3 leading-[1.1]">
             {project.title}
           </h1>
-          <p className="mt-4 text-background/70 text-lg">{project.sub}</p>
-          <div className="mt-8 flex flex-wrap gap-2">
+          <p className="mt-3 text-background/70 text-base md:text-lg">{project.sub}</p>
+          <div className="mt-5 flex flex-wrap gap-2">
             {project.tags.map((t) => (
               <span key={t} className="text-xs border border-background/30 rounded-full px-3 py-1 text-background/80">
                 {t}
@@ -71,7 +71,8 @@ function ProjectDetail() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-6 py-20 grid md:grid-cols-3 gap-12">
+      <SwipeTabs title={project.title} images={project.images}>
+      <section className="mx-auto max-w-5xl px-6 py-16 grid md:grid-cols-3 gap-12">
         <aside className="space-y-6 text-sm">
           <Meta k="기간" v={project.period} />
           <Meta k="기여" v={project.contribution} />
@@ -112,6 +113,7 @@ function ProjectDetail() {
           )}
         </div>
       </section>
+      </SwipeTabs>
 
       <nav className="border-t border-border">
         <div className="mx-auto max-w-5xl px-6 py-10 flex items-center justify-between gap-6">
@@ -138,7 +140,6 @@ function ProjectDetail() {
         </div>
       </nav>
     </div>
-    </PhotoSlidePanel>
   );
 }
 
