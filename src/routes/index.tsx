@@ -34,7 +34,7 @@ const EDUCATION = [
   {
     school: "FHWien der WKW, Austria",
     detail: "교환학생",
-    period: "2024.02 — 2024.07",
+    period: "2024.02 — 2024.06",
   },
   {
     school: "전남외국어고등학교",
