@@ -9,6 +9,7 @@ export type Project = {
   overview?: string;
   role?: string[];
   outcome?: string[];
+  images?: string[];
 };
 
 export const PROJECTS: Project[] = [
