@@ -333,7 +333,7 @@ function Education() {
 function Skills() {
   return (
     <section id="skills" className="mx-auto max-w-6xl px-6 py-24">
-      <SectionHeader num="03 —" kicker="Tools I use" title="Skills" />
+      <SectionHeader num="02 —" kicker="Tools I use" title="Skills" />
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {SKILLS.map((s, i) => (
           <div
