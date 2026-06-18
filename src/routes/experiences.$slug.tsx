@@ -1,4 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import type { HTMLAttributes } from "react";
 import { getExperience, EXPERIENCES, type Experience } from "@/lib/experiences";
 import { SwipeTabs } from "@/components/SwipeTabs";
 import { useQuery } from "@tanstack/react-query";
