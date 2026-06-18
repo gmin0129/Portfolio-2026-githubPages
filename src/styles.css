@@ -345,4 +345,22 @@
   }
   .animate-hue { animation: tile-drift 12s ease-in-out infinite; }
   .animate-pulse-glow { box-shadow: var(--glow-rainbow); }
+  /* Galaxy target animations — gentle bioluminescent pulse + slow spin */
+  @keyframes galaxy-alive {
+    0%   { transform: rotate(0deg)   scale(1);   filter: brightness(1); }
+    25%  { transform: rotate(90deg)  scale(1.03); filter: brightness(1.12); }
+    50%  { transform: rotate(180deg) scale(1);   filter: brightness(1); }
+    75%  { transform: rotate(270deg) scale(1.03); filter: brightness(1.12); }
+    100% { transform: rotate(360deg) scale(1);   filter: brightness(1); }
+  }
+  @keyframes galaxy-pulse {
+    0%, 100% { filter: brightness(1) saturate(1); }
+    50%      { filter: brightness(1.08) saturate(1.04); }
+  }
+  .animate-galaxy-alive {
+    animation: galaxy-alive 50s linear infinite;
+  }
+  .animate-galaxy-pulse {
+    animation: galaxy-pulse 5s ease-in-out infinite;
+  }
 }
