@@ -422,7 +422,7 @@ function Projects() {
 function Experience() {
   return (
     <section id="experience" className="mx-auto max-w-6xl px-6 py-24">
-      <SectionHeader num="05 —" kicker="Beyond the desk" title="Experiences" />
+      <SectionHeader num="04 —" kicker="Beyond the desk" title="Experiences" />
       <div className="grid md:grid-cols-2 gap-8">
         {EXPERIENCES.map((e, i) => (
           <Link
