@@ -8,6 +8,7 @@ export type Experience = {
   role?: string[];
   outcome?: string[];
   images?: string[];
+  pdf?: { url: string; label: string };
 };
 
 export const EXPERIENCES: Experience[] = [
@@ -46,6 +47,10 @@ export const EXPERIENCES: Experience[] = [
       "캠페인 기획안 완성 및 대회 출품",
       "공익 광고 기획 사이클 경험 축적",
     ],
+    pdf: {
+      url: "/__l5e/assets-v1/ba020b02-3814-4d8d-a8e4-cffcf5874db1/kosac-2025-plan.pdf",
+      label: "캠페인 기획서 PDF",
+    },
   },
 ];
 

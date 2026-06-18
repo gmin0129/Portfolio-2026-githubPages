@@ -66,6 +66,29 @@ function ExperienceDetail() {
         <aside className="space-y-6 text-sm">
           <Meta k="기간" v={experience.period} />
           <Meta k="장소" v={experience.place} />
+          {experience.pdf && (
+            <a
+              href={experience.pdf.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block rounded-2xl border border-border bg-background/60 backdrop-blur p-4 hover:border-[var(--terracotta)] transition-colors"
+            >
+              <div className="flex items-center gap-3">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[var(--terracotta)]/10 text-[var(--terracotta)] font-serif text-xs font-bold">
+                  PDF
+                </div>
+                <div className="min-w-0">
+                  <div className="uppercase tracking-widest text-xs text-[var(--ink-soft)]">
+                    기획서
+                  </div>
+                  <div className="mt-0.5 text-foreground group-hover:text-[var(--terracotta)] transition-colors truncate">
+                    {experience.pdf.label}
+                  </div>
+                </div>
+                <span className="ml-auto text-[var(--ink-soft)] group-hover:text-[var(--terracotta)] transition-colors">↗</span>
+              </div>
+            </a>
+          )}
         </aside>
         <div className="md:col-span-2 space-y-12">
           {overview && (
