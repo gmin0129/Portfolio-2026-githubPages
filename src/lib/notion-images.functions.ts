@@ -101,8 +101,23 @@ async function fetchPageImages(pageId: string): Promise<string[]> {
   } catch {
     // ignore
   }
-  // de-dupe preserving order
-  return Array.from(new Set(urls));
+  // de-dupe preserving order. Notion S3 signed URLs include changing query
+  // params (X-Amz-*), so we key by pathname + filename only.
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const u of urls) {
+    let key = u;
+    try {
+      const parsed = new URL(u);
+      key = parsed.origin + parsed.pathname;
+    } catch {
+      // keep raw url as key
+    }
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(u);
+  }
+  return out;
 }
 
 export const getNotionImages = createServerFn({ method: "GET" })
