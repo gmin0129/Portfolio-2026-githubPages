@@ -198,18 +198,20 @@
     background-attachment: fixed;
     background-size: 100% 100%;
   }
-  /* Page-wide grain veil — sprayed across everything */
-  body::before {
+  /* Page-wide grain veil — sprayed across everything, sits behind content */
+  html { position: relative; }
+  html::before {
     content: "";
     position: fixed;
     inset: 0;
     pointer-events: none;
-    z-index: 1;
+    z-index: 0;
     background-image: var(--grain-url);
-    background-size: 220px 220px;
-    opacity: 0.32;
+    background-size: 240px 240px;
+    opacity: 0.28;
     mix-blend-mode: multiply;
   }
+  body > * { position: relative; z-index: 1; }
   h1, h2, h3, .font-serif {
     font-family: var(--font-serif);
     letter-spacing: -0.01em;
