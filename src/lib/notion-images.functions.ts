@@ -246,8 +246,14 @@ export const getNotionPage = createServerFn({ method: "GET" })
   });
 
 export function notionPageQueryOptions(kind: "project" | "experience", slug: string) {
+  // Bump the version for a specific slug to bust any stale cached payloads
+  // (used after a Notion page is re-edited and the old summary is sticking).
+  const VERSIONS: Record<string, number> = {
+    "daljjanheun-haru": 2,
+  };
+  const version = VERSIONS[slug] ?? 1;
   return {
-    queryKey: ["notion-page", kind, slug] as const,
+    queryKey: ["notion-page", kind, slug, version] as const,
     queryFn: () => getNotionPage({ data: { kind, slug } }),
     // Always refetch on mount so Notion edits show up immediately.
     staleTime: 0,
