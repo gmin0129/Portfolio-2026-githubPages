@@ -290,7 +290,7 @@ function Education() {
               ))}
             </ul>
 
-            <h4 className="font-serif text-lg mt-12 mb-4">자격증 & 어학</h4>
+            <h4 className="font-serif text-lg mt-12 mb-4"><span className="mark-pop mark-lime">자격증 & 어학</span></h4>
             <div className="flex flex-wrap gap-2">
               {CERTS.map((c) => (
                 <span key={c.name} className="inline-flex items-center gap-2 text-xs border border-foreground/20 rounded-full px-3 py-1.5">
@@ -302,7 +302,7 @@ function Education() {
           </div>
 
           <div>
-            <h3 className="font-serif text-2xl mb-6">경력 & 경험</h3>
+            <h3 className="font-serif text-2xl mb-6"><span className="mark-pop mark-lavender">경력 & 경험</span></h3>
             <ul className="space-y-7">
               {CAREER.map((c) => (
                 <li key={c.org} className="grid grid-cols-[80px_1fr] gap-4">
