@@ -1,6 +1,8 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getProject, PROJECTS, type Project } from "@/lib/projects";
 import { SwipeTabs } from "@/components/SwipeTabs";
+import { useQuery } from "@tanstack/react-query";
+import { notionImagesQueryOptions } from "@/lib/notion-images.functions";
 
 export const Route = createFileRoute("/projects/$slug")({
   loader: ({ params }) => {
@@ -37,6 +39,8 @@ function ProjectDetail() {
   const idx = PROJECTS.findIndex((p) => p.slug === project.slug);
   const prev = PROJECTS[(idx - 1 + PROJECTS.length) % PROJECTS.length];
   const next = PROJECTS[(idx + 1) % PROJECTS.length];
+  const { data, isLoading } = useQuery(notionImagesQueryOptions("project", project.slug));
+  const images = data?.images?.length ? data.images : project.images;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -79,7 +83,7 @@ function ProjectDetail() {
         </div>
       </section>
 
-      <SwipeTabs title={project.title} images={project.images}>
+      <SwipeTabs title={project.title} images={images} loading={isLoading}>
       <section className="mx-auto max-w-5xl px-6 py-16 grid md:grid-cols-3 gap-12">
         <aside className="space-y-6 text-sm">
           <Meta k="기간" v={project.period} />
