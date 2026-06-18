@@ -8,7 +8,6 @@ const PROJECT_PAGE_IDS: Record<string, string> = {
   "photogray-shyungshyung": "32be574e-4279-80a8-a59e-d04cd8a587d8",
   "die-buehne": "d1be574e-4279-8272-8f2f-81d965f9ffc6",
   "adt": "332e574e-4279-80bf-ae19-ed03abf00e84",
-  "woori-sigak": "381e574e-4279-8021-b8f7-f7523c6532f6",
 };
 
 const EXPERIENCE_PAGE_IDS: Record<string, string> = {
