@@ -272,7 +272,7 @@ function Education() {
   return (
     <section id="education" className="bg-[var(--paper-deep)] border-y border-border">
       <div className="mx-auto max-w-6xl px-6 py-24">
-        <SectionHeader num="02 —" kicker="Education & Career" title="Education" />
+        <SectionHeader num="01 —" kicker="Education & Career" title="About" />
         <div className="grid md:grid-cols-2 gap-16">
           <div>
             <h3 className="font-serif text-2xl mb-6"><span className="mark-pop mark-coral">교육</span></h3>
@@ -333,7 +333,7 @@ function Education() {
 function Skills() {
   return (
     <section id="skills" className="mx-auto max-w-6xl px-6 py-24">
-      <SectionHeader num="03 —" kicker="Tools I use" title="Skills" />
+      <SectionHeader num="02 —" kicker="Tools I use" title="Skills" />
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {SKILLS.map((s, i) => (
           <div
@@ -367,7 +367,7 @@ function Projects() {
       <div className="mx-auto max-w-6xl px-6 py-24">
         <div className="flex items-end justify-between mb-12 border-b border-foreground/15 pb-4">
           <div>
-            <span className="font-serif italic text-lg text-[var(--terracotta)]">04 —</span>
+            <span className="font-serif italic text-lg text-[var(--terracotta)]">03 —</span>
             <h2 className="font-serif text-4xl md:text-5xl font-medium mt-1 text-foreground">Projects</h2>
           </div>
           <span className="text-xs tracking-[0.3em] uppercase text-[var(--ink-soft)] hidden md:block">
@@ -422,7 +422,7 @@ function Projects() {
 function Experience() {
   return (
     <section id="experience" className="mx-auto max-w-6xl px-6 py-24">
-      <SectionHeader num="05 —" kicker="Beyond the desk" title="Experiences" />
+      <SectionHeader num="04 —" kicker="Beyond the desk" title="Experiences" />
       <div className="grid md:grid-cols-2 gap-8">
         {EXPERIENCES.map((e, i) => (
           <Link
@@ -453,7 +453,7 @@ function Contact() {
     <section id="contact" className="bg-[var(--paper-deep)] border-t border-border">
       <div className="mx-auto max-w-6xl px-6 py-24 grid md:grid-cols-12 gap-10 items-center">
         <div className="md:col-span-7">
-          <span className="section-num text-lg">06 —</span>
+          <span className="section-num text-lg">05 —</span>
           <h2 className="font-display text-pop-hover text-5xl md:text-6xl mt-2 leading-[1.5]">
             함께 좋은 이야기를<br />
             만들고 싶다면, <span className="word-lift italic text-[var(--terracotta)]">언제든.</span>
