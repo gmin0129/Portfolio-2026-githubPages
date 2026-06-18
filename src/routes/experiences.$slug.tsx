@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getExperience, EXPERIENCES, type Experience } from "@/lib/experiences";
+import { PhotoSlidePanel } from "@/components/PhotoSlidePanel";
 
 export const Route = createFileRoute("/experiences/$slug")({
   loader: ({ params }) => {
@@ -38,6 +39,7 @@ function ExperienceDetail() {
   const next = EXPERIENCES[(idx + 1) % EXPERIENCES.length];
 
   return (
+    <PhotoSlidePanel title={experience.title} images={experience.images}>
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-40 backdrop-blur-md bg-[oklch(0.975_0.012_80/0.78)] border-b border-border">
         <div className="mx-auto max-w-5xl px-6 h-16 flex items-center justify-between">
@@ -128,6 +130,7 @@ function ExperienceDetail() {
         </div>
       </nav>
     </div>
+    </PhotoSlidePanel>
   );
 }
 

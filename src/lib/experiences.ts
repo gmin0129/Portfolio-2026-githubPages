@@ -7,6 +7,7 @@ export type Experience = {
   overview?: string;
   role?: string[];
   outcome?: string[];
+  images?: string[];
 };
 
 export const EXPERIENCES: Experience[] = [
