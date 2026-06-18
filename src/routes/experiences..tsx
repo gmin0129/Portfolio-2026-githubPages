@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getExperience, EXPERIENCES, type Experience } from "@/lib/experiences";
 
-export const Route = createFileRoute("/experiences/$slug")({
+export const Route = createFileRoute("/experiences/")({
   loader: ({ params }) => {
     const experience = getExperience(params.slug);
     if (!experience) throw notFound();
