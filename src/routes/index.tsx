@@ -178,8 +178,8 @@ function Hero() {
         <div className="md:col-span-5 relative">
           <div className="absolute -inset-4 bg-[var(--paper-deep)] rounded-[2rem] -rotate-2" />
           <img
-            src={profileImg}
-            alt="윤지민 프로필 일러스트"
+            src={profileImg.url}
+            alt="윤지민 프로필 사진"
             width={896}
             height={1152}
             className="relative rounded-[1.75rem] w-full object-cover shadow-[0_30px_80px_-40px_oklch(0.22_0.025_55/0.4)]"
