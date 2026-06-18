@@ -157,7 +157,7 @@ function Hero() {
           <p className="text-sm tracking-[0.3em] uppercase text-[var(--ink-soft)] mb-6">
             Portfolio · 2026
           </p>
-          <h1 className="font-display text-[clamp(2.6rem,7vw,5.5rem)] leading-[1.5] font-medium">
+          <h1 className="font-display text-[clamp(2.6rem,7vw,5.5rem)] leading-[1.5] font-medium text-shadow-hero">
             <span className="word-lift text-[var(--pop-magenta)]">공감</span>과 <span className="word-lift text-[var(--pop-coral)]">소통</span>,<br />
             <span className="word-lift italic text-[var(--pop-purple)]">적응력</span>과 <span className="word-lift text-[var(--pop-sky)]">끈기</span>,<br />
             그리고 <span className="word-lift text-rainbow font-semibold">다양성</span>.
