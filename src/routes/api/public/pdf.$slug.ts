@@ -4,14 +4,15 @@ import { getExperience } from "@/lib/experiences";
 export const Route = createFileRoute("/api/public/pdf/$slug")({
   server: {
     handlers: {
-      GET: async ({ params, request }) => {
+      GET: async ({ params }) => {
         const exp = getExperience(params.slug);
         if (!exp?.pdf) throw notFound();
 
-        const origin = new URL(request.url).origin;
-        const upstream = await fetch(new URL(exp.pdf.url, origin).toString());
+        const projectId = "7af69fa8-433e-470d-990e-c12e96027377";
+        const upstreamUrl = `https://project--${projectId}.lovable.app${exp.pdf.url}`;
+        const upstream = await fetch(upstreamUrl);
         if (!upstream.ok || !upstream.body) {
-          return new Response("PDF not found", { status: 404 });
+          return new Response(`PDF fetch failed: ${upstream.status}`, { status: 502 });
         }
 
         return new Response(upstream.body, {
