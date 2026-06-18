@@ -223,26 +223,6 @@ function PhotoGallery({ title, images }: { title: string; images: string[] }) {
         )}
       </div>
 
-      {/* Grid: full set, contained so nothing is cropped */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-        {images.map((src, i) =>
-          failed[i] ? null : (
-            <figure
-              key={"g" + src + i}
-              className="flex items-center justify-center overflow-hidden rounded-md border border-border bg-muted p-2"
-              style={{ minHeight: "10rem" }}
-            >
-              <img
-                src={src}
-                alt={`${title} 썸네일 ${i + 1}`}
-                className="max-w-full max-h-60 w-auto h-auto object-contain hover:scale-[1.03] transition-transform duration-500"
-                loading="lazy"
-                onError={() => setFailed((p) => ({ ...p, [i]: true }))}
-              />
-            </figure>
-          ),
-        )}
-      </div>
     </div>
   );
 }
