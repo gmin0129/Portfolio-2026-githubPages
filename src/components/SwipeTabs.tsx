@@ -196,12 +196,13 @@ function PhotoGallery({ title, images }: { title: string; images: string[] }) {
           {images.map((src, i) => (
             <figure
               key={src + i}
-              className="snap-center shrink-0 w-[85%] md:w-[70%] aspect-[4/3] overflow-hidden rounded-lg border border-border bg-muted clay-sm"
+              className="snap-center shrink-0 w-[85%] md:w-[70%] flex items-center justify-center overflow-hidden rounded-lg border border-border bg-muted clay-sm"
+              style={{ minHeight: "20rem", maxHeight: "70vh" }}
             >
               <img
                 src={src}
                 alt={`${title} 사진 ${i + 1}`}
-                className="w-full h-full object-cover"
+                className="max-w-full max-h-[70vh] w-auto h-auto object-contain"
                 loading="lazy"
                 onError={() => setFailed((p) => ({ ...p, [i]: true }))}
               />
@@ -222,18 +223,19 @@ function PhotoGallery({ title, images }: { title: string; images: string[] }) {
         )}
       </div>
 
-      {/* Grid: full set */}
+      {/* Grid: full set, contained so nothing is cropped */}
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
         {images.map((src, i) =>
           failed[i] ? null : (
             <figure
               key={"g" + src + i}
-              className="aspect-square overflow-hidden rounded-md border border-border bg-muted"
+              className="flex items-center justify-center overflow-hidden rounded-md border border-border bg-muted p-2"
+              style={{ minHeight: "10rem" }}
             >
               <img
                 src={src}
                 alt={`${title} 썸네일 ${i + 1}`}
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                className="max-w-full max-h-60 w-auto h-auto object-contain hover:scale-[1.03] transition-transform duration-500"
                 loading="lazy"
                 onError={() => setFailed((p) => ({ ...p, [i]: true }))}
               />
