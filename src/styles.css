@@ -125,7 +125,9 @@
     0 0 0 1px oklch(0.20 0.03 270 / 0.10),
     0 14px 40px -16px oklch(0.62 0.22 18 / 0.35);
   --font-serif: "Noto Serif KR", "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-display: "Pretendard", "Noto Sans KR", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Pretendard", "Noto Sans KR", ui-sans-serif, system-ui, sans-serif;
+
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -374,6 +376,51 @@
   .clay-sm { border-radius: 1rem; box-shadow: var(--shadow-clay-sm); }
   .clay:hover { transform: translateY(-3px); }
   .glow-ring { box-shadow: var(--glow-rainbow); }
+  /* Display font — high readability, clean counter to the busy impressionist background */
+  .font-display { font-family: var(--font-display); }
+  /* Word-level hover lift — playful, readable interaction for key headlines */
+  .word-lift {
+    display: inline-block;
+    transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1), text-shadow 180ms ease;
+    cursor: default;
+  }
+  .word-lift:hover {
+    transform: translateY(-0.12em) scale(1.04);
+    text-shadow: 0 8px 18px oklch(0.62 0.22 18 / 0.25);
+  }
+  /* Highlighted word interaction — marker bloom brightens on hover */
+  .mark-pop-interactive {
+    position: relative;
+    z-index: 0;
+    transition: color 180ms ease;
+    cursor: default;
+  }
+  .mark-pop-interactive::before {
+    content: "";
+    position: absolute;
+    inset: 0.1em -0.25em 0.05em -0.25em;
+    z-index: -1;
+    border-radius: 0.35em;
+    opacity: 0.32;
+    transform: rotate(-1.5deg);
+    transition: opacity 180ms ease, transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .mark-pop-interactive:hover::before {
+    opacity: 0.55;
+    transform: rotate(-0.5deg) scale(1.02);
+  }
+  .mark-pop-interactive.mark-coral::before { background: linear-gradient(120deg, var(--pop-coral), var(--pop-peach)); }
+  .mark-pop-interactive.mark-sky::before { background: linear-gradient(120deg, var(--pop-sky), var(--pop-mint)); }
+  .mark-pop-interactive.mark-lime::before { background: linear-gradient(120deg, var(--pop-lime), var(--pop-yellow)); }
+  .mark-pop-interactive.mark-magenta::before { background: linear-gradient(120deg, var(--pop-magenta), var(--pop-pink)); }
+  .mark-pop-interactive.mark-lavender::before { background: linear-gradient(120deg, var(--pop-lavender), var(--pop-purple)); }
+  /* Headline hover interaction — subtle letter-spacing breathe */
+  .text-pop-hover {
+    transition: letter-spacing 250ms cubic-bezier(0.22, 1, 0.36, 1), color 250ms ease;
+    cursor: default;
+  }
+  .text-pop-hover:hover { letter-spacing: 0.01em; }
+
   /* Subtle drift instead of pulsing neon */
   @keyframes tile-drift {
     0%,100% { background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%; }
