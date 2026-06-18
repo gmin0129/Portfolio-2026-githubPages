@@ -62,35 +62,50 @@
 }
 
 :root {
-  --radius: 0.5rem;
-  /* Warm editorial palette — ivory paper, deep ink, terracotta accent */
-  --background: oklch(0.975 0.012 80);
-  --foreground: oklch(0.22 0.025 55);
-  --card: oklch(0.99 0.008 85);
-  --card-foreground: oklch(0.22 0.025 55);
-  --popover: oklch(0.99 0.008 85);
-  --popover-foreground: oklch(0.22 0.025 55);
-  --primary: oklch(0.55 0.14 40);
-  --primary-foreground: oklch(0.985 0.01 85);
-  --secondary: oklch(0.93 0.02 75);
-  --secondary-foreground: oklch(0.28 0.03 55);
-  --muted: oklch(0.94 0.015 80);
-  --muted-foreground: oklch(0.48 0.03 60);
-  --accent: oklch(0.78 0.11 70);
-  --accent-foreground: oklch(0.22 0.025 55);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.88 0.02 70);
-  --input: oklch(0.88 0.02 70);
-  --ring: oklch(0.55 0.14 40);
-  /* Custom tokens */
-  --ink: oklch(0.22 0.025 55);
-  --ink-soft: oklch(0.4 0.03 55);
-  --paper: oklch(0.975 0.012 80);
-  --paper-deep: oklch(0.93 0.02 75);
-  --terracotta: oklch(0.55 0.14 40);
-  --ochre: oklch(0.72 0.13 70);
-  --sage: oklch(0.6 0.05 140);
+  --radius: 1.25rem;
+  /* Vibrant, playful palette — cream paper, magenta ink, rainbow accents */
+  --background: oklch(0.975 0.025 95);
+  --foreground: oklch(0.26 0.06 320);
+  --card: oklch(0.995 0.012 90);
+  --card-foreground: oklch(0.26 0.06 320);
+  --popover: oklch(0.995 0.012 90);
+  --popover-foreground: oklch(0.26 0.06 320);
+  --primary: oklch(0.62 0.24 350);
+  --primary-foreground: oklch(0.99 0.01 90);
+  --secondary: oklch(0.93 0.06 80);
+  --secondary-foreground: oklch(0.26 0.06 320);
+  --muted: oklch(0.95 0.03 90);
+  --muted-foreground: oklch(0.48 0.05 320);
+  --accent: oklch(0.82 0.16 90);
+  --accent-foreground: oklch(0.26 0.06 320);
+  --destructive: oklch(0.62 0.24 25);
+  --destructive-foreground: oklch(0.99 0.01 90);
+  --border: oklch(0.88 0.04 340);
+  --input: oklch(0.88 0.04 340);
+  --ring: oklch(0.62 0.24 350);
+  /* Custom tokens — kept names; meaning shifted to vibrant */
+  --ink: oklch(0.26 0.06 320);
+  --ink-soft: oklch(0.46 0.06 320);
+  --paper: oklch(0.975 0.025 95);
+  --paper-deep: oklch(0.93 0.06 60);
+  --terracotta: oklch(0.65 0.25 20);     /* hot coral */
+  --ochre: oklch(0.85 0.17 90);          /* sunny yellow */
+  --sage: oklch(0.78 0.16 160);          /* mint */
+  /* New pop tokens */
+  --pop-pink: oklch(0.78 0.18 350);
+  --pop-coral: oklch(0.7 0.22 30);
+  --pop-yellow: oklch(0.88 0.18 95);
+  --pop-mint: oklch(0.82 0.16 170);
+  --pop-sky: oklch(0.78 0.14 230);
+  --pop-lavender: oklch(0.74 0.17 300);
+  --pop-magenta: oklch(0.6 0.26 350);
+  --rainbow: linear-gradient(135deg,
+    oklch(0.78 0.18 350) 0%,
+    oklch(0.78 0.18 30) 25%,
+    oklch(0.88 0.18 95) 50%,
+    oklch(0.82 0.16 170) 70%,
+    oklch(0.78 0.16 280) 100%);
+  --shadow-pop: 0 14px 0 -6px oklch(0.6 0.26 350 / 0.18), 0 24px 60px -20px oklch(0.6 0.26 350 / 0.25);
   --font-serif: "Noto Serif KR", "Cormorant Garamond", ui-serif, Georgia, serif;
   --font-sans: "Pretendard", "Noto Sans KR", ui-sans-serif, system-ui, sans-serif;
   --chart-1: oklch(0.646 0.222 41.116);
@@ -153,6 +168,12 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     font-feature-settings: "ss01", "ss02";
+    background-image:
+      radial-gradient(at 0% 0%, oklch(0.85 0.14 350 / 0.35) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, oklch(0.85 0.14 90 / 0.3) 0px, transparent 45%),
+      radial-gradient(at 100% 100%, oklch(0.82 0.14 200 / 0.28) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, oklch(0.82 0.14 290 / 0.28) 0px, transparent 50%);
+    background-attachment: fixed;
   }
   h1, h2, h3, .font-serif {
     font-family: var(--font-serif);
@@ -170,5 +191,23 @@
     font-family: var(--font-serif);
     font-style: italic;
     color: var(--terracotta);
+  }
+  .bg-rainbow { background-image: var(--rainbow); }
+  .text-rainbow {
+    background-image: var(--rainbow);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .shadow-pop { box-shadow: var(--shadow-pop); }
+  .card-pop {
+    border: 1.5px solid var(--foreground);
+    border-radius: 1.5rem;
+    box-shadow: 6px 6px 0 0 var(--foreground);
+    transition: transform 200ms ease, box-shadow 200ms ease;
+  }
+  .card-pop:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 10px 10px 0 0 var(--foreground);
   }
 }
