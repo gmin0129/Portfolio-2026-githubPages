@@ -272,7 +272,7 @@ function Education() {
   return (
     <section id="education" className="bg-[var(--paper-deep)] border-y border-border">
       <div className="mx-auto max-w-6xl px-6 py-24">
-        <SectionHeader num="02 —" kicker="Education & Career" title="Education" />
+        <SectionHeader num="01 —" kicker="Education & Career" title="About" />
         <div className="grid md:grid-cols-2 gap-16">
           <div>
             <h3 className="font-serif text-2xl mb-6"><span className="mark-pop mark-coral">교육</span></h3>
