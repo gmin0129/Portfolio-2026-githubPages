@@ -453,7 +453,7 @@ function Contact() {
     <section id="contact" className="bg-[var(--paper-deep)] border-t border-border">
       <div className="mx-auto max-w-6xl px-6 py-24 grid md:grid-cols-12 gap-10 items-center">
         <div className="md:col-span-7">
-          <span className="section-num text-lg">06 —</span>
+          <span className="section-num text-lg">05 —</span>
           <h2 className="font-display text-pop-hover text-5xl md:text-6xl mt-2 leading-[1.5]">
             함께 좋은 이야기를<br />
             만들고 싶다면, <span className="word-lift italic text-[var(--terracotta)]">언제든.</span>
