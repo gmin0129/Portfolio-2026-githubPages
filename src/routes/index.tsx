@@ -362,7 +362,7 @@ function Projects() {
         <div className="flex items-end justify-between mb-12 border-b border-foreground/15 pb-4">
           <div>
             <span className="font-serif italic text-lg text-[var(--terracotta)]">04 —</span>
-            <h2 className="font-serif text-4xl md:text-5xl font-medium mt-1 text-rainbow">Projects</h2>
+            <h2 className="font-serif text-4xl md:text-5xl font-medium mt-1 text-foreground">Projects</h2>
           </div>
           <span className="text-xs tracking-[0.3em] uppercase text-[var(--ink-soft)] hidden md:block">
             Things I built
