@@ -51,15 +51,20 @@ function ExperienceDetail() {
         </div>
       </header>
 
-      <section className="sticky top-16 z-40 bg-rainbow text-foreground border-b-2 border-foreground shadow-[0_10px_30px_-12px_oklch(0.62_0.28_345/0.45)]">
-        <div className="mx-auto max-w-5xl px-6 py-8 md:py-10">
-          <div className="font-serif italic text-foreground/80 text-sm tracking-widest uppercase">
-            Experience · {String(idx + 1).padStart(2, "0")}
+      <section className="sticky top-16 z-40">
+        <div className="mx-auto max-w-5xl px-4 md:px-6 pt-4">
+          <div className={`relative ${TILES[idx % TILES.length]} shape-squircle px-6 md:px-10 py-7 md:py-9 clay overflow-hidden`}>
+            <div className="absolute inset-0 grain opacity-30 pointer-events-none" />
+            <div className="relative">
+              <div className="font-serif italic text-foreground/75 text-sm tracking-widest uppercase">
+                Experience · {String(idx + 1).padStart(2, "0")}
+              </div>
+              <h1 className="font-serif text-3xl md:text-5xl font-semibold mt-2 leading-[1.1] text-foreground drop-shadow-[1px_1px_0_oklch(1_0_0/0.55)]">
+                {experience.title}
+              </h1>
+              <p className="mt-2 text-foreground/80 text-base md:text-lg">{experience.place}</p>
+            </div>
           </div>
-          <h1 className="font-serif text-3xl md:text-5xl font-semibold mt-2 leading-[1.1] drop-shadow-[2px_2px_0_oklch(1_0_0/0.6)]">
-            {experience.title}
-          </h1>
-          <p className="mt-2 text-foreground/80 text-base md:text-lg">{experience.place}</p>
         </div>
       </section>
 
@@ -142,3 +147,5 @@ function Meta({ k, v }: { k: string; v: string }) {
     </div>
   );
 }
+
+const TILES = ["tile-2", "tile-5", "tile-3", "tile-6", "tile-4", "tile-1"];

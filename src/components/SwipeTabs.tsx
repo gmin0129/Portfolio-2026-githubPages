@@ -89,15 +89,15 @@ export function SwipeTabs({ title, images, children }: Props) {
       <div className="sticky top-[calc(4rem+0px)] z-30 bg-transparent pointer-events-none">
         <div className="mx-auto max-w-5xl px-6 pt-6 pb-2 flex justify-center md:justify-start pointer-events-auto">
           <div
-            className="relative inline-flex items-center rounded-full p-1.5 text-sm bg-background/85 backdrop-blur-xl animate-pulse-glow"
-            style={{ border: "1.5px solid var(--foreground)" }}
+            className="relative inline-flex items-center rounded-full p-1.5 text-sm bg-background/90 backdrop-blur-xl clay-sm"
           >
             <span
               aria-hidden
-              className="absolute top-1.5 bottom-1.5 left-1.5 rounded-full bg-rainbow animate-hue shadow-[0_4px_18px_-2px_oklch(0.62_0.28_345/0.6)] transition-transform duration-400 ease-out"
+              className="absolute top-1.5 bottom-1.5 left-1.5 rounded-full tile-1 animate-hue transition-transform duration-400 ease-out"
               style={{
                 width: "calc(50% - 0.375rem)",
                 transform: `translateX(${page === 0 ? "0%" : "100%"})`,
+                boxShadow: "inset 1px 1px 3px oklch(1 0 0 / 0.6), 0 4px 14px -4px oklch(0.3 0.05 40 / 0.35)",
               }}
             />
             <button

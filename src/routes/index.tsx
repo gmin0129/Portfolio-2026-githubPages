@@ -92,13 +92,16 @@ const SKILLS = [
   { group: "AI Tools", items: ["Gemini", "ChatGPT", "Genspark"] },
 ];
 
-const POP_COLORS = [
-  "var(--pop-pink)",
-  "var(--pop-yellow)",
-  "var(--pop-mint)",
-  "var(--pop-sky)",
-  "var(--pop-lavender)",
+const TILES = ["tile-1", "tile-2", "tile-3", "tile-4", "tile-5", "tile-6"];
+const SHAPES = ["shape-squircle", "shape-blob", "shape-pebble", "shape-petal", "shape-leaf", "shape-arch"];
+const ROTATIONS = ["-rotate-1", "rotate-1", "-rotate-2", "rotate-2", "rotate-0", "-rotate-1"];
+const ACCENTS = [
   "var(--pop-coral)",
+  "var(--pop-purple)",
+  "var(--pop-sky)",
+  "var(--pop-lime)",
+  "var(--pop-magenta)",
+  "var(--pop-orange)",
 ];
 
 function Index() {
@@ -146,9 +149,9 @@ function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
       <div className="absolute inset-0 grain opacity-50 pointer-events-none" />
-      <div className="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-[var(--pop-pink)] blur-3xl opacity-60 pointer-events-none" />
-      <div className="absolute top-10 right-0 w-80 h-80 rounded-full bg-[var(--pop-yellow)] blur-3xl opacity-60 pointer-events-none" />
-      <div className="absolute bottom-0 left-1/3 w-72 h-72 rounded-full bg-[var(--pop-mint)] blur-3xl opacity-50 pointer-events-none" />
+      <div className="absolute -top-24 -left-20 w-72 h-72 tile-1 shape-blob blur-2xl opacity-50 pointer-events-none" />
+      <div className="absolute top-20 right-0 w-80 h-80 tile-2 shape-pebble blur-2xl opacity-45 pointer-events-none" />
+      <div className="absolute bottom-0 left-1/3 w-72 h-72 tile-3 shape-petal blur-2xl opacity-40 pointer-events-none" />
       <div className="mx-auto max-w-6xl px-6 pt-20 pb-24 md:pt-28 md:pb-32 grid md:grid-cols-12 gap-10 items-end">
         <div className="md:col-span-7">
           <p className="text-sm tracking-[0.3em] uppercase text-[var(--ink-soft)] mb-6">
@@ -156,7 +159,7 @@ function Hero() {
           </p>
           <h1 className="font-serif text-[clamp(2.6rem,7vw,5.5rem)] leading-[1.05] font-medium">
             <span className="text-[var(--pop-magenta)]">공감</span>과 <span className="text-[var(--pop-coral)]">소통</span>,<br />
-            <span className="italic text-[var(--pop-lavender)]">적응력</span>과 <span className="text-[var(--pop-sky)]">끈기</span>,<br />
+            <span className="italic text-[var(--pop-purple)]">적응력</span>과 <span className="text-[var(--pop-sky)]">끈기</span>,<br />
             그리고 <span className="text-rainbow font-semibold">다양성</span>.
           </h1>
           <p className="mt-8 max-w-xl text-base md:text-lg text-[var(--ink-soft)] leading-relaxed">
@@ -165,24 +168,24 @@ function Hero() {
             언어와 문화를 가로지르며 쌓아온 경험으로 콘텐츠와 브랜드의 이야기를 만듭니다.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
-            <a href="#projects" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium shadow-[4px_4px_0_0_var(--pop-yellow)] hover:shadow-[6px_6px_0_0_var(--pop-pink)] hover:-translate-y-0.5 transition-all">
+            <a href="#projects" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
               프로젝트 보기 →
             </a>
-            <a href="#contact" className="inline-flex items-center gap-2 bg-[var(--pop-pink)] text-foreground border-2 border-foreground rounded-full px-5 py-2.5 text-sm font-medium shadow-[4px_4px_0_0_var(--foreground)] hover:-translate-y-0.5 transition-all">
+            <a href="#contact" className="inline-flex items-center gap-2 tile-1 text-foreground rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
               연락하기
             </a>
           </div>
         </div>
         <div className="md:col-span-5 relative">
-          <div className="absolute -inset-4 bg-rainbow rounded-[2rem] -rotate-2 opacity-90" />
+          <div className="absolute -inset-4 tile-2 shape-squircle -rotate-2 opacity-95 clay" />
           <img
             src={profileImg.url}
             alt="윤지민 프로필 사진"
             width={896}
             height={1152}
-            className="relative rounded-[1.75rem] w-full object-cover border-2 border-foreground shadow-[8px_8px_0_0_var(--foreground)]"
+            className="relative shape-squircle w-full object-cover clay"
           />
-          <div className="absolute -bottom-4 -left-4 bg-[var(--pop-yellow)] text-foreground border-2 border-foreground rounded-full px-4 py-2 text-xs tracking-widest uppercase font-serif italic rotate-[-6deg] shadow-[3px_3px_0_0_var(--foreground)]">
+          <div className="absolute -bottom-4 -left-4 tile-4 text-foreground rounded-full px-4 py-2 text-xs tracking-widest uppercase font-serif italic rotate-[-6deg] clay-sm">
             Yun Jimin
           </div>
         </div>
@@ -195,12 +198,12 @@ function Hero() {
 function Marquee() {
   const items = ["기획", "Communication", "전시 운영", "Branding", "콘텐츠", "Deutsch · English · 한국어", "Curation"];
   return (
-    <div className="border-y-2 border-foreground bg-rainbow py-4 overflow-hidden">
-      <div className="flex gap-12 whitespace-nowrap animate-[scroll_30s_linear_infinite] font-serif italic text-2xl text-foreground">
+    <div className="bg-rainbow py-4 overflow-hidden">
+      <div className="flex gap-12 whitespace-nowrap animate-[scroll_30s_linear_infinite] font-serif italic text-2xl text-foreground/90">
         {[...items, ...items, ...items].map((it, i) => (
           <span key={i} className="flex items-center gap-12">
             {it}
-            <span className="text-background">✦</span>
+            <span className="text-background/80">✦</span>
           </span>
         ))}
       </div>
@@ -319,22 +322,24 @@ function Skills() {
   return (
     <section id="skills" className="mx-auto max-w-6xl px-6 py-24">
       <SectionHeader num="03 —" kicker="Tools I use" title="Skills" />
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {SKILLS.map((s, i) => (
           <div
             key={s.group}
-            className="group relative card-pop p-6"
-            style={{ backgroundColor: POP_COLORS[i % POP_COLORS.length] }}
+            className={`group relative ${TILES[i % TILES.length]} ${SHAPES[i % SHAPES.length]} ${ROTATIONS[i % ROTATIONS.length]} card-pop p-7 overflow-hidden`}
           >
-            <div className="text-foreground font-serif italic text-sm">0{i + 1}</div>
-            <h3 className="font-serif text-xl mt-2">{s.group}</h3>
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {s.items.map((it) => (
-                <li key={it} className="text-xs bg-background/70 border border-foreground/20 rounded-full px-3 py-1">
-                  {it}
-                </li>
-              ))}
-            </ul>
+            <div className="absolute inset-0 grain opacity-30 pointer-events-none" />
+            <div className="relative">
+              <div className="text-foreground font-serif italic text-sm">0{i + 1}</div>
+              <h3 className="font-serif text-xl mt-2">{s.group}</h3>
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {s.items.map((it) => (
+                  <li key={it} className="text-xs bg-background/75 backdrop-blur rounded-full px-3 py-1 clay-sm">
+                    {it}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         ))}
       </div>
@@ -344,66 +349,55 @@ function Skills() {
 
 function Projects() {
   return (
-    <section id="projects" className="relative bg-foreground text-background overflow-hidden">
-      <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[var(--pop-magenta)] blur-3xl opacity-50 pointer-events-none" />
-      <div className="absolute bottom-0 -left-20 w-80 h-80 rounded-full bg-[var(--pop-sky)] blur-3xl opacity-40 pointer-events-none" />
+    <section id="projects" className="relative bg-[var(--paper-deep)] text-foreground overflow-hidden">
+      <div className="absolute -top-20 -right-20 w-80 h-80 tile-3 shape-blob blur-2xl opacity-40 pointer-events-none" />
+      <div className="absolute bottom-0 -left-20 w-80 h-80 tile-5 shape-pebble blur-2xl opacity-40 pointer-events-none" />
       <div className="mx-auto max-w-6xl px-6 py-24">
-        <div className="flex items-end justify-between mb-12 border-b border-background/20 pb-4">
+        <div className="flex items-end justify-between mb-12 border-b border-foreground/15 pb-4">
           <div>
-            <span className="font-serif italic text-lg text-[var(--pop-yellow)]">04 —</span>
+            <span className="font-serif italic text-lg text-[var(--terracotta)]">04 —</span>
             <h2 className="font-serif text-4xl md:text-5xl font-medium mt-1 text-rainbow">Projects</h2>
           </div>
-          <span className="text-xs tracking-[0.3em] uppercase text-background/60 hidden md:block">
+          <span className="text-xs tracking-[0.3em] uppercase text-[var(--ink-soft)] hidden md:block">
             Things I built
           </span>
         </div>
 
-        <div className="divide-y divide-background/15">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
           {PROJECTS.map((p, i) => (
             <Link
               key={p.slug}
               to="/projects/$slug"
               params={{ slug: p.slug }}
-              className="relative grid md:grid-cols-12 gap-6 py-8 group hover:bg-background/[0.05] transition-colors -mx-4 px-4 rounded-2xl cursor-pointer"
+              className={`relative block group ${TILES[i % TILES.length]} ${SHAPES[i % SHAPES.length]} ${ROTATIONS[i % ROTATIONS.length]} card-pop p-7 overflow-hidden`}
             >
-              <div
-                className="md:col-span-1 font-serif italic text-2xl"
-                style={{ color: POP_COLORS[i % POP_COLORS.length] }}
-              >
-                {String(i + 1).padStart(2, "0")}
-              </div>
-              <div className="md:col-span-5">
-                <h3
-                  className="font-serif text-2xl md:text-3xl transition-colors"
-                  style={{ ["--hover-c" as string]: POP_COLORS[i % POP_COLORS.length] }}
+              <div className="absolute inset-0 grain opacity-30 pointer-events-none" />
+              <div className="relative flex flex-col h-full min-h-[15rem]">
+                <div
+                  className="font-serif italic text-2xl"
+                  style={{ color: ACCENTS[i % ACCENTS.length] }}
                 >
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+                <h3 className="font-serif text-xl md:text-2xl mt-1 leading-tight text-foreground">
                   {p.title}
-                  <span
-                    className="inline-block ml-2 opacity-0 group-hover:opacity-100 transition-opacity"
-                    style={{ color: POP_COLORS[i % POP_COLORS.length] }}
-                  >→</span>
+                  <span className="inline-block ml-2 opacity-0 group-hover:opacity-100 transition-opacity text-foreground">→</span>
                 </h3>
-                <p className="text-sm text-background/60 mt-1">{p.sub}</p>
-              </div>
-              <div className="md:col-span-3 text-sm text-background/80">
-                <div className="uppercase tracking-widest text-[10px] text-background/50 mb-1">기여</div>
-                {p.contribution}
-                <div className="uppercase tracking-widest text-[10px] text-background/50 mt-3 mb-1">기간</div>
-                {p.period}
-              </div>
-              <div className="md:col-span-3">
-                <div className="flex flex-wrap gap-1.5">
+                <p className="text-sm text-foreground/75 mt-1">{p.sub}</p>
+                <div className="mt-4 text-xs text-foreground/80 space-y-1">
+                  <div><span className="uppercase tracking-widest text-[10px] text-foreground/60 mr-2">기여</span>{p.contribution}</div>
+                  <div><span className="uppercase tracking-widest text-[10px] text-foreground/60 mr-2">기간</span>{p.period}</div>
+                </div>
+                <div className="mt-auto pt-4 flex flex-wrap gap-1.5">
                   {p.tags.map((t) => (
                     <span
                       key={t}
-                      className="text-[11px] rounded-full px-2 py-0.5 text-foreground font-medium"
-                      style={{ backgroundColor: POP_COLORS[(i + t.length) % POP_COLORS.length] }}
+                      className="text-[11px] rounded-full px-2.5 py-0.5 text-foreground font-medium bg-background/75 backdrop-blur clay-sm"
                     >
                       {t}
                     </span>
                   ))}
                 </div>
-                <div className="mt-3 text-xs text-background/50">{p.skills}</div>
               </div>
             </Link>
           ))}
@@ -417,19 +411,15 @@ function Experience() {
   return (
     <section id="experience" className="mx-auto max-w-6xl px-6 py-24">
       <SectionHeader num="05 —" kicker="Beyond the desk" title="Experiences" />
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-8">
         {EXPERIENCES.map((e, i) => (
           <Link
             key={e.slug}
             to="/experiences/$slug"
             params={{ slug: e.slug }}
-            className="group relative card-pop p-8 overflow-hidden cursor-pointer"
-            style={{ backgroundColor: POP_COLORS[i % POP_COLORS.length] }}
+            className={`group relative ${TILES[(i + 2) % TILES.length]} ${SHAPES[(i + 1) % SHAPES.length]} ${ROTATIONS[(i + 1) % ROTATIONS.length]} card-pop p-8 overflow-hidden cursor-pointer`}
           >
-            <div
-              className="absolute -right-10 -top-10 w-40 h-40 rounded-full blur-2xl opacity-70"
-              style={{ backgroundColor: POP_COLORS[(i + 2) % POP_COLORS.length] }}
-            />
+            <div className="absolute inset-0 grain opacity-30 pointer-events-none" />
             <div className="relative">
               <div className="text-xs uppercase tracking-widest text-foreground/70">{e.period}</div>
               <h3 className="font-serif text-2xl mt-2">
