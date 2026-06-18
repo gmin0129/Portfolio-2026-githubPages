@@ -313,7 +313,7 @@
     color: transparent;
   }
   .shadow-pop { box-shadow: var(--shadow-pop); }
-  /* Ceramic tile card: soft outer + glaze highlight, no harsh border */
+  /* Matte riso card — opaque cream with subtle drop, no neon glow */
   .card-pop {
     border-radius: 1.75rem;
     box-shadow: var(--shadow-clay);
@@ -322,9 +322,15 @@
   .card-pop:hover {
     transform: translateY(-3px) rotate(-0.4deg);
     box-shadow:
-      inset 2px 2px 6px oklch(1 0 0 / 0.75),
-      inset -3px -4px 8px oklch(0.3 0.06 40 / 0.18),
-      10px 16px 30px -8px oklch(0.25 0.05 40 / 0.32);
+      0 1px 0 oklch(1 0 0 / 0.8) inset,
+      0 18px 36px -16px oklch(0.20 0.03 270 / 0.30);
+  }
+  /* Matte text panel sits on top of bloom backgrounds for readability */
+  .matte-panel {
+    background-color: oklch(0.985 0.012 95 / 0.88);
+    backdrop-filter: blur(2px);
+    border-radius: 1.25rem;
+    padding: 1rem 1.25rem;
   }
   .clay {
     border-radius: 1.75rem;
