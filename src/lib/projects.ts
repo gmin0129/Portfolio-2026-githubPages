@@ -15,10 +15,10 @@ export type Project = {
 export const PROJECTS: Project[] = [
   {
     slug: "daljjanheun-haru",
-    title: "<달찮은 하루> 전시회",
-    sub: "서울대학교 관정갤러리",
-    period: "2025.11.11 — 2025.11.18",
-    contribution: "전시 운영, 작가 매니징",
+    title: "<달찮은 하루> 전시회 기획 및 운영",
+    sub: "노들갤러리 1관",
+    period: "2025.08.04 — 2025.09.26",
+    contribution: "전시 기획 및 운영, 작가 매니징, 데이터 아카이빙",
     tags: ["#전시기획 및 운영", "#외부관계자 소통", "#데이터 정리"],
     skills: "의사소통 · 창의력 · Premiere · Slack · Notion",
     overview:
@@ -29,7 +29,7 @@ export const PROJECTS: Project[] = [
       "관람 데이터 수집·정리 및 후속 리포트 작성",
     ],
     outcome: [
-      "8일간 안정적인 전시 운영과 작가 만족도 확보",
+      "8일간 안정적인 전시 운영과 관람객 만족도 확보",
       "전시 관람 데이터를 정리해 다음 전시 기획의 기초 자료로 활용",
     ],
   },
