@@ -92,13 +92,16 @@ const SKILLS = [
   { group: "AI Tools", items: ["Gemini", "ChatGPT", "Genspark"] },
 ];
 
-const POP_COLORS = [
-  "var(--pop-pink)",
-  "var(--pop-yellow)",
-  "var(--pop-mint)",
-  "var(--pop-sky)",
-  "var(--pop-lavender)",
+const TILES = ["tile-1", "tile-2", "tile-3", "tile-4", "tile-5", "tile-6"];
+const SHAPES = ["shape-squircle", "shape-blob", "shape-pebble", "shape-petal", "shape-leaf", "shape-arch"];
+const ROTATIONS = ["-rotate-1", "rotate-1", "-rotate-2", "rotate-2", "rotate-0", "-rotate-1"];
+const ACCENTS = [
   "var(--pop-coral)",
+  "var(--pop-purple)",
+  "var(--pop-sky)",
+  "var(--pop-lime)",
+  "var(--pop-magenta)",
+  "var(--pop-orange)",
 ];
 
 function Index() {
@@ -146,9 +149,9 @@ function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
       <div className="absolute inset-0 grain opacity-50 pointer-events-none" />
-      <div className="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-[var(--pop-pink)] blur-3xl opacity-60 pointer-events-none" />
-      <div className="absolute top-10 right-0 w-80 h-80 rounded-full bg-[var(--pop-yellow)] blur-3xl opacity-60 pointer-events-none" />
-      <div className="absolute bottom-0 left-1/3 w-72 h-72 rounded-full bg-[var(--pop-mint)] blur-3xl opacity-50 pointer-events-none" />
+      <div className="absolute -top-24 -left-20 w-72 h-72 tile-1 shape-blob blur-2xl opacity-50 pointer-events-none" />
+      <div className="absolute top-20 right-0 w-80 h-80 tile-2 shape-pebble blur-2xl opacity-45 pointer-events-none" />
+      <div className="absolute bottom-0 left-1/3 w-72 h-72 tile-3 shape-petal blur-2xl opacity-40 pointer-events-none" />
       <div className="mx-auto max-w-6xl px-6 pt-20 pb-24 md:pt-28 md:pb-32 grid md:grid-cols-12 gap-10 items-end">
         <div className="md:col-span-7">
           <p className="text-sm tracking-[0.3em] uppercase text-[var(--ink-soft)] mb-6">
@@ -156,7 +159,7 @@ function Hero() {
           </p>
           <h1 className="font-serif text-[clamp(2.6rem,7vw,5.5rem)] leading-[1.05] font-medium">
             <span className="text-[var(--pop-magenta)]">공감</span>과 <span className="text-[var(--pop-coral)]">소통</span>,<br />
-            <span className="italic text-[var(--pop-lavender)]">적응력</span>과 <span className="text-[var(--pop-sky)]">끈기</span>,<br />
+            <span className="italic text-[var(--pop-purple)]">적응력</span>과 <span className="text-[var(--pop-sky)]">끈기</span>,<br />
             그리고 <span className="text-rainbow font-semibold">다양성</span>.
           </h1>
           <p className="mt-8 max-w-xl text-base md:text-lg text-[var(--ink-soft)] leading-relaxed">
@@ -165,24 +168,24 @@ function Hero() {
             언어와 문화를 가로지르며 쌓아온 경험으로 콘텐츠와 브랜드의 이야기를 만듭니다.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
-            <a href="#projects" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium shadow-[4px_4px_0_0_var(--pop-yellow)] hover:shadow-[6px_6px_0_0_var(--pop-pink)] hover:-translate-y-0.5 transition-all">
+            <a href="#projects" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
               프로젝트 보기 →
             </a>
-            <a href="#contact" className="inline-flex items-center gap-2 bg-[var(--pop-pink)] text-foreground border-2 border-foreground rounded-full px-5 py-2.5 text-sm font-medium shadow-[4px_4px_0_0_var(--foreground)] hover:-translate-y-0.5 transition-all">
+            <a href="#contact" className="inline-flex items-center gap-2 tile-1 text-foreground rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
               연락하기
             </a>
           </div>
         </div>
         <div className="md:col-span-5 relative">
-          <div className="absolute -inset-4 bg-rainbow rounded-[2rem] -rotate-2 opacity-90" />
+          <div className="absolute -inset-4 tile-2 shape-squircle -rotate-2 opacity-95 clay" />
           <img
             src={profileImg.url}
             alt="윤지민 프로필 사진"
             width={896}
             height={1152}
-            className="relative rounded-[1.75rem] w-full object-cover border-2 border-foreground shadow-[8px_8px_0_0_var(--foreground)]"
+            className="relative shape-squircle w-full object-cover clay"
           />
-          <div className="absolute -bottom-4 -left-4 bg-[var(--pop-yellow)] text-foreground border-2 border-foreground rounded-full px-4 py-2 text-xs tracking-widest uppercase font-serif italic rotate-[-6deg] shadow-[3px_3px_0_0_var(--foreground)]">
+          <div className="absolute -bottom-4 -left-4 tile-4 text-foreground rounded-full px-4 py-2 text-xs tracking-widest uppercase font-serif italic rotate-[-6deg] clay-sm">
             Yun Jimin
           </div>
         </div>
@@ -195,12 +198,12 @@ function Hero() {
 function Marquee() {
   const items = ["기획", "Communication", "전시 운영", "Branding", "콘텐츠", "Deutsch · English · 한국어", "Curation"];
   return (
-    <div className="border-y-2 border-foreground bg-rainbow py-4 overflow-hidden">
-      <div className="flex gap-12 whitespace-nowrap animate-[scroll_30s_linear_infinite] font-serif italic text-2xl text-foreground">
+    <div className="bg-rainbow py-4 overflow-hidden">
+      <div className="flex gap-12 whitespace-nowrap animate-[scroll_30s_linear_infinite] font-serif italic text-2xl text-foreground/90">
         {[...items, ...items, ...items].map((it, i) => (
           <span key={i} className="flex items-center gap-12">
             {it}
-            <span className="text-background">✦</span>
+            <span className="text-background/80">✦</span>
           </span>
         ))}
       </div>
