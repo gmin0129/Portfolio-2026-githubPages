@@ -237,7 +237,7 @@ function About() {
     <section id="about" className="mx-auto max-w-6xl px-6 py-24">
       <SectionHeader num="01 —" kicker="Who I am" title="About" />
       <div className="grid md:grid-cols-3 gap-10">
-        <p className="md:col-span-2 font-display text-2xl md:text-3xl leading-[1.2] text-foreground">
+        <p className="md:col-span-2 font-display text-2xl md:text-3xl leading-[1.5] text-foreground">
           저는 사람과 사람 사이의 <span className="mark-pop mark-pop-interactive mark-magenta">공감</span>에서 시작해,<br />
           새로운 환경에 빠르게 스며드는 <span className="mark-pop mark-pop-interactive mark-sky">적응력</span>과<br />
           끝까지 마무리하는 <span className="mark-pop mark-pop-interactive mark-lime">끈기</span>를 가지고 기획과 운영을 합니다.
@@ -448,7 +448,7 @@ function Contact() {
       <div className="mx-auto max-w-6xl px-6 py-24 grid md:grid-cols-12 gap-10 items-center">
         <div className="md:col-span-7">
           <span className="section-num text-lg">06 —</span>
-          <h2 className="font-display text-pop-hover text-5xl md:text-6xl mt-2 leading-tight">
+          <h2 className="font-display text-pop-hover text-5xl md:text-6xl mt-2 leading-[1.5]">
             함께 좋은 이야기를<br />
             만들고 싶다면, <span className="word-lift italic text-[var(--terracotta)]">언제든.</span>
           </h2>
