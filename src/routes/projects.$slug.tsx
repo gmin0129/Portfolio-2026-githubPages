@@ -3,7 +3,7 @@ import type { HTMLAttributes } from "react";
 import { getProject, PROJECTS, type Project } from "@/lib/projects";
 import { SwipeTabs } from "@/components/SwipeTabs";
 import { useQuery } from "@tanstack/react-query";
-import { notionImagesQueryOptions } from "@/lib/notion-images.functions";
+import { notionPageQueryOptions } from "@/lib/notion-images.functions";
 
 export const Route = createFileRoute("/projects/$slug")({
   loader: ({ params }) => {
@@ -40,8 +40,10 @@ function ProjectDetail() {
   const idx = PROJECTS.findIndex((p) => p.slug === project.slug);
   const prev = PROJECTS[(idx - 1 + PROJECTS.length) % PROJECTS.length];
   const next = PROJECTS[(idx + 1) % PROJECTS.length];
-  const { data, isLoading } = useQuery(notionImagesQueryOptions("project", project.slug));
+  const { data, isLoading } = useQuery(notionPageQueryOptions("project", project.slug));
   const images = data?.images?.length ? data.images : project.images;
+  const overview = data?.summary?.trim() ? data.summary : project.overview;
+  const role = data?.highlights?.length ? data.highlights : project.role;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -67,17 +69,17 @@ function ProjectDetail() {
           <Meta k="Skills" v={project.skills} />
         </aside>
         <div className="md:col-span-2 space-y-12">
-          {project.overview && (
+          {overview && (
             <div>
               <h2 className="font-serif text-2xl mb-3">Overview</h2>
-              <p className="text-[var(--ink-soft)] leading-relaxed">{project.overview}</p>
+              <p className="text-[var(--ink-soft)] leading-relaxed">{overview}</p>
             </div>
           )}
-          {project.role && project.role.length > 0 && (
+          {role && role.length > 0 && (
             <div>
               <h2 className="font-serif text-2xl mb-3">My Role</h2>
               <ul className="space-y-2 text-[var(--ink-soft)]">
-                {project.role.map((r) => (
+                {role.map((r) => (
                   <li key={r} className="flex gap-3">
                     <span className="text-[var(--terracotta)]">→</span>
                     <span>{r}</span>
