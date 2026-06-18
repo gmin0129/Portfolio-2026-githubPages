@@ -16,7 +16,6 @@ export const Route = createFileRoute("/")({
 });
 
 const NAV = [
-  { id: "about", label: "About" },
   { id: "education", label: "Education" },
   { id: "skills", label: "Skills" },
   { id: "projects", label: "Projects" },
@@ -92,16 +91,6 @@ const SKILLS = [
   { group: "AI Tools", items: ["Gemini", "ChatGPT", "Genspark"] },
 ];
 
-const ABOUT_TAGS = [
-  { label: "기획", className: "text-xs px-3 py-1" },
-  { label: "Communication", className: "text-sm px-3.5 py-1.5" },
-  { label: "전시 운영", className: "text-xs px-3 py-1" },
-  { label: "Branding", className: "text-base px-4 py-2" },
-  { label: "콘텐츠", className: "text-xs px-3 py-1" },
-  { label: "Deutsch · English · 한국어", className: "text-sm px-3.5 py-1.5" },
-  { label: "Curation", className: "text-lg px-4 py-2" },
-];
-
 const TILES = ["tile-1", "tile-2", "tile-3", "tile-4", "tile-5", "tile-6"];
 const SHAPES = ["shape-squircle", "shape-blob", "shape-pebble", "shape-petal", "shape-leaf", "shape-arch"];
 const ROTATIONS = ["-rotate-1", "rotate-1", "-rotate-2", "rotate-2", "rotate-0", "-rotate-1"];
@@ -119,7 +108,6 @@ function Index() {
     <div className="min-h-screen bg-background text-foreground">
       <Header />
       <Hero />
-      <About />
       <Education />
       <Skills />
       <Projects />
@@ -236,37 +224,6 @@ function SectionHeader({ num, kicker, title }: { num: string; kicker: string; ti
   );
 }
 
-function About() {
-  return (
-    <section id="about" className="mx-auto max-w-6xl px-6 py-24">
-      <SectionHeader num="01 —" kicker="Who I am" title="About" />
-      <div className="grid md:grid-cols-3 gap-10">
-        <div className="md:col-span-2 flex flex-wrap content-start gap-3">
-          {ABOUT_TAGS.map((tag) => (
-            <span key={tag.label} className={`border border-foreground/15 rounded-full bg-background/60 backdrop-blur text-foreground/80 ${tag.className}`}>
-              #{tag.label}
-            </span>
-          ))}
-        </div>
-        <div className="space-y-4 text-sm text-[var(--ink-soft)]">
-          <Fact k="Based in" v="Seoul, KR" />
-          <Fact k="Languages" v="한국어 · English · Deutsch" />
-          <Fact k="Currently" v="에이블라인드 / 졸업 후 진로 탐색" />
-          <Fact k="Interest" v="브랜드 · 전시 · 콘텐츠 기획" />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Fact({ k, v }: { k: string; v: string }) {
-  return (
-    <div className="flex justify-between gap-4 border-b border-border pb-3">
-      <span className="uppercase tracking-widest text-xs">{k}</span>
-      <span className="text-foreground font-medium text-right">{v}</span>
-    </div>
-  );
-}
 
 function Education() {
   return (
