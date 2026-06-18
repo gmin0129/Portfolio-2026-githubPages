@@ -92,6 +92,16 @@ const SKILLS = [
   { group: "AI Tools", items: ["Gemini", "ChatGPT", "Genspark"] },
 ];
 
+const ABOUT_TAGS = [
+  { label: "기획", className: "text-xs px-3 py-1" },
+  { label: "Communication", className: "text-sm px-3.5 py-1.5" },
+  { label: "전시 운영", className: "text-xs px-3 py-1" },
+  { label: "Branding", className: "text-base px-4 py-2" },
+  { label: "콘텐츠", className: "text-xs px-3 py-1" },
+  { label: "Deutsch · English · 한국어", className: "text-sm px-3.5 py-1.5" },
+  { label: "Curation", className: "text-lg px-4 py-2" },
+];
+
 const TILES = ["tile-1", "tile-2", "tile-3", "tile-4", "tile-5", "tile-6"];
 const SHAPES = ["shape-squircle", "shape-blob", "shape-pebble", "shape-petal", "shape-leaf", "shape-arch"];
 const ROTATIONS = ["-rotate-1", "rotate-1", "-rotate-2", "rotate-2", "rotate-0", "-rotate-1"];
@@ -176,13 +186,6 @@ function Hero() {
               연락하기
             </a>
           </div>
-          <div className="mt-6 flex flex-wrap gap-2">
-            {["기획", "Communication", "전시 운영", "Branding", "콘텐츠", "Deutsch · English · 한국어", "Curation"].map((tag) => (
-              <span key={tag} className="text-xs border border-foreground/15 rounded-full px-3 py-1 bg-background/60 backdrop-blur text-foreground/80">
-                #{tag}
-              </span>
-            ))}
-          </div>
         </div>
         <div className="md:col-span-5 relative">
           <div className="absolute -inset-4 shape-outline shape-outline-magenta pointer-events-none" />
@@ -238,11 +241,12 @@ function About() {
     <section id="about" className="mx-auto max-w-6xl px-6 py-24">
       <SectionHeader num="01 —" kicker="Who I am" title="About" />
       <div className="grid md:grid-cols-3 gap-10">
-        <div className="md:col-span-2 font-display text-2xl md:text-3xl leading-[1.5] text-foreground whitespace-pre-line">
-          데이터 분석으로 타인의 숨은 니즈를 읽고,{"\n"}
-          <span className="mark-pop mark-pop-interactive mark-lime">다양한 개성</span>을 포용하는 문화 기획자 윤지민입니다.{"\n\n\n"}
-          누구에게나 열려 있지만, 결코 가볍지 않은 기획을 지향합니다.{"\n"}
-          <span className="mark-pop mark-pop-interactive mark-coral">동아일보</span>에서 단 한 명의 소외도 없이 즐길 수 있는 <span className="mark-pop mark-pop-interactive mark-lavender">"포용적 문화 콘텐츠"</span>를 선보이겠습니다.
+        <div className="md:col-span-2 flex flex-wrap content-start gap-3">
+          {ABOUT_TAGS.map((tag) => (
+            <span key={tag.label} className={`border border-foreground/15 rounded-full bg-background/60 backdrop-blur text-foreground/80 ${tag.className}`}>
+              #{tag.label}
+            </span>
+          ))}
         </div>
         <div className="space-y-4 text-sm text-[var(--ink-soft)]">
           <Fact k="Based in" v="Seoul, KR" />
