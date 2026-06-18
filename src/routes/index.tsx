@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import profileImg from "@/assets/윤지민.jpg.asset.json";
 import { PROJECTS } from "@/lib/projects";
+import { EXPERIENCES } from "@/lib/experiences";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -89,21 +90,6 @@ const SKILLS = [
   { group: "Collaboration", items: ["Slack", "Notion"] },
   { group: "Design & Media", items: ["Fresco", "Premiere", "Canva", "Miricanvas"] },
   { group: "AI Tools", items: ["Gemini", "ChatGPT", "Genspark"] },
-];
-
-const EXPERIENCES = [
-  {
-    title: "오스트리아 교환학생",
-    place: "FHWien der WKW, Vienna, Austria",
-    period: "2024.02 — 2024.06",
-    blurb: "다국적 환경에서 학업과 일상을 보내며 적응력과 다양성에 대한 감각을 키웠습니다.",
-  },
-  {
-    title: "2025 KOSAC 광고캠페인",
-    place: "대한민국 대학생 광고대회",
-    period: "2025.03 — 2025.05",
-    blurb: "‘건강한 스마트폰 사용’ 캠페인 기획 · 참가.",
-  },
 ];
 
 function Index() {
@@ -402,15 +388,23 @@ function Experience() {
       <SectionHeader num="05 —" kicker="Beyond the desk" title="Experiences" />
       <div className="grid md:grid-cols-2 gap-6">
         {EXPERIENCES.map((e) => (
-          <div key={e.title} className="relative bg-card border border-border rounded-2xl p-8 overflow-hidden">
+          <Link
+            key={e.slug}
+            to="/experiences/$slug"
+            params={{ slug: e.slug }}
+            className="group relative bg-card border border-border rounded-2xl p-8 overflow-hidden hover:border-foreground/40 transition-colors cursor-pointer"
+          >
             <div className="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-[var(--ochre)]/30 blur-2xl" />
             <div className="relative">
               <div className="text-xs uppercase tracking-widest text-[var(--ink-soft)]">{e.period}</div>
-              <h3 className="font-serif text-2xl mt-2">{e.title}</h3>
+              <h3 className="font-serif text-2xl mt-2 group-hover:text-[var(--terracotta)] transition-colors">
+                {e.title}
+                <span className="inline-block ml-2 opacity-0 group-hover:opacity-100 transition-opacity text-[var(--terracotta)]">→</span>
+              </h3>
               <div className="text-sm text-[var(--terracotta)] mt-1">{e.place}</div>
               <p className="mt-4 text-[var(--ink-soft)] leading-relaxed">{e.blurb}</p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>
