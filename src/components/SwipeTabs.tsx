@@ -86,31 +86,39 @@ export function SwipeTabs({ title, images, children }: Props) {
   return (
     <div className="w-full">
       {/* Pill tabs with sliding indicator */}
-      <div className="mx-auto max-w-5xl px-6 pt-8">
-        <div className="relative inline-flex items-center rounded-full border border-border bg-background/60 backdrop-blur-md p-1 text-sm">
-          <span
-            aria-hidden
-            className="absolute top-1 bottom-1 w-1/2 rounded-full bg-foreground transition-transform duration-300 ease-out"
-            style={{ transform: `translateX(${page === 0 ? "0%" : "100%"})` }}
-          />
-          <button
-            type="button"
-            onClick={() => setPage(0)}
-            className={`relative z-10 px-5 py-2 rounded-full transition-colors ${
-              page === 0 ? "text-background" : "text-[var(--ink-soft)] hover:text-foreground"
-            }`}
+      <div className="sticky top-[calc(4rem+0px)] z-30 bg-transparent pointer-events-none">
+        <div className="mx-auto max-w-5xl px-6 pt-6 pb-2 flex justify-center md:justify-start pointer-events-auto">
+          <div
+            className="relative inline-flex items-center rounded-full p-1.5 text-sm bg-background/85 backdrop-blur-xl animate-pulse-glow"
+            style={{ border: "1.5px solid var(--foreground)" }}
           >
-            내용
-          </button>
-          <button
-            type="button"
-            onClick={() => setPage(1)}
-            className={`relative z-10 px-5 py-2 rounded-full transition-colors ${
-              page === 1 ? "text-background" : "text-[var(--ink-soft)] hover:text-foreground"
-            }`}
-          >
-            사진 →
-          </button>
+            <span
+              aria-hidden
+              className="absolute top-1.5 bottom-1.5 left-1.5 rounded-full bg-rainbow animate-hue shadow-[0_4px_18px_-2px_oklch(0.62_0.28_345/0.6)] transition-transform duration-400 ease-out"
+              style={{
+                width: "calc(50% - 0.375rem)",
+                transform: `translateX(${page === 0 ? "0%" : "100%"})`,
+              }}
+            />
+            <button
+              type="button"
+              onClick={() => setPage(0)}
+              className={`relative z-10 px-6 py-2 rounded-full font-medium transition-colors ${
+                page === 0 ? "text-foreground" : "text-[var(--ink-soft)] hover:text-foreground"
+              }`}
+            >
+              ✦ 내용
+            </button>
+            <button
+              type="button"
+              onClick={() => setPage(1)}
+              className={`relative z-10 px-6 py-2 rounded-full font-medium transition-colors ${
+                page === 1 ? "text-foreground" : "text-[var(--ink-soft)] hover:text-foreground"
+              }`}
+            >
+              사진 →
+            </button>
+          </div>
         </div>
       </div>
 
