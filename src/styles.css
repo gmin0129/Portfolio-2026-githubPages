@@ -229,94 +229,59 @@
     font-style: italic;
     color: var(--terracotta);
   }
-  /* Painterly multi-color "tile" backgrounds — many pigments in one shape.
-     Use as a class on any element; combine with .shape-* for organic forms. */
+  /* Airbrush bloom backgrounds — chalky pastel sprays on a matte cream
+     base so dark text stays legible. Multiple soft radial blooms in each
+     tile create the impressionist "many colors in one shape" feel. */
   .bg-rainbow {
-    background-color: oklch(0.07 0.03 270);
+    background-color: var(--card);
     background-image:
-      radial-gradient(circle at 18% 50%,
-        var(--pop-yellow) 0 3%, var(--pop-orange) 3 6%, var(--pop-pink) 6 10%,
-        var(--pop-magenta) 10 14%, var(--pop-purple) 14 18%,
-        var(--pop-sky) 18 22%, transparent 22%),
-      radial-gradient(circle at 82% 50%,
-        var(--pop-yellow) 0 2%, var(--pop-mint) 2 6%, var(--pop-sky) 6 12%,
-        var(--pop-lavender) 12 18%, transparent 18%),
-      radial-gradient(circle at 50% 50%,
-        oklch(0.16 0.06 280) 0%, oklch(0.06 0.03 270) 70%);
+      radial-gradient(ellipse 50% 60% at 12% 50%, var(--pop-sky)    0%, transparent 60%),
+      radial-gradient(ellipse 50% 60% at 38% 30%, var(--pop-lime)   0%, transparent 60%),
+      radial-gradient(ellipse 50% 60% at 62% 70%, var(--pop-peach)  0%, transparent 60%),
+      radial-gradient(ellipse 50% 60% at 86% 40%, var(--pop-pink)   0%, transparent 60%),
+      radial-gradient(ellipse 50% 60% at 50% 50%, var(--pop-lavender) 0%, transparent 70%);
   }
-  /* Concentric "target" tiles — bioluminescent rings on obsidian,
-     inspired by the circled motifs in the reference (galactic bullseyes,
-     coral nebula glows). Each tile uses one main bullseye + a smaller
-     orbiting glow so the composition feels celestial, not flat. */
   .tile-1 {
-    /* Classic spectrum target — pink → magenta → violet → blue */
-    background-color: oklch(0.07 0.03 270);
+    background-color: var(--card);
     background-image:
-      radial-gradient(circle at 35% 45%,
-        var(--pop-yellow) 0 4%,  var(--pop-orange) 4 8%,
-        var(--pop-pink)   8 14%, var(--pop-magenta) 14 22%,
-        var(--pop-purple) 22 30%, var(--pop-sky) 30 38%,
-        transparent 38%),
-      radial-gradient(circle at 82% 78%,
-        var(--pop-yellow) 0 3%, var(--pop-magenta) 3 9%,
-        var(--pop-purple) 9 14%, transparent 14%);
+      radial-gradient(ellipse 70% 80% at 18% 30%, var(--pop-peach)  0%, transparent 62%),
+      radial-gradient(ellipse 70% 80% at 82% 72%, var(--pop-pink)   0%, transparent 62%),
+      radial-gradient(ellipse 60% 70% at 55% 50%, var(--pop-yellow) 0%, transparent 65%);
   }
   .tile-2 {
-    /* Electric-blue target with yellow core (the right-side circle) */
-    background-color: oklch(0.07 0.03 265);
+    background-color: var(--card);
     background-image:
-      radial-gradient(circle at 50% 45%,
-        var(--pop-yellow)  0 4%,  oklch(0.85 0.18 95) 4 7%,
-        var(--pop-sky)     7 16%, oklch(0.55 0.24 245) 16 26%,
-        oklch(0.32 0.18 260) 26 38%, transparent 38%),
-      radial-gradient(circle at 18% 78%,
-        var(--pop-mint) 0 3%, var(--pop-sky) 3 8%, transparent 8%);
+      radial-gradient(ellipse 70% 80% at 25% 70%, var(--pop-sky)    0%, transparent 62%),
+      radial-gradient(ellipse 60% 70% at 78% 28%, var(--pop-lime)   0%, transparent 62%),
+      radial-gradient(ellipse 50% 60% at 55% 55%, var(--pop-mint)   0%, transparent 65%);
   }
-  /* Coral nebula glow (the left bottom circled blob) */
   .tile-3 {
-    background-color: oklch(0.07 0.03 270);
+    background-color: var(--card);
     background-image:
-      radial-gradient(ellipse 60% 40% at 38% 55%,
-        oklch(0.92 0.16 80) 0 3%,
-        var(--pop-orange) 3 10%,
-        var(--pop-pink) 10 25%,
-        oklch(0.45 0.22 15) 25 45%,
-        transparent 55%),
-      radial-gradient(circle at 78% 40%,
-        var(--pop-sky) 0 2%, var(--pop-purple) 2 5%, transparent 5%);
+      radial-gradient(ellipse 70% 80% at 22% 35%, var(--pop-coral)  0%, transparent 60%),
+      radial-gradient(ellipse 60% 70% at 78% 70%, var(--pop-orange) 0%, transparent 62%),
+      radial-gradient(ellipse 50% 60% at 50% 50%, var(--pop-peach)  0%, transparent 70%);
   }
-  /* Violet nebula target */
   .tile-4 {
-    background-color: oklch(0.07 0.03 280);
+    background-color: var(--card);
     background-image:
-      radial-gradient(circle at 45% 50%,
-        var(--pop-pink)     0 4%,  var(--pop-magenta) 4 10%,
-        var(--pop-purple)   10 18%, var(--pop-lavender) 18 26%,
-        oklch(0.30 0.14 290) 26 36%, transparent 36%),
-      radial-gradient(circle at 85% 22%,
-        var(--pop-yellow) 0 2%, var(--pop-pink) 2 6%, transparent 6%);
+      radial-gradient(ellipse 70% 80% at 28% 28%, var(--pop-lavender) 0%, transparent 62%),
+      radial-gradient(ellipse 60% 70% at 80% 72%, var(--pop-pink)    0%, transparent 62%),
+      radial-gradient(ellipse 50% 60% at 55% 50%, var(--pop-magenta) 0%, transparent 70%);
   }
-  /* Emerald / cyan target */
   .tile-5 {
-    background-color: oklch(0.07 0.03 230);
+    background-color: var(--card);
     background-image:
-      radial-gradient(circle at 55% 50%,
-        var(--pop-yellow) 0 3%, var(--pop-lime) 3 8%,
-        var(--pop-mint)   8 16%, var(--pop-sky) 16 26%,
-        oklch(0.30 0.14 220) 26 36%, transparent 36%),
-      radial-gradient(circle at 18% 22%,
-        var(--pop-pink) 0 2%, var(--pop-magenta) 2 5%, transparent 5%);
+      radial-gradient(ellipse 70% 80% at 30% 70%, var(--pop-lime)    0%, transparent 62%),
+      radial-gradient(ellipse 60% 70% at 78% 28%, var(--pop-sky)     0%, transparent 62%),
+      radial-gradient(ellipse 50% 60% at 55% 50%, var(--pop-mint)    0%, transparent 70%);
   }
-  /* Hot magenta nova */
   .tile-6 {
-    background-color: oklch(0.07 0.03 320);
+    background-color: var(--card);
     background-image:
-      radial-gradient(circle at 50% 55%,
-        var(--pop-yellow) 0 3%,  var(--pop-orange) 3 7%,
-        var(--pop-pink)   7 14%, var(--pop-magenta) 14 24%,
-        var(--pop-purple) 24 34%, transparent 34%),
-      radial-gradient(circle at 20% 20%,
-        var(--pop-mint) 0 2%, var(--pop-sky) 2 5%, transparent 5%);
+      radial-gradient(ellipse 70% 80% at 22% 60%, var(--pop-yellow)  0%, transparent 60%),
+      radial-gradient(ellipse 60% 70% at 78% 35%, var(--pop-coral)   0%, transparent 62%),
+      radial-gradient(ellipse 50% 60% at 50% 50%, var(--pop-orange)  0%, transparent 70%);
   }
   /* Organic ceramic shapes */
   .shape-blob     { border-radius: 38% 62% 56% 44% / 52% 44% 56% 48%; }
@@ -325,6 +290,22 @@
   .shape-squircle { border-radius: 32% 32% 32% 32% / 32% 32% 32% 32%; }
   .shape-arch     { border-radius: 50% 50% 18% 18% / 38% 38% 18% 18%; }
   .shape-leaf     { border-radius: 18% 60% 18% 60% / 36% 36% 64% 64%; }
+  /* Puzzle piece — knob on right, socket on left */
+  .shape-puzzle {
+    clip-path: path("M 40 0 L 260 0 Q 280 0 280 20 L 280 90 Q 280 110 300 110 Q 330 110 330 140 Q 330 170 300 170 Q 280 170 280 190 L 280 260 Q 280 280 260 280 L 40 280 Q 20 280 20 260 L 20 190 Q 20 170 0 170 Q -30 170 -30 140 Q -30 110 0 110 Q 20 110 20 90 L 20 20 Q 20 0 40 0 Z");
+  }
+  /* Squiggle / ribbon shape */
+  .shape-squiggle {
+    clip-path: path("M 0 60 Q 50 0 110 40 Q 170 80 220 30 Q 270 -10 310 40 L 310 220 Q 260 280 200 240 Q 140 200 90 250 Q 40 290 0 240 Z");
+  }
+  /* Half-moon arch */
+  .shape-halfmoon {
+    clip-path: path("M 0 280 L 0 140 A 160 140 0 0 1 320 140 L 320 280 Z");
+  }
+  /* Soft bumpy cloud */
+  .shape-cloud {
+    border-radius: 60% 40% 55% 45% / 60% 50% 50% 40%;
+  }
   .text-rainbow {
     background-image: var(--rainbow);
     -webkit-background-clip: text;
