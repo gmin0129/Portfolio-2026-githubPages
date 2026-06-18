@@ -68,9 +68,10 @@ function ExperienceDetail() {
           <Meta k="장소" v={experience.place} />
           {experience.pdf && (
             <a
-              href={`/api/public/pdf/${experience.slug}`}
+              href={experience.pdf.url}
               target="_blank"
               rel="noopener noreferrer"
+              download={`${experience.slug}.pdf`}
               className="group block rounded-2xl border border-border bg-background/60 backdrop-blur p-4 hover:border-[var(--terracotta)] transition-colors"
             >
               <div className="flex items-center gap-3">

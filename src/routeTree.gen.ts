@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
 import { Route as ExperiencesSlugRouteImport } from './routes/experiences.$slug'
-import { Route as ApiPublicPdfSlugRouteImport } from './routes/api/public/pdf.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -29,53 +28,35 @@ const ExperiencesSlugRoute = ExperiencesSlugRouteImport.update({
   path: '/experiences/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiPublicPdfSlugRoute = ApiPublicPdfSlugRouteImport.update({
-  id: '/api/public/pdf/$slug',
-  path: '/api/public/pdf/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/experiences/$slug': typeof ExperiencesSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
-  '/api/public/pdf/$slug': typeof ApiPublicPdfSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/experiences/$slug': typeof ExperiencesSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
-  '/api/public/pdf/$slug': typeof ApiPublicPdfSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/experiences/$slug': typeof ExperiencesSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
-  '/api/public/pdf/$slug': typeof ApiPublicPdfSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/experiences/$slug'
-    | '/projects/$slug'
-    | '/api/public/pdf/$slug'
+  fullPaths: '/' | '/experiences/$slug' | '/projects/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/experiences/$slug' | '/projects/$slug' | '/api/public/pdf/$slug'
-  id:
-    | '__root__'
-    | '/'
-    | '/experiences/$slug'
-    | '/projects/$slug'
-    | '/api/public/pdf/$slug'
+  to: '/' | '/experiences/$slug' | '/projects/$slug'
+  id: '__root__' | '/' | '/experiences/$slug' | '/projects/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ExperiencesSlugRoute: typeof ExperiencesSlugRoute
   ProjectsSlugRoute: typeof ProjectsSlugRoute
-  ApiPublicPdfSlugRoute: typeof ApiPublicPdfSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -101,13 +82,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExperiencesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/public/pdf/$slug': {
-      id: '/api/public/pdf/$slug'
-      path: '/api/public/pdf/$slug'
-      fullPath: '/api/public/pdf/$slug'
-      preLoaderRoute: typeof ApiPublicPdfSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
@@ -115,7 +89,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ExperiencesSlugRoute: ExperiencesSlugRoute,
   ProjectsSlugRoute: ProjectsSlugRoute,
-  ApiPublicPdfSlugRoute: ApiPublicPdfSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
