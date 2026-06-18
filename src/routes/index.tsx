@@ -158,9 +158,9 @@ function Hero() {
             Portfolio · 2026
           </p>
           <h1 className="font-display text-[clamp(2.6rem,7vw,5.5rem)] leading-[1.5] font-medium text-shadow-hero">
-            <span className="word-lift text-[var(--pop-magenta)]">공감</span>과 <span className="word-lift text-[var(--pop-coral)]">소통</span>,<br />
-            <span className="word-lift italic text-[var(--pop-purple)]">적응력</span>과 <span className="word-lift text-[var(--pop-sky)]">끈기</span>,<br />
-            그리고 <span className="word-lift text-rainbow font-semibold">다양성</span>.
+            <span className="word-lift font-bold tracking-tight text-[var(--pop-magenta)]">공감</span>과 <span className="word-lift font-bold tracking-tight text-[var(--pop-coral)]">소통</span>,<br />
+            <span className="word-lift font-bold tracking-tight italic text-[var(--pop-purple)]">적응력</span>과 <span className="word-lift font-bold tracking-tight text-[var(--pop-sky)]">끈기</span>,<br />
+            그리고 <span className="word-lift font-bold tracking-tight text-rainbow">다양성</span>.
           </h1>
           <p className="mt-8 max-w-xl text-base md:text-lg text-[var(--ink-soft)] leading-relaxed">
             <span className="mark-pop mark-pop-interactive mark-sky font-display font-semibold">데이터 분석</span>으로 타인의 숨은 니즈를 읽고,
