@@ -184,7 +184,7 @@ function Hero() {
           </div>
         </div>
         <div className="md:col-span-5 relative">
-          <div className="absolute -inset-4 tile-2 shape-squircle -rotate-2 opacity-95 clay animate-galaxy-alive" />
+          <div className="absolute -inset-4 shape-outline shape-outline-magenta -rotate-2 pointer-events-none" />
           <img
             src={profileImg.url}
             alt="윤지민 프로필 사진"
