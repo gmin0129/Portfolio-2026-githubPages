@@ -20,6 +20,7 @@ const GATEWAY = "https://connector-gateway.lovable.dev/notion/v1";
 
 type NotionFile = { url: string };
 type NotionImageObj = { type: "file" | "external"; file?: NotionFile; external?: NotionFile };
+type NotionRichText = { plain_text?: string };
 type NotionBlock = {
   id: string;
   type: string;
@@ -83,6 +84,90 @@ async function collectImagesFromBlocks(pageId: string, depth = 0): Promise<strin
   return urls;
 }
 
+type TextChunk = { kind: "paragraph" | "heading" | "bullet" | "quote"; text: string };
+
+const TEXT_KEYS = [
+  "paragraph",
+  "heading_1",
+  "heading_2",
+  "heading_3",
+  "bulleted_list_item",
+  "numbered_list_item",
+  "quote",
+  "callout",
+  "toggle",
+] as const;
+
+function richTextToString(rt: NotionRichText[] | undefined): string {
+  if (!rt) return "";
+  return rt.map((t) => t.plain_text ?? "").join("").trim();
+}
+
+async function collectTextFromBlocks(pageId: string, depth = 0): Promise<TextChunk[]> {
+  if (depth > 2) return [];
+  const data = (await notionFetch(`/blocks/${pageId}/children?page_size=100`)) as {
+    results?: NotionBlock[];
+  };
+  const out: TextChunk[] = [];
+  for (const block of data.results ?? []) {
+    const key = block.type as (typeof TEXT_KEYS)[number];
+    if (TEXT_KEYS.includes(key)) {
+      const payload = block[key] as { rich_text?: NotionRichText[] } | undefined;
+      const text = richTextToString(payload?.rich_text);
+      if (text) {
+        if (key.startsWith("heading")) out.push({ kind: "heading", text });
+        else if (key === "bulleted_list_item" || key === "numbered_list_item")
+          out.push({ kind: "bullet", text });
+        else if (key === "quote") out.push({ kind: "quote", text });
+        else out.push({ kind: "paragraph", text });
+      }
+    }
+    if (block.has_children && block.type !== "image") {
+      try {
+        const nested = await collectTextFromBlocks(block.id, depth + 1);
+        out.push(...nested);
+      } catch {
+        // ignore
+      }
+    }
+  }
+  return out;
+}
+
+function summarize(chunks: TextChunk[]): { summary: string; highlights: string[] } {
+  const paragraphs = chunks
+    .filter((c) => c.kind === "paragraph" || c.kind === "quote")
+    .map((c) => c.text);
+  const bullets = chunks.filter((c) => c.kind === "bullet").map((c) => c.text);
+
+  // Build a concise summary: first meaningful paragraph, capped at ~180 chars
+  // at a sentence boundary when possible.
+  let summary = "";
+  for (const p of paragraphs) {
+    if (p.length < 10) continue;
+    summary = p;
+    break;
+  }
+  if (!summary && paragraphs.length) summary = paragraphs[0] ?? "";
+  if (summary.length > 180) {
+    const slice = summary.slice(0, 180);
+    const lastStop = Math.max(
+      slice.lastIndexOf("."),
+      slice.lastIndexOf("。"),
+      slice.lastIndexOf("!"),
+      slice.lastIndexOf("?"),
+      slice.lastIndexOf("…"),
+    );
+    summary = (lastStop > 80 ? slice.slice(0, lastStop + 1) : slice.trimEnd() + "…").trim();
+  }
+
+  const highlights = bullets
+    .map((b) => (b.length > 90 ? b.slice(0, 88).trimEnd() + "…" : b))
+    .slice(0, 4);
+
+  return { summary, highlights };
+}
+
 async function fetchPageImages(pageId: string): Promise<string[]> {
   const urls: string[] = [];
   // 1) page cover (if any)
@@ -120,26 +205,39 @@ async function fetchPageImages(pageId: string): Promise<string[]> {
   return out;
 }
 
-export const getNotionImages = createServerFn({ method: "GET" })
+export type NotionPagePayload = {
+  images: string[];
+  summary: string;
+  highlights: string[];
+};
+
+export const getNotionPage = createServerFn({ method: "GET" })
   .inputValidator((input: { kind: "project" | "experience"; slug: string }) => input)
-  .handler(async ({ data }) => {
+  .handler(async ({ data }): Promise<NotionPagePayload> => {
     const map = data.kind === "project" ? PROJECT_PAGE_IDS : EXPERIENCE_PAGE_IDS;
     const pageId = map[data.slug];
-    if (!pageId) return { images: [] as string[] };
+    if (!pageId) return { images: [], summary: "", highlights: [] };
     try {
-      const images = await fetchPageImages(pageId);
-      return { images };
+      const [images, chunks] = await Promise.all([
+        fetchPageImages(pageId),
+        collectTextFromBlocks(pageId).catch(() => [] as TextChunk[]),
+      ]);
+      const { summary, highlights } = summarize(chunks);
+      return { images, summary, highlights };
     } catch (err) {
-      console.error("[getNotionImages] failed:", err);
-      return { images: [] as string[] };
+      console.error("[getNotionPage] failed:", err);
+      return { images: [], summary: "", highlights: [] };
     }
   });
 
-export function notionImagesQueryOptions(kind: "project" | "experience", slug: string) {
+export function notionPageQueryOptions(kind: "project" | "experience", slug: string) {
   return {
-    queryKey: ["notion-images", kind, slug] as const,
-    queryFn: () => getNotionImages({ data: { kind, slug } }),
-    staleTime: 30 * 60 * 1000, // S3 signed URLs are valid ~1h; refresh comfortably before expiry
-    gcTime: 60 * 60 * 1000,
+    queryKey: ["notion-page", kind, slug] as const,
+    queryFn: () => getNotionPage({ data: { kind, slug } }),
+    // Always refetch on mount so Notion edits show up immediately.
+    staleTime: 0,
+    gcTime: 5 * 60 * 1000,
+    refetchOnMount: "always" as const,
+    refetchOnWindowFocus: true,
   };
 }
