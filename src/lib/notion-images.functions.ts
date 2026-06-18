@@ -134,36 +134,52 @@ async function collectTextFromBlocks(pageId: string, depth = 0): Promise<TextChu
   return out;
 }
 
+function isSectionMarker(text: string): boolean {
+  // Notion docs often use "[섹션명]" headers inside paragraphs.
+  const t = text.trim();
+  return /^\[.+\]\s*$/.test(t) || t.length < 8;
+}
+
+function clip(text: string, max: number): string {
+  if (text.length <= max) return text;
+  const slice = text.slice(0, max);
+  const lastStop = Math.max(
+    slice.lastIndexOf("."),
+    slice.lastIndexOf("。"),
+    slice.lastIndexOf("!"),
+    slice.lastIndexOf("?"),
+    slice.lastIndexOf("…"),
+    slice.lastIndexOf("함."),
+  );
+  return (lastStop > max * 0.5 ? slice.slice(0, lastStop + 1) : slice.trimEnd() + "…").trim();
+}
+
 function summarize(chunks: TextChunk[]): { summary: string; highlights: string[] } {
-  const paragraphs = chunks
-    .filter((c) => c.kind === "paragraph" || c.kind === "quote")
+  // Candidate texts for the headline summary, in priority order:
+  // 1) first paragraph that isn't a "[section]" label
+  // 2) first bullet that is descriptive (>= 24 chars)
+  const meaningfulParas = chunks
+    .filter((c) => (c.kind === "paragraph" || c.kind === "quote") && !isSectionMarker(c.text))
     .map((c) => c.text);
   const bullets = chunks.filter((c) => c.kind === "bullet").map((c) => c.text);
 
-  // Build a concise summary: first meaningful paragraph, capped at ~180 chars
-  // at a sentence boundary when possible.
-  let summary = "";
-  for (const p of paragraphs) {
-    if (p.length < 10) continue;
-    summary = p;
-    break;
-  }
-  if (!summary && paragraphs.length) summary = paragraphs[0] ?? "";
-  if (summary.length > 180) {
-    const slice = summary.slice(0, 180);
-    const lastStop = Math.max(
-      slice.lastIndexOf("."),
-      slice.lastIndexOf("。"),
-      slice.lastIndexOf("!"),
-      slice.lastIndexOf("?"),
-      slice.lastIndexOf("…"),
-    );
-    summary = (lastStop > 80 ? slice.slice(0, lastStop + 1) : slice.trimEnd() + "…").trim();
-  }
+  let summary = meaningfulParas[0] ?? "";
+  if (!summary) summary = bullets.find((b) => b.length >= 24) ?? bullets[0] ?? "";
+  summary = clip(summary, 200);
 
+  // Highlights: drop the bullet already used as summary (if any), drop near-dupes
+  // and section markers, then clip each line.
+  const seen = new Set<string>([summary.trim()]);
   const highlights = bullets
-    .map((b) => (b.length > 90 ? b.slice(0, 88).trimEnd() + "…" : b))
-    .slice(0, 4);
+    .filter((b) => b.length >= 8 && !isSectionMarker(b))
+    .filter((b) => {
+      const key = b.trim().slice(0, 40);
+      if (seen.has(b.trim()) || seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .map((b) => clip(b, 140))
+    .slice(0, 5);
 
   return { summary, highlights };
 }
