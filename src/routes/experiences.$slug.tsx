@@ -55,9 +55,9 @@ function ExperienceDetail() {
         </div>
       </header>
 
-      <section className="sticky top-16 z-40">
+      <section className="sticky top-16 z-40 bg-background pb-4 shadow-[0_8px_30px_-12px_oklch(0.3_0.05_40/0.12)]">
         <div className="mx-auto max-w-5xl px-4 md:px-6 pt-4">
-          <div className={`relative ${TILES[idx % TILES.length]} shape-squircle px-6 md:px-10 py-7 md:py-9 clay overflow-hidden animate-galaxy-pulse`}>
+          <div className={`relative ${TILES[idx % TILES.length]} shape-squircle px-6 md:px-10 py-7 md:py-9 clay overflow-hidden animate-galaxy-pulse shadow-lg`}>
             <div className="absolute inset-0 grain opacity-30 pointer-events-none" />
             <div className="relative">
               <div className="font-serif italic text-foreground/75 text-sm tracking-widest uppercase">
