@@ -1,24 +1,24 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { getProject, PROJECTS, type Project } from "@/lib/projects";
+import { getExperience, EXPERIENCES, type Experience } from "@/lib/experiences";
 
 export const Route = createFileRoute("/experiences/$slug")({
   loader: ({ params }) => {
-    const project = getProject(params.slug);
-    if (!project) throw notFound();
-    return { project };
+    const experience = getExperience(params.slug);
+    if (!experience) throw notFound();
+    return { experience };
   },
   head: ({ loaderData }) => ({
     meta: [
-      { title: `${loaderData?.project.title ?? "Project"} — 윤지민 Portfolio` },
-      { name: "description", content: loaderData?.project.overview ?? "프로젝트 상세" },
+      { title: `${loaderData?.experience.title ?? "Experience"} — 윤지민 Portfolio` },
+      { name: "description", content: loaderData?.experience.overview ?? loaderData?.experience.blurb ?? "경험 상세" },
     ],
   }),
   notFoundComponent: () => (
     <div className="mx-auto max-w-3xl px-6 py-32 text-center">
       <p className="font-serif italic text-[var(--terracotta)]">404</p>
-      <h1 className="font-serif text-3xl mt-2">프로젝트를 찾을 수 없어요</h1>
-      <Link to="/" hash="projects" className="inline-block mt-6 underline">
-        ← Projects로 돌아가기
+      <h1 className="font-serif text-3xl mt-2">경험을 찾을 수 없어요</h1>
+      <Link to="/" hash="experience" className="inline-block mt-6 underline">
+        ← Experience로 돌아가기
       </Link>
     </div>
   ),
@@ -28,14 +28,14 @@ export const Route = createFileRoute("/experiences/$slug")({
       <button onClick={reset} className="mt-6 underline">다시 시도</button>
     </div>
   ),
-  component: ProjectDetail,
+  component: ExperienceDetail,
 });
 
-function ProjectDetail() {
-  const { project } = Route.useLoaderData() as { project: Project };
-  const idx = PROJECTS.findIndex((p) => p.slug === project.slug);
-  const prev = PROJECTS[(idx - 1 + PROJECTS.length) % PROJECTS.length];
-  const next = PROJECTS[(idx + 1) % PROJECTS.length];
+function ExperienceDetail() {
+  const { experience } = Route.useLoaderData() as { experience: Experience };
+  const idx = EXPERIENCES.findIndex((e) => e.slug === experience.slug);
+  const prev = EXPERIENCES[(idx - 1 + EXPERIENCES.length) % EXPERIENCES.length];
+  const next = EXPERIENCES[(idx + 1) % EXPERIENCES.length];
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -44,8 +44,8 @@ function ProjectDetail() {
           <Link to="/" className="font-serif text-lg font-bold tracking-tight">
             윤지민<span className="text-[var(--terracotta)]">.</span>
           </Link>
-          <Link to="/" hash="projects" className="text-sm text-[var(--ink-soft)] hover:text-[var(--terracotta)]">
-            ← All projects
+          <Link to="/" hash="experience" className="text-sm text-[var(--ink-soft)] hover:text-[var(--terracotta)]">
+            ← All experiences
           </Link>
         </div>
       </header>
@@ -53,40 +53,32 @@ function ProjectDetail() {
       <section className="bg-foreground text-background">
         <div className="mx-auto max-w-5xl px-6 py-20 md:py-28">
           <div className="font-serif italic text-[var(--ochre)] text-sm tracking-widest uppercase">
-            Project · {String(idx + 1).padStart(2, "0")}
+            Experience · {String(idx + 1).padStart(2, "0")}
           </div>
           <h1 className="font-serif text-4xl md:text-6xl font-medium mt-4 leading-[1.1]">
-            {project.title}
+            {experience.title}
           </h1>
-          <p className="mt-4 text-background/70 text-lg">{project.sub}</p>
-          <div className="mt-8 flex flex-wrap gap-2">
-            {project.tags.map((t) => (
-              <span key={t} className="text-xs border border-background/30 rounded-full px-3 py-1 text-background/80">
-                {t}
-              </span>
-            ))}
-          </div>
+          <p className="mt-4 text-background/70 text-lg">{experience.place}</p>
         </div>
       </section>
 
       <section className="mx-auto max-w-5xl px-6 py-20 grid md:grid-cols-3 gap-12">
         <aside className="space-y-6 text-sm">
-          <Meta k="기간" v={project.period} />
-          <Meta k="기여" v={project.contribution} />
-          <Meta k="Skills" v={project.skills} />
+          <Meta k="기간" v={experience.period} />
+          <Meta k="장소" v={experience.place} />
         </aside>
         <div className="md:col-span-2 space-y-12">
-          {project.overview && (
+          {experience.overview && (
             <div>
               <h2 className="font-serif text-2xl mb-3">Overview</h2>
-              <p className="text-[var(--ink-soft)] leading-relaxed">{project.overview}</p>
+              <p className="text-[var(--ink-soft)] leading-relaxed">{experience.overview}</p>
             </div>
           )}
-          {project.role && project.role.length > 0 && (
+          {experience.role && experience.role.length > 0 && (
             <div>
               <h2 className="font-serif text-2xl mb-3">My Role</h2>
               <ul className="space-y-2 text-[var(--ink-soft)]">
-                {project.role.map((r) => (
+                {experience.role.map((r) => (
                   <li key={r} className="flex gap-3">
                     <span className="text-[var(--terracotta)]">→</span>
                     <span>{r}</span>
@@ -95,11 +87,11 @@ function ProjectDetail() {
               </ul>
             </div>
           )}
-          {project.outcome && project.outcome.length > 0 && (
+          {experience.outcome && experience.outcome.length > 0 && (
             <div>
               <h2 className="font-serif text-2xl mb-3">Outcome</h2>
               <ul className="space-y-2 text-[var(--ink-soft)]">
-                {project.outcome.map((o) => (
+                {experience.outcome.map((o) => (
                   <li key={o} className="flex gap-3">
                     <span className="text-[var(--terracotta)]">✦</span>
                     <span>{o}</span>
@@ -114,7 +106,7 @@ function ProjectDetail() {
       <nav className="border-t border-border">
         <div className="mx-auto max-w-5xl px-6 py-10 flex items-center justify-between gap-6">
           <Link
-            to="/projects/$slug"
+            to="/experiences/$slug"
             params={{ slug: prev.slug }}
             className="group text-left"
           >
@@ -124,7 +116,7 @@ function ProjectDetail() {
             </div>
           </Link>
           <Link
-            to="/projects/$slug"
+            to="/experiences/$slug"
             params={{ slug: next.slug }}
             className="group text-right"
           >
