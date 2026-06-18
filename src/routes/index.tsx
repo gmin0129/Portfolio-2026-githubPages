@@ -149,9 +149,9 @@ function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
       <div className="absolute inset-0 grain opacity-50 pointer-events-none" />
-      <div className="absolute -top-24 -left-20 w-72 h-72 tile-1 shape-blob blur-2xl opacity-50 pointer-events-none animate-galaxy-alive" />
-      <div className="absolute top-20 right-0 w-80 h-80 tile-2 shape-pebble blur-2xl opacity-45 pointer-events-none animate-galaxy-alive" />
-      <div className="absolute bottom-0 left-1/3 w-72 h-72 tile-3 shape-petal blur-2xl opacity-40 pointer-events-none animate-galaxy-alive" />
+      <div className="absolute -top-24 -left-20 w-72 h-72 shape-outline shape-outline-coral pointer-events-none" />
+      <div className="absolute top-20 right-0 w-80 h-80 shape-outline shape-outline-sky pointer-events-none" />
+      <div className="absolute bottom-0 left-1/3 w-72 h-72 shape-outline shape-outline-lime pointer-events-none" />
       <div className="mx-auto max-w-6xl px-6 pt-20 pb-24 md:pt-28 md:pb-32 grid md:grid-cols-12 gap-10 items-end">
         <div className="md:col-span-7">
           <p className="text-sm tracking-[0.3em] uppercase text-[var(--ink-soft)] mb-6">
@@ -184,7 +184,7 @@ function Hero() {
           </div>
         </div>
         <div className="md:col-span-5 relative">
-          <div className="absolute -inset-4 tile-2 shape-squircle -rotate-2 opacity-95 clay animate-galaxy-alive" />
+          <div className="absolute -inset-4 shape-outline shape-outline-magenta -rotate-2 pointer-events-none" />
           <img
             src={profileImg.url}
             alt="윤지민 프로필 사진"
@@ -238,9 +238,9 @@ function About() {
       <SectionHeader num="01 —" kicker="Who I am" title="About" />
       <div className="grid md:grid-cols-3 gap-10">
         <p className="md:col-span-2 font-serif text-2xl md:text-3xl leading-[1.2] text-foreground">
-          저는 사람과 사람 사이의 <span className="text-[var(--terracotta)]">공감</span>에서 시작해,<br />
-          새로운 환경에 빠르게 스며드는 <span className="text-[var(--terracotta)]">적응력</span>과<br />
-          끝까지 마무리하는 <span className="text-[var(--terracotta)]">끈기</span>를 가지고 기획과 운영을 합니다.
+          저는 사람과 사람 사이의 <span className="mark-pop mark-magenta">공감</span>에서 시작해,<br />
+          새로운 환경에 빠르게 스며드는 <span className="mark-pop mark-sky">적응력</span>과<br />
+          끝까지 마무리하는 <span className="mark-pop mark-lime">끈기</span>를 가지고 기획과 운영을 합니다.
         </p>
         <div className="space-y-4 text-sm text-[var(--ink-soft)]">
           <Fact k="Based in" v="Seoul, KR" />
@@ -269,7 +269,7 @@ function Education() {
         <SectionHeader num="02 —" kicker="Education & Career" title="Education" />
         <div className="grid md:grid-cols-2 gap-16">
           <div>
-            <h3 className="font-serif text-2xl mb-6">교육</h3>
+            <h3 className="font-serif text-2xl mb-6"><span className="mark-pop mark-coral">교육</span></h3>
             <ul className="space-y-7">
               {EDUCATION.map((e) => (
                 <li key={e.school} className="grid grid-cols-[80px_1fr] gap-4">
@@ -290,7 +290,7 @@ function Education() {
               ))}
             </ul>
 
-            <h4 className="font-serif text-lg mt-12 mb-4">자격증 & 어학</h4>
+            <h4 className="font-serif text-lg mt-12 mb-4"><span className="mark-pop mark-lime">자격증 & 어학</span></h4>
             <div className="flex flex-wrap gap-2">
               {CERTS.map((c) => (
                 <span key={c.name} className="inline-flex items-center gap-2 text-xs border border-foreground/20 rounded-full px-3 py-1.5">
@@ -302,7 +302,7 @@ function Education() {
           </div>
 
           <div>
-            <h3 className="font-serif text-2xl mb-6">경력 & 경험</h3>
+            <h3 className="font-serif text-2xl mb-6"><span className="mark-pop mark-lavender">경력 & 경험</span></h3>
             <ul className="space-y-7">
               {CAREER.map((c) => (
                 <li key={c.org} className="grid grid-cols-[80px_1fr] gap-4">

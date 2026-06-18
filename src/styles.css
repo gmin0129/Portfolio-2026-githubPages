@@ -308,6 +308,38 @@
   .shape-cloud {
     border-radius: 60% 40% 55% 45% / 60% 50% 50% 40%;
   }
+  /* Irregular border-only shapes — no fill, no animation, outlined form */
+  .shape-outline {
+    background: transparent !important;
+    background-image: none !important;
+    border-width: 2.5px;
+    border-style: solid;
+    opacity: 0.85;
+  }
+  .shape-outline-coral { border-color: var(--pop-coral); border-radius: 38% 62% 56% 44% / 52% 44% 56% 48%; }
+  .shape-outline-sky { border-color: var(--pop-sky); border-radius: 58% 42% 48% 52% / 44% 56% 44% 56%; }
+  .shape-outline-lime { border-color: var(--pop-lime); border-radius: 70% 30% 70% 30% / 50% 50% 50% 50%; }
+  .shape-outline-magenta { border-color: var(--pop-magenta); border-radius: 32% 32% 32% 32% / 32% 32% 32% 32%; }
+  .shape-outline-peach { border-color: var(--pop-peach); border-radius: 18% 60% 18% 60% / 36% 36% 64% 64%; }
+  /* Colorful marker highlights — mottled pastel behind key words */
+  .mark-pop {
+    position: relative;
+    z-index: 0;
+  }
+  .mark-pop::before {
+    content: "";
+    position: absolute;
+    inset: 0.1em -0.25em 0.05em -0.25em;
+    z-index: -1;
+    border-radius: 0.35em;
+    opacity: 0.32;
+    transform: rotate(-1.5deg);
+  }
+  .mark-coral::before { background: linear-gradient(120deg, var(--pop-coral), var(--pop-peach)); }
+  .mark-sky::before { background: linear-gradient(120deg, var(--pop-sky), var(--pop-mint)); }
+  .mark-lime::before { background: linear-gradient(120deg, var(--pop-lime), var(--pop-yellow)); }
+  .mark-magenta::before { background: linear-gradient(120deg, var(--pop-magenta), var(--pop-pink)); }
+  .mark-lavender::before { background: linear-gradient(120deg, var(--pop-lavender), var(--pop-purple)); }
   .text-rainbow {
     background-image: var(--rainbow);
     -webkit-background-clip: text;
