@@ -163,9 +163,10 @@ function Hero() {
             그리고 <span className="word-lift text-rainbow font-semibold">다양성</span>.
           </h1>
           <p className="mt-8 max-w-xl text-base md:text-lg text-[var(--ink-soft)] leading-relaxed">
-            데이터 분석으로 타인의 숨은 니즈를 섬세하게 읽고, 다양한 개성을 포용하는 것이 제 강점입니다.
-            초심자는 쉽게 입문하고 애호가는 깊이 만족하는 ‘모두를 위한 문화 콘텐츠’를 만들어가고 싶습니다.
-            이 역량을 바탕으로 동아일보에서 누구나 물리적·심리적 장벽 없이 온전히 향유할 수 있는 차별화된 기획을 선보이겠습니다.
+            <span className="mark-pop mark-pop-interactive mark-sky font-display font-semibold">데이터 분석</span>으로 타인의 숨은 니즈를 읽고,
+            <span className="mark-pop mark-pop-interactive mark-lime font-display font-semibold">다양한 개성</span>을 포용하는 것이 제 강점입니다.<br className="hidden sm:block" />
+            초심자도 쉽게 입문하고 애호가도 깊이 만족하는 <span className="mark-pop mark-pop-interactive mark-magenta font-display font-semibold">'모두를 위한 문화 콘텐츠'</span>를 만들어,<br className="hidden sm:block" />
+            <span className="mark-pop mark-pop-interactive mark-coral font-display font-semibold">동아일보</span>에서 누구나 장벽 없이 향유할 수 있는 <span className="mark-pop mark-pop-interactive mark-lavender font-display font-semibold">차별화된 기획</span>을 선보이겠습니다.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <a href="#projects" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
