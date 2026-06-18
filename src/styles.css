@@ -63,70 +63,67 @@
 
 :root {
   --radius: 1.25rem;
-  /* Deep-sea / midnight palette — obsidian base, bioluminescent accents */
-  --background: oklch(0.14 0.04 265);
-  --foreground: oklch(0.96 0.015 240);
-  --card: oklch(0.20 0.05 270);
-  --card-foreground: oklch(0.96 0.015 240);
-  --popover: oklch(0.20 0.05 270);
-  --popover-foreground: oklch(0.96 0.015 240);
-  --primary: oklch(0.72 0.26 330);            /* neon pink */
-  --primary-foreground: oklch(0.14 0.04 265);
-  --secondary: oklch(0.24 0.06 270);
-  --secondary-foreground: oklch(0.96 0.015 240);
-  --muted: oklch(0.22 0.05 270);
-  --muted-foreground: oklch(0.74 0.04 250);
-  --accent: oklch(0.75 0.22 200);             /* electric cyan */
-  --accent-foreground: oklch(0.14 0.04 265);
-  --destructive: oklch(0.65 0.27 18);
-  --destructive-foreground: oklch(0.98 0.01 240);
-  --border: oklch(0.34 0.08 275 / 0.7);
-  --input: oklch(0.34 0.08 275 / 0.7);
-  --ring: oklch(0.72 0.26 330);
-  /* Legacy custom tokens — remapped to dark/neon equivalents */
-  --ink: oklch(0.96 0.015 240);               /* now "light ink" on dark */
-  --ink-soft: oklch(0.78 0.05 250);
-  --paper: oklch(0.14 0.04 265);              /* obsidian "paper" */
-  --paper-deep: oklch(0.10 0.05 265);         /* deeper midnight layer */
-  --terracotta: oklch(0.74 0.27 330);         /* repurposed → neon pink */
-  --ochre: oklch(0.82 0.18 95);               /* repurposed → bio-yellow accent */
-  --sage: oklch(0.78 0.22 165);               /* repurposed → emerald */
-  /* Bioluminescent palette — high-contrast, no warm earth tones */
-  --pop-pink:     oklch(0.74 0.27 335);
-  --pop-coral:    oklch(0.70 0.26 350);       /* hot magenta-coral, not warm */
-  --pop-peach:    oklch(0.32 0.10 280);       /* deep nebula violet (replaces peach) */
-  --pop-orange:   oklch(0.68 0.26 18);        /* siren red-orange flare */
-  --pop-yellow:   oklch(0.86 0.20 100);       /* bio-yellow flash */
-  --pop-lime:     oklch(0.86 0.24 145);       /* electric lime */
-  --pop-mint:     oklch(0.80 0.22 165);       /* emerald */
-  --pop-sky:      oklch(0.74 0.22 235);       /* electric blue */
-  --pop-lavender: oklch(0.70 0.22 290);       /* violet */
-  --pop-purple:   oklch(0.52 0.26 300);       /* deep ultraviolet */
-  --pop-magenta:  oklch(0.66 0.30 340);
-  /* High-contrast gradient — NOT a literal rainbow (no orange/yellow/green chain).
-     Sweeps cyan → violet → magenta, like deep-sea bioluminescence. */
-  --rainbow: linear-gradient(135deg,
-    var(--pop-sky) 0%, var(--pop-lavender) 35%,
-    var(--pop-purple) 65%, var(--pop-magenta) 100%);
+  /* Impressionist airbrush palette — soft pastel sky/peach/lime blooms,
+     riso-grain texture, matte opaque cards for readability. */
+  --background: oklch(0.97 0.02 90);          /* warm paper */
+  --foreground: oklch(0.20 0.03 270);         /* deep ink */
+  --card: oklch(0.985 0.012 95);              /* matte cream card */
+  --card-foreground: oklch(0.20 0.03 270);
+  --popover: oklch(0.985 0.012 95);
+  --popover-foreground: oklch(0.20 0.03 270);
+  --primary: oklch(0.62 0.22 18);             /* coral red */
+  --primary-foreground: oklch(0.985 0.012 95);
+  --secondary: oklch(0.92 0.04 90);
+  --secondary-foreground: oklch(0.20 0.03 270);
+  --muted: oklch(0.93 0.03 95);
+  --muted-foreground: oklch(0.40 0.04 270);
+  --accent: oklch(0.78 0.18 220);             /* sky */
+  --accent-foreground: oklch(0.20 0.03 270);
+  --destructive: oklch(0.62 0.24 25);
+  --destructive-foreground: oklch(0.985 0.012 95);
+  --border: oklch(0.20 0.03 270 / 0.14);
+  --input: oklch(0.20 0.03 270 / 0.14);
+  --ring: oklch(0.62 0.22 18);
+  /* Legacy tokens kept so existing JSX keeps working */
+  --ink: oklch(0.20 0.03 270);
+  --ink-soft: oklch(0.42 0.04 270);
+  --paper: oklch(0.97 0.02 90);
+  --paper-deep: oklch(0.94 0.03 85);
+  --terracotta: oklch(0.62 0.22 18);          /* now warm coral */
+  --ochre: oklch(0.78 0.16 90);
+  --sage: oklch(0.74 0.13 150);
+  /* Airbrush/riso pop palette — chalky pastels, slightly off-pure */
+  --pop-pink:     oklch(0.82 0.13 10);
+  --pop-coral:    oklch(0.74 0.18 30);
+  --pop-peach:    oklch(0.86 0.11 55);
+  --pop-orange:   oklch(0.72 0.20 45);
+  --pop-yellow:   oklch(0.90 0.16 100);
+  --pop-lime:     oklch(0.86 0.18 130);
+  --pop-mint:     oklch(0.84 0.10 165);
+  --pop-sky:      oklch(0.80 0.13 230);
+  --pop-lavender: oklch(0.80 0.10 290);
+  --pop-purple:   oklch(0.68 0.16 305);
+  --pop-magenta:  oklch(0.72 0.18 340);
+  /* Soft impressionist sweep — no literal rainbow ordering */
+  --rainbow: linear-gradient(108deg,
+    var(--pop-sky) 0%, var(--pop-lime) 28%,
+    var(--pop-peach) 58%, var(--pop-pink) 82%, var(--pop-lavender) 100%);
+  /* Riso grain — embedded SVG noise data URI, monochrome */
+  --grain-url: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
   --shadow-pop:
-    0 14px 0 -6px oklch(0.08 0.04 270 / 0.6),
-    0 24px 60px -16px oklch(0.72 0.26 330 / 0.35);
-  /* Dark claymorphism: thin top-light + neon outer glow */
+    0 10px 0 -6px oklch(0.20 0.03 270 / 0.10),
+    0 22px 40px -18px oklch(0.20 0.03 270 / 0.25);
+  /* Matte soft shadow — riso-style, not glossy */
   --shadow-clay:
-    inset 1px 1px 2px oklch(1 0 0 / 0.10),
-    inset -2px -3px 8px oklch(0 0 0 / 0.55),
-    0 10px 28px -10px oklch(0 0 0 / 0.7),
-    0 0 18px -4px oklch(0.72 0.26 330 / 0.25);
+    0 1px 0 oklch(1 0 0 / 0.7) inset,
+    0 -1px 0 oklch(0.20 0.03 270 / 0.05) inset,
+    0 12px 28px -14px oklch(0.20 0.03 270 / 0.25);
   --shadow-clay-sm:
-    inset 1px 1px 2px oklch(1 0 0 / 0.10),
-    inset -1px -2px 5px oklch(0 0 0 / 0.5),
-    0 6px 16px -6px oklch(0 0 0 / 0.65),
-    0 0 10px -2px oklch(0.74 0.22 235 / 0.25);
-  /* Neon glow ring */
+    0 1px 0 oklch(1 0 0 / 0.7) inset,
+    0 8px 18px -10px oklch(0.20 0.03 270 / 0.22);
   --glow-rainbow:
-    inset 0 0 0 1px oklch(1 0 0 / 0.18),
-    0 0 14px -2px oklch(0.74 0.22 235 / 0.55),
-    0 0 32px -6px oklch(0.72 0.26 330 / 0.45);
+    0 0 0 1px oklch(0.20 0.03 270 / 0.10),
+    0 14px 40px -16px oklch(0.62 0.22 18 / 0.35);
   --font-serif: "Noto Serif KR", "Cormorant Garamond", ui-serif, Georgia, serif;
   --font-sans: "Pretendard", "Noto Sans KR", ui-sans-serif, system-ui, sans-serif;
   --chart-1: oklch(0.646 0.222 41.116);
