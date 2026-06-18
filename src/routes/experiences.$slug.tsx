@@ -1,6 +1,8 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getExperience, EXPERIENCES, type Experience } from "@/lib/experiences";
 import { SwipeTabs } from "@/components/SwipeTabs";
+import { useQuery } from "@tanstack/react-query";
+import { notionImagesQueryOptions } from "@/lib/notion-images.functions";
 
 export const Route = createFileRoute("/experiences/$slug")({
   loader: ({ params }) => {
@@ -37,6 +39,8 @@ function ExperienceDetail() {
   const idx = EXPERIENCES.findIndex((e) => e.slug === experience.slug);
   const prev = EXPERIENCES[(idx - 1 + EXPERIENCES.length) % EXPERIENCES.length];
   const next = EXPERIENCES[(idx + 1) % EXPERIENCES.length];
+  const { data, isLoading } = useQuery(notionImagesQueryOptions("experience", experience.slug));
+  const images = data?.images?.length ? data.images : experience.images;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -68,7 +72,7 @@ function ExperienceDetail() {
         </div>
       </section>
 
-      <SwipeTabs title={experience.title} images={experience.images}>
+      <SwipeTabs title={experience.title} images={images} loading={isLoading}>
       <section className="mx-auto max-w-5xl px-6 py-16 grid md:grid-cols-3 gap-12">
         <aside className="space-y-6 text-sm">
           <Meta k="기간" v={experience.period} />
