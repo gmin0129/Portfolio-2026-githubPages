@@ -163,9 +163,9 @@ function Hero() {
             그리고 <span className="word-lift text-rainbow font-semibold">다양성</span>.
           </h1>
           <p className="mt-8 max-w-xl text-base md:text-lg text-[var(--ink-soft)] leading-relaxed">
-            안녕하세요. 기획과 운영, 그리고 사람들 사이를 잇는 일을 좋아하는
-            <span className="font-medium text-foreground"> 윤지민</span>입니다.
-            언어와 문화를 가로지르며 쌓아온 경험으로 콘텐츠와 브랜드의 이야기를 만듭니다.
+            데이터 분석으로 타인의 숨은 니즈를 섬세하게 읽고, 다양한 개성을 포용하는 것이 제 강점입니다.
+            초심자는 쉽게 입문하고 애호가는 깊이 만족하는 ‘모두를 위한 문화 콘텐츠’를 만들어가고 싶습니다.
+            이 역량을 바탕으로 동아일보에서 누구나 물리적·심리적 장벽 없이 온전히 향유할 수 있는 차별화된 기획을 선보이겠습니다.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <a href="#projects" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
