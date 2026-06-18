@@ -51,19 +51,22 @@ function ProjectDetail() {
         </div>
       </header>
 
-      {/* Fixed project title area */}
-      <section className="sticky top-16 z-40 bg-foreground text-background border-b border-background/10">
-        <div className="mx-auto max-w-5xl px-6 py-10 md:py-14">
-          <div className="font-serif italic text-[var(--ochre)] text-sm tracking-widest uppercase">
+      {/* Fixed project title area — claymorphic rainbow banner */}
+      <section className="sticky top-16 z-40 bg-rainbow text-foreground border-b-2 border-foreground shadow-[0_10px_30px_-12px_oklch(0.62_0.28_345/0.45)]">
+        <div className="mx-auto max-w-5xl px-6 py-8 md:py-10">
+          <div className="font-serif italic text-foreground/80 text-sm tracking-widest uppercase">
             Project · {String(idx + 1).padStart(2, "0")}
           </div>
-          <h1 className="font-serif text-3xl md:text-5xl font-medium mt-3 leading-[1.1]">
+          <h1 className="font-serif text-3xl md:text-5xl font-semibold mt-2 leading-[1.1] drop-shadow-[2px_2px_0_oklch(1_0_0/0.6)]">
             {project.title}
           </h1>
-          <p className="mt-3 text-background/70 text-base md:text-lg">{project.sub}</p>
-          <div className="mt-5 flex flex-wrap gap-2">
+          <p className="mt-2 text-foreground/80 text-base md:text-lg">{project.sub}</p>
+          <div className="mt-4 flex flex-wrap gap-2">
             {project.tags.map((t) => (
-              <span key={t} className="text-xs border border-background/30 rounded-full px-3 py-1 text-background/80">
+              <span
+                key={t}
+                className="text-xs rounded-full px-3 py-1 text-foreground bg-background/70 backdrop-blur clay-sm"
+              >
                 {t}
               </span>
             ))}
