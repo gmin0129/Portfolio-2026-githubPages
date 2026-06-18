@@ -92,6 +92,15 @@ const SKILLS = [
   { group: "AI Tools", items: ["Gemini", "ChatGPT", "Genspark"] },
 ];
 
+const POP_COLORS = [
+  "var(--pop-pink)",
+  "var(--pop-yellow)",
+  "var(--pop-mint)",
+  "var(--pop-sky)",
+  "var(--pop-lavender)",
+  "var(--pop-coral)",
+];
+
 function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -137,15 +146,18 @@ function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
       <div className="absolute inset-0 grain opacity-50 pointer-events-none" />
+      <div className="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-[var(--pop-pink)] blur-3xl opacity-60 pointer-events-none" />
+      <div className="absolute top-10 right-0 w-80 h-80 rounded-full bg-[var(--pop-yellow)] blur-3xl opacity-60 pointer-events-none" />
+      <div className="absolute bottom-0 left-1/3 w-72 h-72 rounded-full bg-[var(--pop-mint)] blur-3xl opacity-50 pointer-events-none" />
       <div className="mx-auto max-w-6xl px-6 pt-20 pb-24 md:pt-28 md:pb-32 grid md:grid-cols-12 gap-10 items-end">
         <div className="md:col-span-7">
           <p className="text-sm tracking-[0.3em] uppercase text-[var(--ink-soft)] mb-6">
             Portfolio · 2026
           </p>
           <h1 className="font-serif text-[clamp(2.6rem,7vw,5.5rem)] leading-[1.05] font-medium">
-            <span className="text-[var(--terracotta)]">공감</span>과 <span className="text-[var(--terracotta)]">소통</span>,<br />
-            <span className="italic text-[var(--terracotta)]">적응력</span>과 <span className="text-[var(--terracotta)]">끈기</span>,<br />
-            그리고 <span className="underline-wavy">다양성</span>.
+            <span className="text-[var(--pop-magenta)]">공감</span>과 <span className="text-[var(--pop-coral)]">소통</span>,<br />
+            <span className="italic text-[var(--pop-lavender)]">적응력</span>과 <span className="text-[var(--pop-sky)]">끈기</span>,<br />
+            그리고 <span className="text-rainbow font-semibold">다양성</span>.
           </h1>
           <p className="mt-8 max-w-xl text-base md:text-lg text-[var(--ink-soft)] leading-relaxed">
             안녕하세요. 기획과 운영, 그리고 사람들 사이를 잇는 일을 좋아하는
@@ -153,24 +165,24 @@ function Hero() {
             언어와 문화를 가로지르며 쌓아온 경험으로 콘텐츠와 브랜드의 이야기를 만듭니다.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
-            <a href="#projects" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium hover:bg-[var(--terracotta)] transition-colors">
+            <a href="#projects" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium shadow-[4px_4px_0_0_var(--pop-yellow)] hover:shadow-[6px_6px_0_0_var(--pop-pink)] hover:-translate-y-0.5 transition-all">
               프로젝트 보기 →
             </a>
-            <a href="#contact" className="inline-flex items-center gap-2 border border-foreground/30 rounded-full px-5 py-2.5 text-sm font-medium hover:border-foreground transition-colors">
+            <a href="#contact" className="inline-flex items-center gap-2 bg-[var(--pop-pink)] text-foreground border-2 border-foreground rounded-full px-5 py-2.5 text-sm font-medium shadow-[4px_4px_0_0_var(--foreground)] hover:-translate-y-0.5 transition-all">
               연락하기
             </a>
           </div>
         </div>
         <div className="md:col-span-5 relative">
-          <div className="absolute -inset-4 bg-[var(--paper-deep)] rounded-[2rem] -rotate-2" />
+          <div className="absolute -inset-4 bg-rainbow rounded-[2rem] -rotate-2 opacity-90" />
           <img
             src={profileImg.url}
             alt="윤지민 프로필 사진"
             width={896}
             height={1152}
-            className="relative rounded-[1.75rem] w-full object-cover shadow-[0_30px_80px_-40px_oklch(0.22_0.025_55/0.4)]"
+            className="relative rounded-[1.75rem] w-full object-cover border-2 border-foreground shadow-[8px_8px_0_0_var(--foreground)]"
           />
-          <div className="absolute -bottom-4 -left-4 bg-foreground text-background rounded-full px-4 py-2 text-xs tracking-widest uppercase font-serif italic rotate-[-6deg]">
+          <div className="absolute -bottom-4 -left-4 bg-[var(--pop-yellow)] text-foreground border-2 border-foreground rounded-full px-4 py-2 text-xs tracking-widest uppercase font-serif italic rotate-[-6deg] shadow-[3px_3px_0_0_var(--foreground)]">
             Yun Jimin
           </div>
         </div>
@@ -183,12 +195,12 @@ function Hero() {
 function Marquee() {
   const items = ["기획", "Communication", "전시 운영", "Branding", "콘텐츠", "Deutsch · English · 한국어", "Curation"];
   return (
-    <div className="border-y border-border bg-[var(--paper-deep)] py-4 overflow-hidden">
-      <div className="flex gap-12 whitespace-nowrap animate-[scroll_30s_linear_infinite] font-serif italic text-2xl text-[var(--ink-soft)]">
+    <div className="border-y-2 border-foreground bg-rainbow py-4 overflow-hidden">
+      <div className="flex gap-12 whitespace-nowrap animate-[scroll_30s_linear_infinite] font-serif italic text-2xl text-foreground">
         {[...items, ...items, ...items].map((it, i) => (
           <span key={i} className="flex items-center gap-12">
             {it}
-            <span className="text-[var(--terracotta)]">✦</span>
+            <span className="text-background">✦</span>
           </span>
         ))}
       </div>
@@ -309,12 +321,16 @@ function Skills() {
       <SectionHeader num="03 —" kicker="Tools I use" title="Skills" />
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {SKILLS.map((s, i) => (
-          <div key={s.group} className="group relative bg-card border border-border rounded-2xl p-6 hover:border-foreground/40 transition-colors">
-            <div className="text-[var(--terracotta)] font-serif italic text-sm">0{i + 1}</div>
+          <div
+            key={s.group}
+            className="group relative card-pop p-6"
+            style={{ backgroundColor: POP_COLORS[i % POP_COLORS.length] }}
+          >
+            <div className="text-foreground font-serif italic text-sm">0{i + 1}</div>
             <h3 className="font-serif text-xl mt-2">{s.group}</h3>
             <ul className="mt-4 flex flex-wrap gap-2">
               {s.items.map((it) => (
-                <li key={it} className="text-xs bg-[var(--paper-deep)] rounded-full px-3 py-1">
+                <li key={it} className="text-xs bg-background/70 border border-foreground/20 rounded-full px-3 py-1">
                   {it}
                 </li>
               ))}
@@ -328,12 +344,14 @@ function Skills() {
 
 function Projects() {
   return (
-    <section id="projects" className="bg-foreground text-background">
+    <section id="projects" className="relative bg-foreground text-background overflow-hidden">
+      <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[var(--pop-magenta)] blur-3xl opacity-50 pointer-events-none" />
+      <div className="absolute bottom-0 -left-20 w-80 h-80 rounded-full bg-[var(--pop-sky)] blur-3xl opacity-40 pointer-events-none" />
       <div className="mx-auto max-w-6xl px-6 py-24">
         <div className="flex items-end justify-between mb-12 border-b border-background/20 pb-4">
           <div>
-            <span className="font-serif italic text-lg text-[var(--ochre)]">04 —</span>
-            <h2 className="font-serif text-4xl md:text-5xl font-medium mt-1">Projects</h2>
+            <span className="font-serif italic text-lg text-[var(--pop-yellow)]">04 —</span>
+            <h2 className="font-serif text-4xl md:text-5xl font-medium mt-1 text-rainbow">Projects</h2>
           </div>
           <span className="text-xs tracking-[0.3em] uppercase text-background/60 hidden md:block">
             Things I built
@@ -346,15 +364,24 @@ function Projects() {
               key={p.slug}
               to="/projects/$slug"
               params={{ slug: p.slug }}
-              className="grid md:grid-cols-12 gap-6 py-8 group hover:bg-background/[0.03] transition-colors -mx-4 px-4 rounded-lg cursor-pointer"
+              className="relative grid md:grid-cols-12 gap-6 py-8 group hover:bg-background/[0.05] transition-colors -mx-4 px-4 rounded-2xl cursor-pointer"
             >
-              <div className="md:col-span-1 font-serif italic text-[var(--ochre)] text-xl">
+              <div
+                className="md:col-span-1 font-serif italic text-2xl"
+                style={{ color: POP_COLORS[i % POP_COLORS.length] }}
+              >
                 {String(i + 1).padStart(2, "0")}
               </div>
               <div className="md:col-span-5">
-                <h3 className="font-serif text-2xl md:text-3xl group-hover:text-[var(--ochre)] transition-colors">
+                <h3
+                  className="font-serif text-2xl md:text-3xl transition-colors"
+                  style={{ ["--hover-c" as string]: POP_COLORS[i % POP_COLORS.length] }}
+                >
                   {p.title}
-                  <span className="inline-block ml-2 opacity-0 group-hover:opacity-100 transition-opacity text-[var(--ochre)]">→</span>
+                  <span
+                    className="inline-block ml-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                    style={{ color: POP_COLORS[i % POP_COLORS.length] }}
+                  >→</span>
                 </h3>
                 <p className="text-sm text-background/60 mt-1">{p.sub}</p>
               </div>
@@ -367,7 +394,11 @@ function Projects() {
               <div className="md:col-span-3">
                 <div className="flex flex-wrap gap-1.5">
                   {p.tags.map((t) => (
-                    <span key={t} className="text-[11px] border border-background/30 rounded-full px-2 py-0.5 text-background/80">
+                    <span
+                      key={t}
+                      className="text-[11px] rounded-full px-2 py-0.5 text-foreground font-medium"
+                      style={{ backgroundColor: POP_COLORS[(i + t.length) % POP_COLORS.length] }}
+                    >
                       {t}
                     </span>
                   ))}
@@ -387,22 +418,26 @@ function Experience() {
     <section id="experience" className="mx-auto max-w-6xl px-6 py-24">
       <SectionHeader num="05 —" kicker="Beyond the desk" title="Experiences" />
       <div className="grid md:grid-cols-2 gap-6">
-        {EXPERIENCES.map((e) => (
+        {EXPERIENCES.map((e, i) => (
           <Link
             key={e.slug}
             to="/experiences/$slug"
             params={{ slug: e.slug }}
-            className="group relative bg-card border border-border rounded-2xl p-8 overflow-hidden hover:border-foreground/40 transition-colors cursor-pointer"
+            className="group relative card-pop p-8 overflow-hidden cursor-pointer"
+            style={{ backgroundColor: POP_COLORS[i % POP_COLORS.length] }}
           >
-            <div className="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-[var(--ochre)]/30 blur-2xl" />
+            <div
+              className="absolute -right-10 -top-10 w-40 h-40 rounded-full blur-2xl opacity-70"
+              style={{ backgroundColor: POP_COLORS[(i + 2) % POP_COLORS.length] }}
+            />
             <div className="relative">
-              <div className="text-xs uppercase tracking-widest text-[var(--ink-soft)]">{e.period}</div>
-              <h3 className="font-serif text-2xl mt-2 group-hover:text-[var(--terracotta)] transition-colors">
+              <div className="text-xs uppercase tracking-widest text-foreground/70">{e.period}</div>
+              <h3 className="font-serif text-2xl mt-2">
                 {e.title}
-                <span className="inline-block ml-2 opacity-0 group-hover:opacity-100 transition-opacity text-[var(--terracotta)]">→</span>
+                <span className="inline-block ml-2 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
               </h3>
-              <div className="text-sm text-[var(--terracotta)] mt-1">{e.place}</div>
-              <p className="mt-4 text-[var(--ink-soft)] leading-relaxed">{e.blurb}</p>
+              <div className="text-sm text-foreground/80 font-medium mt-1">{e.place}</div>
+              <p className="mt-4 text-foreground/85 leading-relaxed">{e.blurb}</p>
             </div>
           </Link>
         ))}
