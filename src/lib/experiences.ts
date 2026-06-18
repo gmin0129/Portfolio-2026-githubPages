@@ -48,7 +48,7 @@ export const EXPERIENCES: Experience[] = [
       "공익 광고 기획 사이클 경험 축적",
     ],
     pdf: {
-      url: "/__l5e/assets-v1/ba020b02-3814-4d8d-a8e4-cffcf5874db1/kosac-2025-plan.pdf",
+      url: "/__l5e/assets-v1/c5dbfe26-ed0c-415a-b649-434fd37d5018/kosac-2025-plan.pdf",
       label: "캠페인 기획서 PDF",
     },
   },
