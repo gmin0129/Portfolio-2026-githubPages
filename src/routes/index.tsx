@@ -269,7 +269,7 @@ function Education() {
         <SectionHeader num="02 —" kicker="Education & Career" title="Education" />
         <div className="grid md:grid-cols-2 gap-16">
           <div>
-            <h3 className="font-serif text-2xl mb-6">교육</h3>
+            <h3 className="font-serif text-2xl mb-6"><span className="mark-pop mark-coral">교육</span></h3>
             <ul className="space-y-7">
               {EDUCATION.map((e) => (
                 <li key={e.school} className="grid grid-cols-[80px_1fr] gap-4">
