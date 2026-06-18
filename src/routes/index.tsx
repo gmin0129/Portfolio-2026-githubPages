@@ -162,11 +162,11 @@ function Hero() {
             <span className="word-lift font-bold tracking-tight text-[var(--pop-purple)]">적응력</span>과 <span className="word-lift font-bold tracking-tight text-[var(--pop-sky)]">끈기</span>,<br />
             그리고 <span className="word-lift font-bold tracking-tight text-rainbow hover:text-anti-rainbow transition-all duration-300 ease">다양성</span>.
           </h1>
-          <p className="mt-8 max-w-xl text-base md:text-lg text-[var(--ink-soft)] leading-relaxed">
-            <span className="mark-pop mark-pop-interactive mark-sky font-display font-semibold">데이터 분석</span>으로 타인의 숨은 니즈를 읽고,<br />
-            <span className="mark-pop mark-pop-interactive mark-lime font-display font-semibold">&nbsp;다양한 개성</span>을 포용하는 문화 기획자 윤지민입니다.<br />
-            초심자도 쉽게 입문하고 애호가도 깊이 만족하는 <span className="mark-pop mark-pop-interactive mark-magenta font-display font-semibold">'모두를 위한 문화 콘텐츠'</span>를 만들어,<br />
-            <span className="mark-pop mark-pop-interactive mark-coral font-display font-semibold">동아일보</span>에서 누구나 장벽 없이 향유할 수 있는 <span className="mark-pop mark-pop-interactive mark-lavender font-display font-semibold">차별화된 기획</span>을 선보이겠습니다.
+          <p className="mt-8 max-w-xl text-base md:text-lg text-[var(--ink-soft)] leading-relaxed whitespace-pre-line">
+            <span className="mark-pop mark-pop-interactive mark-sky font-display font-semibold">데이터 분석</span>으로 타인의 숨은 니즈를 읽고,{"\n"}
+            <span className="mark-pop mark-pop-interactive mark-lime font-display font-semibold">다양한 개성</span>을 포용하는 문화 기획자 윤지민입니다.{"\n\n\n"}
+            누구에게나 열려 있지만, 결코 가볍지 않은 기획을 지향합니다.{"\n"}
+            <span className="mark-pop mark-pop-interactive mark-coral font-display font-semibold">동아일보</span>에서 단 한 명의 소외도 없이 즐길 수 있는 <span className="mark-pop mark-pop-interactive mark-lavender font-display font-semibold">"포용적 문화 콘텐츠"</span>를 선보이겠습니다.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <a href="#projects" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
@@ -238,13 +238,11 @@ function About() {
     <section id="about" className="mx-auto max-w-6xl px-6 py-24">
       <SectionHeader num="01 —" kicker="Who I am" title="About" />
       <div className="grid md:grid-cols-3 gap-10">
-        <div className="md:col-span-2 font-display text-2xl md:text-3xl leading-[1.5] text-foreground">
-          <span className="mark-pop mark-pop-interactive mark-lime">다양한 개성</span>을 포용하는 문화 기획자 윤지민입니다.<br />
-          <br />
-          <br />
-          <br />
-          <span className="mark-pop mark-pop-interactive mark-coral">동아일보</span>에서 누구나 장벽 없이 향유할 수 있는 <span className="mark-pop mark-pop-interactive mark-lavender">차별화된 기획</span>으로,<br />
-          입문자와 애호가 <span className="mark-pop mark-pop-interactive mark-magenta">'모두를 위한 문화 콘텐츠'</span>를 선보이겠습니다.
+        <div className="md:col-span-2 font-display text-2xl md:text-3xl leading-[1.5] text-foreground whitespace-pre-line">
+          데이터 분석으로 타인의 숨은 니즈를 읽고,{"\n"}
+          <span className="mark-pop mark-pop-interactive mark-lime">다양한 개성</span>을 포용하는 문화 기획자 윤지민입니다.{"\n\n\n"}
+          누구에게나 열려 있지만, 결코 가볍지 않은 기획을 지향합니다.{"\n"}
+          <span className="mark-pop mark-pop-interactive mark-coral">동아일보</span>에서 단 한 명의 소외도 없이 즐길 수 있는 <span className="mark-pop mark-pop-interactive mark-lavender">"포용적 문화 콘텐츠"</span>를 선보이겠습니다.
         </div>
         <div className="space-y-4 text-sm text-[var(--ink-soft)]">
           <Fact k="Based in" v="Seoul, KR" />
