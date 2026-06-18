@@ -5,6 +5,7 @@ type Props = {
   images?: string[];
   children: ReactNode; // text content (page 1)
   loading?: boolean;
+  hidePhotos?: boolean;
 };
 
 /**
@@ -12,7 +13,7 @@ type Props = {
  * page 2 = a photo grid built from `images`. Toggle via the pill tabs
  * at the top, by swiping horizontally, or with the arrow keys.
  */
-export function SwipeTabs({ title, images, children, loading = false }: Props) {
+export function SwipeTabs({ title, images, children, loading = false, hidePhotos = false }: Props) {
   const [page, setPage] = useState<0 | 1>(0);
   const [dragX, setDragX] = useState(0);
   const widthRef = useRef(0);
@@ -31,13 +32,14 @@ export function SwipeTabs({ title, images, children, loading = false }: Props) {
   }, []);
 
   useEffect(() => {
+    if (hidePhotos) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "ArrowRight") setPage(1);
       if (e.key === "ArrowLeft") setPage(0);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  }, [hidePhotos]);
 
   const onTouchStart = (e: React.TouchEvent) => {
     startX.current = e.touches[0].clientX;
@@ -46,6 +48,7 @@ export function SwipeTabs({ title, images, children, loading = false }: Props) {
     setDragX(0);
   };
   const onTouchMove = (e: React.TouchEvent) => {
+    if (hidePhotos) return;
     if (startX.current == null || startY.current == null) return;
     const dx = e.touches[0].clientX - startX.current;
     const dy = e.touches[0].clientY - startY.current;
@@ -83,6 +86,10 @@ export function SwipeTabs({ title, images, children, loading = false }: Props) {
     transform: `translateX(${basePct + dragPct}%)`,
     transition: dragX === 0 ? "transform 400ms cubic-bezier(0.22, 1, 0.36, 1)" : "none",
   };
+
+  if (hidePhotos) {
+    return <div className="w-full">{children}</div>;
+  }
 
   return (
     <div className="w-full">

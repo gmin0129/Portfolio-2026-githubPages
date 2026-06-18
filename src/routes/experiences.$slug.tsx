@@ -61,7 +61,12 @@ function ExperienceDetail() {
       <TitleCard experience={experience} idx={idx} className="fixed top-16 inset-x-0" />
       <TitleCard experience={experience} idx={idx} className="invisible pointer-events-none" aria-hidden="true" />
 
-      <SwipeTabs title={experience.title} images={images} loading={isLoading}>
+      <SwipeTabs
+        title={experience.title}
+        images={images}
+        loading={isLoading}
+        hidePhotos={experience.slug === "kosac-2025"}
+      >
       <section className="mx-auto max-w-5xl px-6 py-16 grid md:grid-cols-3 gap-12">
         <aside className="space-y-6 text-sm">
           <Meta k="기간" v={experience.period} />
