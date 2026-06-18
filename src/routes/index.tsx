@@ -122,7 +122,7 @@ function Index() {
 
 function Header() {
   return (
-    <header className="sticky top-0 z-40 backdrop-blur-md bg-[oklch(0.14_0.04_265/0.75)] border-b border-border">
+    <header className="sticky top-0 z-40 backdrop-blur-md bg-[oklch(0.985_0.012_95/0.78)] border-b border-border">
       <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
         <a href="#top" className="font-serif text-lg font-bold tracking-tight">
           윤지민<span className="text-[var(--terracotta)]">.</span>
