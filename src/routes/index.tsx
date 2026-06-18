@@ -149,9 +149,9 @@ function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
       <div className="absolute inset-0 grain opacity-50 pointer-events-none" />
-      <div className="absolute -top-24 -left-20 w-72 h-72 tile-1 shape-blob blur-2xl opacity-50 pointer-events-none" />
-      <div className="absolute top-20 right-0 w-80 h-80 tile-2 shape-pebble blur-2xl opacity-45 pointer-events-none" />
-      <div className="absolute bottom-0 left-1/3 w-72 h-72 tile-3 shape-petal blur-2xl opacity-40 pointer-events-none" />
+      <div className="absolute -top-24 -left-20 w-72 h-72 tile-1 shape-blob blur-2xl opacity-50 pointer-events-none animate-galaxy-alive" />
+      <div className="absolute top-20 right-0 w-80 h-80 tile-2 shape-pebble blur-2xl opacity-45 pointer-events-none animate-galaxy-alive" />
+      <div className="absolute bottom-0 left-1/3 w-72 h-72 tile-3 shape-petal blur-2xl opacity-40 pointer-events-none animate-galaxy-alive" />
       <div className="mx-auto max-w-6xl px-6 pt-20 pb-24 md:pt-28 md:pb-32 grid md:grid-cols-12 gap-10 items-end">
         <div className="md:col-span-7">
           <p className="text-sm tracking-[0.3em] uppercase text-[var(--ink-soft)] mb-6">
@@ -177,7 +177,7 @@ function Hero() {
           </div>
         </div>
         <div className="md:col-span-5 relative">
-          <div className="absolute -inset-4 tile-2 shape-squircle -rotate-2 opacity-95 clay" />
+          <div className="absolute -inset-4 tile-2 shape-squircle -rotate-2 opacity-95 clay animate-galaxy-alive" />
           <img
             src={profileImg.url}
             alt="윤지민 프로필 사진"
@@ -198,7 +198,7 @@ function Hero() {
 function Marquee() {
   const items = ["기획", "Communication", "전시 운영", "Branding", "콘텐츠", "Deutsch · English · 한국어", "Curation"];
   return (
-    <div className="bg-rainbow py-4 overflow-hidden">
+    <div className="bg-rainbow py-4 overflow-hidden animate-galaxy-pulse">
       <div className="flex gap-12 whitespace-nowrap animate-[scroll_30s_linear_infinite] font-serif italic text-2xl text-foreground/90">
         {[...items, ...items, ...items].map((it, i) => (
           <span key={i} className="flex items-center gap-12">
@@ -326,7 +326,7 @@ function Skills() {
         {SKILLS.map((s, i) => (
           <div
             key={s.group}
-            className={`group relative ${TILES[i % TILES.length]} ${SHAPES[i % SHAPES.length]} ${ROTATIONS[i % ROTATIONS.length]} card-pop p-7 overflow-hidden`}
+            className={`group relative ${TILES[i % TILES.length]} ${SHAPES[i % SHAPES.length]} ${ROTATIONS[i % ROTATIONS.length]} card-pop p-7 overflow-hidden animate-galaxy-pulse`}
           >
             <div className="absolute inset-0 grain opacity-30 pointer-events-none" />
             <div className="relative">
@@ -369,7 +369,7 @@ function Projects() {
               key={p.slug}
               to="/projects/$slug"
               params={{ slug: p.slug }}
-              className={`relative block group ${TILES[i % TILES.length]} ${SHAPES[i % SHAPES.length]} ${ROTATIONS[i % ROTATIONS.length]} card-pop p-7 overflow-hidden`}
+              className={`relative block group ${TILES[i % TILES.length]} ${SHAPES[i % SHAPES.length]} ${ROTATIONS[i % ROTATIONS.length]} card-pop p-7 overflow-hidden animate-galaxy-pulse`}
             >
               <div className="absolute inset-0 grain opacity-30 pointer-events-none" />
               <div className="relative flex flex-col h-full min-h-[15rem]">
@@ -417,7 +417,7 @@ function Experience() {
             key={e.slug}
             to="/experiences/$slug"
             params={{ slug: e.slug }}
-            className={`group relative ${TILES[(i + 2) % TILES.length]} ${SHAPES[(i + 1) % SHAPES.length]} ${ROTATIONS[(i + 1) % ROTATIONS.length]} card-pop p-8 overflow-hidden cursor-pointer`}
+            className={`group relative ${TILES[(i + 2) % TILES.length]} ${SHAPES[(i + 1) % SHAPES.length]} ${ROTATIONS[(i + 1) % ROTATIONS.length]} card-pop p-8 overflow-hidden cursor-pointer animate-galaxy-pulse`}
           >
             <div className="absolute inset-0 grain opacity-30 pointer-events-none" />
             <div className="relative">
