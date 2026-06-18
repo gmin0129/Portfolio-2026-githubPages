@@ -238,13 +238,11 @@ function About() {
     <section id="about" className="mx-auto max-w-6xl px-6 py-24">
       <SectionHeader num="01 —" kicker="Who I am" title="About" />
       <div className="grid md:grid-cols-3 gap-10">
-        <div className="md:col-span-2 font-display text-2xl md:text-3xl leading-[1.5] text-foreground">
-          <span className="mark-pop mark-pop-interactive mark-lime">다양한 개성</span>을 포용하는 문화 기획자 윤지민입니다.<br />
-          <br />
-          <br />
-          <br />
-          <span className="mark-pop mark-pop-interactive mark-coral">동아일보</span>에서 누구나 장벽 없이 향유할 수 있는 <span className="mark-pop mark-pop-interactive mark-lavender">차별화된 기획</span>으로,<br />
-          입문자와 애호가 <span className="mark-pop mark-pop-interactive mark-magenta">'모두를 위한 문화 콘텐츠'</span>를 선보이겠습니다.
+        <div className="md:col-span-2 font-display text-2xl md:text-3xl leading-[1.5] text-foreground whitespace-pre-line">
+          데이터 분석으로 타인의 숨은 니즈를 읽고,{"\n"}
+          <span className="mark-pop mark-pop-interactive mark-lime">다양한 개성</span>을 포용하는 문화 기획자 윤지민입니다.{"\n\n\n"}
+          누구에게나 열려 있지만, 결코 가볍지 않은 기획을 지향합니다.{"\n"}
+          <span className="mark-pop mark-pop-interactive mark-coral">동아일보</span>에서 단 한 명의 소외도 없이 즐길 수 있는 <span className="mark-pop mark-pop-interactive mark-lavender">"포용적 문화 콘텐츠"</span>를 선보이겠습니다.
         </div>
         <div className="space-y-4 text-sm text-[var(--ink-soft)]">
           <Fact k="Based in" v="Seoul, KR" />
