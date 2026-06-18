@@ -1,4 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import type { HTMLAttributes } from "react";
 import { getProject, PROJECTS, type Project } from "@/lib/projects";
 import { SwipeTabs } from "@/components/SwipeTabs";
 import { useQuery } from "@tanstack/react-query";
@@ -55,33 +56,8 @@ function ProjectDetail() {
         </div>
       </header>
 
-      {/* Fixed project title — painterly ceramic tile banner */}
-      <section className="sticky top-16 z-40 bg-background pb-4 shadow-[0_8px_30px_-12px_oklch(0.3_0.05_40/0.12)]">
-        <div className="mx-auto max-w-5xl px-4 md:px-6 pt-4">
-          <div className={`relative ${TILES[idx % TILES.length]} shape-squircle px-6 md:px-10 py-7 md:py-9 clay overflow-hidden animate-galaxy-pulse shadow-lg`}>
-            <div className="absolute inset-0 grain opacity-30 pointer-events-none" />
-            <div className="relative">
-              <div className="font-serif italic text-foreground/75 text-sm tracking-widest uppercase">
-                Project · {String(idx + 1).padStart(2, "0")}
-              </div>
-              <h1 className="font-serif text-3xl md:text-5xl font-semibold mt-2 leading-[1.1] text-foreground drop-shadow-[1px_1px_0_oklch(1_0_0/0.55)]">
-                {project.title}
-              </h1>
-              <p className="mt-2 text-foreground/80 text-base md:text-lg">{project.sub}</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {project.tags.map((t) => (
-                  <span
-                    key={t}
-                    className="text-xs rounded-full px-3 py-1 text-foreground bg-background/75 backdrop-blur clay-sm"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <TitleCard project={project} idx={idx} className="fixed top-16 inset-x-0" />
+      <TitleCard project={project} idx={idx} className="invisible pointer-events-none" aria-hidden="true" />
 
       <SwipeTabs title={project.title} images={images} loading={isLoading}>
       <section className="mx-auto max-w-5xl px-6 py-16 grid md:grid-cols-3 gap-12">
@@ -161,6 +137,37 @@ function Meta({ k, v }: { k: string; v: string }) {
       <div className="uppercase tracking-widest text-xs text-[var(--ink-soft)]">{k}</div>
       <div className="mt-1 text-foreground">{v}</div>
     </div>
+  );
+}
+
+function TitleCard({ project, idx, className, ...props }: { project: Project; idx: number } & HTMLAttributes<HTMLElement>) {
+  return (
+    <section {...props} className={`top-16 z-40 bg-background pb-4 shadow-[0_8px_30px_-12px_oklch(0.3_0.05_40/0.12)] ${className ?? ""}`}>
+      <div className="mx-auto max-w-5xl px-4 md:px-6 pt-4">
+        <div className={`relative ${TILES[idx % TILES.length]} shape-squircle px-6 md:px-10 py-7 md:py-9 clay overflow-hidden animate-galaxy-pulse shadow-lg`}>
+          <div className="absolute inset-0 grain opacity-30 pointer-events-none" />
+          <div className="relative">
+            <div className="font-serif italic text-foreground/75 text-sm tracking-widest uppercase">
+              Project · {String(idx + 1).padStart(2, "0")}
+            </div>
+            <h1 className="font-serif text-3xl md:text-5xl font-semibold mt-2 leading-[1.1] text-foreground drop-shadow-[1px_1px_0_oklch(1_0_0/0.55)]">
+              {project.title}
+            </h1>
+            <p className="mt-2 text-foreground/80 text-base md:text-lg">{project.sub}</p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {project.tags.map((t) => (
+                <span
+                  key={t}
+                  className="text-xs rounded-full px-3 py-1 text-foreground bg-background/75 backdrop-blur clay-sm"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 

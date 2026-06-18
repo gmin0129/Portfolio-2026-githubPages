@@ -87,7 +87,7 @@ export function SwipeTabs({ title, images, children, loading = false }: Props) {
   return (
     <div className="w-full">
       {/* Pill tabs with sliding indicator */}
-      <div className="sticky top-[calc(4rem+0px)] z-30 bg-transparent pointer-events-none">
+      <div className="relative z-30 bg-transparent pointer-events-none">
         <div className="mx-auto max-w-5xl px-6 pt-6 pb-2 flex justify-center md:justify-start pointer-events-auto">
           <div
             className="relative inline-flex items-center rounded-full p-1.5 text-sm bg-background/90 backdrop-blur-xl clay-sm"
