@@ -153,7 +153,18 @@ function TitleCard({ project, idx, className, ...props }: { project: Project; id
               Project · {String(idx + 1).padStart(2, "0")}
             </div>
             <h1 className="font-serif text-3xl md:text-5xl font-semibold mt-2 leading-[1.1] text-foreground drop-shadow-[1px_1px_0_oklch(1_0_0/0.55)]">
-              {project.title}
+              {project.linkUrl ? (
+                <a
+                  href={project.linkUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:opacity-80 transition-opacity"
+                >
+                  {project.title}
+                </a>
+              ) : (
+                project.title
+              )}
             </h1>
             <p className="mt-2 text-foreground/80 text-base md:text-lg">{project.sub}</p>
             <div className="mt-4 flex flex-wrap gap-2">
