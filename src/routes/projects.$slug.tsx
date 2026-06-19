@@ -4,6 +4,7 @@ import { getProject, PROJECTS, type Project } from "@/lib/projects";
 import { SwipeTabs } from "@/components/SwipeTabs";
 import { useQuery } from "@tanstack/react-query";
 import { notionPageQueryOptions } from "@/lib/notion-images.functions";
+import { ExternalLink } from "lucide-react";
 
 export const Route = createFileRoute("/projects/$slug")({
   loader: ({ params }) => {
@@ -158,9 +159,13 @@ function TitleCard({ project, idx, className, ...props }: { project: Project; id
                   href={project.linkUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:opacity-80 transition-opacity"
+                  className="inline-flex items-center gap-2 hover:opacity-80 transition-opacity underline underline-offset-4 decoration-foreground/40"
                 >
                   {project.title}
+                  <ExternalLink
+                    className="w-5 h-5 md:w-7 md:h-7 opacity-70"
+                    aria-hidden="true"
+                  />
                 </a>
               ) : (
                 project.title
