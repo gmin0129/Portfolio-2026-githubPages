@@ -159,7 +159,7 @@ function TitleCard({ project, idx, className, ...props }: { project: Project; id
                   href={project.linkUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 hover:opacity-80 transition-opacity underline underline-offset-4 decoration-foreground/40"
+                  className="inline-flex items-center gap-2 hover:opacity-80 transition-opacity"
                 >
                   {project.title}
                   <ExternalLink
