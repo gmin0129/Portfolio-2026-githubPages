@@ -408,8 +408,8 @@ function Contact() {
       <div className="mx-auto max-w-6xl px-6 py-24 grid md:grid-cols-12 gap-10 items-center">
         <div className="md:col-span-7">
           <span className="section-num text-lg mb-6 block">05 —</span>
-          <h2 className="font-display text-pop-hover text-4xl md:text-5xl leading-[1.3]">
-            <span className="word-lift italic text-[var(--terracotta)]">감사합니다.</span>
+          <h2 className="font-display text-pop-hover text-5xl md:text-6xl lg:text-7xl leading-[1.3]">
+            <span className="word-lift font-bold italic text-[var(--terracotta)] tracking-[0.05em]">THANK YOU</span>
           </h2>
         </div>
         <div className="md:col-span-5 space-y-0">
