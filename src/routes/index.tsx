@@ -174,6 +174,7 @@ function Hero() {
               경험 보기 →
             </a>
           </div>
+          <div className="mt-6 h-[2px] w-40 bg-[var(--pop-lime)] rounded-full opacity-90" />
         </div>
         <div className="md:col-span-5 relative">
           <div className="absolute -inset-4 shape-outline shape-outline-magenta pointer-events-none" />
