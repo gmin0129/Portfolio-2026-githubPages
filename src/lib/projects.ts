@@ -6,6 +6,7 @@ export type Project = {
   contribution: string;
   tags: string[];
   skills: string;
+  linkUrl?: string;
   overview?: string;
   role?: string[];
   outcome?: string[];
@@ -19,6 +20,7 @@ export const PROJECTS: Project[] = [
     sub: "노들갤러리 1관",
     period: "2025.08.04 — 2025.09.26",
     contribution: "전시 기획 및 운영, 작가 매니징, 데이터 아카이빙",
+    linkUrl: "https://litt.ly/dalchaneun_haru",
     tags: ["#전시기획 및 운영", "#외부관계자 소통", "#데이터 정리"],
     skills: "의사소통 · 창의력 · Premiere · Slack · Notion",
     overview:
