@@ -170,7 +170,7 @@ function Hero() {
             <a href="#projects" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
               프로젝트 보기 →
             </a>
-            <a href="#experience" className="inline-flex items-center gap-2 tile-1 text-foreground rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
+            <a href="#experience" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
               경험 보기 →
             </a>
           </div>
@@ -251,9 +251,9 @@ function Education() {
             </ul>
 
             <h3 className="font-serif text-2xl mt-12 mb-6"><span className="mark-pop mark-lime">자격증 & 어학</span></h3>
-            <div className="flex flex-nowrap gap-2 overflow-x-auto">
+            <div className="flex flex-wrap gap-2">
               {CERTS.map((c) => (
-                <span key={c.name} className="inline-flex items-center gap-1.5 text-[11px] whitespace-nowrap border border-foreground/20 rounded-full px-2.5 py-1 shrink-0">
+                <span key={c.name} className="inline-flex items-center gap-1.5 text-sm whitespace-nowrap border border-foreground/20 rounded-full px-3 py-1.5 shrink-0">
                   <span className="font-medium">{c.name}</span>
                   <span className="text-[var(--terracotta)]">{c.score}</span>
                 </span>
@@ -407,15 +407,14 @@ function Contact() {
     <section id="contact" className="bg-[var(--paper-deep)] border-t border-border">
       <div className="mx-auto max-w-6xl px-6 py-24 grid md:grid-cols-12 gap-10 items-center">
         <div className="md:col-span-7">
-          <span className="section-num text-lg">05 —</span>
-          <h2 className="font-display text-pop-hover text-4xl md:text-5xl mt-2 leading-[1.3]">
+          <span className="section-num text-lg mb-6 block">05 —</span>
+          <h2 className="font-display text-pop-hover text-4xl md:text-5xl leading-[1.3]">
             <span className="word-lift italic text-[var(--terracotta)]">감사합니다.</span>
           </h2>
         </div>
-        <div className="md:col-span-5 space-y-4">
+        <div className="md:col-span-5 space-y-0">
           <ContactRow label="Email" value="dbswlals0129@gmail.com" href="mailto:dbswlals0129@gmail.com" />
           <ContactRow label="Phone" value="010-4234-5652" href="tel:+821042345652" />
-          <ContactRow label="Instagram" value="@y0oniverse._" href="https://www.instagram.com/y0oniverse._/" />
         </div>
       </div>
     </section>
@@ -438,7 +437,6 @@ function Footer() {
     <footer className="bg-foreground text-background/70">
       <div className="mx-auto max-w-6xl px-6 py-10 flex flex-wrap items-center justify-between gap-4 text-xs">
         <div>© 2026 Yun Jimin · 윤지민</div>
-        <div className="font-serif italic">감사합니다.</div>
       </div>
     </footer>
   );
