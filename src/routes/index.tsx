@@ -135,7 +135,7 @@ function ConnectionLines() {
         </linearGradient>
       </defs>
       <path
-        d="M 10 5 C 40 0, 70 8, 85 12 C 96 15, 93 22, 82 28 C 60 38, 30 34, 12 42 C 2 46, 2 54, 12 58 C 35 66, 70 62, 88 68 C 98 72, 95 80, 85 86 C 65 96, 30 92, 15 97"
+        d="M 0 8 C 10 8, 12 36, 22 28 C 32 20, 28 50, 42 42 C 56 34, 48 64, 62 56 C 76 48, 70 78, 84 70 C 92 63, 90 90, 100 92"
         fill="none"
         stroke="url(#lineGradient)"
         strokeWidth="1.5"
