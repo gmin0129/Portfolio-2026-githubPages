@@ -164,14 +164,14 @@ function Hero() {
             <span className="mark-pop mark-pop-interactive mark-sky font-display font-semibold">데이터 분석</span>으로 타인의 숨은 니즈를 읽고,{"\n"}
             <span className="mark-pop mark-pop-interactive mark-lime font-display font-semibold">다양한 개성</span>을 포용하는 문화 기획자 <span className="font-bold">윤지민</span>입니다.{"\n\n"}
             누구에게나 열려 있지만, 결코 가볍지 않은 기획을 지향합니다.{"\n"}
-            <span className="mark-pop mark-pop-interactive mark-coral font-display font-semibold">동아일보</span>에서 단 한 명의 소외도 없이 즐길 수 있는 <span className="mark-pop mark-pop-interactive mark-lavender font-display font-semibold">"포용적 문화 콘텐츠"</span>를 <span className="whitespace-nowrap">선보이겠습니다.</span>
+            <span className="mark-pop mark-pop-interactive mark-coral font-display font-semibold">동아일보</span>에서 단 한 명의 소외도 없이 즐길 수 있는 <span className="whitespace-nowrap"><span className="mark-pop mark-pop-interactive mark-lavender font-display font-semibold">"포용적 문화 콘텐츠"</span>를 선보이겠습니다.</span>
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <a href="#projects" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
               프로젝트 보기 →
             </a>
-            <a href="#contact" className="inline-flex items-center gap-2 tile-1 text-foreground rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
-              연락하기
+            <a href="#experience" className="inline-flex items-center gap-2 tile-1 text-foreground rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
+              경험 보기 →
             </a>
           </div>
         </div>
@@ -184,9 +184,6 @@ function Hero() {
             height={1152}
             className="relative shape-squircle w-full object-cover clay"
           />
-          <div className="absolute -bottom-4 -left-4 tile-4 text-foreground rounded-full px-4 py-2 text-xs tracking-widest uppercase font-serif italic rotate-[-6deg] clay-sm">
-            Yun Jimin
-          </div>
         </div>
       </div>
     </section>
@@ -253,10 +250,10 @@ function Education() {
               ))}
             </ul>
 
-            <h4 className="font-serif text-lg mt-12 mb-4"><span className="mark-pop mark-lime">자격증 & 어학</span></h4>
-            <div className="flex flex-wrap gap-2">
+            <h3 className="font-serif text-2xl mt-12 mb-6"><span className="mark-pop mark-lime">자격증 & 어학</span></h3>
+            <div className="flex flex-nowrap gap-2 overflow-x-auto">
               {CERTS.map((c) => (
-                <span key={c.name} className="inline-flex items-center gap-2 text-xs border border-foreground/20 rounded-full px-3 py-1.5">
+                <span key={c.name} className="inline-flex items-center gap-1.5 text-[11px] whitespace-nowrap border border-foreground/20 rounded-full px-2.5 py-1 shrink-0">
                   <span className="font-medium">{c.name}</span>
                   <span className="text-[var(--terracotta)]">{c.score}</span>
                 </span>
@@ -411,9 +408,8 @@ function Contact() {
       <div className="mx-auto max-w-6xl px-6 py-24 grid md:grid-cols-12 gap-10 items-center">
         <div className="md:col-span-7">
           <span className="section-num text-lg">05 —</span>
-          <h2 className="font-display text-pop-hover text-5xl md:text-6xl mt-2 leading-[1.5]">
-            함께 좋은 이야기를<br />
-            만들고 싶다면, <span className="word-lift italic text-[var(--terracotta)]">언제든.</span>
+          <h2 className="font-display text-pop-hover text-4xl md:text-5xl mt-2 leading-[1.3]">
+            <span className="word-lift italic text-[var(--terracotta)]">감사합니다.</span>
           </h2>
         </div>
         <div className="md:col-span-5 space-y-4">
