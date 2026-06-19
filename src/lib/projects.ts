@@ -16,7 +16,7 @@ export type Project = {
 export const PROJECTS: Project[] = [
   {
     slug: "daljjanheun-haru",
-    title: "<달찮은 하루> 전시회 기획 및 운영",
+    title: "<달찮은 하루> 전시회",
     sub: "노들갤러리 1관",
     period: "2025.08.04 — 2025.09.26",
     contribution: "전시 기획 및 운영, 작가 매니징, 데이터 아카이빙",
