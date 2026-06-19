@@ -160,12 +160,6 @@ function Header() {
             </a>
           ))}
         </nav>
-        <a
-          href="mailto:dbswlals0129@gmail.com"
-          className="hidden sm:inline-flex items-center gap-2 text-sm font-medium border border-foreground/80 rounded-full px-4 py-1.5 hover:bg-foreground hover:text-background transition-colors"
-        >
-          Say hi →
-        </a>
       </div>
     </header>
   );
