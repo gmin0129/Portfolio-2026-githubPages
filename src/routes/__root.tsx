@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "윤지민_포트폴리오_동아일보 사업기획" },
+      { name: "description", content: "Builds a web portfolio prototype from content in a Notion 'portfolio' page." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "윤지민_포트폴리오_동아일보 사업기획" },
+      { property: "og:description", content: "Builds a web portfolio prototype from content in a Notion 'portfolio' page." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "윤지민_포트폴리오_동아일보 사업기획" },
+      { name: "twitter:description", content: "Builds a web portfolio prototype from content in a Notion 'portfolio' page." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/dc9522f9-39e0-4470-831e-3e51d899605b/id-preview-7cbdee69--7af69fa8-433e-470d-990e-c12e96027377.lovable.app-1781829909116.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/dc9522f9-39e0-4470-831e-3e51d899605b/id-preview-7cbdee69--7af69fa8-433e-470d-990e-c12e96027377.lovable.app-1781829909116.png" },
     ],
     links: [
       {
