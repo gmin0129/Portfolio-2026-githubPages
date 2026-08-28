@@ -182,7 +182,7 @@ function Hero() {
       <div className="absolute -top-24 -left-20 w-72 h-72 shape-outline shape-outline-coral pointer-events-none" />
       <div className="absolute top-20 right-0 w-80 h-80 shape-outline shape-outline-sky pointer-events-none" />
       <div className="absolute bottom-0 left-1/3 w-72 h-72 shape-outline shape-outline-lime pointer-events-none" />
-      <div className="mx-auto max-w-6xl px-6 pt-20 pb-24 md:pt-28 md:pb-32 grid md:grid-cols-12 gap-10 items-end">
+      <div className="mx-auto max-w-6xl px-6 pt-16 pb-20 md:pt-24 md:pb-28 grid md:grid-cols-12 gap-10 items-end">
         <div className="md:col-span-7">
 <p className="text-sm tracking-[0.3em] uppercase text-[var(--ink-soft)] mb-4">
             Portfolio · 2026
