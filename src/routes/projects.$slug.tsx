@@ -44,8 +44,7 @@ function ProjectDetail() {
   const prev = PROJECTS[(idx - 1 + PROJECTS.length) % PROJECTS.length];
   const next = PROJECTS[(idx + 1) % PROJECTS.length];
   const { data, isLoading } = useQuery(notionPageQueryOptions("project", project.slug));
-  const { data: sheetRaw } = useQuery(projectSheetQueryOptions(project.slug));
-  const sheet = sheetRaw ?? sampleSheet;
+  const { data: sheet } = useQuery(projectSheetQueryOptions(project.slug));
   const images = data?.images?.length ? data.images : project.images;
   const overview = data?.summary?.trim() ? data.summary : project.overview;
   const role = data?.highlights?.length ? data.highlights : project.role;
