@@ -154,6 +154,32 @@ function ProjectDetail() {
   );
 }
 
+function SheetBlock({ section }: { section: SheetSection }) {
+  if (!section.fields.length) return null;
+  return (
+    <div>
+      <h2 className="font-serif text-2xl mb-6">
+        <span className="text-[var(--terracotta)]">&lt;</span>
+        {section.title}
+        <span className="text-[var(--terracotta)]">&gt;</span>
+      </h2>
+      <dl className="space-y-6">
+        {section.fields.map((f) => (
+          <div key={f.label} className="border-l-2 border-border pl-4">
+            <dt className="text-xs uppercase tracking-widest text-[var(--terracotta)] font-medium">
+              {f.label}
+            </dt>
+            <dd className="mt-2 text-[var(--ink-soft)] leading-relaxed whitespace-pre-line text-[0.95rem]">
+              {f.value}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  );
+}
+
+
 function Meta({ k, v }: { k: string; v: string }) {
   return (
     <div className="border-b border-border pb-3">
