@@ -171,7 +171,7 @@ function SheetRow({
 
   return (
     <div className="text-left break-keep border-b border-border pb-12 last:border-b-0 last:pb-0">
-      <h2 className="font-serif text-2xl mb-8">
+      <h2 className="font-serif text-2xl mb-12">
         <span className="text-[var(--terracotta)]">&lt;</span>
         {title}
         <span className="text-[var(--terracotta)]">&gt;</span>
