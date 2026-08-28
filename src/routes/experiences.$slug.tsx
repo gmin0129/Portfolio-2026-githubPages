@@ -194,7 +194,7 @@ function TitleCard({ experience, idx, className, ...props }: { experience: Exper
   return (
     <section {...props} className={`top-16 z-40 bg-background pb-4 shadow-[0_8px_30px_-12px_oklch(0.3_0.05_40/0.12)] ${className ?? ""}`}>
       <div className="mx-auto max-w-5xl px-4 md:px-6 pt-4">
-        <div className={`relative ${TILES[idx % TILES.length]} shape-squircle px-6 md:px-10 py-7 md:py-9 clay overflow-hidden animate-galaxy-pulse shadow-lg`}>
+        <div className={`relative ${TILES[(idx + 2) % TILES.length]} shape-squircle px-6 md:px-10 py-7 md:py-9 clay overflow-hidden animate-galaxy-pulse shadow-lg`}>
           <div className="absolute inset-0 grain opacity-30 pointer-events-none" />
           <div className="relative">
             <div className="font-serif italic text-foreground/75 text-sm tracking-widest uppercase">
@@ -211,4 +211,5 @@ function TitleCard({ experience, idx, className, ...props }: { experience: Exper
   );
 }
 
-const TILES = ["tile-2", "tile-5", "tile-3", "tile-6", "tile-4", "tile-1"];
+// Matches the Experience cards on the home page (TILES[(i + 2) % 6]).
+const TILES = ["tile-1", "tile-2", "tile-3", "tile-4", "tile-5", "tile-6"];
