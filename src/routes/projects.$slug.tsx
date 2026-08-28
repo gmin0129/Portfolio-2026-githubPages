@@ -154,27 +154,55 @@ function ProjectDetail() {
   );
 }
 
-function SheetBlock({ section }: { section: SheetSection }) {
-  if (!section.fields.length) return null;
+function SheetRow({
+  title,
+  fields,
+  layout,
+}: {
+  title: string;
+  fields: SheetField[];
+  layout: "four" | "two" | "columns";
+}) {
+  if (!fields.length) return null;
+  const gridClass =
+    layout === "four"
+      ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+      : "grid grid-cols-1 md:grid-cols-2 gap-8";
+
   return (
-    <div className="text-left break-keep">
-      <h2 className="font-serif text-2xl mb-6">
+    <div className="text-left break-keep border-b border-border pb-12 last:border-b-0 last:pb-0">
+      <h2 className="font-serif text-2xl mb-8">
         <span className="text-[var(--terracotta)]">&lt;</span>
-        {section.title}
+        {title}
         <span className="text-[var(--terracotta)]">&gt;</span>
       </h2>
-      <dl className="space-y-6">
-        {section.fields.map((f) => (
-          <div key={f.label} className="border-l-2 border-border pl-4">
-            <dt className="text-xs uppercase tracking-widest text-[var(--terracotta)] font-medium">
-              {f.label}
-            </dt>
-            <dd className="mt-2 text-[var(--ink-soft)] leading-relaxed whitespace-pre-line text-[0.95rem]">
-              {f.value}
-            </dd>
-          </div>
-        ))}
-      </dl>
+      {layout === "columns" ? (
+        <div className="space-y-6">
+          {fields.map((f) => (
+            <div key={f.label}>
+              <div className="text-xs uppercase tracking-widest text-[var(--terracotta)] font-medium mb-3">
+                {f.label}
+              </div>
+              <div className="text-[var(--ink-soft)] leading-relaxed whitespace-pre-line text-[0.95rem] md:columns-2 md:gap-8">
+                {f.value}
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className={gridClass}>
+          {fields.map((f) => (
+            <div key={f.label} className="border-l-2 border-border pl-4">
+              <div className="text-xs uppercase tracking-widest text-[var(--terracotta)] font-medium">
+                {f.label}
+              </div>
+              <div className="mt-2 text-[var(--ink-soft)] leading-relaxed whitespace-pre-line text-[0.95rem]">
+                {f.value}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
