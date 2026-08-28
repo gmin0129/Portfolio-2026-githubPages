@@ -149,7 +149,9 @@ function ExperienceDetail() {
           )}
         </div>
       </section>
+      )}
       </SwipeTabs>
+
 
       <nav className="border-t border-border">
         <div className="mx-auto max-w-5xl px-6 py-10 flex items-center justify-between gap-6">
