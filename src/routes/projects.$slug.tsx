@@ -4,7 +4,9 @@ import { getProject, PROJECTS, type Project } from "@/lib/projects";
 import { SwipeTabs } from "@/components/SwipeTabs";
 import { useQuery } from "@tanstack/react-query";
 import { notionPageQueryOptions } from "@/lib/notion-images.functions";
+import { projectSheetQueryOptions, type SheetSection } from "@/lib/sheets.functions";
 import { ExternalLink } from "lucide-react";
+
 
 export const Route = createFileRoute("/projects/$slug")({
   loader: ({ params }) => {
