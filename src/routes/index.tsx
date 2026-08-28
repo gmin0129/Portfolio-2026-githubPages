@@ -179,35 +179,37 @@ function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
       <div className="absolute inset-0 grain opacity-50 pointer-events-none" />
-      <div className="absolute -top-24 -left-20 w-72 h-72 shape-outline shape-outline-coral pointer-events-none" />
+      <div className="absolute -top-20 -left-14 w-44 h-44 md:-top-24 md:-left-20 md:w-72 md:h-72 shape-outline shape-outline-coral pointer-events-none" />
       <div className="absolute top-20 right-0 w-80 h-80 shape-outline shape-outline-sky pointer-events-none" />
       <div className="absolute bottom-0 left-1/3 w-72 h-72 shape-outline shape-outline-lime pointer-events-none" />
-      <div className="mx-auto max-w-6xl px-6 pt-16 pb-20 md:pt-24 md:pb-28 grid md:grid-cols-12 gap-10 items-end">
-        <div className="md:col-span-7">
-<p className="text-sm tracking-[0.3em] uppercase text-[var(--ink-soft)] mb-4">
+<div className="mx-auto max-w-6xl px-6 pt-14 pb-16 md:pt-20 md:pb-20 lg:pt-24 lg:pb-24 grid md:grid-cols-12 gap-10 md:gap-12">
+<div className="md:col-span-7 flex flex-col items-start md:justify-between">
+          <p className="text-sm tracking-[0.3em] uppercase text-[var(--ink-soft)] mb-6 md:mb-0">
             Portfolio · 2026
           </p>
-          <p className="max-w-xl text-lg md:text-xl text-foreground leading-relaxed">
+          <p className="max-w-2xl text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] leading-snug md:leading-[1.35] text-foreground mb-8 md:mb-0">
             안녕하세요, <span className="font-bold text-[var(--pop-magenta)]">윤지민</span>입니다.
           </p>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <a href="#projects" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
-              프로젝트 보기 →
-            </a>
-            <a href="#experience" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
-              경험 보기 →
-            </a>
+          <div className="flex flex-col items-start gap-8">
+            <div className="flex flex-wrap gap-3">
+              <a href="#projects" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
+                프로젝트 보기 →
+              </a>
+              <a href="#experience" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
+                경험 보기 →
+              </a>
+            </div>
+            <div className="h-[2px] w-56 bg-[var(--pop-lime)] rounded-full opacity-90" />
           </div>
-          <div className="mt-6 h-[2px] w-40 bg-[var(--pop-lime)] rounded-full opacity-90" />
         </div>
         <div className="md:col-span-5 relative">
           <div className="absolute -inset-4 shape-outline shape-outline-magenta pointer-events-none" />
-          <img
+<img
             src={profileImg.url}
             alt="윤지민 프로필 사진"
             width={896}
             height={1152}
-            className="relative shape-squircle w-full object-cover clay"
+            className="relative shape-squircle w-full object-cover object-top clay md:h-[460px] lg:h-[500px]"
           />
         </div>
       </div>
