@@ -117,10 +117,20 @@ export const getExperienceSheetDetail = createServerFn({ method: "GET" })
     return loadRow(rowNumber);
   });
 
+/** Never let a transient server-fn/network failure break the page or the poll loop. */
+async function safeCall(fn: () => Promise<SheetDetail>): Promise<SheetDetail> {
+  try {
+    return await fn();
+  } catch (err) {
+    console.error("[sheets] fetch failed:", err);
+    return null;
+  }
+}
+
 export function projectSheetQueryOptions(slug: string) {
   return {
     queryKey: ["project-sheet", slug] as const,
-    queryFn: () => getProjectSheetDetail({ data: { slug } }),
+    queryFn: () => safeCall(() => getProjectSheetDetail({ data: { slug } })),
     staleTime: 0,
     gcTime: 5 * 60 * 1000,
     refetchOnMount: "always" as const,
@@ -132,7 +142,7 @@ export function projectSheetQueryOptions(slug: string) {
 export function experienceSheetQueryOptions(slug: string) {
   return {
     queryKey: ["experience-sheet", slug] as const,
-    queryFn: () => getExperienceSheetDetail({ data: { slug } }),
+    queryFn: () => safeCall(() => getExperienceSheetDetail({ data: { slug } })),
     staleTime: 0,
     gcTime: 5 * 60 * 1000,
     refetchOnMount: "always" as const,
