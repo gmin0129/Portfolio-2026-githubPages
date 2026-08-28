@@ -68,63 +68,65 @@ function ProjectDetail() {
         </div>
       </header>
 
-      <TitleCard project={project} idx={idx} className="fixed top-16 inset-x-0" />
-      <TitleCard project={project} idx={idx} className="invisible pointer-events-none" aria-hidden="true" />
+      <main className="mx-auto max-w-5xl px-4 md:px-6 pt-4 flex flex-col md:flex-row gap-6">
+        <TitleCard project={project} idx={idx} className="md:w-[38%] md:sticky md:top-16 h-fit shrink-0" />
 
-      <SwipeTabs title={project.title} images={images} loading={isLoading}>
-      {hasSheet ? (
-        <section className="mx-auto max-w-5xl px-6 py-16 grid md:grid-cols-2 gap-x-12 gap-y-12 items-start">
-          <SheetBlock section={sheet!.background} />
-          <div className="space-y-12">
-            <SheetBlock section={sheet!.process} />
-            <SheetBlock section={sheet!.outcome} />
-          </div>
-        </section>
-      ) : (
-      <section className="mx-auto max-w-5xl px-6 py-16 grid md:grid-cols-3 gap-12">
-        <aside className="space-y-6 text-sm">
-          <Meta k="기간" v={project.period} />
-          <Meta k="기여" v={project.contribution} />
-          <Meta k="Skills" v={project.skills} />
-        </aside>
-        <div className="md:col-span-2 space-y-12">
-          {overview && (
-            <div>
-              <h2 className="font-serif text-2xl mb-3">Overview</h2>
-              <p className="text-[var(--ink-soft)] leading-relaxed">{overview}</p>
-            </div>
-          )}
-          {role && role.length > 0 && (
-            <div>
-              <h2 className="font-serif text-2xl mb-3">My Role</h2>
-              <ul className="space-y-2 text-[var(--ink-soft)]">
-                {role.map((r) => (
-                  <li key={r} className="flex gap-3">
-                    <span className="text-[var(--terracotta)]">→</span>
-                    <span>{r}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-          {project.outcome && project.outcome.length > 0 && (
-            <div>
-              <h2 className="font-serif text-2xl mb-3">Outcome</h2>
-              <ul className="space-y-2 text-[var(--ink-soft)]">
-                {project.outcome.map((o) => (
-                  <li key={o} className="flex gap-3">
-                    <span className="text-[var(--terracotta)]">✦</span>
-                    <span>{o}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+        <div className="flex-1 min-w-0">
+          <SwipeTabs title={project.title} images={images} loading={isLoading}>
+            {hasSheet ? (
+              <section className="px-6 py-16 grid md:grid-cols-2 gap-x-12 gap-y-12 items-start">
+                <SheetBlock section={sheet!.background} />
+                <div className="space-y-12">
+                  <SheetBlock section={sheet!.process} />
+                  <SheetBlock section={sheet!.outcome} />
+                </div>
+              </section>
+            ) : (
+              <section className="px-6 py-16 grid md:grid-cols-3 gap-12">
+                <aside className="space-y-6 text-sm">
+                  <Meta k="기간" v={project.period} />
+                  <Meta k="기여" v={project.contribution} />
+                  <Meta k="Skills" v={project.skills} />
+                </aside>
+                <div className="md:col-span-2 space-y-12">
+                  {overview && (
+                    <div>
+                      <h2 className="font-serif text-2xl mb-3">Overview</h2>
+                      <p className="text-[var(--ink-soft)] leading-relaxed">{overview}</p>
+                    </div>
+                  )}
+                  {role && role.length > 0 && (
+                    <div>
+                      <h2 className="font-serif text-2xl mb-3">My Role</h2>
+                      <ul className="space-y-2 text-[var(--ink-soft)]">
+                        {role.map((r) => (
+                          <li key={r} className="flex gap-3">
+                            <span className="text-[var(--terracotta)]">→</span>
+                            <span>{r}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {project.outcome && project.outcome.length > 0 && (
+                    <div>
+                      <h2 className="font-serif text-2xl mb-3">Outcome</h2>
+                      <ul className="space-y-2 text-[var(--ink-soft)]">
+                        {project.outcome.map((o) => (
+                          <li key={o} className="flex gap-3">
+                            <span className="text-[var(--terracotta)]">✦</span>
+                            <span>{o}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </section>
+            )}
+          </SwipeTabs>
         </div>
-      </section>
-      )}
-
-      </SwipeTabs>
+      </main>
 
       <nav className="border-t border-border">
         <div className="mx-auto max-w-5xl px-6 py-10 flex items-center justify-between gap-6">
@@ -191,43 +193,41 @@ function Meta({ k, v }: { k: string; v: string }) {
 
 function TitleCard({ project, idx, className, ...props }: { project: Project; idx: number } & HTMLAttributes<HTMLElement>) {
   return (
-    <section {...props} className={`top-16 z-40 bg-background pb-4 shadow-[0_8px_30px_-12px_oklch(0.3_0.05_40/0.12)] ${className ?? ""}`}>
-      <div className="mx-auto max-w-5xl px-4 md:px-6 pt-4">
-        <div className={`relative ${TILES[idx % TILES.length]} shape-squircle px-6 md:px-10 py-7 md:py-9 clay overflow-hidden animate-galaxy-pulse shadow-lg`}>
-          <div className="absolute inset-0 grain opacity-30 pointer-events-none" />
-          <div className="relative flex flex-col items-end break-keep">
-            <div className="font-serif italic text-foreground/75 text-sm tracking-widest uppercase">
-              Project · {String(idx + 1).padStart(2, "0")}
-            </div>
-            <h1 className="font-serif text-3xl md:text-5xl font-semibold mt-2 leading-[1.1] text-foreground drop-shadow-[1px_1px_0_oklch(1_0_0/0.55)]">
-              {project.linkUrl ? (
-                <a
-                  href={project.linkUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 hover:opacity-80 transition-opacity"
-                >
-                  {project.title}
-                  <ExternalLink
-                    className="w-5 h-5 md:w-7 md:h-7 opacity-70"
-                    aria-hidden="true"
-                  />
-                </a>
-              ) : (
-                project.title
-              )}
-            </h1>
-            <p className="mt-2 text-foreground/80 text-base md:text-lg">{project.sub}</p>
-            <div className="mt-4 flex flex-col items-end gap-2">
-              {project.tags.map((t) => (
-                <span
-                  key={t}
-                  className="text-xs rounded-full px-3 py-1 text-foreground bg-background/75 backdrop-blur clay-sm"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
+    <section {...props} className={`${className ?? ""}`}>
+      <div className={`relative ${TILES[idx % TILES.length]} shape-squircle px-6 md:px-10 py-7 md:py-9 clay overflow-hidden animate-galaxy-pulse shadow-lg`}>
+        <div className="absolute inset-0 grain opacity-30 pointer-events-none" />
+        <div className="relative flex flex-col items-start break-keep text-left">
+          <div className="font-serif italic text-foreground/75 text-sm tracking-widest uppercase">
+            Project · {String(idx + 1).padStart(2, "0")}
+          </div>
+          <h1 className="font-serif text-3xl md:text-5xl font-semibold mt-2 leading-[1.1] text-foreground drop-shadow-[1px_1px_0_oklch(1_0_0/0.55)]">
+            {project.linkUrl ? (
+              <a
+                href={project.linkUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 hover:opacity-80 transition-opacity"
+              >
+                {project.title}
+                <ExternalLink
+                  className="w-5 h-5 md:w-7 md:h-7 opacity-70"
+                  aria-hidden="true"
+                />
+              </a>
+            ) : (
+              project.title
+            )}
+          </h1>
+          <p className="mt-2 text-foreground/80 text-base md:text-lg">{project.sub}</p>
+          <div className="mt-4 flex flex-col items-start gap-2">
+            {project.tags.map((t) => (
+              <span
+                key={t}
+                className="text-xs rounded-full px-3 py-1 text-foreground bg-background/75 backdrop-blur clay-sm"
+              >
+                {t}
+              </span>
+            ))}
           </div>
         </div>
       </div>
