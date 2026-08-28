@@ -308,14 +308,21 @@ function Education() {
             </div>
 
             <div>
-              <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-sky">자격증 & 어학</span></h3>
-              <div className="flex flex-wrap gap-2">
-                {CERTS.map((c) => (
-                  <span key={c} className="inline-flex items-center gap-1.5 text-xs whitespace-nowrap border border-foreground/20 rounded-full px-2.5 py-1 shrink-0">
-                    <span className="font-medium">{c}</span>
-                  </span>
+              <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-coral">대외활동</span></h3>
+              <ul className="space-y-3">
+                {ACTIVITIES.map((a) => (
+                  <li key={a.title} className="grid grid-cols-[80px_1fr] gap-3">
+                    <span className="text-xs tracking-widest text-[var(--ink-soft)] pt-1">
+                      {a.period ? a.period.split(" ")[0] : "—"}
+                    </span>
+                    <div>
+                      <div className="font-medium text-foreground text-sm">{a.title}</div>
+                      {a.desc && <div className="text-sm text-[var(--ink-soft)] mt-0.5">{a.desc}</div>}
+                      {a.period && <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{a.period}</div>}
+                    </div>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           </div>
 
@@ -340,21 +347,14 @@ function Education() {
             </div>
 
             <div>
-              <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-coral">대외활동</span></h3>
-              <ul className="space-y-3">
-                {ACTIVITIES.map((a) => (
-                  <li key={a.title} className="grid grid-cols-[80px_1fr] gap-3">
-                    <span className="text-xs tracking-widest text-[var(--ink-soft)] pt-1">
-                      {a.period ? a.period.split(" ")[0] : "—"}
-                    </span>
-                    <div>
-                      <div className="font-medium text-foreground text-sm">{a.title}</div>
-                      {a.desc && <div className="text-sm text-[var(--ink-soft)] mt-0.5">{a.desc}</div>}
-                      {a.period && <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{a.period}</div>}
-                    </div>
-                  </li>
+              <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-sky">자격증 & 어학</span></h3>
+              <div className="flex flex-wrap gap-2">
+                {CERTS.map((c) => (
+                  <span key={c} className="inline-flex items-center gap-1.5 text-xs whitespace-nowrap border border-foreground/20 rounded-full px-2.5 py-1 shrink-0">
+                    <span className="font-medium">{c}</span>
+                  </span>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
         </div>
