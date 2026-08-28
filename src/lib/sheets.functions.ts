@@ -116,27 +116,3 @@ export const getExperienceSheetDetail = createServerFn({ method: "GET" })
     if (!rowNumber) return null;
     return loadRow(rowNumber);
   });
-
-export function projectSheetQueryOptions(slug: string) {
-  return {
-    queryKey: ["project-sheet", slug] as const,
-    queryFn: () => getProjectSheetDetail({ data: { slug } }),
-    staleTime: 0,
-    gcTime: 5 * 60 * 1000,
-    refetchOnMount: "always" as const,
-    refetchInterval: 10 * 1000,
-    refetchIntervalInBackground: false,
-  };
-}
-
-export function experienceSheetQueryOptions(slug: string) {
-  return {
-    queryKey: ["experience-sheet", slug] as const,
-    queryFn: () => getExperienceSheetDetail({ data: { slug } }),
-    staleTime: 0,
-    gcTime: 5 * 60 * 1000,
-    refetchOnMount: "always" as const,
-    refetchInterval: 10 * 1000,
-    refetchIntervalInBackground: false,
-  };
-}

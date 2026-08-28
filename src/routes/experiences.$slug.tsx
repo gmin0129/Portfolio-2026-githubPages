@@ -4,7 +4,7 @@ import { getExperience, EXPERIENCES, type Experience } from "@/lib/experiences";
 import { SwipeTabs } from "@/components/SwipeTabs";
 import { useQuery } from "@tanstack/react-query";
 import { notionPageQueryOptions } from "@/lib/notion-images.functions";
-import { experienceSheetQueryOptions } from "@/lib/sheets.functions";
+import { experienceSheetQueryOptions } from "@/lib/sheets.queries";
 import { SheetRow } from "@/components/SheetSections";
 
 
