@@ -184,11 +184,11 @@ function Hero() {
       <div className="absolute bottom-0 left-1/3 w-72 h-72 shape-outline shape-outline-lime pointer-events-none" />
       <div className="mx-auto max-w-6xl px-6 pt-20 pb-24 md:pt-28 md:pb-32 grid md:grid-cols-12 gap-10 items-end">
         <div className="md:col-span-7">
-          <p className="text-sm tracking-[0.3em] uppercase text-[var(--ink-soft)] mb-6">
+<p className="text-sm tracking-[0.3em] uppercase text-[var(--ink-soft)] mb-4">
             Portfolio · 2026
           </p>
-<p className="mt-8 max-w-xl text-base md:text-lg text-[var(--ink-soft)] leading-relaxed">
-            안녕하세요, <span className="font-bold text-foreground">윤지민</span>입니다.
+          <p className="max-w-xl text-lg md:text-xl text-foreground leading-relaxed">
+            안녕하세요, <span className="font-bold text-[var(--pop-magenta)]">윤지민</span>입니다.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <a href="#projects" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
