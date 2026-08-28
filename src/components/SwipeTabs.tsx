@@ -14,22 +14,7 @@ type Props = {
  * at the top, by swiping horizontally, or with the arrow keys.
  */
 export function SwipeTabs({ title, images, children, loading = false, hidePhotos = false }: Props) {
-  const [page, setPage] = useState<0 | 1>(0);
-  const [dragX, setDragX] = useState(0);
-  const widthRef = useRef(0);
-  const trackRef = useRef<HTMLDivElement | null>(null);
-  const startX = useRef<number | null>(null);
-  const startY = useRef<number | null>(null);
-  const tracking = useRef(false);
-
-  useEffect(() => {
-    const update = () => {
-      widthRef.current = trackRef.current?.clientWidth ?? 0;
-    };
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
+const [page, setPage] = useState<0 | 1>(0);
 
   useEffect(() => {
     if (hidePhotos) return;
@@ -40,52 +25,6 @@ export function SwipeTabs({ title, images, children, loading = false, hidePhotos
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [hidePhotos]);
-
-  const onTouchStart = (e: React.TouchEvent) => {
-    startX.current = e.touches[0].clientX;
-    startY.current = e.touches[0].clientY;
-    tracking.current = false;
-    setDragX(0);
-  };
-  const onTouchMove = (e: React.TouchEvent) => {
-    if (hidePhotos) return;
-    if (startX.current == null || startY.current == null) return;
-    const dx = e.touches[0].clientX - startX.current;
-    const dy = e.touches[0].clientY - startY.current;
-    if (!tracking.current) {
-      if (Math.abs(dx) > 12 && Math.abs(dx) > Math.abs(dy)) {
-        tracking.current = true;
-      } else if (Math.abs(dy) > 12) {
-        startX.current = null;
-        return;
-      } else {
-        return;
-      }
-    }
-    const clamped = page === 0 ? Math.min(0, dx) : Math.max(0, dx);
-    setDragX(clamped);
-  };
-  const onTouchEnd = () => {
-    if (startX.current == null) {
-      setDragX(0);
-      return;
-    }
-    const threshold = Math.min(120, Math.max(60, widthRef.current * 0.15));
-    if (page === 0 && dragX < -threshold) setPage(1);
-    else if (page === 1 && dragX > threshold) setPage(0);
-    startX.current = null;
-    startY.current = null;
-    tracking.current = false;
-    setDragX(0);
-  };
-
-  const w = widthRef.current || 1;
-  const basePct = page === 0 ? 0 : -50;
-  const dragPct = (dragX / w) * 50; // each page = 50% of track width
-  const trackStyle: React.CSSProperties = {
-    transform: `translateX(${basePct + dragPct}%)`,
-    transition: dragX === 0 ? "transform 400ms cubic-bezier(0.22, 1, 0.36, 1)" : "none",
-  };
 
   if (hidePhotos) {
     return <div className="w-full">{children}</div>;
