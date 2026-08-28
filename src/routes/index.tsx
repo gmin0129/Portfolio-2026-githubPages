@@ -183,11 +183,11 @@ function Hero() {
       <div className="absolute top-20 right-0 w-80 h-80 shape-outline shape-outline-sky pointer-events-none" />
       <div className="absolute bottom-0 left-1/3 w-72 h-72 shape-outline shape-outline-lime pointer-events-none" />
 <div className="mx-auto max-w-6xl px-6 pt-14 pb-16 md:pt-20 md:pb-20 lg:pt-24 lg:pb-24 grid md:grid-cols-12 gap-10 md:gap-12">
-        <div className="md:col-span-7 flex flex-col items-start justify-between">
-          <p className="text-sm tracking-[0.3em] uppercase text-[var(--ink-soft)]">
+<div className="md:col-span-7 flex flex-col items-start md:justify-between">
+          <p className="text-sm tracking-[0.3em] uppercase text-[var(--ink-soft)] mb-6 md:mb-0">
             Portfolio · 2026
           </p>
-          <p className="max-w-2xl text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] leading-snug md:leading-[1.35] text-foreground">
+          <p className="max-w-2xl text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] leading-snug md:leading-[1.35] text-foreground mb-8 md:mb-0">
             안녕하세요, <span className="font-bold text-[var(--pop-magenta)]">윤지민</span>입니다.
           </p>
           <div className="flex flex-col items-start gap-8">
