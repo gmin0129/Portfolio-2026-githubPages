@@ -68,63 +68,65 @@ function ProjectDetail() {
         </div>
       </header>
 
-      <TitleCard project={project} idx={idx} className="fixed top-16 inset-x-0" />
-      <TitleCard project={project} idx={idx} className="invisible pointer-events-none" aria-hidden="true" />
+      <main className="mx-auto max-w-5xl px-4 md:px-6 pt-4 flex flex-col md:flex-row gap-6">
+        <TitleCard project={project} idx={idx} className="md:w-[38%] md:sticky md:top-16 h-fit shrink-0" />
 
-      <SwipeTabs title={project.title} images={images} loading={isLoading}>
-      {hasSheet ? (
-        <section className="mx-auto max-w-5xl px-6 py-16 grid md:grid-cols-2 gap-x-12 gap-y-12 items-start">
-          <SheetBlock section={sheet!.background} />
-          <div className="space-y-12">
-            <SheetBlock section={sheet!.process} />
-            <SheetBlock section={sheet!.outcome} />
-          </div>
-        </section>
-      ) : (
-      <section className="mx-auto max-w-5xl px-6 py-16 grid md:grid-cols-3 gap-12">
-        <aside className="space-y-6 text-sm">
-          <Meta k="기간" v={project.period} />
-          <Meta k="기여" v={project.contribution} />
-          <Meta k="Skills" v={project.skills} />
-        </aside>
-        <div className="md:col-span-2 space-y-12">
-          {overview && (
-            <div>
-              <h2 className="font-serif text-2xl mb-3">Overview</h2>
-              <p className="text-[var(--ink-soft)] leading-relaxed">{overview}</p>
-            </div>
-          )}
-          {role && role.length > 0 && (
-            <div>
-              <h2 className="font-serif text-2xl mb-3">My Role</h2>
-              <ul className="space-y-2 text-[var(--ink-soft)]">
-                {role.map((r) => (
-                  <li key={r} className="flex gap-3">
-                    <span className="text-[var(--terracotta)]">→</span>
-                    <span>{r}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-          {project.outcome && project.outcome.length > 0 && (
-            <div>
-              <h2 className="font-serif text-2xl mb-3">Outcome</h2>
-              <ul className="space-y-2 text-[var(--ink-soft)]">
-                {project.outcome.map((o) => (
-                  <li key={o} className="flex gap-3">
-                    <span className="text-[var(--terracotta)]">✦</span>
-                    <span>{o}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+        <div className="flex-1 min-w-0">
+          <SwipeTabs title={project.title} images={images} loading={isLoading}>
+            {hasSheet ? (
+              <section className="px-6 py-16 grid md:grid-cols-2 gap-x-12 gap-y-12 items-start">
+                <SheetBlock section={sheet!.background} />
+                <div className="space-y-12">
+                  <SheetBlock section={sheet!.process} />
+                  <SheetBlock section={sheet!.outcome} />
+                </div>
+              </section>
+            ) : (
+              <section className="px-6 py-16 grid md:grid-cols-3 gap-12">
+                <aside className="space-y-6 text-sm">
+                  <Meta k="기간" v={project.period} />
+                  <Meta k="기여" v={project.contribution} />
+                  <Meta k="Skills" v={project.skills} />
+                </aside>
+                <div className="md:col-span-2 space-y-12">
+                  {overview && (
+                    <div>
+                      <h2 className="font-serif text-2xl mb-3">Overview</h2>
+                      <p className="text-[var(--ink-soft)] leading-relaxed">{overview}</p>
+                    </div>
+                  )}
+                  {role && role.length > 0 && (
+                    <div>
+                      <h2 className="font-serif text-2xl mb-3">My Role</h2>
+                      <ul className="space-y-2 text-[var(--ink-soft)]">
+                        {role.map((r) => (
+                          <li key={r} className="flex gap-3">
+                            <span className="text-[var(--terracotta)]">→</span>
+                            <span>{r}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {project.outcome && project.outcome.length > 0 && (
+                    <div>
+                      <h2 className="font-serif text-2xl mb-3">Outcome</h2>
+                      <ul className="space-y-2 text-[var(--ink-soft)]">
+                        {project.outcome.map((o) => (
+                          <li key={o} className="flex gap-3">
+                            <span className="text-[var(--terracotta)]">✦</span>
+                            <span>{o}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </section>
+            )}
+          </SwipeTabs>
         </div>
-      </section>
-      )}
-
-      </SwipeTabs>
+      </main>
 
       <nav className="border-t border-border">
         <div className="mx-auto max-w-5xl px-6 py-10 flex items-center justify-between gap-6">
