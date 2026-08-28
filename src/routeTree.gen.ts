@@ -12,7 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
 import { Route as ExperiencesSlugRouteImport } from './routes/experiences.$slug'
-import { Route as ApiPublicDumpRouteImport } from './routes/api/public/_dump'
+import { Route as ApiPublicDumpRouteImport } from './routes/api/public/dump'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -30,8 +30,8 @@ const ExperiencesSlugRoute = ExperiencesSlugRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiPublicDumpRoute = ApiPublicDumpRouteImport.update({
-  id: '/api/public/_dump',
-  path: '/api/public',
+  id: '/api/public/dump',
+  path: '/api/public/dump',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -39,32 +39,32 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/experiences/$slug': typeof ExperiencesSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
-  '/api/public': typeof ApiPublicDumpRoute
+  '/api/public/dump': typeof ApiPublicDumpRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/experiences/$slug': typeof ExperiencesSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
-  '/api/public': typeof ApiPublicDumpRoute
+  '/api/public/dump': typeof ApiPublicDumpRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/experiences/$slug': typeof ExperiencesSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
-  '/api/public/_dump': typeof ApiPublicDumpRoute
+  '/api/public/dump': typeof ApiPublicDumpRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/experiences/$slug' | '/projects/$slug' | '/api/public'
+  fullPaths: '/' | '/experiences/$slug' | '/projects/$slug' | '/api/public/dump'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/experiences/$slug' | '/projects/$slug' | '/api/public'
+  to: '/' | '/experiences/$slug' | '/projects/$slug' | '/api/public/dump'
   id:
     | '__root__'
     | '/'
     | '/experiences/$slug'
     | '/projects/$slug'
-    | '/api/public/_dump'
+    | '/api/public/dump'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -97,10 +97,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExperiencesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/public/_dump': {
-      id: '/api/public/_dump'
-      path: '/api/public'
-      fullPath: '/api/public'
+    '/api/public/dump': {
+      id: '/api/public/dump'
+      path: '/api/public/dump'
+      fullPath: '/api/public/dump'
       preLoaderRoute: typeof ApiPublicDumpRouteImport
       parentRoute: typeof rootRouteImport
     }
