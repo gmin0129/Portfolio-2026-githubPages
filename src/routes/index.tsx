@@ -345,12 +345,19 @@ function Education() {
 
             <div>
               <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-sky">자격증 & 어학</span></h3>
-              <div className="flex flex-wrap gap-2">
-                {CERTS.map((c) => (
-                  <span key={c} className="inline-flex items-center gap-1.5 text-xs whitespace-nowrap border border-foreground/20 rounded-full px-2.5 py-1 shrink-0">
-                    <span className="font-medium">{c}</span>
+              <div className="flex flex-col gap-2 items-start">
+                <div className="flex flex-wrap gap-2">
+                  {CERTS.slice(0, 2).map((c) => (
+                    <span key={c} className="inline-flex items-center gap-1.5 text-xs whitespace-nowrap border border-foreground/20 rounded-full px-2.5 py-1 shrink-0">
+                      <span className="font-medium">{c}</span>
+                    </span>
+                  ))}
+                </div>
+                {CERTS[2] && (
+                  <span className="inline-flex items-center gap-1.5 text-xs whitespace-nowrap border border-foreground/20 rounded-full px-2.5 py-1 shrink-0">
+                    <span className="font-medium">{CERTS[2]}</span>
                   </span>
-                ))}
+                )}
               </div>
             </div>
           </div>
