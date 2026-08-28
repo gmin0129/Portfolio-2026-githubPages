@@ -179,7 +179,7 @@ function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
       <div className="absolute inset-0 grain opacity-50 pointer-events-none" />
-      <div className="absolute -top-16 -left-14 w-56 h-56 md:-top-24 md:-left-20 md:w-72 md:h-72 shape-outline shape-outline-coral pointer-events-none" />
+      <div className="absolute -top-20 -left-14 w-44 h-44 md:-top-24 md:-left-20 md:w-72 md:h-72 shape-outline shape-outline-coral pointer-events-none" />
       <div className="absolute top-20 right-0 w-80 h-80 shape-outline shape-outline-sky pointer-events-none" />
       <div className="absolute bottom-0 left-1/3 w-72 h-72 shape-outline shape-outline-lime pointer-events-none" />
 <div className="mx-auto max-w-6xl px-6 pt-14 pb-16 md:pt-20 md:pb-20 lg:pt-24 lg:pb-24 grid md:grid-cols-12 gap-10 md:gap-12">
