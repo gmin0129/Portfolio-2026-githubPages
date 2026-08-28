@@ -70,7 +70,7 @@ function ProjectDetail() {
       </header>
 
       <main className="w-full mx-auto max-w-[1440px] px-6 pt-4 flex flex-col md:flex-row gap-12">
-        <TitleCard project={project} idx={idx} className="w-full md:w-[30%] md:sticky md:top-16 h-fit shrink-0" />
+        <TitleCard project={project} idx={idx} className="w-full md:w-[30%] md:sticky md:top-16 h-fit shrink-0 md:pt-6" />
 
         <div className="w-full flex-1 min-w-0">
           <SwipeTabs title={project.title} images={images} loading={isLoading}>
@@ -167,7 +167,7 @@ function Meta({ k, v }: { k: string; v: string }) {
 function TitleCard({ project, idx, className, ...props }: { project: Project; idx: number } & HTMLAttributes<HTMLElement>) {
   return (
     <section {...props} className={`${className ?? ""}`}>
-      <div className={`relative ${TILES[idx % TILES.length]} shape-squircle px-6 md:px-10 py-7 md:py-9 clay overflow-hidden animate-galaxy-pulse shadow-lg`}>
+      <div className={`relative ${TILES[idx % TILES.length]} shape-squircle px-6 md:px-10 py-7 md:py-16 clay overflow-hidden animate-galaxy-pulse shadow-lg`}>
         <div className="absolute inset-0 grain opacity-30 pointer-events-none" />
         <div className="relative flex flex-col items-start break-keep text-left">
           <div className="font-serif italic text-foreground/75 text-sm tracking-widest uppercase">
