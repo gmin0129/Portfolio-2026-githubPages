@@ -138,7 +138,7 @@ export function SwipeTabs({ title, images, children, loading = false, hidePhotos
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
       >
-        <div className="flex w-[200%] will-change-transform" style={trackStyle}>
+        <div className="flex w-[200%] items-start will-change-transform" style={trackStyle}>
           <div className="w-1/2 shrink-0">{children}</div>
           <div className="w-1/2 shrink-0">
             <section className="mx-auto max-w-5xl px-6 py-16">
