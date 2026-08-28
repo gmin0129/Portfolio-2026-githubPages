@@ -17,7 +17,6 @@ export const Route = createFileRoute("/")({
 
 const NAV = [
   { id: "education", label: "Education" },
-  { id: "skills", label: "Skills" },
   { id: "projects", label: "Projects" },
   { id: "experience", label: "Experience" },
   { id: "contact", label: "Contact" },
@@ -102,13 +101,6 @@ const ACTIVITIES = [
   },
 ];
 
-const SKILLS = [
-  { group: "Google Workspace", items: ["Docs", "Sheets", "Drive", "Meet", "Forms"] },
-  { group: "MS Office", items: ["Word", "PowerPoint", "Excel"] },
-  { group: "Collaboration", items: ["Slack", "Notion"] },
-  { group: "Design & Media", items: ["Fresco", "Premiere", "Canva", "Miricanvas"] },
-  { group: "AI Tools", items: ["Gemini", "ChatGPT", "Genspark"] },
-];
 
 const TILES = ["tile-1", "tile-2", "tile-3", "tile-4", "tile-5", "tile-6"];
 const SHAPES = ["shape-squircle", "shape-blob", "shape-pebble", "shape-petal", "shape-leaf", "shape-arch"];
@@ -129,7 +121,6 @@ function Index() {
       <Header />
       <Hero />
       <Education />
-      <Skills />
       <Projects />
       <Experience />
       <Contact />
@@ -367,34 +358,6 @@ function Education() {
   );
 }
 
-function Skills() {
-  return (
-    <section id="skills" className="mx-auto max-w-6xl px-6 py-24">
-      <SectionHeader num="02 —" kicker="Tools I use" title="Skills" />
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {SKILLS.map((s, i) => (
-          <div
-            key={s.group}
-            className={`group relative ${TILES[i % TILES.length]} ${SHAPES[i % SHAPES.length]} ${ROTATIONS[i % ROTATIONS.length]} card-pop p-7 overflow-hidden animate-galaxy-pulse`}
-          >
-            <div className="absolute inset-0 grain opacity-30 pointer-events-none" />
-            <div className="relative">
-              <div className="text-foreground font-serif italic text-sm">0{i + 1}</div>
-              <h3 className="font-serif text-xl mt-2">{s.group}</h3>
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {s.items.map((it) => (
-                  <li key={it} className="text-xs bg-background/75 backdrop-blur rounded-full px-3 py-1 clay-sm">
-                    {it}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
 
 function Projects() {
   return (
@@ -404,7 +367,7 @@ function Projects() {
       <div className="mx-auto max-w-6xl px-6 py-24">
         <div className="flex items-end justify-between mb-12 border-b border-foreground/15 pb-4">
           <div>
-            <span className="font-serif italic text-lg text-[var(--terracotta)]">03 —</span>
+            <span className="font-serif italic text-lg text-[var(--terracotta)]">02 —</span>
             <h2 className="font-serif text-4xl md:text-5xl font-medium mt-1 text-foreground">Projects</h2>
           </div>
           <span className="text-xs tracking-[0.3em] uppercase text-[var(--ink-soft)] hidden md:block">
@@ -459,7 +422,7 @@ function Projects() {
 function Experience() {
   return (
     <section id="experience" className="mx-auto max-w-6xl px-6 py-24">
-      <SectionHeader num="04 —" kicker="Beyond the desk" title="Experiences" />
+      <SectionHeader num="03 —" kicker="Beyond the desk" title="Experiences" />
       <div className="grid md:grid-cols-2 gap-8">
         {EXPERIENCES.map((e, i) => (
           <Link
@@ -490,7 +453,7 @@ function Contact() {
     <section id="contact" className="bg-[var(--paper-deep)] border-t border-border">
       <div className="mx-auto max-w-6xl px-6 py-24 grid md:grid-cols-12 gap-10 items-center">
         <div className="md:col-span-7">
-          <span className="section-num text-lg mb-6 block">05 —</span>
+          <span className="section-num text-lg mb-6 block">04 —</span>
           <h2 className="font-display text-pop-hover text-5xl md:text-6xl lg:text-7xl leading-[1.3]">
             <span className="word-lift font-bold italic text-[var(--terracotta)] tracking-[0.05em]">THANK YOU</span>
           </h2>
