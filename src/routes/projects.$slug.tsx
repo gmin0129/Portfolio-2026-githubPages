@@ -4,7 +4,7 @@ import { getProject, PROJECTS, type Project } from "@/lib/projects";
 import { SwipeTabs } from "@/components/SwipeTabs";
 import { useQuery } from "@tanstack/react-query";
 import { notionPageQueryOptions } from "@/lib/notion-images.functions";
-import { projectSheetQueryOptions, type SheetSection } from "@/lib/sheets.functions";
+import { projectSheetQueryOptions, type SheetField } from "@/lib/sheets.functions";
 import { ExternalLink } from "lucide-react";
 
 
@@ -74,10 +74,10 @@ function ProjectDetail() {
         <div className="w-full flex-1 min-w-0">
           <SwipeTabs title={project.title} images={images} loading={isLoading}>
             {hasSheet ? (
-              <section className="w-full px-6 py-16 grid md:grid-cols-3 gap-10 items-start">
-                <SheetBlock section={sheet!.background} />
-                <SheetBlock section={sheet!.process} />
-                <SheetBlock section={sheet!.outcome} />
+              <section className="w-full px-6 py-16 space-y-12">
+                <SheetRow title={sheet!.background.title} fields={sheet!.background.fields} layout="four" />
+                <SheetRow title={sheet!.process.title} fields={sheet!.process.fields} layout="two" />
+                <SheetRow title={sheet!.outcome.title} fields={sheet!.outcome.fields} layout="columns" />
               </section>
             ) : (
               <section className="px-6 py-16 grid md:grid-cols-3 gap-12">
@@ -154,27 +154,55 @@ function ProjectDetail() {
   );
 }
 
-function SheetBlock({ section }: { section: SheetSection }) {
-  if (!section.fields.length) return null;
+function SheetRow({
+  title,
+  fields,
+  layout,
+}: {
+  title: string;
+  fields: SheetField[];
+  layout: "four" | "two" | "columns";
+}) {
+  if (!fields.length) return null;
+  const gridClass =
+    layout === "four"
+      ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+      : "grid grid-cols-1 md:grid-cols-2 gap-8";
+
   return (
-    <div className="text-left break-keep">
-      <h2 className="font-serif text-2xl mb-6">
+    <div className="text-left break-keep border-b border-border pb-12 last:border-b-0 last:pb-0">
+      <h2 className="font-serif text-2xl mb-8">
         <span className="text-[var(--terracotta)]">&lt;</span>
-        {section.title}
+        {title}
         <span className="text-[var(--terracotta)]">&gt;</span>
       </h2>
-      <dl className="space-y-6">
-        {section.fields.map((f) => (
-          <div key={f.label} className="border-l-2 border-border pl-4">
-            <dt className="text-xs uppercase tracking-widest text-[var(--terracotta)] font-medium">
-              {f.label}
-            </dt>
-            <dd className="mt-2 text-[var(--ink-soft)] leading-relaxed whitespace-pre-line text-[0.95rem]">
-              {f.value}
-            </dd>
-          </div>
-        ))}
-      </dl>
+      {layout === "columns" ? (
+        <div className="space-y-6">
+          {fields.map((f) => (
+            <div key={f.label}>
+              <div className="text-xs uppercase tracking-widest text-[var(--terracotta)] font-medium mb-3">
+                {f.label}
+              </div>
+              <div className="text-[var(--ink-soft)] leading-relaxed whitespace-pre-line text-[0.95rem] md:columns-2 md:gap-8">
+                {f.value}
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className={gridClass}>
+          {fields.map((f) => (
+            <div key={f.label} className="border-l-2 border-border pl-4">
+              <div className="text-xs uppercase tracking-widest text-[var(--terracotta)] font-medium">
+                {f.label}
+              </div>
+              <div className="mt-2 text-[var(--ink-soft)] leading-relaxed whitespace-pre-line text-[0.95rem]">
+                {f.value}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
