@@ -184,14 +184,26 @@ export function SwipeTabs({ title, images, children, loading = false, hidePhotos
 function PhotoGallery({ title, images }: { title: string; images: string[] }) {
   const [active, setActive] = useState(0);
   const [failed, setFailed] = useState<Record<number, boolean>>({});
+  const scrollerRef = useRef<HTMLDivElement | null>(null);
   const visible = images.filter((_, i) => !failed[i]);
   if (visible.length === 0) return null;
+
+  const go = (dir: -1 | 1) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const step = el.clientWidth * 0.85;
+    const next = active + dir;
+    const clamped = Math.min(Math.max(next, 0), images.length - 1);
+    el.scrollTo({ left: clamped * step, behavior: "smooth" });
+    setActive(clamped);
+  };
 
   return (
     <div className="space-y-6">
       {/* Carousel: horizontal snap scroller */}
       <div className="relative">
         <div
+          ref={scrollerRef}
           className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3 -mx-6 px-6 scroll-smooth"
           style={{ scrollbarWidth: "thin" }}
           onScroll={(e) => {
@@ -216,17 +228,39 @@ function PhotoGallery({ title, images }: { title: string; images: string[] }) {
             </figure>
           ))}
         </div>
-        {images.length > 1 && (
-          <div className="mt-2 flex justify-center gap-1.5">
-            {images.map((_, i) => (
-              <span
-                key={i}
-                className={`h-1.5 rounded-full transition-all ${
-                  i === active ? "w-6 bg-[var(--terracotta)]" : "w-1.5 bg-[var(--ink-soft)]/40"
-                }`}
-              />
-            ))}
-          </div>
+{images.length > 1 && (
+          <>
+            <button
+              type="button"
+              onClick={() => go(-1)}
+              aria-label="이전 사진"
+              className="absolute left-0 md:-left-6 top-1/2 -translate-y-1/2 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-background/90 backdrop-blur-xl text-foreground clay-sm shadow-lg hover:bg-background hover:text-[var(--terracotta)] transition-colors"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              onClick={() => go(1)}
+              aria-label="다음 사진"
+              className="absolute right-0 md:-right-6 top-1/2 -translate-y-1/2 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-background/90 backdrop-blur-xl text-foreground clay-sm shadow-lg hover:bg-background hover:text-[var(--terracotta)] transition-colors"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" />
+              </svg>
+            </button>
+            <div className="mt-2 flex justify-center gap-1.5">
+              {images.map((_, i) => (
+                <span
+                  key={i}
+                  className={`h-1.5 rounded-full transition-all ${
+                    i === active ? "w-6 bg-[var(--terracotta)]" : "w-1.5 bg-[var(--ink-soft)]/40"
+                  }`}
+                />
+              ))}
+            </div>
+          </>
         )}
       </div>
 
