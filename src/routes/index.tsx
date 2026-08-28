@@ -288,11 +288,6 @@ function Education() {
                       <div className="font-medium text-foreground text-sm">{e.school}</div>
                       <div className="text-sm text-[var(--ink-soft)] mt-0.5">{e.detail}</div>
                       <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{e.period}</div>
-                      {e.note && (
-                        <div className="inline-block mt-1 text-xs bg-background border border-border rounded-full px-2 py-0.5">
-                          {e.note}
-                        </div>
-                      )}
                     </div>
                   </li>
                 ))}
