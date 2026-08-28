@@ -4,6 +4,9 @@ import { getExperience, EXPERIENCES, type Experience } from "@/lib/experiences";
 import { SwipeTabs } from "@/components/SwipeTabs";
 import { useQuery } from "@tanstack/react-query";
 import { notionPageQueryOptions } from "@/lib/notion-images.functions";
+import { experienceSheetQueryOptions } from "@/lib/sheets.functions";
+import { SheetRow } from "@/components/SheetSections";
+
 
 export const Route = createFileRoute("/experiences/$slug")({
   loader: ({ params }) => {
@@ -41,9 +44,16 @@ function ExperienceDetail() {
   const prev = EXPERIENCES[(idx - 1 + EXPERIENCES.length) % EXPERIENCES.length];
   const next = EXPERIENCES[(idx + 1) % EXPERIENCES.length];
   const { data, isLoading } = useQuery(notionPageQueryOptions("experience", experience.slug));
+  const { data: sheet } = useQuery(experienceSheetQueryOptions(experience.slug));
   const images = data?.images?.length ? data.images : experience.images;
   const overview = data?.summary?.trim() ? data.summary : experience.overview;
   const role = data?.highlights?.length ? data.highlights : experience.role;
+  const hasSheet =
+    !!sheet &&
+    (sheet.background.fields.length > 0 ||
+      sheet.process.fields.length > 0 ||
+      sheet.outcome.fields.length > 0);
+
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -65,9 +75,17 @@ function ExperienceDetail() {
         title={experience.title}
         images={images}
         loading={isLoading}
-        hidePhotos={experience.slug === "kosac-2025"}
+        hidePhotos={experience.slug === "kosac-2025" || experience.slug === "dyb-choisun"}
       >
+      {hasSheet ? (
+        <section className="mx-auto max-w-5xl px-6 py-16 space-y-12 break-keep">
+          <SheetRow title={sheet!.background.title} fields={sheet!.background.fields} layout="four" marker="arrow" />
+          <SheetRow title={sheet!.process.title} fields={sheet!.process.fields} layout="two" marker="arrow" />
+          <SheetRow title={sheet!.outcome.title} fields={sheet!.outcome.fields} layout="columns" marker="diamond" />
+        </section>
+      ) : (
       <section className="mx-auto max-w-5xl px-6 py-16 grid md:grid-cols-3 gap-12">
+
         <aside className="space-y-6 text-sm">
           <Meta k="기간" v={experience.period} />
           <Meta k="장소" v={experience.place} />
@@ -131,7 +149,9 @@ function ExperienceDetail() {
           )}
         </div>
       </section>
+      )}
       </SwipeTabs>
+
 
       <nav className="border-t border-border">
         <div className="mx-auto max-w-5xl px-6 py-10 flex items-center justify-between gap-6">

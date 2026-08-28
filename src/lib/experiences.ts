@@ -13,6 +13,14 @@ export type Experience = {
 
 export const EXPERIENCES: Experience[] = [
   {
+    slug: "dyb-choisun",
+    title: "DYB 최선어학원 중계점 고객지원실",
+    place: "DYB 최선어학원 중계점",
+    period: "23.01~26.04 (기간 내 22개월 근무)",
+    blurb: "대형어학원 학습자 데이터 관리 및 고객지원(VoC) 운영.",
+  },
+  {
+
     slug: "exchange-vienna",
     title: "오스트리아 교환학생",
     place: "FHWien der WKW, Vienna, Austria",
