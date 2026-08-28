@@ -25,61 +25,84 @@ const NAV = [
 
 const EDUCATION = [
   {
-    school: "숭실대학교",
-    detail: "독어독문학과 / 언론홍보학과",
-    period: "2021.03 — 2026.02 (졸업)",
-    note: "학점 3.69 / 4.5",
-  },
-  {
-    school: "FHWien der WKW, Austria",
-    detail: "교환학생",
-    period: "2024.02 — 2024.06",
-  },
-  {
     school: "전남외국어고등학교",
     detail: "독일어과",
-    period: "2018.03 — 2021.02 (졸업)",
+    period: "2018.03. - 2021.02. (졸업)",
   },
   {
-    school: "봄온 아카데미",
-    detail: "아나운서 전문가 과정 · 실전 방송 역량 및 공채 맞춤 훈련",
-    period: "2022.12 — 2023.05",
+    school: "숭실대학교",
+    detail: "독어독문학과 / 언론홍보학과",
+    period: "2021.03. - 2026.02 (졸업)",
   },
   {
-    school: "숭실대 X 코멘토",
-    detail: "진로고민해결 프로젝트 · 컨벤션 기획, 인사 실무과제 수행",
-    period: "2026.04 — 2026.06",
+    school: "FHWien der WKW, 오스트리아",
+    detail: "교환학생",
+    period: "2024.02. - 2024.07.",
   },
-];
-
-const CERTS = [
-  { name: "TOEIC", score: "905" },
-  { name: "OPIc", score: "IH" },
-  { name: "Zertifikat Deutsch", score: "B1" },
-  { name: "ADsP", score: "데이터분석 준전문가" },
-  { name: "운전면허", score: "2종 보통" },
 ];
 
 const CAREER = [
   {
-    org: "주식회사 에이블라인드",
-    period: "2025.08 — 2025.12",
-    role: "전시·행사 기획 및 운영, SNS 마케팅, 디자인, 작가 매니지먼트",
+    org: "원어연극부 ‘디 뷔네’",
+    period: "2021.03. - 2022.09.",
+    role: "홍보물 제작, SNS 운영, 기타 무대지원",
   },
   {
-    org: "DYB최선어학원 중계캠퍼스",
-    period: "2023.01 — 2026.04 (간헐)",
-    role: "고객응대 및 사무보조",
+    org: "숭실대 언론홍보학과 <광고론>",
+    period: "2022.03. - 2022.06.",
+    role: "PHOTOGRAY 협업 - 슝슝이 프레임 제작",
   },
   {
     org: "인문학 콘텐츠 소모임 ‘아데테’",
-    period: "2023.03 — 2023.12",
-    role: "소모임 기획·운영, SNS 운영",
+    period: "2023.03. - 2025.06.",
+    role: "소모임 기획 및 운영/참여, SNS 운영",
   },
   {
-    org: "원어연극부 디 뷔네 (DIE BÜHNE)",
-    period: "2021.03 — 2022.09",
-    role: "홍보물 제작, SNS 운영, 무대 지원",
+    org: "DYB최선어학원 중계캠퍼스",
+    period: "2023.01. - 2026.04. (*실근무 22개월)",
+    role: "고객응대, 재원생 데이터 관리, 사무보조",
+  },
+  {
+    org: "주식회사 에이블라인드",
+    period: "2025.08. - 2025.12.",
+    role: "전시회 기획/운영, SNS 운영, 행사운영",
+  },
+  {
+    org: "코멘토 X 숭실대 진로취업센터",
+    period: "2026.04. - 2026.06.",
+    role: "HR: 채용공고문, 컨벤션 기획: 행사제안서 제작",
+  },
+];
+
+const PROGRAMS = [
+  { group: "MS OA", items: ["Word", "PPT", "Excel"] },
+  { group: "Google Workspace", items: ["Drive", "Sheet", "Docs", "Form", "Meet"] },
+  { group: "Design Tool", items: ["Canva", "Miricanvas", "Fresco", "Premiere Pro"] },
+  { group: "AI Tool", items: ["Gemini", "ChatGPT", "Lovable", "Genspark"] },
+  { group: "Collaboration Tool", items: ["Slack", "Notion"] },
+];
+
+const CERTS = [
+  "ADsP (데이터분석 준전문가)",
+  "TOEIC 905점",
+  "Zertifikat Deutsch B1 (일상회화 가능)",
+];
+
+const ACTIVITIES = [
+  {
+    title: "2025 대한민국 대학생 광고대회 (KOSAC)",
+    period: "2025.03. - 2025.05.",
+    desc: "‘건강한 스마트폰 사용 캠페인’ 기획 및 참가",
+  },
+  {
+    title: "서울시자원봉사센터 현직자 연계 진로 멘토링 '청춘잡담'",
+    period: "2026.07.",
+    desc: "",
+  },
+  {
+    title: "S-OIL 'HRD' 직무 멘토링 1, 2차 참여",
+    period: "",
+    desc: "",
   },
 ];
 
@@ -248,58 +271,91 @@ function SectionHeader({ num, kicker, title }: { num: string; kicker: string; ti
 function Education() {
   return (
     <section id="education" className="bg-[var(--paper-deep)] border-y border-border">
-      <div className="mx-auto max-w-6xl px-6 py-24">
+      <div className="mx-auto max-w-6xl px-6 py-12 md:py-16">
         <SectionHeader num="01 —" kicker="Education & Career" title="About" />
-        <div className="grid md:grid-cols-2 gap-16">
-          <div>
-            <h3 className="font-serif text-2xl mb-6"><span className="mark-pop mark-coral">교육</span></h3>
-            <ul className="space-y-7">
-              {EDUCATION.map((e) => (
-                <li key={e.school} className="grid grid-cols-[80px_1fr] gap-4">
-                  <span className="text-xs tracking-widest text-[var(--ink-soft)] pt-1">
-                    {e.period.split(" ")[0]}
-                  </span>
-                  <div>
-                    <div className="font-medium text-foreground">{e.school}</div>
-                    <div className="text-sm text-[var(--ink-soft)] mt-1">{e.detail}</div>
-                    <div className="text-xs text-[var(--ink-soft)]/80 mt-1">{e.period}</div>
-                    {e.note && (
-                      <div className="inline-block mt-2 text-xs bg-background border border-border rounded-full px-2 py-0.5">
-                        {e.note}
-                      </div>
-                    )}
-                  </div>
-                </li>
-              ))}
-            </ul>
+        <div className="grid md:grid-cols-2 gap-x-10 gap-y-6">
+          {/* Left column */}
+          <div className="space-y-6">
+            <div>
+              <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-coral">교육</span></h3>
+              <ul className="space-y-3">
+                {EDUCATION.map((e) => (
+                  <li key={e.school} className="grid grid-cols-[80px_1fr] gap-3">
+                    <span className="text-xs tracking-widest text-[var(--ink-soft)] pt-1">
+                      {e.period.split(" ")[0]}
+                    </span>
+                    <div>
+                      <div className="font-medium text-foreground text-sm">{e.school}</div>
+                      <div className="text-sm text-[var(--ink-soft)] mt-0.5">{e.detail}</div>
+                      <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{e.period}</div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-            <h3 className="font-serif text-2xl mt-12 mb-6"><span className="mark-pop mark-lime">자격증 & 어학</span></h3>
-            <div className="flex flex-wrap gap-2">
-              {CERTS.map((c) => (
-                <span key={c.name} className="inline-flex items-center gap-1.5 text-sm whitespace-nowrap border border-foreground/20 rounded-full px-3 py-1.5 shrink-0">
-                  <span className="font-medium">{c.name}</span>
-                  <span className="text-[var(--terracotta)]">{c.score}</span>
-                </span>
-              ))}
+            <div>
+              <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-lime">프로그램 활용능력</span></h3>
+              <div className="space-y-1.5">
+                {PROGRAMS.map((p) => (
+                  <div key={p.group} className="text-sm leading-snug">
+                    <span className="font-medium text-foreground">{p.group}</span>
+                    <span className="text-[var(--ink-soft)] mx-1.5">-</span>
+                    <span className="text-[var(--ink-soft)]">{p.items.join(" / ")}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-sky">자격증 & 어학</span></h3>
+              <div className="flex flex-wrap gap-2">
+                {CERTS.map((c) => (
+                  <span key={c} className="inline-flex items-center gap-1.5 text-xs whitespace-nowrap border border-foreground/20 rounded-full px-2.5 py-1 shrink-0">
+                    <span className="font-medium">{c}</span>
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
 
-          <div>
-            <h3 className="font-serif text-2xl mb-6"><span className="mark-pop mark-lavender">경력 & 경험</span></h3>
-            <ul className="space-y-7">
-              {CAREER.map((c) => (
-                <li key={c.org} className="grid grid-cols-[80px_1fr] gap-4">
-                  <span className="text-xs tracking-widest text-[var(--ink-soft)] pt-1">
-                    {c.period.split(" ")[0]}
-                  </span>
-                  <div>
-                    <div className="font-medium text-foreground">{c.org}</div>
-                    <div className="text-sm text-[var(--ink-soft)] mt-1">{c.role}</div>
-                    <div className="text-xs text-[var(--ink-soft)]/80 mt-1">{c.period}</div>
-                  </div>
-                </li>
-              ))}
-            </ul>
+          {/* Right column */}
+          <div className="space-y-6">
+            <div>
+              <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-lavender">실무경험</span></h3>
+              <ul className="space-y-3">
+                {CAREER.map((c) => (
+                  <li key={c.org} className="grid grid-cols-[80px_1fr] gap-3">
+                    <span className="text-xs tracking-widest text-[var(--ink-soft)] pt-1">
+                      {c.period.split(" ")[0]}
+                    </span>
+                    <div>
+                      <div className="font-medium text-foreground text-sm">{c.org}</div>
+                      <div className="text-sm text-[var(--ink-soft)] mt-0.5">{c.role}</div>
+                      <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{c.period}</div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-coral">대외활동</span></h3>
+              <ul className="space-y-3">
+                {ACTIVITIES.map((a) => (
+                  <li key={a.title} className="grid grid-cols-[80px_1fr] gap-3">
+                    <span className="text-xs tracking-widest text-[var(--ink-soft)] pt-1">
+                      {a.period ? a.period.split(" ")[0] : "—"}
+                    </span>
+                    <div>
+                      <div className="font-medium text-foreground text-sm">{a.title}</div>
+                      {a.desc && <div className="text-sm text-[var(--ink-soft)] mt-0.5">{a.desc}</div>}
+                      {a.period && <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{a.period}</div>}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
