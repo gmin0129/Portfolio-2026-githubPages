@@ -189,7 +189,7 @@ function SheetRow({
                 {toItems(f.value).map((item, i) => (
                   <li
                     key={`${f.label}-${i}`}
-                    className="flex items-start gap-3 break-inside-avoid mb-4"
+                    className="flex items-start gap-3 [break-inside:avoid] mb-4"
                   >
                     <Bullet marker={marker} />
                     <span className="whitespace-pre-line">{item}</span>
