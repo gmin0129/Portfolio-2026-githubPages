@@ -75,9 +75,9 @@ function ProjectDetail() {
           <SwipeTabs title={project.title} images={images} loading={isLoading}>
             {hasSheet ? (
               <section className="w-full px-6 py-16 space-y-12">
-                <SheetRow title={sheet!.background.title} fields={sheet!.background.fields} layout="four" />
-                <SheetRow title={sheet!.process.title} fields={sheet!.process.fields} layout="two" />
-                <SheetRow title={sheet!.outcome.title} fields={sheet!.outcome.fields} layout="columns" />
+                <SheetRow title={sheet!.background.title} fields={sheet!.background.fields} layout="four" marker="arrow" />
+                <SheetRow title={sheet!.process.title} fields={sheet!.process.fields} layout="two" marker="arrow" />
+                <SheetRow title={sheet!.outcome.title} fields={sheet!.outcome.fields} layout="columns" marker="diamond" />
               </section>
             ) : (
               <section className="px-6 py-16 grid md:grid-cols-3 gap-12">
