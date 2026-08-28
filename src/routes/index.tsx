@@ -98,11 +98,7 @@ const ACTIVITIES = [
     title: "서울시자원봉사센터 현직자 연계 진로 멘토링 '청춘잡담'",
     period: "2026.07.",
     desc: "",
-  },
-  {
-    title: "S-OIL 'HRD' 직무 멘토링 1, 2차 참여",
-    period: "",
-    desc: "",
+    extra: "S-OIL 'HRD' 직무 멘토링 1,2차 참여",
   },
 ];
 
