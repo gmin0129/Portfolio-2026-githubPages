@@ -317,29 +317,4 @@ function TitleCard({ project, idx, className, ...props }: { project: Project; id
   );
 }
 
-const sampleSheet: { background: { title: string; fields: SheetField[] }; process: { title: string; fields: SheetField[] }; outcome: { title: string; fields: SheetField[] } } = {
-  background: {
-    title: "프로젝트 배경",
-    fields: [
-      { label: "기간", value: "2025.08.04 — 2025.09.26" },
-      { label: "과제", value: "- 다양한 관객층을 고려한 전시 기획\n- 데이터 기반 관객 분석" },
-      { label: "적용 지식/이론", value: "- 문화 콘텐츠 기획 이론\n- 전시 디자인 원리" },
-      { label: "적용 기술", value: "- Notion, Excel\n- 슬라이드 제작" },
-    ],
-  },
-  process: {
-    title: "진행과정",
-    fields: [
-      { label: "나의 역할/업무내용", value: "- 전시 기획 및 운영\n- 작가 매니징, 데이터 아카이빙\n- 프로모션 홍보 매체 및 배포" },
-      { label: "지식 및 기술 적용한 부분", value: "- 매력적인 전시 포스터 부스 이미지 무언드라 실시\n- 대학교 마스코트 캐릭터를 활용해 관객과의 저격적 메시지 전달\n- 대학교 공식 SNS, 교내 홍보물 부스 등 설계 홍보물안 설치 및 관리" },
-    ],
-  },
-  outcome: {
-    title: "성과 및 인사이트",
-    fields: [
-      { label: "최종 결과물 내용 (모양)", value: "- 브랜드/상품 : 포토그레이(PHOTOGRAY) / 숭실대 교내 스토어\n- 8일간 안정적인 전시 운영과 관람객 만족도 확보\n- 전시 관련 데이터를 정리해 다음 전시 기획의 기초 자료로 활용" },
-    ],
-  },
-};
-
 const TILES = ["tile-1", "tile-2", "tile-3", "tile-4", "tile-5", "tile-6"];
