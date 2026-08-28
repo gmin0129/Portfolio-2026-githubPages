@@ -309,10 +309,11 @@ function Education() {
                 {ACTIVITIES.map((a) => (
                   <li key={a.title} className="grid grid-cols-[80px_1fr] gap-3">
                     <span className="text-xs tracking-widest text-[var(--ink-soft)] pt-1">
-                      {a.period ? a.period.split(" ")[0] : "—"}
+                      {a.period ? a.period.split(" ")[0] : ""}
                     </span>
                     <div>
                       <div className="font-medium text-foreground text-sm">{a.title}</div>
+                      {a.extra && <div className="text-sm text-[var(--ink-soft)] mt-0.5">{a.extra}</div>}
                       {a.desc && <div className="text-sm text-[var(--ink-soft)] mt-0.5">{a.desc}</div>}
                       {a.period && <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{a.period}</div>}
                     </div>
