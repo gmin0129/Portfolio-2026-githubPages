@@ -184,14 +184,26 @@ export function SwipeTabs({ title, images, children, loading = false, hidePhotos
 function PhotoGallery({ title, images }: { title: string; images: string[] }) {
   const [active, setActive] = useState(0);
   const [failed, setFailed] = useState<Record<number, boolean>>({});
+  const scrollerRef = useRef<HTMLDivElement | null>(null);
   const visible = images.filter((_, i) => !failed[i]);
   if (visible.length === 0) return null;
+
+  const go = (dir: -1 | 1) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const step = el.clientWidth * 0.85;
+    const next = active + dir;
+    const clamped = Math.min(Math.max(next, 0), images.length - 1);
+    el.scrollTo({ left: clamped * step, behavior: "smooth" });
+    setActive(clamped);
+  };
 
   return (
     <div className="space-y-6">
       {/* Carousel: horizontal snap scroller */}
       <div className="relative">
         <div
+          ref={scrollerRef}
           className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3 -mx-6 px-6 scroll-smooth"
           style={{ scrollbarWidth: "thin" }}
           onScroll={(e) => {
