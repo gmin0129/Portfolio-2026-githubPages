@@ -130,52 +130,46 @@ export function SwipeTabs({ title, images, children, loading = false, hidePhotos
         </div>
       </div>
 
-      {/* Swipable track */}
-      <div
-        ref={trackRef}
-        className="relative overflow-hidden"
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
-      >
-        <div className="flex w-[200%] items-start will-change-transform" style={trackStyle}>
-          <div className="w-1/2 shrink-0">{children}</div>
-          <div className="w-1/2 shrink-0">
-            <section className="mx-auto max-w-5xl px-6 py-16">
-              <h2 className="font-serif text-2xl mb-6">{title} · Photos</h2>
-              {loading ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6" aria-busy="true" aria-label="사진 불러오는 중">
+{/* Content: only the active page is mounted so the container height
+          matches the visible content exactly (no reserved empty space). */}
+      <div className="relative">
+        {page === 0 ? (
+          <div>{children}</div>
+        ) : (
+          <section className="mx-auto max-w-5xl px-6 py-16">
+            <h2 className="font-serif text-2xl mb-6">{title} · Photos</h2>
+            {loading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6" aria-busy="true" aria-label="사진 불러오는 중">
+                {[0, 1, 2, 3].map((i) => (
+                  <div
+                    key={i}
+                    className="aspect-[4/3] rounded-md border border-border bg-muted overflow-hidden relative"
+                  >
+                    <div className="absolute inset-0 animate-pulse bg-[linear-gradient(110deg,transparent_30%,oklch(1_0_0/0.35)_50%,transparent_70%)]" />
+                  </div>
+                ))}
+              </div>
+            ) : images && images.length > 0 ? (
+              <PhotoGallery title={title} images={images} />
+            ) : (
+              <div>
+                <p className="text-sm text-[var(--ink-soft)] mb-6">
+                  아직 등록된 사진이 없습니다. 연동된 Notion 페이지에 이미지를 추가하면 자동으로 표시됩니다.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {[0, 1, 2, 3].map((i) => (
                     <div
                       key={i}
-                      className="aspect-[4/3] rounded-md border border-border bg-muted overflow-hidden relative"
+                      className={`aspect-[4/3] rounded-md tile-${(i % 6) + 1} clay-sm grain opacity-80 flex items-center justify-center text-foreground/70 text-xs uppercase tracking-widest`}
                     >
-                      <div className="absolute inset-0 animate-pulse bg-[linear-gradient(110deg,transparent_30%,oklch(1_0_0/0.35)_50%,transparent_70%)]" />
+                      사진 슬롯 {i + 1}
                     </div>
                   ))}
                 </div>
-              ) : images && images.length > 0 ? (
-                <PhotoGallery title={title} images={images} />
-              ) : (
-                <div>
-                  <p className="text-sm text-[var(--ink-soft)] mb-6">
-                    아직 등록된 사진이 없습니다. 연동된 Notion 페이지에 이미지를 추가하면 자동으로 표시됩니다.
-                  </p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {[0, 1, 2, 3].map((i) => (
-                      <div
-                        key={i}
-                        className={`aspect-[4/3] rounded-md tile-${(i % 6) + 1} clay-sm grain opacity-80 flex items-center justify-center text-foreground/70 text-xs uppercase tracking-widest`}
-                      >
-                        사진 슬롯 {i + 1}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </section>
-          </div>
-        </div>
+              </div>
+            )}
+          </section>
+        )}
       </div>
     </div>
   );
