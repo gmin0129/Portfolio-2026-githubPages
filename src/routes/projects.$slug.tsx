@@ -74,12 +74,10 @@ function ProjectDetail() {
         <div className="flex-1 min-w-0">
           <SwipeTabs title={project.title} images={images} loading={isLoading}>
             {hasSheet ? (
-              <section className="px-6 py-16 grid md:grid-cols-2 gap-x-12 gap-y-12 items-start">
+              <section className="px-6 py-16 grid md:grid-cols-3 gap-8 items-start">
                 <SheetBlock section={sheet!.background} />
-                <div className="space-y-12">
-                  <SheetBlock section={sheet!.process} />
-                  <SheetBlock section={sheet!.outcome} />
-                </div>
+                <SheetBlock section={sheet!.process} />
+                <SheetBlock section={sheet!.outcome} />
               </section>
             ) : (
               <section className="px-6 py-16 grid md:grid-cols-3 gap-12">
