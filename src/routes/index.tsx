@@ -187,11 +187,6 @@ function Hero() {
           <p className="text-sm tracking-[0.3em] uppercase text-[var(--ink-soft)] mb-6">
             Portfolio · 2026
           </p>
-          <h1 className="font-display text-[clamp(2.6rem,7vw,5.5rem)] leading-[1.5] font-medium text-shadow-hero">
-            <span className="word-lift font-bold tracking-tight text-[var(--pop-magenta)]">공감</span>과 <span className="word-lift font-bold tracking-tight text-[var(--pop-coral)]">소통</span>,<br />
-            <span className="word-lift font-bold tracking-tight text-[var(--pop-purple)]">적응력</span>과 <span className="word-lift font-bold tracking-tight text-[var(--pop-sky)]">끈기</span>,<br />
-            그리고 <span className="word-lift font-bold tracking-tight text-rainbow hover:text-anti-rainbow transition-all duration-300 ease">다양성</span>.
-          </h1>
 <p className="mt-8 max-w-xl text-base md:text-lg text-[var(--ink-soft)] leading-relaxed">
             안녕하세요, <span className="font-bold text-foreground">윤지민</span>입니다.
           </p>
