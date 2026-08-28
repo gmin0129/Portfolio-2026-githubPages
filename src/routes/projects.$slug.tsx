@@ -4,7 +4,9 @@ import { getProject, PROJECTS, type Project } from "@/lib/projects";
 import { SwipeTabs } from "@/components/SwipeTabs";
 import { useQuery } from "@tanstack/react-query";
 import { notionPageQueryOptions } from "@/lib/notion-images.functions";
+import { projectSheetQueryOptions, type SheetSection } from "@/lib/sheets.functions";
 import { ExternalLink } from "lucide-react";
+
 
 export const Route = createFileRoute("/projects/$slug")({
   loader: ({ params }) => {
@@ -42,9 +44,16 @@ function ProjectDetail() {
   const prev = PROJECTS[(idx - 1 + PROJECTS.length) % PROJECTS.length];
   const next = PROJECTS[(idx + 1) % PROJECTS.length];
   const { data, isLoading } = useQuery(notionPageQueryOptions("project", project.slug));
+  const { data: sheet } = useQuery(projectSheetQueryOptions(project.slug));
   const images = data?.images?.length ? data.images : project.images;
   const overview = data?.summary?.trim() ? data.summary : project.overview;
   const role = data?.highlights?.length ? data.highlights : project.role;
+
+  const hasSheet =
+    !!sheet &&
+    (sheet.background.fields.length > 0 ||
+      sheet.process.fields.length > 0 ||
+      sheet.outcome.fields.length > 0);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -63,6 +72,15 @@ function ProjectDetail() {
       <TitleCard project={project} idx={idx} className="invisible pointer-events-none" aria-hidden="true" />
 
       <SwipeTabs title={project.title} images={images} loading={isLoading}>
+      {hasSheet ? (
+        <section className="mx-auto max-w-5xl px-6 py-16 grid md:grid-cols-2 gap-x-12 gap-y-12 items-start">
+          <SheetBlock section={sheet!.background} />
+          <div className="space-y-12">
+            <SheetBlock section={sheet!.process} />
+            <SheetBlock section={sheet!.outcome} />
+          </div>
+        </section>
+      ) : (
       <section className="mx-auto max-w-5xl px-6 py-16 grid md:grid-cols-3 gap-12">
         <aside className="space-y-6 text-sm">
           <Meta k="기간" v={project.period} />
@@ -104,6 +122,8 @@ function ProjectDetail() {
           )}
         </div>
       </section>
+      )}
+
       </SwipeTabs>
 
       <nav className="border-t border-border">
@@ -133,6 +153,32 @@ function ProjectDetail() {
     </div>
   );
 }
+
+function SheetBlock({ section }: { section: SheetSection }) {
+  if (!section.fields.length) return null;
+  return (
+    <div>
+      <h2 className="font-serif text-2xl mb-6">
+        <span className="text-[var(--terracotta)]">&lt;</span>
+        {section.title}
+        <span className="text-[var(--terracotta)]">&gt;</span>
+      </h2>
+      <dl className="space-y-6">
+        {section.fields.map((f) => (
+          <div key={f.label} className="border-l-2 border-border pl-4">
+            <dt className="text-xs uppercase tracking-widest text-[var(--terracotta)] font-medium">
+              {f.label}
+            </dt>
+            <dd className="mt-2 text-[var(--ink-soft)] leading-relaxed whitespace-pre-line text-[0.95rem]">
+              {f.value}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  );
+}
+
 
 function Meta({ k, v }: { k: string; v: string }) {
   return (
