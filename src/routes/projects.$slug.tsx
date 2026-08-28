@@ -68,13 +68,13 @@ function ProjectDetail() {
         </div>
       </header>
 
-      <main className="w-full mx-auto max-w-5xl px-6 pt-4 flex flex-col md:flex-row gap-6">
-        <TitleCard project={project} idx={idx} className="w-full md:w-[38%] md:sticky md:top-16 h-fit shrink-0" />
+      <main className="w-full mx-auto max-w-[1440px] px-6 pt-4 flex flex-col md:flex-row gap-12">
+        <TitleCard project={project} idx={idx} className="w-full md:w-[30%] md:sticky md:top-16 h-fit shrink-0" />
 
         <div className="w-full flex-1 min-w-0">
           <SwipeTabs title={project.title} images={images} loading={isLoading}>
             {hasSheet ? (
-              <section className="w-full px-6 py-16 grid md:grid-cols-3 gap-8 items-start">
+              <section className="w-full px-6 py-16 grid md:grid-cols-3 gap-10 items-start">
                 <SheetBlock section={sheet!.background} />
                 <SheetBlock section={sheet!.process} />
                 <SheetBlock section={sheet!.outcome} />
