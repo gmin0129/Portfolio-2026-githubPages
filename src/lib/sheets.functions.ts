@@ -124,6 +124,8 @@ export function projectSheetQueryOptions(slug: string) {
     staleTime: 0,
     gcTime: 5 * 60 * 1000,
     refetchOnMount: "always" as const,
+    refetchInterval: 10 * 1000,
+    refetchIntervalInBackground: false,
   };
 }
 
