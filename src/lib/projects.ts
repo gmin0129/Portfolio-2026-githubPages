@@ -77,7 +77,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "adt",
-    title: "인문학소모임 A.D.T.",
+    title: "인문학 콘텐츠 제작 소모임 A.D.T.",
     sub: "콘텐츠 기획 · 운영",
     period: "2023.03 — 2024.12",
     contribution: "운영 및 콘텐츠 기획",
