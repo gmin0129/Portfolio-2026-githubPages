@@ -195,7 +195,7 @@ function TitleCard({ project, idx, className, ...props }: { project: Project; id
       <div className="mx-auto max-w-5xl px-4 md:px-6 pt-4">
         <div className={`relative ${TILES[idx % TILES.length]} shape-squircle px-6 md:px-10 py-7 md:py-9 clay overflow-hidden animate-galaxy-pulse shadow-lg`}>
           <div className="absolute inset-0 grain opacity-30 pointer-events-none" />
-          <div className="relative">
+          <div className="relative flex flex-col items-end break-keep">
             <div className="font-serif italic text-foreground/75 text-sm tracking-widest uppercase">
               Project · {String(idx + 1).padStart(2, "0")}
             </div>
@@ -218,7 +218,7 @@ function TitleCard({ project, idx, className, ...props }: { project: Project; id
               )}
             </h1>
             <p className="mt-2 text-foreground/80 text-base md:text-lg">{project.sub}</p>
-            <div className="mt-4 flex flex-wrap gap-2">
+            <div className="mt-4 flex flex-col items-end gap-2">
               {project.tags.map((t) => (
                 <span
                   key={t}
