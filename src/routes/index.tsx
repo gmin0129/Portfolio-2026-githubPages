@@ -199,7 +199,7 @@ function Hero() {
                 경험 보기 →
               </a>
             </div>
-            <div className="h-[2px] w-40 bg-[var(--pop-lime)] rounded-full opacity-90" />
+            <div className="h-[2px] w-56 bg-[var(--pop-lime)] rounded-full opacity-90" />
           </div>
         </div>
         <div className="md:col-span-5 relative">
