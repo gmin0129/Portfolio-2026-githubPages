@@ -192,11 +192,8 @@ function Hero() {
             <span className="word-lift font-bold tracking-tight text-[var(--pop-purple)]">적응력</span>과 <span className="word-lift font-bold tracking-tight text-[var(--pop-sky)]">끈기</span>,<br />
             그리고 <span className="word-lift font-bold tracking-tight text-rainbow hover:text-anti-rainbow transition-all duration-300 ease">다양성</span>.
           </h1>
-          <p className="mt-8 max-w-xl text-base md:text-lg text-[var(--ink-soft)] leading-relaxed whitespace-pre-line">
-            <span className="mark-pop mark-pop-interactive mark-sky font-display font-semibold">데이터 분석</span>으로 타인의 숨은 니즈를 읽고,{"\n"}
-            <span className="mark-pop mark-pop-interactive mark-lime font-display font-semibold">다양한 개성</span>을 포용하는 문화 기획자 <span className="font-bold">윤지민</span>입니다.{"\n\n"}
-            누구에게나 열려 있지만, 결코 가볍지 않은 기획을 지향합니다.{"\n"}
-            <span className="mark-pop mark-pop-interactive mark-coral font-display font-semibold">동아일보</span>에서 단 한 명의 소외도 없이 즐길 수 있는 <span className="whitespace-nowrap"><span className="mark-pop mark-pop-interactive mark-lavender font-display font-semibold">"포용적 문화 콘텐츠"</span>를 선보이겠습니다.</span>
+<p className="mt-8 max-w-xl text-base md:text-lg text-[var(--ink-soft)] leading-relaxed">
+            안녕하세요, <span className="font-bold text-foreground">윤지민</span>입니다.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <a href="#projects" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
