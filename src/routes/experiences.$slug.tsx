@@ -44,9 +44,16 @@ function ExperienceDetail() {
   const prev = EXPERIENCES[(idx - 1 + EXPERIENCES.length) % EXPERIENCES.length];
   const next = EXPERIENCES[(idx + 1) % EXPERIENCES.length];
   const { data, isLoading } = useQuery(notionPageQueryOptions("experience", experience.slug));
+  const { data: sheet } = useQuery(experienceSheetQueryOptions(experience.slug));
   const images = data?.images?.length ? data.images : experience.images;
   const overview = data?.summary?.trim() ? data.summary : experience.overview;
   const role = data?.highlights?.length ? data.highlights : experience.role;
+  const hasSheet =
+    !!sheet &&
+    (sheet.background.fields.length > 0 ||
+      sheet.process.fields.length > 0 ||
+      sheet.outcome.fields.length > 0);
+
 
   return (
     <div className="min-h-screen bg-background text-foreground">
