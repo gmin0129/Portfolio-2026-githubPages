@@ -98,11 +98,7 @@ const ACTIVITIES = [
     title: "서울시자원봉사센터 현직자 연계 진로 멘토링 '청춘잡담'",
     period: "2026.07.",
     desc: "",
-  },
-  {
-    title: "S-OIL 'HRD' 직무 멘토링 1, 2차 참여",
-    period: "",
-    desc: "",
+    extra: "S-OIL 'HRD' 직무 멘토링 1,2차 참여",
   },
 ];
 
@@ -313,10 +309,11 @@ function Education() {
                 {ACTIVITIES.map((a) => (
                   <li key={a.title} className="grid grid-cols-[80px_1fr] gap-3">
                     <span className="text-xs tracking-widest text-[var(--ink-soft)] pt-1">
-                      {a.period ? a.period.split(" ")[0] : "—"}
+                      {a.period ? a.period.split(" ")[0] : ""}
                     </span>
                     <div>
                       <div className="font-medium text-foreground text-sm">{a.title}</div>
+                      {a.extra && <div className="text-sm text-[var(--ink-soft)] mt-0.5">{a.extra}</div>}
                       {a.desc && <div className="text-sm text-[var(--ink-soft)] mt-0.5">{a.desc}</div>}
                       {a.period && <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{a.period}</div>}
                     </div>
@@ -348,12 +345,19 @@ function Education() {
 
             <div>
               <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-sky">자격증 & 어학</span></h3>
-              <div className="flex flex-wrap gap-2">
-                {CERTS.map((c) => (
-                  <span key={c} className="inline-flex items-center gap-1.5 text-xs whitespace-nowrap border border-foreground/20 rounded-full px-2.5 py-1 shrink-0">
-                    <span className="font-medium">{c}</span>
+              <div className="flex flex-col gap-2 items-start">
+                <div className="flex flex-wrap gap-2">
+                  {CERTS.slice(0, 2).map((c) => (
+                    <span key={c} className="inline-flex items-center gap-1.5 text-xs whitespace-nowrap border border-foreground/20 rounded-full px-2.5 py-1 shrink-0">
+                      <span className="font-medium">{c}</span>
+                    </span>
+                  ))}
+                </div>
+                {CERTS[2] && (
+                  <span className="inline-flex items-center gap-1.5 text-xs whitespace-nowrap border border-foreground/20 rounded-full px-2.5 py-1 shrink-0">
+                    <span className="font-medium">{CERTS[2]}</span>
                   </span>
-                ))}
+                )}
               </div>
             </div>
           </div>
