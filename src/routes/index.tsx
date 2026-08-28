@@ -271,58 +271,96 @@ function SectionHeader({ num, kicker, title }: { num: string; kicker: string; ti
 function Education() {
   return (
     <section id="education" className="bg-[var(--paper-deep)] border-y border-border">
-      <div className="mx-auto max-w-6xl px-6 py-24">
+      <div className="mx-auto max-w-6xl px-6 py-12 md:py-16">
         <SectionHeader num="01 —" kicker="Education & Career" title="About" />
-        <div className="grid md:grid-cols-2 gap-16">
-          <div>
-            <h3 className="font-serif text-2xl mb-6"><span className="mark-pop mark-coral">교육</span></h3>
-            <ul className="space-y-7">
-              {EDUCATION.map((e) => (
-                <li key={e.school} className="grid grid-cols-[80px_1fr] gap-4">
-                  <span className="text-xs tracking-widest text-[var(--ink-soft)] pt-1">
-                    {e.period.split(" ")[0]}
-                  </span>
-                  <div>
-                    <div className="font-medium text-foreground">{e.school}</div>
-                    <div className="text-sm text-[var(--ink-soft)] mt-1">{e.detail}</div>
-                    <div className="text-xs text-[var(--ink-soft)]/80 mt-1">{e.period}</div>
-                    {e.note && (
-                      <div className="inline-block mt-2 text-xs bg-background border border-border rounded-full px-2 py-0.5">
-                        {e.note}
-                      </div>
-                    )}
-                  </div>
-                </li>
-              ))}
-            </ul>
+        <div className="grid md:grid-cols-2 gap-x-10 gap-y-6">
+          {/* Left column */}
+          <div className="space-y-6">
+            <div>
+              <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-coral">교육</span></h3>
+              <ul className="space-y-3">
+                {EDUCATION.map((e) => (
+                  <li key={e.school} className="grid grid-cols-[80px_1fr] gap-3">
+                    <span className="text-xs tracking-widest text-[var(--ink-soft)] pt-1">
+                      {e.period.split(" ")[0]}
+                    </span>
+                    <div>
+                      <div className="font-medium text-foreground text-sm">{e.school}</div>
+                      <div className="text-sm text-[var(--ink-soft)] mt-0.5">{e.detail}</div>
+                      <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{e.period}</div>
+                      {e.note && (
+                        <div className="inline-block mt-1 text-xs bg-background border border-border rounded-full px-2 py-0.5">
+                          {e.note}
+                        </div>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-            <h3 className="font-serif text-2xl mt-12 mb-6"><span className="mark-pop mark-lime">자격증 & 어학</span></h3>
-            <div className="flex flex-wrap gap-2">
-              {CERTS.map((c) => (
-                <span key={c.name} className="inline-flex items-center gap-1.5 text-sm whitespace-nowrap border border-foreground/20 rounded-full px-3 py-1.5 shrink-0">
-                  <span className="font-medium">{c.name}</span>
-                  <span className="text-[var(--terracotta)]">{c.score}</span>
-                </span>
-              ))}
+            <div>
+              <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-lime">프로그램 활용능력</span></h3>
+              <div className="space-y-1.5">
+                {PROGRAMS.map((p) => (
+                  <div key={p.group} className="text-sm leading-snug">
+                    <span className="font-medium text-foreground">{p.group}</span>
+                    <span className="text-[var(--ink-soft)] mx-1.5">-</span>
+                    <span className="text-[var(--ink-soft)]">{p.items.join(" / ")}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-sky">자격증 & 어학</span></h3>
+              <div className="flex flex-wrap gap-2">
+                {CERTS.map((c) => (
+                  <span key={c} className="inline-flex items-center gap-1.5 text-xs whitespace-nowrap border border-foreground/20 rounded-full px-2.5 py-1 shrink-0">
+                    <span className="font-medium">{c}</span>
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
 
-          <div>
-            <h3 className="font-serif text-2xl mb-6"><span className="mark-pop mark-lavender">경력 & 경험</span></h3>
-            <ul className="space-y-7">
-              {CAREER.map((c) => (
-                <li key={c.org} className="grid grid-cols-[80px_1fr] gap-4">
-                  <span className="text-xs tracking-widest text-[var(--ink-soft)] pt-1">
-                    {c.period.split(" ")[0]}
-                  </span>
-                  <div>
-                    <div className="font-medium text-foreground">{c.org}</div>
-                    <div className="text-sm text-[var(--ink-soft)] mt-1">{c.role}</div>
-                    <div className="text-xs text-[var(--ink-soft)]/80 mt-1">{c.period}</div>
-                  </div>
-                </li>
-              ))}
-            </ul>
+          {/* Right column */}
+          <div className="space-y-6">
+            <div>
+              <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-lavender">실무경험</span></h3>
+              <ul className="space-y-3">
+                {CAREER.map((c) => (
+                  <li key={c.org} className="grid grid-cols-[80px_1fr] gap-3">
+                    <span className="text-xs tracking-widest text-[var(--ink-soft)] pt-1">
+                      {c.period.split(" ")[0]}
+                    </span>
+                    <div>
+                      <div className="font-medium text-foreground text-sm">{c.org}</div>
+                      <div className="text-sm text-[var(--ink-soft)] mt-0.5">{c.role}</div>
+                      <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{c.period}</div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-coral">대외활동</span></h3>
+              <ul className="space-y-3">
+                {ACTIVITIES.map((a) => (
+                  <li key={a.title} className="grid grid-cols-[80px_1fr] gap-3">
+                    <span className="text-xs tracking-widest text-[var(--ink-soft)] pt-1">
+                      {a.period ? a.period.split(" ")[0] : "—"}
+                    </span>
+                    <div>
+                      <div className="font-medium text-foreground text-sm">{a.title}</div>
+                      {a.desc && <div className="text-sm text-[var(--ink-soft)] mt-0.5">{a.desc}</div>}
+                      {a.period && <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{a.period}</div>}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
