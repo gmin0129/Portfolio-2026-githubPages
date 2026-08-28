@@ -16,6 +16,7 @@ const PROJECT_ROWS: Record<string, number> = {
   "ssu-tutoring": 12,
   "photogray-shyungshyung": 13,
   "die-buehne": 14,
+  adt: 15,
 };
 
 /** Experience slug -> 1-based row number in the sheet. */
