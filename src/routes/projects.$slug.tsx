@@ -44,9 +44,16 @@ function ProjectDetail() {
   const prev = PROJECTS[(idx - 1 + PROJECTS.length) % PROJECTS.length];
   const next = PROJECTS[(idx + 1) % PROJECTS.length];
   const { data, isLoading } = useQuery(notionPageQueryOptions("project", project.slug));
+  const { data: sheet } = useQuery(projectSheetQueryOptions(project.slug));
   const images = data?.images?.length ? data.images : project.images;
   const overview = data?.summary?.trim() ? data.summary : project.overview;
   const role = data?.highlights?.length ? data.highlights : project.role;
+
+  const hasSheet =
+    !!sheet &&
+    (sheet.background.fields.length > 0 ||
+      sheet.process.fields.length > 0 ||
+      sheet.outcome.fields.length > 0);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -65,6 +72,15 @@ function ProjectDetail() {
       <TitleCard project={project} idx={idx} className="invisible pointer-events-none" aria-hidden="true" />
 
       <SwipeTabs title={project.title} images={images} loading={isLoading}>
+      {hasSheet ? (
+        <section className="mx-auto max-w-5xl px-6 py-16 grid md:grid-cols-2 gap-x-12 gap-y-12 items-start">
+          <SheetBlock section={sheet!.background} />
+          <div className="space-y-12">
+            <SheetBlock section={sheet!.process} />
+            <SheetBlock section={sheet!.outcome} />
+          </div>
+        </section>
+      ) : (
       <section className="mx-auto max-w-5xl px-6 py-16 grid md:grid-cols-3 gap-12">
         <aside className="space-y-6 text-sm">
           <Meta k="기간" v={project.period} />
@@ -106,6 +122,8 @@ function ProjectDetail() {
           )}
         </div>
       </section>
+      )}
+
       </SwipeTabs>
 
       <nav className="border-t border-border">
