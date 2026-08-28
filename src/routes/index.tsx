@@ -25,61 +25,84 @@ const NAV = [
 
 const EDUCATION = [
   {
-    school: "숭실대학교",
-    detail: "독어독문학과 / 언론홍보학과",
-    period: "2021.03 — 2026.02 (졸업)",
-    note: "학점 3.69 / 4.5",
-  },
-  {
-    school: "FHWien der WKW, Austria",
-    detail: "교환학생",
-    period: "2024.02 — 2024.06",
-  },
-  {
     school: "전남외국어고등학교",
     detail: "독일어과",
-    period: "2018.03 — 2021.02 (졸업)",
+    period: "2018.03. - 2021.02. (졸업)",
   },
   {
-    school: "봄온 아카데미",
-    detail: "아나운서 전문가 과정 · 실전 방송 역량 및 공채 맞춤 훈련",
-    period: "2022.12 — 2023.05",
+    school: "숭실대학교",
+    detail: "독어독문학과 / 언론홍보학과",
+    period: "2021.03. - 2026.02 (졸업)",
   },
   {
-    school: "숭실대 X 코멘토",
-    detail: "진로고민해결 프로젝트 · 컨벤션 기획, 인사 실무과제 수행",
-    period: "2026.04 — 2026.06",
+    school: "FHWien der WKW, 오스트리아",
+    detail: "교환학생",
+    period: "2024.02. - 2024.07.",
   },
-];
-
-const CERTS = [
-  { name: "TOEIC", score: "905" },
-  { name: "OPIc", score: "IH" },
-  { name: "Zertifikat Deutsch", score: "B1" },
-  { name: "ADsP", score: "데이터분석 준전문가" },
-  { name: "운전면허", score: "2종 보통" },
 ];
 
 const CAREER = [
   {
-    org: "주식회사 에이블라인드",
-    period: "2025.08 — 2025.12",
-    role: "전시·행사 기획 및 운영, SNS 마케팅, 디자인, 작가 매니지먼트",
+    org: "원어연극부 ‘디 뷔네’",
+    period: "2021.03. - 2022.09.",
+    role: "홍보물 제작, SNS 운영, 기타 무대지원",
   },
   {
-    org: "DYB최선어학원 중계캠퍼스",
-    period: "2023.01 — 2026.04 (간헐)",
-    role: "고객응대 및 사무보조",
+    org: "숭실대 언론홍보학과 <광고론>",
+    period: "2022.03. - 2022.06.",
+    role: "PHOTOGRAY 협업 - 슝슝이 프레임 제작",
   },
   {
     org: "인문학 콘텐츠 소모임 ‘아데테’",
-    period: "2023.03 — 2023.12",
-    role: "소모임 기획·운영, SNS 운영",
+    period: "2023.03. - 2025.06.",
+    role: "소모임 기획 및 운영/참여, SNS 운영",
   },
   {
-    org: "원어연극부 디 뷔네 (DIE BÜHNE)",
-    period: "2021.03 — 2022.09",
-    role: "홍보물 제작, SNS 운영, 무대 지원",
+    org: "DYB최선어학원 중계캠퍼스",
+    period: "2023.01. - 2026.04. (*실근무 22개월)",
+    role: "고객응대, 재원생 데이터 관리, 사무보조",
+  },
+  {
+    org: "주식회사 에이블라인드",
+    period: "2025.08. - 2025.12.",
+    role: "전시회 기획/운영, SNS 운영, 행사운영",
+  },
+  {
+    org: "코멘토 X 숭실대 진로취업센터",
+    period: "2026.04. - 2026.06.",
+    role: "HR: 채용공고문, 컨벤션 기획: 행사제안서 제작",
+  },
+];
+
+const PROGRAMS = [
+  { group: "MS OA", items: ["Word", "PPT", "Excel"] },
+  { group: "Google Workspace", items: ["Drive", "Sheet", "Docs", "Form", "Meet"] },
+  { group: "Design Tool", items: ["Canva", "Miricanvas", "Fresco", "Premiere Pro"] },
+  { group: "AI Tool", items: ["Gemini", "ChatGPT", "Lovable", "Genspark"] },
+  { group: "Collaboration Tool", items: ["Slack", "Notion"] },
+];
+
+const CERTS = [
+  "ADsP (데이터분석 준전문가)",
+  "TOEIC 905점",
+  "Zertifikat Deutsch B1 (일상회화 가능)",
+];
+
+const ACTIVITIES = [
+  {
+    title: "2025 대한민국 대학생 광고대회 (KOSAC)",
+    period: "2025.03. - 2025.05.",
+    desc: "‘건강한 스마트폰 사용 캠페인’ 기획 및 참가",
+  },
+  {
+    title: "서울시자원봉사센터 현직자 연계 진로 멘토링 '청춘잡담'",
+    period: "2026.07.",
+    desc: "",
+  },
+  {
+    title: "S-OIL 'HRD' 직무 멘토링 1, 2차 참여",
+    period: "",
+    desc: "",
   },
 ];
 
