@@ -159,7 +159,7 @@ function ProjectDetail() {
 function SheetBlock({ section }: { section: SheetSection }) {
   if (!section.fields.length) return null;
   return (
-    <div>
+    <div className="text-left break-keep">
       <h2 className="font-serif text-2xl mb-6">
         <span className="text-[var(--terracotta)]">&lt;</span>
         {section.title}
