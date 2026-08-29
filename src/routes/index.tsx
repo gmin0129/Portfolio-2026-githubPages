@@ -378,11 +378,11 @@ function CareerList({ items }: { items: CareerItem[] }) {
 function Education() {
   return (
     <section id="education" className="bg-[var(--paper-deep)] border-y border-border">
-      <div className="mx-auto w-full max-w-[1500px] px-6 py-12 md:py-16">
+      <div className="mx-auto w-full max-w-[1600px] px-5 py-12 md:py-16">
         <SectionHeader num="01 —" title="About" />
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
           {/* Column 1 : 사진 + 인사말 + 학력 */}
-          <div className="md:ml-4 lg:ml-6">
+          <div>
             <div className="flex items-stretch gap-4">
               <img
                 src={profileAboutAsset.url}
