@@ -396,7 +396,7 @@ function Education() {
                 안녕하세요, 윤지민입니다
               </span>
             </div>
-            <p className="mt-5 font-serif text-base sm:text-lg md:text-[1.2rem] font-bold text-foreground leading-relaxed break-keep">
+            <p className="mt-5 font-serif text-lg sm:text-xl md:text-[1.45rem] font-bold text-foreground leading-relaxed break-keep">
               자신감과 소신을 잃지 않으면서도,
               <br />
               <span className="block whitespace-nowrap text-right">타인과 화합할 줄 아는 사람으로 성장했습니다.</span>
@@ -464,9 +464,9 @@ function Education() {
                 {CERTS.map((c) => (
                    <li key={c.title} className="text-base leading-snug flex gap-2">
                     <span className="text-foreground">•</span>
-                    <div>
-                      <div className="font-medium text-foreground">{c.title}</div>
-                      <div className="text-[var(--ink-soft)] mt-0.5">{c.period}</div>
+                    <div className="flex flex-wrap items-baseline gap-x-2">
+                      <span className="font-medium text-foreground">{c.title}</span>
+                      <span className="text-sm text-[var(--ink-soft)]/80">{c.period}</span>
                     </div>
                   </li>
                 ))}
