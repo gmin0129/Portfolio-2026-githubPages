@@ -258,11 +258,10 @@ function Hero() {
           윤지민
         </span>
 
-        {/* 날짜 + CTAs : 하단이 '윤지민' 밑줄(C 라인)과 평행하도록 정렬 */}
+        {/* 날짜 + CTAs : 시작점을 '2021 - 2026'과 수직 정렬 */}
         <div
-          className="absolute flex flex-col items-start gap-5"
+          className="absolute left-6 md:left-10 flex flex-col items-start gap-4 sm:gap-5"
           style={{
-            left: copyLeft != null ? `${copyLeft}px` : "1.5rem",
             top: `calc(${C_Y * 100}% - 1px)`,
             transform: "translateY(-100%)",
           }}
