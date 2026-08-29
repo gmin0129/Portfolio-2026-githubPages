@@ -492,19 +492,28 @@ function Projects() {
                   {String(i + 1).padStart(2, "0")}
                 </div>
                 <h3 className="font-serif text-xl md:text-2xl mt-1 leading-tight text-foreground whitespace-pre-line break-keep">
-                  {p.title}
-                  <span className="inline-block ml-2 opacity-0 group-hover:opacity-100 transition-opacity text-foreground">→</span>
+                  {p.title.includes("전략") ? (
+                    <>
+                      {p.title.replace("전략", "")}
+                      <span className="inline-block opacity-0 group-hover:opacity-100 transition-opacity text-foreground">전략→</span>
+                    </>
+                  ) : (
+                    <>
+                      {p.title}
+                      <span className="inline-block ml-2 opacity-0 group-hover:opacity-100 transition-opacity text-foreground">→</span>
+                    </>
+                  )}
                 </h3>
-                <p className="text-sm text-foreground/75 mt-1 whitespace-nowrap">{p.sub}</p>
-                <div className="mt-4 text-xs text-foreground/80 space-y-1">
-                  <div><span className="uppercase tracking-widest text-[10px] text-foreground/60 mr-2">기여</span>{p.contribution}</div>
-                  <div><span className="uppercase tracking-widest text-[10px] text-foreground/60 mr-2">기간</span>{p.period}</div>
+                <p className="text-base text-foreground/75 mt-1 whitespace-nowrap">{p.sub}</p>
+                <div className="mt-4 text-sm text-foreground/80 space-y-1">
+                  <div><span className="uppercase tracking-widest text-xs text-foreground/60 mr-2">기여</span>{p.contribution}</div>
+                  <div><span className="uppercase tracking-widest text-xs text-foreground/60 mr-2">기간</span>{p.period}</div>
                 </div>
                 <div className="mt-auto pt-4 flex flex-wrap gap-1.5">
                   {p.tags.map((t) => (
                     <span
                       key={t}
-                      className="text-[11px] rounded-full px-2.5 py-0.5 text-foreground font-medium bg-background/75 backdrop-blur clay-sm"
+                      className="text-[13px] rounded-full px-2.5 py-0.5 text-foreground font-medium bg-background/75 backdrop-blur clay-sm"
                     >
                       {t}
                     </span>
