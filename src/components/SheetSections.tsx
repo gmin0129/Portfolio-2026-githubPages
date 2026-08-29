@@ -10,7 +10,18 @@ export function toItems(value: string): string[] {
 
 export function Bullet({ marker }: { marker: "arrow" | "diamond" }) {
   if (marker === "diamond") {
-    return null;
+    return (
+      <svg
+        width="12"
+        height="12"
+        viewBox="0 0 12 12"
+        fill="currentColor"
+        className="shrink-0 mt-[0.35em] text-[var(--terracotta)]"
+        aria-hidden="true"
+      >
+        <path d="M6 0.5L11.5 6L6 11.5L0.5 6L6 0.5Z" />
+      </svg>
+    );
   }
   return (
     <svg
@@ -36,11 +47,13 @@ export function SheetRow({
   fields,
   layout,
   marker,
+  hideBulletsFor,
 }: {
   title: string;
   fields: SheetField[];
   layout: "four" | "two" | "columns" | "background" | "rows";
   marker: "arrow" | "diamond";
+  hideBulletsFor?: string[];
 }) {
   if (!fields.length) return null;
 
@@ -62,7 +75,7 @@ export function SheetRow({
               <ul className="mt-2 space-y-2 text-[var(--ink-soft)] leading-relaxed text-[0.95rem]">
                 {toItems(f.value).map((item, i) => (
                   <li key={`${f.label}-${i}`} className="flex items-start gap-3">
-                    <Bullet marker={marker} />
+                    {!hideBulletsFor?.includes(item) && <Bullet marker={marker} />}
                     <span className="whitespace-pre-line">{item}</span>
                   </li>
                 ))}
@@ -92,7 +105,7 @@ export function SheetRow({
               <ul className="mt-2 space-y-2 text-[var(--ink-soft)] leading-relaxed text-[0.95rem]">
                 {toItems(f.value).map((item, i) => (
                   <li key={`${f.label}-${i}`} className="flex items-start gap-3">
-                    <Bullet marker={marker} />
+                    {!hideBulletsFor?.includes(item) && <Bullet marker={marker} />}
                     <span className="whitespace-pre-line">{item}</span>
                   </li>
                 ))}
@@ -129,7 +142,7 @@ export function SheetRow({
                     key={`${f.label}-${i}`}
                     className="flex items-start gap-3 [break-inside:avoid] mb-4"
                   >
-                    <Bullet marker={marker} />
+                    {!hideBulletsFor?.includes(item) && <Bullet marker={marker} />}
                     <span className="whitespace-pre-line">{item}</span>
                   </li>
                 ))}
@@ -147,7 +160,7 @@ export function SheetRow({
               <ul className="mt-2 space-y-2 text-[var(--ink-soft)] leading-relaxed text-[0.95rem]">
                 {toItems(f.value).map((item, i) => (
                   <li key={`${f.label}-${i}`} className="flex items-start gap-3">
-                    <Bullet marker={marker} />
+                    {!hideBulletsFor?.includes(item) && <Bullet marker={marker} />}
                     <span className="whitespace-pre-line">{item}</span>
                   </li>
                 ))}

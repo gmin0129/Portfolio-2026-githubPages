@@ -83,7 +83,13 @@ function ProjectDetail() {
                   layout={project.slug === "kasteel-rouge" || project.slug === "urisigak" ? "two" : "rows"}
                   marker="arrow"
                 />
-                <SheetRow title={sheet!.outcome.title} fields={sheet!.outcome.fields} layout="columns" marker="diamond" />
+                <SheetRow
+                  title={sheet!.outcome.title}
+                  fields={sheet!.outcome.fields}
+                  layout="columns"
+                  marker="diamond"
+                  hideBulletsFor={project.slug === "comento-convention" ? COMENTO_HIDDEN_BULLETS : undefined}
+                />
               </section>
             ) : (
               <section className="px-6 py-16 grid md:grid-cols-3 gap-12">
@@ -214,3 +220,10 @@ function TitleCard({ project, idx, className, ...props }: { project: Project; id
 }
 
 const TILES = ["tile-1", "tile-2", "tile-3", "tile-4", "tile-5", "tile-6"];
+
+const COMENTO_HIDDEN_BULLETS = [
+  "나의 진로? 나의 VIBE대로!' 청소년 참여형 진로탐색 박람회 기획안",
+  "세부 프로그램 기획:",
+  "강점:",
+  "보완점:",
+];
