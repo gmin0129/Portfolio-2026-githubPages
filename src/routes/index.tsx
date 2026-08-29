@@ -402,7 +402,7 @@ function Education() {
               <span className="block whitespace-nowrap text-right">타인과 화합할 줄 아는 사람으로 성장했습니다.</span>
             </p>
             <Divider />
-            <div className="my-4 space-y-1.5 text-[0.95rem] sm:text-base leading-snug tracking-[-0.01em] text-foreground break-keep">
+            <div className="my-4 space-y-1.5 text-[1.1rem] sm:text-[1.15rem] leading-snug tracking-[-0.01em] text-foreground break-keep">
               <div>🎂 2002.01.29. (24세)</div>
               <div className="break-all">✉️ yunjimin0129@naver.com</div>
               <div>📞 010-4234-5652</div>
@@ -415,8 +415,8 @@ function Education() {
               <ul className="space-y-3">
                 {EDUCATION.map((e) => (
                   <li key={e.school}>
-                    <div className="font-medium text-foreground text-base">{e.school}</div>
-                    <div className="text-sm text-[var(--ink-soft)]/80 mt-0.5">{e.period}</div>
+                    <div className="font-medium text-foreground text-[1.15rem]">{e.school}</div>
+                    <div className="text-base text-[var(--ink-soft)]/80 mt-0.5">{e.period}</div>
                   </li>
                 ))}
               </ul>
@@ -425,21 +425,21 @@ function Education() {
 
           {/* Column 2 : 경력 + 교육 + 프로그램 활용능력 */}
           <div>
-            <div className="md:w-3/4 md:ml-auto">
+            <div>
               <SubHeading idx={1}>경력</SubHeading>
               <CareerList items={CAREER_LIST} />
             </div>
-            <Divider className="md:w-3/4 md:ml-auto" />
-            <div className="md:w-3/4 md:ml-auto">
+            <Divider className="" />
+            <div>
               <SubHeading idx={3}>교육</SubHeading>
               <CareerList items={EDU_LIST} />
             </div>
-            <Divider className="md:w-3/4 md:ml-auto" />
-            <div className="md:w-3/4 md:ml-auto">
+            <Divider className="" />
+            <div>
               <SubHeading idx={2}>프로그램 활용능력</SubHeading>
               <ul className="space-y-2.5">
                 {PROGRAMS.map((p) => (
-                  <li key={p.group} className="text-base leading-snug flex gap-2">
+                  <li key={p.group} className="text-[1.15rem] leading-snug flex gap-2">
                     <span className="text-foreground">•</span>
                     <div>
                       <div className="font-medium text-foreground">{p.group}</div>
@@ -453,20 +453,20 @@ function Education() {
 
           {/* Column 3 : 경험 + 자격증/어학/수상 */}
           <div>
-            <div className="md:w-3/4 md:ml-auto">
+            <div>
               <SubHeading idx={3}>경험</SubHeading>
               <CareerList items={EXPERIENCE_LIST} />
             </div>
-            <Divider className="md:w-3/4 md:ml-auto" />
-            <div className="md:w-3/4 md:ml-auto">
+            <Divider className="" />
+            <div>
               <SubHeading idx={4}>자격증/어학/수상</SubHeading>
               <ul className="space-y-2.5">
                 {CERTS.map((c) => (
-                   <li key={c.title} className="text-base leading-snug flex gap-2">
+                   <li key={c.title} className="text-[1.15rem] leading-snug flex gap-2">
                     <span className="text-foreground">•</span>
                     <div className="flex flex-wrap items-baseline gap-x-2">
                       <span className="font-medium text-foreground">{c.title}</span>
-                      <span className="text-sm text-[var(--ink-soft)]/80">{c.period}</span>
+                      {c.period ? <span className="text-base text-[var(--ink-soft)]/80">{c.period}</span> : null}
                     </div>
                   </li>
                 ))}
