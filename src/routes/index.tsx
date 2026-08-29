@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import profileImg from "@/assets/윤지민.jpg.asset.json";
+
 import { PROJECTS } from "@/lib/projects";
 import { EXPERIENCES } from "@/lib/experiences";
 
