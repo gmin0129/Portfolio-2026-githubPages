@@ -157,7 +157,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "waynabox",
-    title: "Waynabox 유럽 SNS 마케팅 전략",
+    title: "Waynabox 기업\nSNS 마케팅 전략",
     sub: "오스트리아 교환학생 팀 프로젝트",
     period: "2024.02 — 2024.07",
     contribution: "인플루언서 리서치, 경쟁사 분석, 기획안 작성",
@@ -177,7 +177,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "kasteel-rouge",
-    title: "Kasteel Rouge 오스트리아 진출 전략",
+    title: "Kasteel Rouge 기업\n오스트리아 진출 마케팅 전략",
     sub: "오스트리아 교환학생 팀 프로젝트",
     period: "2024.02 — 2024.07",
     contribution: "시장·트렌드 분석, 페르소나 설정, KPI 수립",
@@ -197,7 +197,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "ssu-tutoring",
-    title: "독일어입문 전공 튜터링",
+    title: "숭실 튜터링 (기초독일어 튜터)",
     sub: "숭실 튜터링 · 튜터",
     period: "2025.03 — 2025.06",
     contribution: "커리큘럼 보완, 학습자료 제작, 성취도 분석",
