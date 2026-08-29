@@ -379,20 +379,27 @@ function Education() {
                 className="flex-1 min-w-0 aspect-[5/6] object-cover rounded-2xl"
               />
               <span
-                className="font-serif text-lg text-foreground leading-none pt-1"
-                style={{ writingMode: "vertical-rl", letterSpacing: "0.35em" }}
+                className="font-serif text-2xl md:text-[1.75rem] text-foreground leading-none"
+                style={{ writingMode: "vertical-rl", letterSpacing: "0.12em" }}
               >
                 안녕하세요, 윤지민입니다
               </span>
             </div>
-            <p className="mt-5 font-serif text-base md:text-lg font-medium text-foreground leading-relaxed">
+            <p className="mt-5 font-serif text-sm md:text-[15px] font-medium text-foreground leading-relaxed">
               자신감과 소신을 잃지 않으면서도,
               <br />
-              타인과 화합할 줄 아는 사람으로 성장했습니다.
+              <span className="whitespace-nowrap">타인과 화합할 줄 아는 사람으로 성장했습니다.</span>
             </p>
             <Divider />
+            <div className="my-4 space-y-1.5 text-xs text-foreground">
+              <div>🎂 2002.01.29. (24세)</div>
+              <div>✉️ yunjimin0129@naver.com</div>
+              <div>📞 010-4234-5652</div>
+              <div>🏠 서울시 동작구 상도로60가길 8 306호</div>
+            </div>
+            <Divider />
             <div>
-              <SubHeading idx={0}>학 력</SubHeading>
+              <SubHeading idx={0}>학&nbsp;&nbsp;력</SubHeading>
               <ul className="space-y-3">
                 {EDUCATION.map((e) => (
                   <li key={e.school}>
@@ -437,7 +444,7 @@ function Education() {
             </div>
             <Divider />
             <div>
-              <SubHeading idx={3}>대 외 활 동</SubHeading>
+              <SubHeading idx={3}>대외활동</SubHeading>
               <ul>
                 {ACTIVITIES.map((a, i) => (
                   <li key={a.title}>
