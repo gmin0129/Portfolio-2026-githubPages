@@ -83,7 +83,12 @@ function ProjectDetail() {
                   layout={project.slug === "kasteel-rouge" || project.slug === "urisigak" ? "two" : "rows"}
                   marker="arrow"
                 />
-                <SheetRow title={sheet!.outcome.title} fields={sheet!.outcome.fields} layout="columns" marker="diamond" />
+                <SheetRow
+                  title={sheet!.outcome.title}
+                  fields={project.slug === "comento-convention" ? filterOutcome(sheet!.outcome.fields) : sheet!.outcome.fields}
+                  layout="columns"
+                  marker="diamond"
+                />
               </section>
             ) : (
               <section className="px-6 py-16 grid md:grid-cols-3 gap-12">
