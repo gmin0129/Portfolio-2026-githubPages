@@ -213,6 +213,12 @@ function Hero() {
           preserveAspectRatio="none"
           xmlns="http://www.w3.org/2000/svg"
         >
+          <defs>
+            <filter id="blue-blur" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="18" />
+            </filter>
+          </defs>
+
           <path
             d={`M 0 ${A_Y * 1000} L ${KINK_X * 1000} ${A_Y * 1000} L ${C_X * 1000} ${C_Y * 1000} L 1000 ${C_Y * 1000}`}
             fill="none"
@@ -220,6 +226,12 @@ function Hero() {
             strokeWidth="1"
             vectorEffect="non-scaling-stroke"
           />
+
+          {/* 레퍼런스 원 무늬: 블러 처리된 파란 원 위에 선명한 분홍 원 */}
+          <g transform={`translate(${(KINK_X + C_X) * 500}, ${(A_Y + C_Y) * 500})`}>
+            <circle r="72" fill="var(--pop-sky)" filter="url(#blue-blur)" opacity="0.85" />
+            <circle r="30" fill="var(--pop-pink)" />
+          </g>
         </svg>
 
         {/* 2021 - 2026 : 상단 수평선 위 좌측 */}
