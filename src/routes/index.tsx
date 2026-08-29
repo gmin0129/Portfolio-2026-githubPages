@@ -228,8 +228,13 @@ function IntersectionField() {
       const h = Math.sqrt(h2);
       const mx = a.x + (t * dx) / d, my = a.y + (t * dy) / d;
       const ox = (-dy * h) / d, oy = (dx * h) / d;
-      dots.push({ x: mx + ox, y: my + oy, c: DOT_COLORS[k++ % DOT_COLORS.length] });
-      dots.push({ x: mx - ox, y: my - oy, c: DOT_COLORS[k++ % DOT_COLORS.length] });
+      // 카피 텍스트 영역과 겹치는 도트는 제외 (가독성)
+      const inText = (px: number, py: number) => px < 700 && py > 230 && py < 330;
+      const p1 = { x: mx + ox, y: my + oy };
+      const p2 = { x: mx - ox, y: my - oy };
+      if (!inText(p1.x, p1.y)) dots.push({ ...p1, c: DOT_COLORS[k++ % DOT_COLORS.length] });
+      if (!inText(p2.x, p2.y)) dots.push({ ...p2, c: DOT_COLORS[k++ % DOT_COLORS.length] });
+
     }
   }
 
