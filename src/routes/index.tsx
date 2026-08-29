@@ -178,16 +178,16 @@ function Hero() {
   const C_Y = 0.86; // 하단 수평선 y
 
   const containerRef = React.useRef<HTMLDivElement>(null);
-  const titleRef = React.useRef<HTMLHeadingElement>(null);
+  const copyRef = React.useRef<HTMLDivElement>(null);
   const [copyLeft, setCopyLeft] = React.useState<number | null>(null);
 
   React.useLayoutEffect(() => {
     const update = () => {
       const container = containerRef.current;
-      const title = titleRef.current;
-      if (!container || !title) return;
-      // 카피/날짜/버튼의 시작점 = kink x - PORTFOLIO 너비 (타이틀 시작점과 수직 일치)
-      setCopyLeft(container.clientWidth * KINK_X - title.offsetWidth);
+      const copy = copyRef.current;
+      if (!container || !copy) return;
+      // 날짜/버튼의 시작점 = kink x - 카피 너비 (카피 시작점과 수직 일치)
+      setCopyLeft(container.clientWidth * KINK_X - copy.offsetWidth);
     };
     update();
     const ro = new ResizeObserver(update);
