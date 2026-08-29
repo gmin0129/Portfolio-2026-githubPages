@@ -186,22 +186,32 @@ function Hero() {
         </div>
 
         {/* Diagonal quote */}
-        <div className="relative h-56 md:h-72">
-          <p className="absolute left-1/2 md:left-[58%] top-2 md:top-0 -translate-x-1/2 md:translate-x-0 rotate-[24deg] origin-top-left text-sm md:text-base leading-[2.4] tracking-[0.35em] text-foreground/80 [writing-mode:vertical-rl]">
+        <div className="relative h-64 md:h-80">
+          {/* 세로로 내려가는 첫 문장 */}
+          <span
+            className="absolute left-[58%] md:left-[56%] top-0 text-xs md:text-sm tracking-[0.5em] text-foreground/85 [writing-mode:vertical-rl] rotate-[10deg] origin-top"
+            style={{ fontFamily: "var(--font-serif, serif)" }}
+          >
             공감에서 출발한 기획,
-            <br />
+          </span>
+          {/* 대각선으로 내려가는 두번째 문장 */}
+          <span
+            className="absolute left-[47%] md:left-[46%] top-[52%] text-xs md:text-sm tracking-[0.25em] text-foreground/85 rotate-[32deg] origin-top-left whitespace-nowrap"
+            style={{ fontFamily: "var(--font-serif, serif)" }}
+          >
             서로 다른 시선을 잇는 콘텐츠로
-          </p>
+          </span>
         </div>
 
         {/* Bottom row */}
         <div className="flex items-end justify-between gap-6">
           <span className="font-serif text-sm md:text-base text-foreground">2026.08.27.</span>
-          <div className="flex items-end gap-6 md:gap-10 flex-1 justify-end">
-            <span className="font-serif text-3xl md:text-5xl tracking-[0.25em] text-foreground">윤 지 민</span>
-            <div className="h-px bg-foreground flex-1 max-w-40 md:max-w-72 mb-2 md:mb-3" />
+          <div className="flex flex-col items-stretch">
+            <div className="h-px bg-foreground mb-2" />
+            <span className="font-serif italic text-3xl md:text-5xl tracking-[0.25em] text-foreground">윤 지 민</span>
           </div>
         </div>
+
 
         {/* CTAs */}
         <div className="flex flex-wrap gap-3 mt-12">
