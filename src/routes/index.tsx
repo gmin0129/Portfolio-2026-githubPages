@@ -343,6 +343,27 @@ function Divider() {
   return <div className="border-t border-foreground/25 my-6" />;
 }
 
+const HEADING_ACCENTS = [
+  "linear-gradient(120deg, rgba(255,183,140,0.6), rgba(255,214,180,0.4))",
+  "linear-gradient(120deg, rgba(168,216,255,0.6), rgba(200,235,255,0.4))",
+  "linear-gradient(120deg, rgba(190,235,170,0.6), rgba(220,248,200,0.4))",
+  "linear-gradient(120deg, rgba(255,178,214,0.6), rgba(255,214,235,0.4))",
+  "linear-gradient(120deg, rgba(207,186,255,0.6), rgba(228,214,255,0.4))",
+];
+
+function SubHeading({ idx, children }: { idx: number; children: React.ReactNode }) {
+  return (
+    <h3 className="font-serif text-xl font-bold mb-4">
+      <span
+        className="inline-block px-2 py-0.5 rounded-md"
+        style={{ background: HEADING_ACCENTS[idx % HEADING_ACCENTS.length] }}
+      >
+        {children}
+      </span>
+    </h3>
+  );
+}
+
 function Education() {
   return (
     <section id="education" className="bg-[var(--paper-deep)] border-y border-border">
@@ -351,11 +372,11 @@ function Education() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10">
           {/* Column 1 : 사진 + 인사말 + 학력 */}
           <div>
-            <div className="flex items-start gap-4">
+            <div className="flex items-stretch gap-4">
               <img
                 src={profileAboutAsset.url}
                 alt="윤지민 프로필 사진"
-                className="w-40 md:w-44 aspect-[5/6] object-cover rounded-2xl shrink-0"
+                className="flex-1 min-w-0 aspect-[5/6] object-cover rounded-2xl"
               />
               <span
                 className="font-serif text-lg text-foreground leading-none pt-1"
@@ -364,14 +385,14 @@ function Education() {
                 안녕하세요, 윤지민입니다
               </span>
             </div>
-            <p className="mt-5 text-sm font-medium text-foreground leading-relaxed">
+            <p className="mt-5 font-serif text-base md:text-lg font-medium text-foreground leading-relaxed">
               자신감과 소신을 잃지 않으면서도,
               <br />
               타인과 화합할 줄 아는 사람으로 성장했습니다.
             </p>
             <Divider />
             <div>
-              <h3 className="font-serif text-xl mb-4">[ 학 력 ]</h3>
+              <SubHeading idx={0}>학 력</SubHeading>
               <ul className="space-y-3">
                 {EDUCATION.map((e) => (
                   <li key={e.school}>
@@ -385,7 +406,7 @@ function Education() {
 
           {/* Column 2 : 경력/경험/교육 */}
           <div>
-            <h3 className="font-serif text-xl mb-4">[ 경력/경험/교육 ]</h3>
+            <SubHeading idx={1}>경력/경험/교육</SubHeading>
             <ul>
               {CAREER.map((c, i) => (
                 <li key={c.org}>
@@ -401,7 +422,7 @@ function Education() {
           {/* Column 3 : 프로그램 활용능력 + 대외활동 + 자격증/어학/수상 */}
           <div>
             <div>
-              <h3 className="font-serif text-xl mb-4">[ 프로그램 활용능력 ]</h3>
+              <SubHeading idx={2}>프로그램 활용능력</SubHeading>
               <ul className="space-y-2.5">
                 {PROGRAMS.map((p) => (
                   <li key={p.group} className="text-sm leading-snug flex gap-2">
@@ -416,7 +437,7 @@ function Education() {
             </div>
             <Divider />
             <div>
-              <h3 className="font-serif text-xl mb-4">[ 대 외 활 동 ]</h3>
+              <SubHeading idx={3}>대 외 활 동</SubHeading>
               <ul>
                 {ACTIVITIES.map((a, i) => (
                   <li key={a.title}>
@@ -431,7 +452,7 @@ function Education() {
             </div>
             <Divider />
             <div>
-              <h3 className="font-serif text-xl mb-4">[ 자격증/어학/수상 ]</h3>
+              <SubHeading idx={4}>자격증/어학/수상</SubHeading>
               <ul className="space-y-2.5">
                 {CERTS.map((c) => (
                   <li key={c.title} className="text-sm leading-snug flex gap-2">
