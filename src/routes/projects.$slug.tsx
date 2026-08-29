@@ -80,7 +80,7 @@ function ProjectDetail() {
                 <SheetRow
                   title={sheet!.process.title}
                   fields={sheet!.process.fields}
-                  layout={project.slug === "kasteel-rouge" ? "two" : "rows"}
+                  layout={project.slug === "kasteel-rouge" || project.slug === "urisigak" ? "two" : "rows"}
                   marker="arrow"
                 />
                 <SheetRow title={sheet!.outcome.title} fields={sheet!.outcome.fields} layout="columns" marker="diamond" />
