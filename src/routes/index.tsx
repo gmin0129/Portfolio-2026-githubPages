@@ -406,7 +406,7 @@ function Education() {
 
           {/* Column 2 : 경력/경험/교육 */}
           <div>
-            <h3 className="font-serif text-xl mb-4">[ 경력/경험/교육 ]</h3>
+            <SubHeading idx={1}>경력/경험/교육</SubHeading>
             <ul>
               {CAREER.map((c, i) => (
                 <li key={c.org}>
@@ -422,7 +422,7 @@ function Education() {
           {/* Column 3 : 프로그램 활용능력 + 대외활동 + 자격증/어학/수상 */}
           <div>
             <div>
-              <h3 className="font-serif text-xl mb-4">[ 프로그램 활용능력 ]</h3>
+              <SubHeading idx={2}>프로그램 활용능력</SubHeading>
               <ul className="space-y-2.5">
                 {PROGRAMS.map((p) => (
                   <li key={p.group} className="text-sm leading-snug flex gap-2">
@@ -437,7 +437,7 @@ function Education() {
             </div>
             <Divider />
             <div>
-              <h3 className="font-serif text-xl mb-4">[ 대 외 활 동 ]</h3>
+              <SubHeading idx={3}>대 외 활 동</SubHeading>
               <ul>
                 {ACTIVITIES.map((a, i) => (
                   <li key={a.title}>
@@ -452,7 +452,7 @@ function Education() {
             </div>
             <Divider />
             <div>
-              <h3 className="font-serif text-xl mb-4">[ 자격증/어학/수상 ]</h3>
+              <SubHeading idx={4}>자격증/어학/수상</SubHeading>
               <ul className="space-y-2.5">
                 {CERTS.map((c) => (
                   <li key={c.title} className="text-sm leading-snug flex gap-2">
