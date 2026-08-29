@@ -501,7 +501,7 @@ function Projects() {
                           <br />
                           <span className="whitespace-nowrap">
                             {lines[1]}
-                            <span className="inline-block ml-1 text-foreground">→</span>
+                            <span className="inline-block ml-1 opacity-0 group-hover:opacity-100 transition-opacity text-foreground">→</span>
                           </span>
                         </>
                       );
@@ -509,7 +509,7 @@ function Projects() {
                     return (
                       <>
                         {p.title}
-                        <span className="inline-block ml-2 text-foreground">→</span>
+                        <span className="inline-block ml-2 opacity-0 group-hover:opacity-100 transition-opacity text-foreground">→</span>
                       </>
                     );
                   })()}
