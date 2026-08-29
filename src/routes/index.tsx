@@ -201,7 +201,7 @@ function Hero() {
 
   return (
     <section id="top" className="relative overflow-hidden bg-background">
-      <div className="relative mx-auto max-w-[1440px] h-[92vh] min-h-[34rem]">
+      <div ref={containerRef} className="relative mx-auto max-w-[1440px] h-[92vh] min-h-[34rem]">
         {/* 연속 기준선: A(수평) → B(대각선) → C(수평) */}
         <svg
           className="absolute inset-0 w-full h-full pointer-events-none"
