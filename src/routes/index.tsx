@@ -272,8 +272,12 @@ function Hero() {
 
         {/* 날짜 + CTAs : 하단이 '윤지민' 밑줄(C 라인)과 평행하도록 정렬 */}
         <div
-          className="absolute left-6 flex flex-col items-start gap-5"
-          style={{ top: `calc(${C_Y * 100}% - 1px)`, transform: "translateY(-100%)" }}
+          className="absolute flex flex-col items-start gap-5"
+          style={{
+            left: copyLeft != null ? `${copyLeft}px` : "1.5rem",
+            top: `calc(${C_Y * 100}% - 1px)`,
+            transform: "translateY(-100%)",
+          }}
         >
           <span
             className="font-serif text-foreground"
