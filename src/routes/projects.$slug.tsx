@@ -83,12 +83,7 @@ function ProjectDetail() {
                   layout={project.slug === "kasteel-rouge" || project.slug === "urisigak" ? "two" : "rows"}
                   marker="arrow"
                 />
-                <SheetRow
-                  title={sheet!.outcome.title}
-                  fields={project.slug === "comento-convention" ? filterOutcome(sheet!.outcome.fields) : sheet!.outcome.fields}
-                  layout="columns"
-                  marker="diamond"
-                />
+                <SheetRow title={sheet!.outcome.title} fields={sheet!.outcome.fields} layout="columns" marker="diamond" />
               </section>
             ) : (
               <section className="px-6 py-16 grid md:grid-cols-3 gap-12">
@@ -163,24 +158,6 @@ function ProjectDetail() {
       </nav>
     </div>
   );
-}
-
-function filterOutcome(fields: { label: string; value: string }[]) {
-  const remove = [
-    "나의 진로? 나의 VIBE대로",
-    "세부 프로그램 기획:",
-    "강점:",
-    "보완점:",
-  ];
-  return fields
-    .map((f) => ({
-      ...f,
-      value: f.value
-        .split("\n")
-        .filter((line) => !remove.some((r) => line.trim().includes(r)))
-        .join("\n"),
-    }))
-    .filter((f) => f.value.trim());
 }
 
 function Meta({ k, v }: { k: string; v: string }) {
