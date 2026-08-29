@@ -213,9 +213,9 @@ function IntersectionField() {
   const hDiag = { x: KINK_X + tH * (C_X - KINK_X), y: H_Y };
 
   const dots = [
-    { x: V_X, y: H_Y, size: "0.9rem" },   // 수직 × 수평
-    { ...vDiag, size: "1.25rem" },        // 수직 × 검정 대각선
-    { ...hDiag, size: "0.6rem" },         // 수평 × 검정 대각선
+    { x: V_X, y: H_Y, size: "1.15rem", grad: "linear-gradient(135deg, #FDE68A, #86EFAC)" },      // 수직 × 수평
+    { ...vDiag, size: "1.55rem", grad: "linear-gradient(135deg, #93C5FD, #F9A8D4)" },              // 수직 × 검정 대각선
+    { ...hDiag, size: "0.85rem", grad: "linear-gradient(135deg, #FCA5A5, #C4B5FD)" },              // 수평 × 검정 대각선
   ];
 
   return (
@@ -227,38 +227,25 @@ function IntersectionField() {
         preserveAspectRatio="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <defs>
-          {/* 수평선: 노랑 → 초록 */}
-          <linearGradient id="hGrad" x1="0" y1="0" x2="1000" y2="0" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#FDE047" />
-            <stop offset="100%" stopColor="#4ADE80" />
-          </linearGradient>
-          {/* 수직선: 파랑 → 분홍 */}
-          <linearGradient id="vGrad" x1="0" y1="0" x2="0" y2="1000" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#60A5FA" />
-            <stop offset="100%" stopColor="#F472B6" />
-          </linearGradient>
-        </defs>
-
-        {/* 수평선: 4.5배 두껍게 (기존 3 → 13.5) */}
+        {/* 수평선: 2배 더 두껍게 (13.5 → 27) */}
         <line
           x1={-40} y1={H_Y * 1000} x2={1040} y2={H_Y * 1000}
-          stroke="url(#hGrad)"
-          strokeWidth="13.5"
+          stroke="var(--foreground)"
+          strokeWidth="27"
           strokeOpacity="0.55"
           vectorEffect="non-scaling-stroke"
         />
-        {/* 수직선: 2.5배 두껍게 (기존 3 → 7.5) */}
+        {/* 수직선: 1.5배 더 두껍게 (7.5 → 11.25) */}
         <line
           x1={V_X * 1000} y1={-40} x2={V_X * 1000} y2={1040}
-          stroke="url(#vGrad)"
-          strokeWidth="7.5"
+          stroke="var(--foreground)"
+          strokeWidth="11.25"
           strokeOpacity="0.55"
           vectorEffect="non-scaling-stroke"
         />
       </svg>
 
-      {/* 교차점: 검정색 코어 + 불투명 경계, 서로 다른 크기 */}
+      {/* 교차점: 파스텔 그라데이션 코어 + 불투명 경계, 자연스러운 비율의 서로 다른 크기 */}
       {dots.map((d, i) => (
         <span
           key={`dot${i}`}
@@ -270,7 +257,7 @@ function IntersectionField() {
             width: d.size,
             height: d.size,
             transform: "translate(-50%, -50%)",
-            background: "#000",
+            background: d.grad,
             opacity: 1,
             boxShadow: "0 0 0 4px rgba(0,0,0,0.95), 0 0 18px 6px rgba(0,0,0,0.35)",
           }}
