@@ -231,7 +231,6 @@ function Hero() {
 
         {/* PORTFOLIO : 우측 끝('O')이 선이 꺾이는 지점(KINK_X)과 수직 일치 */}
         <h1
-          ref={titleRef}
           className="absolute font-serif font-bold tracking-tight leading-none text-foreground whitespace-nowrap"
           style={{
             right: `${(1 - KINK_X) * 100}%`,
@@ -242,12 +241,12 @@ function Hero() {
           PORTFOLIO
         </h1>
 
-        {/* 메인 카피 : 시작점이 PORTFOLIO 시작점과 수직 일치 */}
+        {/* 메인 카피 : 우측 끝이 선이 꺾이는 지점(KINK_X)과 수직 일치 */}
         <div
+          ref={copyRef}
           className="absolute font-serif text-foreground/85 leading-[1.6] tracking-[0.06em] whitespace-nowrap"
           style={{
-            left: copyLeft != null ? `${copyLeft}px` : undefined,
-            visibility: copyLeft != null ? "visible" : "hidden",
+            right: `${(1 - KINK_X) * 100}%`,
             top: `calc(${A_Y * 100}% + clamp(2.5rem, 6vh, 4.5rem))`,
             fontSize: "clamp(1.9rem, 3.3vw, 3rem)",
           }}
