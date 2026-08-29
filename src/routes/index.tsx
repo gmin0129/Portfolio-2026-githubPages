@@ -221,36 +221,41 @@ function IntersectionField() {
   ];
 
   return (
-    <svg
-      aria-hidden
-      className="absolute inset-0 w-full h-full pointer-events-none"
-      viewBox="0 0 1000 1000"
-      preserveAspectRatio="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <defs>
-        <filter id="dotBlur" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" />
-        </filter>
-      </defs>
+    <>
+      <svg
+        aria-hidden
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        viewBox="0 0 1000 1000"
+        preserveAspectRatio="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        {/* 수직선 · 수평선 (굵게) */}
+        <g strokeWidth="3" strokeOpacity="0.5" fill="none">
+          <line x1={V_X * 1000} y1={-40} x2={V_X * 1000} y2={1040} stroke={V_COLOR} vectorEffect="non-scaling-stroke" />
+          <line x1={-40} y1={H_Y * 1000} x2={1040} y2={H_Y * 1000} stroke={H_COLOR} vectorEffect="non-scaling-stroke" />
+        </g>
+      </svg>
 
-      {/* 수직선 · 수평선 (굵게) */}
-      <g strokeWidth="3" strokeOpacity="0.5" fill="none">
-        <line x1={V_X * 1000} y1={-40} x2={V_X * 1000} y2={1040} stroke={V_COLOR} vectorEffect="non-scaling-stroke" />
-        <line x1={-40} y1={H_Y * 1000} x2={1040} y2={H_Y * 1000} stroke={H_COLOR} vectorEffect="non-scaling-stroke" />
-      </g>
-
-      {/* 교차점: 흐릿한 원 경계 + 컬러 코어 */}
-      <g>
-        {dots.map((d, i) => (
-          <g key={`dot${i}`}>
-            <circle cx={d.x * 1000} cy={d.y * 1000} r="16" fill="var(--background)" opacity="0.55" filter="url(#dotBlur)" />
-            <circle cx={d.x * 1000} cy={d.y * 1000} r="16" fill="none" stroke={d.c} strokeOpacity="0.35" strokeWidth="2" vectorEffect="non-scaling-stroke" filter="url(#dotBlur)" />
-            <circle cx={d.x * 1000} cy={d.y * 1000} r="7" fill={d.c} opacity="0.95" />
-          </g>
-        ))}
-      </g>
-    </svg>
+      {/* 교차점: HTML로 렌더링해 화면 비율과 무관하게 항상 완전한 원 유지,
+          흐릿한 원 경계 + 컬러 코어 */}
+      {dots.map((d, i) => (
+        <span
+          key={`dot${i}`}
+          aria-hidden
+          className="absolute pointer-events-none rounded-full"
+          style={{
+            left: `${d.x * 100}%`,
+            top: `${d.y * 100}%`,
+            width: "0.85rem",
+            height: "0.85rem",
+            transform: "translate(-50%, -50%)",
+            background: d.c,
+            opacity: 0.95,
+            boxShadow: `0 0 0 6px color-mix(in oklab, ${d.c} 22%, transparent), 0 0 14px 8px color-mix(in oklab, ${d.c} 14%, transparent)`,
+          }}
+        />
+      ))}
+    </>
   );
 }
 
