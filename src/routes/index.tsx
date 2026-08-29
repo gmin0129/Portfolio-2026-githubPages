@@ -354,10 +354,26 @@ function SubHeading({ idx, children }: { idx: number; children: React.ReactNode 
 }
 
 
+function CareerList({ items }: { items: CareerItem[] }) {
+  return (
+    <ul>
+      {items.map((c, i) => (
+        <li key={c.org}>
+          {i > 0 && <div className="text-sm text-foreground/50 py-2">-</div>}
+          <div className="font-medium text-foreground text-base">{c.org}</div>
+          <div className="text-sm text-[var(--ink-soft)]/80 mt-0.5">{c.period}</div>
+          {c.role && <div className="text-base text-[var(--ink-soft)] mt-0.5">{c.role}</div>}
+          {c.extra && <div className="text-base text-[var(--ink-soft)] mt-0.5">{c.extra}</div>}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 function Education() {
   return (
     <section id="education" className="bg-[var(--paper-deep)] border-y border-border">
-      <div className="mx-auto max-w-6xl px-6 py-12 md:py-16">
+      <div className="mx-auto w-full max-w-[1500px] px-6 py-12 md:py-16">
         <SectionHeader num="01 —" title="About" />
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10">
           {/* Column 1 : 사진 + 인사말 + 학력 */}
