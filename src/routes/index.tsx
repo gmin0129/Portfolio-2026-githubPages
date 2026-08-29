@@ -222,6 +222,24 @@ function Hero() {
           />
         </svg>
 
+        {/* 레퍼런스 원 무늬: 블러 처리된 파란 원 위에 선명한 분홍 원 */}
+        <div
+          className="absolute pointer-events-none z-10"
+          style={{
+            left: `${(KINK_X + C_X) * 50}%`,
+            top: `${(A_Y + C_Y) * 50}%`,
+            transform: "translate(-50%, -50%)",
+            width: "clamp(120px, 10vw, 160px)",
+            height: "clamp(120px, 10vw, 160px)",
+          }}
+        >
+          <div className="absolute inset-0 rounded-full bg-[var(--pop-sky)] blur-[20px] opacity-85" />
+          <div
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--pop-pink)]"
+            style={{ width: "42%", height: "42%" }}
+          />
+        </div>
+
         {/* 2021 - 2026 : 상단 수평선 위 좌측 */}
         <span
           className="absolute left-6 md:left-10 font-serif italic text-foreground"
