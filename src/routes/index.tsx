@@ -213,7 +213,7 @@ function Hero() {
           style={{
             right: `${(1 - KINK_X) * 100}%`,
             top: `calc(${A_Y * 100}% - 1.02em - 0.6rem)`,
-            fontSize: "clamp(3rem, 8.5vw, 8rem)",
+            fontSize: "clamp(2.75rem, 7vw, 6.5rem)",
           }}
         >
           PORTFOLIO
