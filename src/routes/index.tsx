@@ -207,30 +207,31 @@ function Hero() {
           2021 - 2026
         </span>
 
-        {/* PORTFOLIO : 우측 끝('O')이 꺾이는 지점(KINK_X)과 수직 일치 */}
-        <h1
-          className="absolute font-serif font-bold tracking-tight leading-none text-foreground whitespace-nowrap"
+        {/* PORTFOLIO + 메인 카피 : 카피 시작점이 PORTFOLIO 시작점과 수직 일치 */}
+        <div
+          className="absolute flex flex-col items-start"
           style={{
             right: `${(1 - KINK_X) * 100}%`,
-            top: `calc(${A_Y * 100}% - 1.02em - 0.6rem)`,
-            fontSize: "clamp(2.75rem, 7vw, 6.5rem)",
+            top: `calc(${A_Y * 100}% - clamp(2.75rem, 7vw, 6.5rem) * 1.02 - 0.6rem)`,
           }}
         >
-          PORTFOLIO
-        </h1>
-
-        {/* 메인 카피 : 수평 정렬, 대각선 좌측의 넓은 여백을 채우도록 배치 */}
-        <div
-          className="absolute font-serif text-foreground/85 leading-[1.6] tracking-[0.06em] whitespace-nowrap"
-          style={{
-            left: "6%",
-            top: "38%",
-            fontSize: "clamp(1.25rem, 2.2vw, 2rem)",
-          }}
-        >
-          공감에서 출발한 기획,
-          <br />
-          서로 다른 시선을 잇는 콘텐츠로
+          <h1
+            className="font-serif font-bold tracking-tight leading-none text-foreground whitespace-nowrap"
+            style={{ fontSize: "clamp(2.75rem, 7vw, 6.5rem)" }}
+          >
+            PORTFOLIO
+          </h1>
+          <div
+            className="font-serif text-foreground/85 leading-[1.6] tracking-[0.06em] whitespace-nowrap"
+            style={{
+              marginTop: "clamp(2.5rem, 6vh, 4.5rem)",
+              fontSize: "clamp(1.9rem, 3.3vw, 3rem)",
+            }}
+          >
+            <strong className="font-bold">공감</strong>에서 출발한 기획,
+            <br />
+            서로 <strong className="font-bold">다른</strong> 시선을 <strong className="font-bold">잇는</strong> 콘텐츠로
+          </div>
         </div>
 
         {/* 윤지민 : 하단 수평선(C) 바로 위, 넓은 자간으로 좌측으로 당겨 배치 */}
@@ -246,24 +247,25 @@ function Hero() {
           윤지민
         </span>
 
-        {/* 날짜 : 좌측 하단 */}
-        <span
-          className="absolute left-6 md:left-10 bottom-8 font-serif text-foreground"
-          style={{ fontSize: "clamp(0.8rem, 1vw, 1rem)" }}
+        {/* 날짜 + CTAs : 하단이 '윤지민' 밑줄(C 라인)과 평행하도록 정렬 */}
+        <div
+          className="absolute left-6 flex flex-col items-start gap-5"
+          style={{ top: `calc(${C_Y * 100}% - 1px)`, transform: "translateY(-100%)" }}
         >
-          2026.08.29.
-        </span>
-      </div>
-
-      {/* CTAs */}
-      <div className="mx-auto max-w-6xl px-6 pb-14">
-        <div className="flex flex-wrap gap-3">
-          <a href="#projects" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
-            프로젝트 보기 →
-          </a>
-          <a href="#experience" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
-            경험 보기 →
-          </a>
+          <span
+            className="font-serif text-foreground"
+            style={{ fontSize: "clamp(0.9rem, 1.4vw, 1.25rem)" }}
+          >
+            2026.08.29.
+          </span>
+          <div className="flex flex-wrap gap-3">
+            <a href="#projects" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
+              프로젝트 보기 →
+            </a>
+            <a href="#experience" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
+              경험 보기 →
+            </a>
+          </div>
         </div>
       </div>
     </section>
