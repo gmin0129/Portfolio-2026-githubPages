@@ -206,56 +206,6 @@ function Hero() {
   return (
     <section id="top" className="relative overflow-hidden bg-background">
       <div ref={containerRef} className="relative mx-auto max-w-[1440px] h-[92vh] min-h-[34rem]">
-        {/* 레퍼런스 스타일: 무지개 그라데이션 라인 블록 장식 (배경) */}
-        <svg
-          className="absolute inset-0 w-full h-full pointer-events-none z-0"
-          viewBox="0 0 1440 900"
-          preserveAspectRatio="xMidYMid slice"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
-          <defs>
-            <linearGradient id="rb-red" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#e8452f" />
-              <stop offset="50%" stopColor="#f2a03d" />
-              <stop offset="100%" stopColor="#e8452f" />
-            </linearGradient>
-            <linearGradient id="rb-blue" x1="0" y1="1" x2="1" y2="0">
-              <stop offset="0%" stopColor="#2b5fe3" />
-              <stop offset="50%" stopColor="#7ab3f5" />
-              <stop offset="100%" stopColor="#c084d8" />
-            </linearGradient>
-            <linearGradient id="rb-green" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="#1e7a4a" />
-              <stop offset="55%" stopColor="#4ca66b" />
-              <stop offset="100%" stopColor="#f2c744" />
-            </linearGradient>
-            <linearGradient id="rb-yellow" x1="1" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#f2c744" />
-              <stop offset="50%" stopColor="#f2a03d" />
-              <stop offset="100%" stopColor="#2b5fe3" />
-            </linearGradient>
-          </defs>
-          <g fill="none" strokeWidth="5" opacity="0.5" strokeLinecap="round">
-            {/* 좌상단 큰 블록 (레드) */}
-            <rect x="-40" y="-30" width="340" height="300" rx="70" stroke="url(#rb-red)" />
-            {/* 우상단 블록 (블루) */}
-            <rect x="1120" y="-50" width="360" height="260" rx="80" stroke="url(#rb-blue)" />
-            {/* 중앙 소형 블록 (그린) */}
-            <rect x="640" y="330" width="220" height="150" rx="60" stroke="url(#rb-green)" />
-            {/* 중앙 소형 블록 (옐로) */}
-            <rect x="900" y="300" width="170" height="120" rx="50" stroke="url(#rb-yellow)" />
-            {/* 우중단 블록 (그린) */}
-            <rect x="1180" y="430" width="300" height="240" rx="70" stroke="url(#rb-green)" />
-            {/* 좌하단 블록 (블루) */}
-            <rect x="-60" y="560" width="300" height="380" rx="80" stroke="url(#rb-blue)" />
-            {/* 하단 중앙 소형 블록 (레드) */}
-            <rect x="420" y="720" width="260" height="220" rx="70" stroke="url(#rb-red)" />
-            {/* 우하단 블록 (옐로) */}
-            <rect x="1060" y="700" width="420" height="240" rx="80" stroke="url(#rb-yellow)" />
-          </g>
-        </svg>
-
         {/* 연속 기준선: A(수평) → B(대각선) → C(수평) */}
         <svg
           className="absolute inset-0 w-full h-full pointer-events-none z-10"
