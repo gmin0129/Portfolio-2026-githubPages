@@ -492,17 +492,27 @@ function Projects() {
                   {String(i + 1).padStart(2, "0")}
                 </div>
                 <h3 className="font-serif text-xl md:text-2xl mt-1 leading-tight text-foreground whitespace-pre-line break-keep">
-                  {p.title.includes("전략") ? (
-                    <>
-                      {p.title.replace("전략", "")}
-                      <span className="inline-block opacity-0 group-hover:opacity-100 transition-opacity text-foreground">전략→</span>
-                    </>
-                  ) : (
-                    <>
-                      {p.title}
-                      <span className="inline-block ml-2 opacity-0 group-hover:opacity-100 transition-opacity text-foreground">→</span>
-                    </>
-                  )}
+                  {(() => {
+                    const lines = p.title.split("\n");
+                    if (p.title.includes("전략") && lines.length === 2) {
+                      return (
+                        <>
+                          {lines[0]}
+                          <br />
+                          <span className="whitespace-nowrap">
+                            {lines[1]}
+                            <span className="inline-block ml-1 text-foreground">→</span>
+                          </span>
+                        </>
+                      );
+                    }
+                    return (
+                      <>
+                        {p.title}
+                        <span className="inline-block ml-2 text-foreground">→</span>
+                      </>
+                    );
+                  })()}
                 </h3>
                 <p className="text-base text-foreground/75 mt-1 whitespace-nowrap">{p.sub}</p>
                 <div className="mt-4 text-sm text-foreground/80 space-y-1">
