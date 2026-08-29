@@ -83,7 +83,13 @@ function ProjectDetail() {
                   layout={project.slug === "kasteel-rouge" || project.slug === "urisigak" ? "two" : "rows"}
                   marker="arrow"
                 />
-                <SheetRow title={sheet!.outcome.title} fields={sheet!.outcome.fields} layout="columns" marker="diamond" />
+                <SheetRow
+                  title={sheet!.outcome.title}
+                  fields={sheet!.outcome.fields}
+                  layout="columns"
+                  marker="diamond"
+                  hideBulletsFor={project.slug === "comento-convention" ? COMENTO_HIDDEN_BULLETS : undefined}
+                />
               </section>
             ) : (
               <section className="px-6 py-16 grid md:grid-cols-3 gap-12">
