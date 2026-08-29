@@ -231,20 +231,19 @@ function Hero() {
           PORTFOLIO
         </h1>
 
-        {/* 메인 카피 : 우측 끝이 선이 꺾이는 지점(KINK_X)과 수직 일치 */}
+        {/* 메인 카피 : 시작점이 '2021 - 2026' 시작점과 수직 일치 */}
         <div
-          ref={copyRef}
-          className="absolute font-serif text-foreground/85 leading-[1.6] tracking-[0.06em] whitespace-nowrap"
+          className="absolute left-6 md:left-10 right-6 font-serif text-foreground/85 leading-[1.6] tracking-[0.06em] whitespace-nowrap"
           style={{
-            right: `${(1 - KINK_X) * 100}%`,
             top: `calc(${A_Y * 100}% + clamp(2.5rem, 6vh, 4.5rem))`,
-            fontSize: "clamp(1.9rem, 3.3vw, 3rem)",
+            fontSize: "clamp(1.05rem, 3.3vw, 3rem)",
           }}
         >
           <strong className="font-bold">공감</strong>에서 출발한 기획,
           <br />
           서로 <strong className="font-bold">다른</strong> 시선을 <strong className="font-bold">잇는</strong> 콘텐츠로
         </div>
+
 
         {/* 윤지민 : 하단 수평선(C) 바로 위, 넓은 자간으로 좌측으로 당겨 배치 */}
         <span
