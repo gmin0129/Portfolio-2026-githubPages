@@ -349,7 +349,7 @@ function Education() {
       <div className="mx-auto max-w-6xl px-6 py-12 md:py-16">
         <SectionHeader num="01 —" kicker="Education & Career" title="About" />
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10">
-          {/* Column 1 : 사진 + 인사말 + 교육 */}
+          {/* Column 1 : 사진 + 인사말 + 학력 */}
           <div>
             <div className="flex items-start gap-4">
               <img
@@ -371,36 +371,37 @@ function Education() {
             </p>
             <Divider />
             <div>
-              <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-coral">교육</span></h3>
+              <h3 className="font-serif text-xl mb-4">[ 학 력 ]</h3>
               <ul className="space-y-3">
                 {EDUCATION.map((e) => (
                   <li key={e.school}>
                     <div className="font-medium text-foreground text-sm">{e.school}</div>
                     <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{e.period}</div>
-                    <div className="text-sm text-[var(--ink-soft)] mt-0.5">{e.detail}</div>
                   </li>
                 ))}
               </ul>
             </div>
           </div>
 
-          {/* Column 2 : 실무경험(1~3) + 프로그램 활용능력 */}
+          {/* Column 2 : 경력/경험/교육 */}
+          <div>
+            <h3 className="font-serif text-xl mb-4">[ 경력/경험/교육 ]</h3>
+            <ul>
+              {CAREER.map((c, i) => (
+                <li key={c.org}>
+                  {i > 0 && <div className="text-xs text-foreground/50 py-2">-</div>}
+                  <div className="font-medium text-foreground text-sm">{c.org}</div>
+                  <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{c.period}</div>
+                  <div className="text-sm text-[var(--ink-soft)] mt-0.5">{c.role}</div>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 3 : 프로그램 활용능력 + 대외활동 + 자격증/어학/수상 */}
           <div>
             <div>
-              <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-lavender">실무경험</span></h3>
-              <ul className="space-y-3">
-                {CAREER.slice(0, 3).map((c) => (
-                  <li key={c.org}>
-                    <div className="font-medium text-foreground text-sm">{c.org}</div>
-                    <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{c.period}</div>
-                    <div className="text-sm text-[var(--ink-soft)] mt-0.5">{c.role}</div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <Divider />
-            <div>
-              <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-lime">프로그램 활용능력</span></h3>
+              <h3 className="font-serif text-xl mb-4">[ 프로그램 활용능력 ]</h3>
               <ul className="space-y-2.5">
                 {PROGRAMS.map((p) => (
                   <li key={p.group} className="text-sm leading-snug flex gap-2">
@@ -413,41 +414,32 @@ function Education() {
                 ))}
               </ul>
             </div>
-          </div>
-
-          {/* Column 3 : 실무경험(4~6) + 대외활동 + 자격증 & 어학 */}
-          <div>
-            <ul className="space-y-3">
-              {CAREER.slice(3).map((c) => (
-                <li key={c.org}>
-                  <div className="font-medium text-foreground text-sm">{c.org}</div>
-                  <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{c.period}</div>
-                  <div className="text-sm text-[var(--ink-soft)] mt-0.5">{c.role}</div>
-                </li>
-              ))}
-            </ul>
             <Divider />
             <div>
-              <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-coral">대외활동</span></h3>
-              <ul className="space-y-3">
-                {ACTIVITIES.map((a) => (
+              <h3 className="font-serif text-xl mb-4">[ 대 외 활 동 ]</h3>
+              <ul>
+                {ACTIVITIES.map((a, i) => (
                   <li key={a.title}>
+                    {i > 0 && <div className="text-xs text-foreground/50 py-2">-</div>}
                     <div className="font-medium text-foreground text-sm">{a.title}</div>
                     {a.period && <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{a.period}</div>}
-                    {a.extra && <div className="text-sm text-[var(--ink-soft)] mt-0.5">{a.extra}</div>}
                     {a.desc && <div className="text-sm text-[var(--ink-soft)] mt-0.5">{a.desc}</div>}
+                    {a.extra && <div className="text-sm text-[var(--ink-soft)] mt-0.5">{a.extra}</div>}
                   </li>
                 ))}
               </ul>
             </div>
             <Divider />
             <div>
-              <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-sky">자격증 & 어학</span></h3>
+              <h3 className="font-serif text-xl mb-4">[ 자격증/어학/수상 ]</h3>
               <ul className="space-y-2.5">
                 {CERTS.map((c) => (
-                  <li key={c} className="text-sm leading-snug flex gap-2">
+                  <li key={c.title} className="text-sm leading-snug flex gap-2">
                     <span className="text-foreground">•</span>
-                    <span className="font-medium text-foreground">{c}</span>
+                    <div>
+                      <div className="font-medium text-foreground">{c.title}</div>
+                      <div className="text-[var(--ink-soft)] mt-0.5">{c.period}</div>
+                    </div>
                   </li>
                 ))}
               </ul>
