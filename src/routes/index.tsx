@@ -114,7 +114,7 @@ const ACTIVITIES = [
 
 const TILES = ["tile-1", "tile-2", "tile-3", "tile-4", "tile-5", "tile-6"];
 const SHAPES = ["shape-squircle", "shape-blob", "shape-pebble", "shape-petal", "shape-leaf", "shape-arch"];
-const ROTATIONS = ["-rotate-1", "rotate-1", "-rotate-2", "rotate-2", "rotate-0", "-rotate-1"];
+const ROTATIONS = ["rotate-0", "rotate-0", "rotate-0", "rotate-0", "rotate-0", "rotate-0"];
 const ACCENTS = [
   "var(--pop-coral)",
   "var(--pop-purple)",
@@ -467,15 +467,15 @@ function Projects() {
     <section id="projects" className="relative bg-[var(--paper-deep)] text-foreground overflow-hidden">
       <div className="absolute -top-20 -right-20 w-80 h-80 tile-3 shape-blob blur-2xl opacity-40 pointer-events-none" />
       <div className="absolute bottom-0 -left-20 w-80 h-80 tile-5 shape-pebble blur-2xl opacity-40 pointer-events-none" />
-      <div className="mx-auto max-w-6xl px-6 py-24">
-        <div className="flex items-end justify-between mb-12 border-b border-foreground/15 pb-4">
+      <div className="mx-auto w-full max-w-[1600px] px-6 py-24">
+        <div className="flex items-end justify-between mb-12 border-b border-foreground/15 pb-4 w-full">
           <div>
             <span className="font-serif italic text-lg text-[var(--terracotta)]">02 —</span>
             <h2 className="font-serif text-4xl md:text-5xl font-medium mt-1 text-foreground">Projects</h2>
           </div>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-7">
           {PROJECTS.map((p, i) => (
             <Link
               key={p.slug}
@@ -540,7 +540,7 @@ function Projects() {
 
 function Experience() {
   return (
-    <section id="experience" className="mx-auto max-w-6xl px-6 py-24">
+    <section id="experience" className="mx-auto w-full max-w-[1600px] px-6 py-24">
       <SectionHeader num="03 —" title="Experiences" />
       <div className="grid md:grid-cols-2 gap-8">
         {EXPERIENCES.map((e, i) => (
@@ -548,7 +548,7 @@ function Experience() {
             key={e.slug}
             to="/experiences/$slug"
             params={{ slug: e.slug }}
-            className={`group relative ${TILES[(i + 2) % TILES.length]} ${SHAPES[(i + 1) % SHAPES.length]} ${ROTATIONS[(i + 1) % ROTATIONS.length]} card-pop p-8 overflow-hidden cursor-pointer animate-galaxy-pulse`}
+            className={`group relative ${TILES[(i + 2) % TILES.length]} ${SHAPES[(i + 1) % SHAPES.length]} ${ROTATIONS[(i + 1) % ROTATIONS.length]} card-pop p-8 overflow-hidden cursor-pointer animate-galaxy-pulse${i === 2 ? " md:col-span-full md:justify-self-center md:w-[calc(50%-1rem)]" : ""}`}
           >
             <div className="absolute inset-0 grain opacity-30 pointer-events-none" />
             <div className="relative">
