@@ -177,9 +177,31 @@ function Hero() {
   const C_X = 0.76; // 대각선이 끝나고 다시 수평이 되는 x
   const C_Y = 0.86; // 하단 수평선 y
 
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const titleRef = React.useRef<HTMLHeadingElement>(null);
+  const [copyLeft, setCopyLeft] = React.useState<number | null>(null);
+
+  React.useLayoutEffect(() => {
+    const update = () => {
+      const container = containerRef.current;
+      const title = titleRef.current;
+      if (!container || !title) return;
+      // 카피/날짜/버튼의 시작점 = kink x - PORTFOLIO 너비 (타이틀 시작점과 수직 일치)
+      setCopyLeft(container.clientWidth * KINK_X - title.offsetWidth);
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    if (containerRef.current) ro.observe(containerRef.current);
+    window.addEventListener("resize", update);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
   return (
     <section id="top" className="relative overflow-hidden bg-background">
-      <div className="relative mx-auto max-w-[1440px] h-[92vh] min-h-[34rem]">
+      <div ref={containerRef} className="relative mx-auto max-w-[1440px] h-[92vh] min-h-[34rem]">
         {/* 연속 기준선: A(수평) → B(대각선) → C(수평) */}
         <svg
           className="absolute inset-0 w-full h-full pointer-events-none"
@@ -207,41 +229,42 @@ function Hero() {
           2021 - 2026
         </span>
 
-        {/* PORTFOLIO + 메인 카피 : 카피 시작점이 PORTFOLIO 시작점과 수직 일치 */}
-        <div
-          className="absolute flex flex-col items-start"
+        {/* PORTFOLIO : 우측 끝('O')이 선이 꺾이는 지점(KINK_X)과 수직 일치 */}
+        <h1
+          ref={titleRef}
+          className="absolute font-serif font-bold tracking-tight leading-none text-foreground whitespace-nowrap"
           style={{
             right: `${(1 - KINK_X) * 100}%`,
             top: `calc(${A_Y * 100}% - clamp(2.75rem, 7vw, 6.5rem) * 1.02 - 0.6rem)`,
+            fontSize: "clamp(2.75rem, 7vw, 6.5rem)",
           }}
         >
-          <h1
-            className="font-serif font-bold tracking-tight leading-none text-foreground whitespace-nowrap"
-            style={{ fontSize: "clamp(2.75rem, 7vw, 6.5rem)" }}
-          >
-            PORTFOLIO
-          </h1>
-          <div
-            className="font-serif text-foreground/85 leading-[1.6] tracking-[0.06em] whitespace-nowrap"
-            style={{
-              marginTop: "clamp(2.5rem, 6vh, 4.5rem)",
-              fontSize: "clamp(1.9rem, 3.3vw, 3rem)",
-            }}
-          >
-            <strong className="font-bold">공감</strong>에서 출발한 기획,
-            <br />
-            서로 <strong className="font-bold">다른</strong> 시선을 <strong className="font-bold">잇는</strong> 콘텐츠로
-          </div>
+          PORTFOLIO
+        </h1>
+
+        {/* 메인 카피 : 시작점이 PORTFOLIO 시작점과 수직 일치 */}
+        <div
+          className="absolute font-serif text-foreground/85 leading-[1.6] tracking-[0.06em] whitespace-nowrap"
+          style={{
+            left: copyLeft != null ? `${copyLeft}px` : undefined,
+            visibility: copyLeft != null ? "visible" : "hidden",
+            top: `calc(${A_Y * 100}% + clamp(2.5rem, 6vh, 4.5rem))`,
+            fontSize: "clamp(1.9rem, 3.3vw, 3rem)",
+          }}
+        >
+          <strong className="font-bold">공감</strong>에서 출발한 기획,
+          <br />
+          서로 <strong className="font-bold">다른</strong> 시선을 <strong className="font-bold">잇는</strong> 콘텐츠로
         </div>
 
         {/* 윤지민 : 하단 수평선(C) 바로 위, 넓은 자간으로 좌측으로 당겨 배치 */}
         <span
-          className="absolute font-serif font-light text-foreground whitespace-nowrap"
+          className="absolute font-serif font-light italic text-foreground whitespace-nowrap"
           style={{
             right: "10%",
             top: `calc(${C_Y * 100}% - 1.6em)`,
-            fontSize: "clamp(1.1rem, 2vw, 1.75rem)",
-            letterSpacing: "1.5em",
+            fontSize: "clamp(1.9rem, 3.3vw, 3rem)",
+            letterSpacing: "0.6em",
           }}
         >
           윤지민
@@ -249,8 +272,12 @@ function Hero() {
 
         {/* 날짜 + CTAs : 하단이 '윤지민' 밑줄(C 라인)과 평행하도록 정렬 */}
         <div
-          className="absolute left-6 flex flex-col items-start gap-5"
-          style={{ top: `calc(${C_Y * 100}% - 1px)`, transform: "translateY(-100%)" }}
+          className="absolute flex flex-col items-start gap-5"
+          style={{
+            left: copyLeft != null ? `${copyLeft}px` : "1.5rem",
+            top: `calc(${C_Y * 100}% - 1px)`,
+            transform: "translateY(-100%)",
+          }}
         >
           <span
             className="font-serif text-foreground"
