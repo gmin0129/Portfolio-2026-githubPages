@@ -77,7 +77,12 @@ function ProjectDetail() {
             {hasSheet ? (
               <section className="w-full px-6 py-16 space-y-12">
 <SheetRow title={sheet!.background.title} fields={sheet!.background.fields} layout="background" marker="arrow" />
-                <SheetRow title={sheet!.process.title} fields={sheet!.process.fields} layout="rows" marker="arrow" />
+                <SheetRow
+                  title={sheet!.process.title}
+                  fields={sheet!.process.fields}
+                  layout={project.slug === "kasteel-rouge" ? "two" : "rows"}
+                  marker="arrow"
+                />
                 <SheetRow title={sheet!.outcome.title} fields={sheet!.outcome.fields} layout="columns" marker="diamond" />
               </section>
             ) : (
