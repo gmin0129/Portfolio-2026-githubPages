@@ -467,7 +467,7 @@ function Projects() {
     <section id="projects" className="relative bg-[var(--paper-deep)] text-foreground overflow-hidden">
       <div className="absolute -top-20 -right-20 w-80 h-80 tile-3 shape-blob blur-2xl opacity-40 pointer-events-none" />
       <div className="absolute bottom-0 -left-20 w-80 h-80 tile-5 shape-pebble blur-2xl opacity-40 pointer-events-none" />
-      <div className="mx-auto w-full max-w-[1600px] px-6 py-24">
+      <div className="mx-auto w-full max-w-[1840px] px-6 py-24">
         <div className="flex items-end justify-between mb-12 border-b border-foreground/15 pb-4 w-full">
           <div>
             <span className="font-serif italic text-lg text-[var(--terracotta)]">02 —</span>
@@ -499,9 +499,9 @@ function Projects() {
                         <>
                           {lines[0]}
                           <br />
-                          <span className="whitespace-nowrap">
-                            {lines[1]}
-                            <span className="inline-block ml-1 opacity-0 group-hover:opacity-100 transition-opacity text-foreground">→</span>
+                          <span className="relative inline-block text-base md:text-lg">
+                            <span className="whitespace-nowrap">{lines[1]}</span>
+                            <span className="absolute left-full top-1/2 -translate-y-1/2 ml-1 opacity-0 group-hover:opacity-100 transition-opacity text-foreground">→</span>
                           </span>
                         </>
                       );
