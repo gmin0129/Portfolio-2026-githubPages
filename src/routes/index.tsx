@@ -401,7 +401,7 @@ function Education() {
             <p className="mt-5 font-serif text-lg sm:text-xl md:text-[1.45rem] font-bold text-foreground leading-relaxed break-keep">
               자신감과 소신을 잃지 않으면서도,
               <br />
-              <span className="block whitespace-nowrap text-right">타인과 화합할 줄 아는 사람으로 성장했습니다.</span>
+              <span className="block whitespace-nowrap">타인과 화합할 줄 아는 사람으로 성장했습니다.</span>
             </p>
             <Divider />
             <div className="my-4 space-y-1.5 text-[1.1rem] sm:text-[1.15rem] leading-snug tracking-[-0.01em] text-foreground break-keep">
