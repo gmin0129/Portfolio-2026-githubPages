@@ -167,7 +167,7 @@ function ProjectDetail() {
 
 function filterOutcome(fields: { label: string; value: string }[]) {
   const remove = [
-    "나의 진로? 나의 VIBE대로!' 청소년 참여형 진로탐색 박람회 기획안",
+    "나의 진로? 나의 VIBE대로",
     "세부 프로그램 기획:",
     "강점:",
     "보완점:",
@@ -177,7 +177,7 @@ function filterOutcome(fields: { label: string; value: string }[]) {
       ...f,
       value: f.value
         .split("\n")
-        .filter((line) => !remove.some((r) => line.trim() === r || line.includes(r)))
+        .filter((line) => !remove.some((r) => line.trim().includes(r)))
         .join("\n"),
     }))
     .filter((f) => f.value.trim());
