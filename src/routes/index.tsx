@@ -169,62 +169,114 @@ function Header() {
 }
 
 function Hero() {
-  // 레퍼런스(portfolio-title.png) 기준 좌표: 대각선은 우측 상단('공')에서
-  // 좌측 하단('로')으로 이어지는 하나의 직선 경로, 글자는 모두 수직으로 upright
-  const text = "공감에서 출발한 기획, 서로 다른 시선을 잇는 콘텐츠로";
-  const chars = Array.from(text);
-  const START = { x: 68, y: 2 }; // '공' 위치 (%)
-  const END = { x: 50, y: 96 }; // '로' 위치 (%)
+  // 하나의 연속된 SVG path: 수평(A) → 대각선(B) → 수평(C)
+  // 좌표는 컨테이너 비율 기준 (fraction), 렌더 후 실제 px 각도로 대각선 텍스트 회전
+  const ref = React.useRef<HTMLDivElement>(null);
+  const [angle, setAngle] = React.useState(0);
+
+  // 기하학적 기준점 (0~1 비율 좌표)
+  const A_Y = 0.24; // 상단 수평선 y
+  const KINK_X = 0.58; // 수평선이 꺾이는 x (PORTFOLIO의 'O' 끝과 수직 일치)
+  const C_X = 0.74; // 대각선이 끝나고 다시 수평이 되는 x
+  const C_Y = 0.82; // 하단 수평선 y
+
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const update = () => {
+      const r = el.getBoundingClientRect();
+      const dx = (C_X - KINK_X) * r.width;
+      const dy = (C_Y - A_Y) * r.height;
+      setAngle((Math.atan2(dy, dx) * 180) / Math.PI);
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   return (
     <section id="top" className="relative overflow-hidden bg-background">
-      <div className="mx-auto max-w-6xl px-6 pt-16 pb-14 md:pt-24 md:pb-20">
-        {/* Title row — 수평선은 PORTFOLIO의 'O' 끝에 맞춰 종료 */}
-        <div className="relative w-fit max-w-full">
-          <div className="flex items-end gap-4 md:gap-8">
-            <span className="font-serif italic text-lg md:text-2xl text-foreground pb-2 md:pb-4 shrink-0">
-              2021 - 2026
-            </span>
-            <h1 className="font-serif font-bold tracking-tight text-[12.5vw] md:text-[6.5rem] lg:text-[8rem] leading-none text-foreground whitespace-nowrap">
-              PORTFOLIO
-            </h1>
-          </div>
-          <div className="h-px bg-foreground mt-1" />
+      <div
+        ref={ref}
+        className="relative mx-auto max-w-[1440px] h-[92vh] min-h-[34rem]"
+      >
+        {/* 연속 기준선: A(수평) → B(대각선) → C(수평) */}
+        <svg
+          className="absolute inset-0 w-full h-full pointer-events-none"
+          viewBox="0 0 1000 1000"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d={`M 0 ${A_Y * 1000} L ${KINK_X * 1000} ${A_Y * 1000} L ${C_X * 1000} ${C_Y * 1000} L 1000 ${C_Y * 1000}`}
+            fill="none"
+            stroke="var(--foreground)"
+            strokeWidth="1"
+            vectorEffect="non-scaling-stroke"
+          />
+        </svg>
+
+        {/* 2021 - 2026 : 상단 수평선 위 좌측 */}
+        <span className="absolute left-6 md:left-10 font-serif italic text-base md:text-xl text-foreground"
+          style={{ top: `calc(${A_Y * 100}% - 2.2rem)` }}
+        >
+          2021 - 2026
+        </span>
+
+        {/* PORTFOLIO : 우측 끝('O')이 꺾이는 지점(KINK_X)과 수직 일치 */}
+        <h1
+          className="absolute font-serif font-bold tracking-tight leading-none text-foreground whitespace-nowrap text-[13vw] md:text-[9vw]"
+          style={{
+            right: `${(1 - KINK_X) * 100}%`,
+            top: `calc(${A_Y * 100}% - 1.02em - 0.6rem)`,
+          }}
+        >
+          PORTFOLIO
+        </h1>
+
+        {/* 대각선 텍스트: 컨테이너를 회전시켜 baseline이 대각선과 평행하도록 */}
+        <div
+          className="absolute origin-top-left font-serif text-[2.4vw] md:text-[1.05vw] leading-relaxed text-foreground/85 whitespace-nowrap"
+          style={{
+            left: `${KINK_X * 100}%`,
+            top: `${A_Y * 100}%`,
+            transform: `rotate(${angle}deg) translate(1.2rem, -3.4rem)`,
+          }}
+        >
+          공감에서 출발한 기획,
+          <br />
+          서로 다른 시선을 잇는 콘텐츠로
         </div>
 
-        {/* Diagonal quote + bottom row (레퍼런스 좌표 배치 영역) */}
-        <div className="relative h-[64vw] md:h-[26rem] lg:h-[30rem]">
-          {chars.map((ch, i) => {
-            const t = chars.length > 1 ? i / (chars.length - 1) : 0;
-            const x = START.x + (END.x - START.x) * t;
-            const y = START.y + (END.y - START.y) * t;
-            return (
-              <span
-                key={i}
-                className="absolute font-serif text-[2.6vw] md:text-sm lg:text-base text-foreground/85 -translate-x-1/2 -translate-y-1/2 whitespace-pre"
-                style={{ left: `${x}%`, top: `${y}%` }}
-              >
-                {ch}
-              </span>
-            );
-          })}
+        {/* 윤지민 : 하단 수평선(C) 바로 위, 우측 정렬 */}
+        <span
+          className="absolute font-serif text-2xl md:text-4xl tracking-[0.2em] text-foreground"
+          style={{
+            right: "4%",
+            top: `calc(${C_Y * 100}% - 1.5em)`,
+          }}
+        >
+          윤지민
+        </span>
 
-          {/* 날짜 — 좌측 하단 */}
-          <span className="absolute left-0 bottom-0 font-serif text-sm md:text-base text-foreground">
-            2026.08.27.
-          </span>
+        {/* 날짜 : 좌측 하단 */}
+        <span className="absolute left-6 md:left-10 bottom-8 font-serif text-sm md:text-base text-foreground">
+          2026.08.27.
+        </span>
+      </div>
 
-          {/* 이름 — '로'가 끝나는 x 위치에서 시작하는 수평선 위에 배치 */}
-          <div
-            className="absolute bottom-0 flex flex-col items-stretch"
-            style={{ left: `${END.x + 1}%`, right: "6%" }}
-          >
-            <span className="font-serif text-xl md:text-3xl lg:text-4xl tracking-[0.25em] text-foreground text-right mb-2 md:mb-3">
-              윤 지 민
-            </span>
-            <div className="h-px bg-foreground" />
-          </div>
+      {/* CTAs */}
+      <div className="mx-auto max-w-6xl px-6 pb-14">
+        <div className="flex flex-wrap gap-3">
+          <a href="#projects" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
+            프로젝트 보기 →
+          </a>
+          <a href="#experience" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
+            경험 보기 →
+          </a>
         </div>
+      </div>
 
         {/* CTAs */}
         <div className="flex flex-wrap gap-3 mt-12">
