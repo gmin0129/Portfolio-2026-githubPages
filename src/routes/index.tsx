@@ -213,12 +213,6 @@ function Hero() {
           preserveAspectRatio="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <defs>
-            <filter id="blue-blur" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="18" />
-            </filter>
-          </defs>
-
           <path
             d={`M 0 ${A_Y * 1000} L ${KINK_X * 1000} ${A_Y * 1000} L ${C_X * 1000} ${C_Y * 1000} L 1000 ${C_Y * 1000}`}
             fill="none"
@@ -226,13 +220,25 @@ function Hero() {
             strokeWidth="1"
             vectorEffect="non-scaling-stroke"
           />
-
-          {/* 레퍼런스 원 무늬: 블러 처리된 파란 원 위에 선명한 분홍 원 */}
-          <g transform={`translate(${(KINK_X + C_X) * 500}, ${(A_Y + C_Y) * 500})`}>
-            <circle r="72" fill="var(--pop-sky)" filter="url(#blue-blur)" opacity="0.85" />
-            <circle r="30" fill="var(--pop-pink)" />
-          </g>
         </svg>
+
+        {/* 레퍼런스 원 무늬: 블러 처리된 파란 원 위에 선명한 분홍 원 */}
+        <div
+          className="absolute pointer-events-none z-10"
+          style={{
+            left: `${(KINK_X + C_X) * 50}%`,
+            top: `${(A_Y + C_Y) * 50}%`,
+            transform: "translate(-50%, -50%)",
+            width: "clamp(120px, 10vw, 160px)",
+            height: "clamp(120px, 10vw, 160px)",
+          }}
+        >
+          <div className="absolute inset-0 rounded-full bg-[var(--pop-sky)] blur-[20px] opacity-85" />
+          <div
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--pop-pink)]"
+            style={{ width: "42%", height: "42%" }}
+          />
+        </div>
 
         {/* 2021 - 2026 : 상단 수평선 위 좌측 */}
         <span
