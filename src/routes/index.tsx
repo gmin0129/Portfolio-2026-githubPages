@@ -365,10 +365,10 @@ function CareerList({ items }: { items: CareerItem[] }) {
       {items.map((c, i) => (
         <li key={c.org}>
           {i > 0 && <div className="text-sm text-foreground/50 py-2">-</div>}
-          <div className="font-medium text-foreground text-base">{c.org}</div>
-          <div className="text-sm text-[var(--ink-soft)]/80 mt-0.5">{c.period}</div>
-          {c.role && <div className="text-base text-[var(--ink-soft)] mt-0.5">{c.role}</div>}
-          {c.extra && <div className="text-base text-[var(--ink-soft)] mt-0.5">{c.extra}</div>}
+          <div className="font-medium text-foreground text-[1.15rem] whitespace-nowrap">{c.org}</div>
+          <div className="text-base text-[var(--ink-soft)]/80 mt-0.5">{c.period}</div>
+          {c.role && <div className="text-[1.15rem] text-[var(--ink-soft)] mt-0.5">{c.role}</div>}
+          {c.extra && <div className="text-[1.15rem] text-[var(--ink-soft)] mt-0.5">{c.extra}</div>}
         </li>
       ))}
     </ul>
