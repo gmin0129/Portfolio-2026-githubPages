@@ -171,37 +171,15 @@ function Header() {
 
 function Hero() {
   // 하나의 연속된 SVG path: 수평(A) → 대각선(B) → 수평(C)
-  // 좌표는 컨테이너 비율 기준 (fraction), 렌더 후 실제 px 각도로 대각선 텍스트 회전
-  const ref = React.useRef<HTMLDivElement>(null);
-  const [angle, setAngle] = React.useState(0);
-
   // 기하학적 기준점 (0~1 비율 좌표)
-  const A_Y = 0.24; // 상단 수평선 y
-  const KINK_X = 0.58; // 수평선이 꺾이는 x (PORTFOLIO의 'O' 끝과 수직 일치)
-  const C_X = 0.74; // 대각선이 끝나고 다시 수평이 되는 x
-  const C_Y = 0.82; // 하단 수평선 y
-
-  React.useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const update = () => {
-      const r = el.getBoundingClientRect();
-      const dx = (C_X - KINK_X) * r.width;
-      const dy = (C_Y - A_Y) * r.height;
-      setAngle((Math.atan2(dy, dx) * 180) / Math.PI);
-    };
-    update();
-    const ro = new ResizeObserver(update);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
+  const A_Y = 0.2; // 상단 수평선 y
+  const KINK_X = 0.56; // 수평선이 꺾이는 x (PORTFOLIO의 'O' 끝과 수직 일치)
+  const C_X = 0.76; // 대각선이 끝나고 다시 수평이 되는 x
+  const C_Y = 0.86; // 하단 수평선 y
 
   return (
     <section id="top" className="relative overflow-hidden bg-background">
-      <div
-        ref={ref}
-        className="relative mx-auto max-w-[1440px] h-[92vh] min-h-[34rem]"
-      >
+      <div className="relative mx-auto max-w-[1440px] h-[92vh] min-h-[34rem]">
         {/* 연속 기준선: A(수평) → B(대각선) → C(수평) */}
         <svg
           className="absolute inset-0 w-full h-full pointer-events-none"
@@ -219,30 +197,35 @@ function Hero() {
         </svg>
 
         {/* 2021 - 2026 : 상단 수평선 위 좌측 */}
-        <span className="absolute left-6 md:left-10 font-serif italic text-base md:text-xl text-foreground"
-          style={{ top: `calc(${A_Y * 100}% - 2.2rem)` }}
+        <span
+          className="absolute left-6 md:left-10 font-serif italic text-foreground"
+          style={{
+            top: `calc(${A_Y * 100}% - 2.4rem)`,
+            fontSize: "clamp(0.9rem, 1.4vw, 1.25rem)",
+          }}
         >
           2021 - 2026
         </span>
 
         {/* PORTFOLIO : 우측 끝('O')이 꺾이는 지점(KINK_X)과 수직 일치 */}
         <h1
-          className="absolute font-serif font-bold tracking-tight leading-none text-foreground whitespace-nowrap text-[11vw] md:text-[6.2vw]"
+          className="absolute font-serif font-bold tracking-tight leading-none text-foreground whitespace-nowrap"
           style={{
             right: `${(1 - KINK_X) * 100}%`,
             top: `calc(${A_Y * 100}% - 1.02em - 0.6rem)`,
+            fontSize: "clamp(2.75rem, 7vw, 6.5rem)",
           }}
         >
           PORTFOLIO
         </h1>
 
-        {/* 대각선 텍스트: 컨테이너를 회전시켜 baseline이 대각선과 평행하도록 */}
+        {/* 메인 카피 : 수평 정렬, 대각선 좌측의 넓은 여백을 채우도록 배치 */}
         <div
-          className="absolute origin-top-left font-serif text-[2.4vw] md:text-[1.05vw] leading-[1.9] tracking-[0.12em] text-foreground/85 whitespace-nowrap"
+          className="absolute font-serif text-foreground/85 leading-[1.6] tracking-[0.06em] whitespace-nowrap"
           style={{
-            left: `${KINK_X * 100}%`,
-            top: `${A_Y * 100}%`,
-            transform: `rotate(${angle}deg) translate(1.6rem, -3rem)`,
+            left: "6%",
+            top: "38%",
+            fontSize: "clamp(1.25rem, 2.2vw, 2rem)",
           }}
         >
           공감에서 출발한 기획,
@@ -250,19 +233,24 @@ function Hero() {
           서로 다른 시선을 잇는 콘텐츠로
         </div>
 
-        {/* 윤지민 : 하단 수평선(C) 바로 위, 우측 정렬 */}
+        {/* 윤지민 : 하단 수평선(C) 바로 위, 넓은 자간으로 좌측으로 당겨 배치 */}
         <span
-          className="absolute font-serif text-xl md:text-3xl tracking-[0.35em] text-foreground"
+          className="absolute font-serif font-light text-foreground whitespace-nowrap"
           style={{
-            right: "4%",
-            top: `calc(${C_Y * 100}% - 1.5em)`,
+            right: "10%",
+            top: `calc(${C_Y * 100}% - 1.6em)`,
+            fontSize: "clamp(1.1rem, 2vw, 1.75rem)",
+            letterSpacing: "1.5em",
           }}
         >
           윤지민
         </span>
 
         {/* 날짜 : 좌측 하단 */}
-        <span className="absolute left-6 md:left-10 bottom-8 font-serif text-sm md:text-base text-foreground">
+        <span
+          className="absolute left-6 md:left-10 bottom-8 font-serif text-foreground"
+          style={{ fontSize: "clamp(0.8rem, 1vw, 1rem)" }}
+        >
           2026.08.29.
         </span>
       </div>
