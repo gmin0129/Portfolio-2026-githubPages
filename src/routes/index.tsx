@@ -343,12 +343,13 @@ function Divider() {
   return <div className="border-t border-foreground/25 my-6" />;
 }
 
+/* Projects 페이지 타일(tile-1~6)의 파스텔 조합을 참고한 알록달록 하이라이트 */
 const HEADING_ACCENTS = [
-  "linear-gradient(120deg, rgba(255,183,140,0.6), rgba(255,214,180,0.4))",
-  "linear-gradient(120deg, rgba(168,216,255,0.6), rgba(200,235,255,0.4))",
-  "linear-gradient(120deg, rgba(190,235,170,0.6), rgba(220,248,200,0.4))",
-  "linear-gradient(120deg, rgba(255,178,214,0.6), rgba(255,214,235,0.4))",
-  "linear-gradient(120deg, rgba(207,186,255,0.6), rgba(228,214,255,0.4))",
+  "linear-gradient(120deg, var(--pop-peach) 0%, var(--pop-pink) 55%, var(--pop-yellow) 110%)",
+  "linear-gradient(120deg, var(--pop-sky) 0%, var(--pop-lime) 60%, var(--pop-mint) 110%)",
+  "linear-gradient(120deg, var(--pop-coral) 0%, var(--pop-orange) 55%, var(--pop-peach) 110%)",
+  "linear-gradient(120deg, var(--pop-lavender) 0%, var(--pop-pink) 55%, var(--pop-magenta) 110%)",
+  "linear-gradient(120deg, var(--pop-lime) 0%, var(--pop-sky) 60%, var(--pop-mint) 110%)",
 ];
 
 function SubHeading({ idx, children }: { idx: number; children: React.ReactNode }) {
@@ -379,19 +380,19 @@ function Education() {
                 className="flex-1 min-w-0 aspect-[5/6] object-cover rounded-2xl"
               />
               <span
-                className="font-serif text-2xl md:text-[1.75rem] text-foreground leading-none"
+                className="font-serif text-lg md:text-xl text-foreground leading-none"
                 style={{ writingMode: "vertical-rl", letterSpacing: "0.12em" }}
               >
                 안녕하세요, 윤지민입니다
               </span>
             </div>
-            <p className="mt-5 font-serif text-sm md:text-[15px] font-medium text-foreground leading-relaxed">
+            <p className="mt-5 font-serif text-base md:text-lg font-bold text-foreground leading-relaxed">
               자신감과 소신을 잃지 않으면서도,
               <br />
-              <span className="whitespace-nowrap">타인과 화합할 줄 아는 사람으로 성장했습니다.</span>
+              <span className="block whitespace-nowrap text-right">타인과 화합할 줄 아는 사람으로 성장했습니다.</span>
             </p>
             <Divider />
-            <div className="my-4 space-y-1.5 text-xs text-foreground">
+            <div className="my-4 space-y-1.5 text-sm text-foreground">
               <div>🎂 2002.01.29. (24세)</div>
               <div>✉️ yunjimin0129@naver.com</div>
               <div>📞 010-4234-5652</div>
