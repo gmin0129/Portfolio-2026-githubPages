@@ -1,11 +1,62 @@
 import type { SheetField } from "@/lib/sheets.functions";
 
-/** Splits a sheet cell into list items, stripping any leading hyphen/bullet marks. */
-export function toItems(value: string): string[] {
-  return value
-    .split("\n")
-    .map((line) => line.replace(/^[\s\-–—•*]+/, "").trim())
-    .filter(Boolean);
+export type RichSegment = { text: string; bold: boolean };
+export type RichItem = { text: string; segs: RichSegment[] };
+
+/**
+ * Splits a sheet cell into list items, stripping any leading hyphen/bullet
+ * marks, and maps the cell's bold format runs onto each item.
+ */
+export function toRichItems(field: SheetField): RichItem[] {
+  const { value, runs } = field;
+  const boldMap = new Array<boolean>(value.length).fill(false);
+  if (runs) {
+    for (let i = 0; i < runs.length; i++) {
+      if (!runs[i].format?.bold) continue;
+      const start = runs[i].startIndex ?? 0;
+      const next = i + 1 < runs.length ? (runs[i + 1].startIndex ?? value.length) : value.length;
+      for (let j = start; j < next && j < value.length; j++) boldMap[j] = true;
+    }
+  }
+
+  const items: RichItem[] = [];
+  let offset = 0;
+  for (const rawLine of value.split("\n")) {
+    const line = rawLine.replace(/^[\s\-–—•*]+/, "");
+    const start = offset + (rawLine.length - line.length);
+    const text = line.trim();
+    offset += rawLine.length + 1;
+    if (!text) continue;
+
+    const segs: RichSegment[] = [];
+    for (let i = 0; i < text.length; i++) {
+      const bold = boldMap[start + i] ?? false;
+      const last = segs[segs.length - 1];
+      if (last && last.bold === bold) last.text += text[i];
+      else segs.push({ text: text[i], bold });
+    }
+    items.push({ text, segs });
+  }
+  return items;
+}
+
+function ItemText({ item }: { item: RichItem }) {
+  if (!item.segs.some((s) => s.bold)) {
+    return <span className="whitespace-pre-line">{item.text}</span>;
+  }
+  return (
+    <span className="whitespace-pre-line">
+      {item.segs.map((s, i) =>
+        s.bold ? (
+          <strong key={i} className="font-bold text-[var(--ink)]">
+            {s.text}
+          </strong>
+        ) : (
+          <span key={i}>{s.text}</span>
+        ),
+      )}
+    </span>
+  );
 }
 
 export function Bullet({ marker }: { marker: "arrow" | "diamond" }) {
@@ -73,10 +124,10 @@ export function SheetRow({
                 {f.label}
               </div>
               <ul className="mt-2 space-y-2 text-[var(--ink-soft)] leading-relaxed text-[0.95rem]">
-                {toItems(f.value).map((item, i) => (
+                {toRichItems(f).map((item, i) => (
                   <li key={`${f.label}-${i}`} className="flex items-start gap-3">
-                    {!hideBulletsFor?.includes(item) && <Bullet marker={marker} />}
-                    <span className="whitespace-pre-line">{item}</span>
+                    {!hideBulletsFor?.includes(item.text) && <Bullet marker={marker} />}
+                    <ItemText item={item} />
                   </li>
                 ))}
               </ul>
@@ -103,10 +154,10 @@ export function SheetRow({
                 {f.label}
               </div>
               <ul className="mt-2 space-y-2 text-[var(--ink-soft)] leading-relaxed text-[0.95rem]">
-                {toItems(f.value).map((item, i) => (
+                {toRichItems(f).map((item, i) => (
                   <li key={`${f.label}-${i}`} className="flex items-start gap-3">
-                    {!hideBulletsFor?.includes(item) && <Bullet marker={marker} />}
-                    <span className="whitespace-pre-line">{item}</span>
+                    {!hideBulletsFor?.includes(item.text) && <Bullet marker={marker} />}
+                    <ItemText item={item} />
                   </li>
                 ))}
               </ul>
@@ -137,13 +188,13 @@ export function SheetRow({
                 {f.label}
               </div>
               <ul className="text-[var(--ink-soft)] leading-relaxed text-[0.95rem] md:columns-2 md:gap-8">
-                {toItems(f.value).map((item, i) => (
+                {toRichItems(f).map((item, i) => (
                   <li
                     key={`${f.label}-${i}`}
                     className="flex items-start gap-3 [break-inside:avoid] mb-4"
                   >
-                    {!hideBulletsFor?.includes(item) && <Bullet marker={marker} />}
-                    <span className="whitespace-pre-line">{item}</span>
+                    {!hideBulletsFor?.includes(item.text) && <Bullet marker={marker} />}
+                    <ItemText item={item} />
                   </li>
                 ))}
               </ul>
@@ -158,10 +209,10 @@ export function SheetRow({
                 {f.label}
               </div>
               <ul className="mt-2 space-y-2 text-[var(--ink-soft)] leading-relaxed text-[0.95rem]">
-                {toItems(f.value).map((item, i) => (
+                {toRichItems(f).map((item, i) => (
                   <li key={`${f.label}-${i}`} className="flex items-start gap-3">
-                    {!hideBulletsFor?.includes(item) && <Bullet marker={marker} />}
-                    <span className="whitespace-pre-line">{item}</span>
+                    {!hideBulletsFor?.includes(item.text) && <Bullet marker={marker} />}
+                    <ItemText item={item} />
                   </li>
                 ))}
               </ul>
