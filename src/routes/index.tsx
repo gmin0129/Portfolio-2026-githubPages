@@ -322,27 +322,31 @@ function Divider() {
   return <div className="border-t border-foreground/25 my-6" />;
 }
 
-/* Projects 페이지 타일(tile-1~6)의 파스텔 조합을 참고한 알록달록 하이라이트 */
+/* Projects 페이지 타일(tile-1~6)의 파스텔 조합 — 투명도를 넣어 부드럽게 */
 const HEADING_ACCENTS = [
-  "linear-gradient(120deg, var(--pop-peach) 0%, var(--pop-pink) 55%, var(--pop-yellow) 110%)",
-  "linear-gradient(120deg, var(--pop-sky) 0%, var(--pop-lime) 60%, var(--pop-mint) 110%)",
-  "linear-gradient(120deg, var(--pop-coral) 0%, var(--pop-orange) 55%, var(--pop-peach) 110%)",
-  "linear-gradient(120deg, var(--pop-lavender) 0%, var(--pop-pink) 55%, var(--pop-magenta) 110%)",
-  "linear-gradient(120deg, var(--pop-lime) 0%, var(--pop-sky) 60%, var(--pop-mint) 110%)",
+  "linear-gradient(120deg, color-mix(in oklch, var(--pop-peach) 62%, transparent) 0%, color-mix(in oklch, var(--pop-pink) 58%, transparent) 55%, color-mix(in oklch, var(--pop-yellow) 55%, transparent) 110%)",
+  "linear-gradient(120deg, color-mix(in oklch, var(--pop-sky) 58%, transparent) 0%, color-mix(in oklch, var(--pop-lime) 55%, transparent) 60%, color-mix(in oklch, var(--pop-mint) 55%, transparent) 110%)",
+  "linear-gradient(120deg, color-mix(in oklch, var(--pop-coral) 55%, transparent) 0%, color-mix(in oklch, var(--pop-orange) 52%, transparent) 55%, color-mix(in oklch, var(--pop-peach) 55%, transparent) 110%)",
+  "linear-gradient(120deg, color-mix(in oklch, var(--pop-lavender) 58%, transparent) 0%, color-mix(in oklch, var(--pop-pink) 55%, transparent) 55%, color-mix(in oklch, var(--pop-magenta) 50%, transparent) 110%)",
+  "linear-gradient(120deg, color-mix(in oklch, var(--pop-lime) 55%, transparent) 0%, color-mix(in oklch, var(--pop-sky) 55%, transparent) 60%, color-mix(in oklch, var(--pop-mint) 55%, transparent) 110%)",
 ];
 
 function SubHeading({ idx, children }: { idx: number; children: React.ReactNode }) {
   return (
-    <h3 className="font-serif text-xl font-bold mb-4">
-      <span
-        className="inline-block px-2 py-0.5 rounded-md"
-        style={{ background: HEADING_ACCENTS[idx % HEADING_ACCENTS.length] }}
-      >
-        {children}
+    <h3 className="font-serif text-lg sm:text-xl font-bold mb-4">
+      <span className="relative inline-block px-2.5 py-0.5">
+        {/* 부드러운 하이라이트 : 흐린 테두리 + 투명도 */}
+        <span
+          aria-hidden
+          className="absolute inset-0 rounded-xl blur-[5px] opacity-90"
+          style={{ background: HEADING_ACCENTS[idx % HEADING_ACCENTS.length] }}
+        />
+        <span className="relative text-foreground">{children}</span>
       </span>
     </h3>
   );
 }
+
 
 function Education() {
   return (
