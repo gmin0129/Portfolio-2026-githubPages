@@ -247,24 +247,25 @@ function Hero() {
           윤지민
         </span>
 
-        {/* 날짜 : 좌측 하단 */}
-        <span
-          className="absolute left-6 md:left-10 bottom-8 font-serif text-foreground"
-          style={{ fontSize: "clamp(0.8rem, 1vw, 1rem)" }}
+        {/* 날짜 + CTAs : 하단이 '윤지민' 밑줄(C 라인)과 평행하도록 정렬 */}
+        <div
+          className="absolute left-6 flex flex-col items-start gap-5"
+          style={{ top: `calc(${C_Y * 100}% - 1px)`, transform: "translateY(-100%)" }}
         >
-          2026.08.29.
-        </span>
-      </div>
-
-      {/* CTAs */}
-      <div className="mx-auto max-w-6xl px-6 pb-14">
-        <div className="flex flex-wrap gap-3">
-          <a href="#projects" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
-            프로젝트 보기 →
-          </a>
-          <a href="#experience" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
-            경험 보기 →
-          </a>
+          <span
+            className="font-serif text-foreground"
+            style={{ fontSize: "clamp(0.9rem, 1.4vw, 1.25rem)" }}
+          >
+            2026.08.29.
+          </span>
+          <div className="flex flex-wrap gap-3">
+            <a href="#projects" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
+              프로젝트 보기 →
+            </a>
+            <a href="#experience" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
+              경험 보기 →
+            </a>
+          </div>
         </div>
       </div>
     </section>
