@@ -491,11 +491,11 @@ function Projects() {
                 >
                   {String(i + 1).padStart(2, "0")}
                 </div>
-                <h3 className="font-serif text-xl md:text-2xl mt-1 leading-tight text-foreground whitespace-pre-line">
+                <h3 className="font-serif text-xl md:text-2xl mt-1 leading-tight text-foreground whitespace-pre-line break-keep">
                   {p.title}
                   <span className="inline-block ml-2 opacity-0 group-hover:opacity-100 transition-opacity text-foreground">→</span>
                 </h3>
-                <p className="text-sm text-foreground/75 mt-1">{p.sub}</p>
+                <p className="text-sm text-foreground/75 mt-1 whitespace-nowrap">{p.sub}</p>
                 <div className="mt-4 text-xs text-foreground/80 space-y-1">
                   <div><span className="uppercase tracking-widest text-[10px] text-foreground/60 mr-2">기여</span>{p.contribution}</div>
                   <div><span className="uppercase tracking-widest text-[10px] text-foreground/60 mr-2">기간</span>{p.period}</div>

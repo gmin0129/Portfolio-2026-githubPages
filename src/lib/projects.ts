@@ -17,7 +17,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "daljjanheun-haru",
     title: "<달찮은 하루> 전시회",
-    sub: "노들갤러리 1관, 서울대학교 관정갤러리",
+    sub: "장애예술인 에이전시 에이블라인드",
     period: "2025.08.04 — 2025.09.26",
     contribution: "전시 기획 및 운영, 작가 매니징, 데이터 아카이빙",
     linkUrl: "https://litt.ly/dalchaneun_haru",
@@ -138,7 +138,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "urisigak",
     title: "<우리시각> 발달장애 예술가 육성사업",
-    sub: "에이블라인드 · 프로젝트 매니저(현장실습)",
+    sub: "장애예술인 에이전시 에이블라인드",
     period: "2025.08 — 2025.11",
     contribution: "멘토링 모니터링, 집체교육·워크숍 기획 및 운영",
     tags: ["#현장운영", "#이해관계자소통", "#모니터링"],
@@ -197,11 +197,11 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "ssu-tutoring",
-    title: "숭실 튜터링 (기초독일어 튜터)",
-    sub: "숭실 튜터링 · 튜터",
+    title: "숭실 튜터링 (기초독일어)",
+    sub: "숭실대 독어독문학과 전공기초과목 튜터",
     period: "2025.03 — 2025.06",
     contribution: "커리큘럼 보완, 학습자료 제작, 성취도 분석",
-    tags: ["#교육기획", "#데이터분석", "#AI활용"],
+    tags: ["#교육기획", "#학습자데이터분석", "#AI활용"],
     skills: "Gemini · ChatGPT · Zoom · Word",
     overview:
       "중도 포기율이 높은 독일어입문 수업의 학습자들을 위해 니즈 진단 설문을 바탕으로 실용 중심 튜터링 커리큘럼을 설계했습니다.",
