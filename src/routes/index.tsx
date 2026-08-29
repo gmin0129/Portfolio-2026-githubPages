@@ -540,7 +540,7 @@ function Projects() {
 
 function Experience() {
   return (
-    <section id="experience" className="mx-auto max-w-6xl px-6 py-24">
+    <section id="experience" className="mx-auto w-full max-w-[1600px] px-6 py-24">
       <SectionHeader num="03 —" title="Experiences" />
       <div className="grid md:grid-cols-2 gap-8">
         {EXPERIENCES.map((e, i) => (
@@ -548,7 +548,7 @@ function Experience() {
             key={e.slug}
             to="/experiences/$slug"
             params={{ slug: e.slug }}
-            className={`group relative ${TILES[(i + 2) % TILES.length]} ${SHAPES[(i + 1) % SHAPES.length]} ${ROTATIONS[(i + 1) % ROTATIONS.length]} card-pop p-8 overflow-hidden cursor-pointer animate-galaxy-pulse`}
+            className={`group relative ${TILES[(i + 2) % TILES.length]} ${SHAPES[(i + 1) % SHAPES.length]} ${ROTATIONS[(i + 1) % ROTATIONS.length]} card-pop p-8 overflow-hidden cursor-pointer animate-galaxy-pulse${i === 2 ? " md:col-span-full md:justify-self-center md:w-[calc(50%-1rem)]" : ""}`}
           >
             <div className="absolute inset-0 grain opacity-30 pointer-events-none" />
             <div className="relative">
