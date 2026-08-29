@@ -192,20 +192,21 @@ function Header() {
   );
 }
 
-/* 배경 그래픽 : 서로 겹치는 원들과 교차선, 교차점마다 컬러 도트
+/* 배경 그래픽 : 다양한 색상의 직선들이 서로 교차하며, 교차점마다 컬러 도트
    — "서로 다른 시선을 잇는" 문구의 시각적 은유 */
 function IntersectionField() {
-  const CIRCLES = [
-    { x: 90, y: 120, r: 170 },
-    { x: 300, y: 60, r: 200 },
-    { x: 520, y: 210, r: 230 },
-    { x: 800, y: 90, r: 190 },
-    { x: 960, y: 300, r: 210 },
-    { x: 180, y: 430, r: 220 },
-    { x: 430, y: 560, r: 240 },
-    { x: 720, y: 500, r: 200 },
-    { x: 950, y: 620, r: 180 },
-    { x: 60, y: 660, r: 190 },
+  // 컬러 직선들 (viewBox 1000x720, canvas를 끝까지 관통하는 선분)
+  const LINES = [
+    { x1: -40, y1: 140, x2: 1040, y2: 40, c: "var(--pop-coral)" },
+    { x1: -40, y1: 300, x2: 1040, y2: 720, c: "var(--pop-sky)" },
+    { x1: 180, y1: -40, x2: 620, y2: 760, c: "var(--pop-lime)" },
+    { x1: 560, y1: -40, x2: 1000, y2: 500, c: "var(--pop-magenta)" },
+    { x1: -40, y1: 560, x2: 1040, y2: 200, c: "var(--pop-yellow)" },
+    { x1: 820, y1: -40, x2: 320, y2: 760, c: "var(--pop-purple)" },
+    { x1: -40, y1: 420, x2: 700, y2: -40, c: "var(--pop-mint)" },
+    { x1: 340, y1: 760, x2: 1040, y2: 640, c: "var(--pop-orange)" },
+    { x1: 60, y1: -40, x2: 200, y2: 760, c: "var(--pop-pink)" },
+    { x1: 1040, y1: 380, x2: 520, y2: 760, c: "var(--pop-lavender)" },
   ];
   const DOT_COLORS = [
     "var(--pop-coral)", "var(--pop-sky)", "var(--pop-lime)", "var(--pop-magenta)",
@@ -213,28 +214,25 @@ function IntersectionField() {
     "var(--pop-pink)", "var(--pop-lavender)",
   ];
 
-  // 두 원의 교차점 계산
+  // 두 직선(선분)의 교차점 계산
   const dots: { x: number; y: number; c: string }[] = [];
   let k = 0;
-  for (let i = 0; i < CIRCLES.length; i++) {
-    for (let j = i + 1; j < CIRCLES.length; j++) {
-      const a = CIRCLES[i], b = CIRCLES[j];
-      const dx = b.x - a.x, dy = b.y - a.y;
-      const d = Math.hypot(dx, dy);
-      if (d > a.r + b.r || d < Math.abs(a.r - b.r) || d === 0) continue;
-      const t = (a.r * a.r - b.r * b.r + d * d) / (2 * d);
-      const h2 = a.r * a.r - t * t;
-      if (h2 < 0) continue;
-      const h = Math.sqrt(h2);
-      const mx = a.x + (t * dx) / d, my = a.y + (t * dy) / d;
-      const ox = (-dy * h) / d, oy = (dx * h) / d;
+  for (let i = 0; i < LINES.length; i++) {
+    for (let j = i + 1; j < LINES.length; j++) {
+      const a = LINES[i], b = LINES[j];
+      const d1x = a.x2 - a.x1, d1y = a.y2 - a.y1;
+      const d2x = b.x2 - b.x1, d2y = b.y2 - b.y1;
+      const denom = d1x * d2y - d1y * d2x;
+      if (Math.abs(denom) < 1e-6) continue; // 평행선
+      const t = ((b.x1 - a.x1) * d2y - (b.y1 - a.y1) * d2x) / denom;
+      const u = ((b.x1 - a.x1) * d1y - (b.y1 - a.y1) * d1x) / denom;
+      if (t < 0 || t > 1 || u < 0 || u > 1) continue; // 선분 밖 교차 제외
+      const px = a.x1 + t * d1x, py = a.y1 + t * d1y;
+      if (px < -10 || px > 1010 || py < -10 || py > 730) continue;
       // 카피 텍스트 영역과 겹치는 도트는 제외 (가독성)
-      const inText = (px: number, py: number) => px < 700 && py > 230 && py < 330;
-      const p1 = { x: mx + ox, y: my + oy };
-      const p2 = { x: mx - ox, y: my - oy };
-      if (!inText(p1.x, p1.y)) dots.push({ ...p1, c: DOT_COLORS[k++ % DOT_COLORS.length] });
-      if (!inText(p2.x, p2.y)) dots.push({ ...p2, c: DOT_COLORS[k++ % DOT_COLORS.length] });
-
+      const inText = px < 700 && py > 230 && py < 330;
+      if (inText) continue;
+      dots.push({ x: px, y: py, c: DOT_COLORS[k++ % DOT_COLORS.length] });
     }
   }
 
@@ -246,14 +244,17 @@ function IntersectionField() {
       preserveAspectRatio="xMidYMid slice"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g fill="none" stroke="var(--foreground)" strokeOpacity="0.28" strokeWidth="0.9">
-        {CIRCLES.map((c, i) => (
-          <circle key={`c${i}`} cx={c.x} cy={c.y} r={c.r} vectorEffect="non-scaling-stroke" />
+      <g strokeWidth="1.1" strokeOpacity="0.55" fill="none">
+        {LINES.map((l, i) => (
+          <line key={`l${i}`} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2} stroke={l.c} vectorEffect="non-scaling-stroke" />
         ))}
       </g>
       <g>
         {dots.map((d, i) => (
-          <circle key={`d${i}`} cx={d.x} cy={d.y} r="6.5" fill={d.c} opacity="0.9" />
+          <g key={`d${i}`}>
+            <circle cx={d.x} cy={d.y} r="9.5" fill="var(--background)" stroke="var(--foreground)" strokeOpacity="0.55" strokeWidth="0.9" vectorEffect="non-scaling-stroke" />
+            <circle cx={d.x} cy={d.y} r="5" fill={d.c} opacity="0.95" />
+          </g>
         ))}
       </g>
     </svg>
