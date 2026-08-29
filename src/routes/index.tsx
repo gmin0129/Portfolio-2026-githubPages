@@ -329,8 +329,8 @@ function SectionHeader({ num, title }: { num: string; title: string }) {
 }
 
 
-function Divider() {
-  return <div className="border-t border-foreground/25 my-6" />;
+function Divider({ className = "" }: { className?: string }) {
+  return <div className={`border-t border-foreground/25 my-6 ${className}`} />;
 }
 
 /* Projects 페이지 타일(tile-1~6)의 파스텔 조합 — 투명도를 넣어 부드럽게 */
