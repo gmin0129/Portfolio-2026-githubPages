@@ -259,12 +259,12 @@ function Hero() {
 
         {/* 윤지민 : 하단 수평선(C) 바로 위, 넓은 자간으로 좌측으로 당겨 배치 */}
         <span
-          className="absolute font-serif font-light text-foreground whitespace-nowrap"
+          className="absolute font-serif font-light italic text-foreground whitespace-nowrap"
           style={{
             right: "10%",
             top: `calc(${C_Y * 100}% - 1.6em)`,
-            fontSize: "clamp(1.1rem, 2vw, 1.75rem)",
-            letterSpacing: "1.5em",
+            fontSize: "clamp(1.9rem, 3.3vw, 3rem)",
+            letterSpacing: "0.6em",
           }}
         >
           윤지민
