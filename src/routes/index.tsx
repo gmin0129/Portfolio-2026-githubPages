@@ -26,19 +26,12 @@ const NAV = [
 
 const EDUCATION = [
   {
-    school: "전남외국어고등학교",
-    detail: "독일어과",
-    period: "2018.03. - 2021.02. (졸업)",
-  },
-  {
-    school: "숭실대학교",
-    detail: "독어독문학과 / 언론홍보학과",
+    school: "숭실대학교 독어독문학과 / 언론홍보학과",
     period: "2021.03. - 2026.02 (졸업)",
   },
   {
-    school: "FHWien der WKW, 오스트리아",
-    detail: "교환학생",
-    period: "2024.02. - 2024.07.",
+    school: "전남외국어고등학교 독일어과",
+    period: "2018.03. - 2021.02. (졸업)",
   },
 ];
 
@@ -64,9 +57,24 @@ const CAREER = [
     role: "고객응대, 재원생 데이터 관리, 사무보조",
   },
   {
-    org: "주식회사 에이블라인드",
+    org: "FHWien der WKW, 오스트리아",
+    period: "2024.02. - 2024.07.",
+    role: "비엔나 교환학생, 인플루언서 마케팅 수강",
+  },
+  {
+    org: "숭실대학교 초등영어캠프 엔허브",
+    period: "2025.01.06 - 30.",
+    role: "원어민 수업 보조강사, 학생 안전관리",
+  },
+  {
+    org: "숭실대학교 교수학습혁신센터 ‘숭실튜터링’",
+    period: "2025.03. - 2025.06.",
+    role: "독어독문학과 ‘기초독회화’ 튜터 참여",
+  },
+  {
+    org: "주식회사 에이블라인드 (인턴)",
     period: "2025.08. - 2025.12.",
-    role: "전시회 기획/운영, SNS 운영, 행사운영",
+    role: "전시회 기획/운영, SNS 관리, 행사운영",
   },
   {
     org: "코멘토 X 숭실대 진로취업센터",
@@ -84,9 +92,10 @@ const PROGRAMS = [
 ];
 
 const CERTS = [
-  "ADsP (데이터분석 준전문가)",
-  "TOEIC 905점",
-  "Zertifikat Deutsch B1 (일상회화 가능)",
+  { title: "ADsP (데이터분석 준전문가)", period: "2026.06." },
+  { title: "영어 : TOEIC 905점", period: "2026.03." },
+  { title: "숭실튜터링 - 우수튜터상", period: "2025.08." },
+  { title: "독일어 : Zertifikat Deutsch B1 (일상회화 가능)", period: "2023.01." },
 ];
 
 const ACTIVITIES = [
@@ -97,8 +106,7 @@ const ACTIVITIES = [
   },
   {
     title: "서울시자원봉사센터 현직자 연계 진로 멘토링 '청춘잡담'",
-    period: "2026.07.",
-    desc: "",
+    period: "2026.07.07. - 28.",
     extra: "S-OIL 'HRD' 직무 멘토링 1,2차 참여",
   },
 ];
@@ -341,7 +349,7 @@ function Education() {
       <div className="mx-auto max-w-6xl px-6 py-12 md:py-16">
         <SectionHeader num="01 —" kicker="Education & Career" title="About" />
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10">
-          {/* Column 1 : 사진 + 인사말 + 교육 */}
+          {/* Column 1 : 사진 + 인사말 + 학력 */}
           <div>
             <div className="flex items-start gap-4">
               <img
@@ -363,36 +371,37 @@ function Education() {
             </p>
             <Divider />
             <div>
-              <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-coral">교육</span></h3>
+              <h3 className="font-serif text-xl mb-4">[ 학 력 ]</h3>
               <ul className="space-y-3">
                 {EDUCATION.map((e) => (
                   <li key={e.school}>
                     <div className="font-medium text-foreground text-sm">{e.school}</div>
                     <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{e.period}</div>
-                    <div className="text-sm text-[var(--ink-soft)] mt-0.5">{e.detail}</div>
                   </li>
                 ))}
               </ul>
             </div>
           </div>
 
-          {/* Column 2 : 실무경험(1~3) + 프로그램 활용능력 */}
+          {/* Column 2 : 경력/경험/교육 */}
+          <div>
+            <h3 className="font-serif text-xl mb-4">[ 경력/경험/교육 ]</h3>
+            <ul>
+              {CAREER.map((c, i) => (
+                <li key={c.org}>
+                  {i > 0 && <div className="text-xs text-foreground/50 py-2">-</div>}
+                  <div className="font-medium text-foreground text-sm">{c.org}</div>
+                  <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{c.period}</div>
+                  <div className="text-sm text-[var(--ink-soft)] mt-0.5">{c.role}</div>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 3 : 프로그램 활용능력 + 대외활동 + 자격증/어학/수상 */}
           <div>
             <div>
-              <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-lavender">실무경험</span></h3>
-              <ul className="space-y-3">
-                {CAREER.slice(0, 3).map((c) => (
-                  <li key={c.org}>
-                    <div className="font-medium text-foreground text-sm">{c.org}</div>
-                    <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{c.period}</div>
-                    <div className="text-sm text-[var(--ink-soft)] mt-0.5">{c.role}</div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <Divider />
-            <div>
-              <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-lime">프로그램 활용능력</span></h3>
+              <h3 className="font-serif text-xl mb-4">[ 프로그램 활용능력 ]</h3>
               <ul className="space-y-2.5">
                 {PROGRAMS.map((p) => (
                   <li key={p.group} className="text-sm leading-snug flex gap-2">
@@ -405,41 +414,32 @@ function Education() {
                 ))}
               </ul>
             </div>
-          </div>
-
-          {/* Column 3 : 실무경험(4~6) + 대외활동 + 자격증 & 어학 */}
-          <div>
-            <ul className="space-y-3">
-              {CAREER.slice(3).map((c) => (
-                <li key={c.org}>
-                  <div className="font-medium text-foreground text-sm">{c.org}</div>
-                  <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{c.period}</div>
-                  <div className="text-sm text-[var(--ink-soft)] mt-0.5">{c.role}</div>
-                </li>
-              ))}
-            </ul>
             <Divider />
             <div>
-              <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-coral">대외활동</span></h3>
-              <ul className="space-y-3">
-                {ACTIVITIES.map((a) => (
+              <h3 className="font-serif text-xl mb-4">[ 대 외 활 동 ]</h3>
+              <ul>
+                {ACTIVITIES.map((a, i) => (
                   <li key={a.title}>
+                    {i > 0 && <div className="text-xs text-foreground/50 py-2">-</div>}
                     <div className="font-medium text-foreground text-sm">{a.title}</div>
                     {a.period && <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{a.period}</div>}
-                    {a.extra && <div className="text-sm text-[var(--ink-soft)] mt-0.5">{a.extra}</div>}
                     {a.desc && <div className="text-sm text-[var(--ink-soft)] mt-0.5">{a.desc}</div>}
+                    {a.extra && <div className="text-sm text-[var(--ink-soft)] mt-0.5">{a.extra}</div>}
                   </li>
                 ))}
               </ul>
             </div>
             <Divider />
             <div>
-              <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-sky">자격증 & 어학</span></h3>
+              <h3 className="font-serif text-xl mb-4">[ 자격증/어학/수상 ]</h3>
               <ul className="space-y-2.5">
                 {CERTS.map((c) => (
-                  <li key={c} className="text-sm leading-snug flex gap-2">
+                  <li key={c.title} className="text-sm leading-snug flex gap-2">
                     <span className="text-foreground">•</span>
-                    <span className="font-medium text-foreground">{c}</span>
+                    <div>
+                      <div className="font-medium text-foreground">{c.title}</div>
+                      <div className="text-[var(--ink-soft)] mt-0.5">{c.period}</div>
+                    </div>
                   </li>
                 ))}
               </ul>
