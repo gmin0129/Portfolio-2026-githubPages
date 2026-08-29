@@ -35,7 +35,38 @@ const EDUCATION = [
   },
 ];
 
-const CAREER = [
+type CareerItem = { org: string; period: string; role?: string; extra?: string };
+
+/* 경력 — 레퍼런스 2열 상단 */
+const CAREER_LIST: CareerItem[] = [
+  {
+    org: "DYB최선어학원 중계캠퍼스",
+    period: "2023.01. - 2026.04. (*실근무 22개월)",
+    role: "고객응대, 재원생 데이터 관리, 사무보조",
+  },
+  {
+    org: "주식회사 에이블라인드 (인턴)",
+    period: "2025.08. - 2025.12.",
+    role: "전시회 기획/운영, SNS 관리, 행사운영",
+  },
+];
+
+/* 교육 — 레퍼런스 2열 중단 */
+const EDU_LIST: CareerItem[] = [
+  {
+    org: "코멘토 X 숭실대 진로취업센터",
+    period: "2026.04. - 2026.06.",
+    role: "HR: 채용공고문, 컨벤션 기획: 행사제안서 제작",
+  },
+  {
+    org: "서울시자원봉사센터 현직자 연계 진로 멘토링 '청춘잡담'",
+    period: "2026.07.07. - 28.",
+    extra: "S-OIL 'HRD' 직무 멘토링 1,2차 참여",
+  },
+];
+
+/* 경험 — 레퍼런스 3열 */
+const EXPERIENCE_LIST: CareerItem[] = [
   {
     org: "원어연극부 ‘디 뷔네’",
     period: "2021.03. - 2022.09.",
@@ -50,11 +81,6 @@ const CAREER = [
     org: "인문학 콘텐츠 소모임 ‘아데테’",
     period: "2023.03. - 2025.06.",
     role: "소모임 기획 및 운영/참여, SNS 운영",
-  },
-  {
-    org: "DYB최선어학원 중계캠퍼스",
-    period: "2023.01. - 2026.04. (*실근무 22개월)",
-    role: "고객응대, 재원생 데이터 관리, 사무보조",
   },
   {
     org: "FHWien der WKW, 오스트리아",
@@ -72,14 +98,9 @@ const CAREER = [
     role: "독어독문학과 ‘기초독회화’ 튜터 참여",
   },
   {
-    org: "주식회사 에이블라인드 (인턴)",
-    period: "2025.08. - 2025.12.",
-    role: "전시회 기획/운영, SNS 관리, 행사운영",
-  },
-  {
-    org: "코멘토 X 숭실대 진로취업센터",
-    period: "2026.04. - 2026.06.",
-    role: "HR: 채용공고문, 컨벤션 기획: 행사제안서 제작",
+    org: "2025 대한민국 대학생 광고대회 (KOSAC)",
+    period: "2025.03. - 2025.05.",
+    role: "‘건강한 스마트폰 사용 캠페인’ 기획 및 참가",
   },
 ];
 
@@ -98,18 +119,6 @@ const CERTS = [
   { title: "독일어 : Zertifikat Deutsch B1 (일상회화 가능)", period: "2023.01." },
 ];
 
-const ACTIVITIES = [
-  {
-    title: "2025 대한민국 대학생 광고대회 (KOSAC)",
-    period: "2025.03. - 2025.05.",
-    desc: "‘건강한 스마트폰 사용 캠페인’ 기획 및 참가",
-  },
-  {
-    title: "서울시자원봉사센터 현직자 연계 진로 멘토링 '청춘잡담'",
-    period: "2026.07.07. - 28.",
-    extra: "S-OIL 'HRD' 직무 멘토링 1,2차 참여",
-  },
-];
 
 
 const TILES = ["tile-1", "tile-2", "tile-3", "tile-4", "tile-5", "tile-6"];
@@ -345,10 +354,26 @@ function SubHeading({ idx, children }: { idx: number; children: React.ReactNode 
 }
 
 
+function CareerList({ items }: { items: CareerItem[] }) {
+  return (
+    <ul>
+      {items.map((c, i) => (
+        <li key={c.org}>
+          {i > 0 && <div className="text-sm text-foreground/50 py-2">-</div>}
+          <div className="font-medium text-foreground text-base">{c.org}</div>
+          <div className="text-sm text-[var(--ink-soft)]/80 mt-0.5">{c.period}</div>
+          {c.role && <div className="text-base text-[var(--ink-soft)] mt-0.5">{c.role}</div>}
+          {c.extra && <div className="text-base text-[var(--ink-soft)] mt-0.5">{c.extra}</div>}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 function Education() {
   return (
     <section id="education" className="bg-[var(--paper-deep)] border-y border-border">
-      <div className="mx-auto max-w-6xl px-6 py-12 md:py-16">
+      <div className="mx-auto w-full max-w-[1500px] px-6 py-12 md:py-16">
         <SectionHeader num="01 —" title="About" />
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10">
           {/* Column 1 : 사진 + 인사말 + 학력 */}
@@ -393,23 +418,18 @@ function Education() {
             </div>
           </div>
 
-          {/* Column 2 : 경력/경험/교육 */}
+          {/* Column 2 : 경력 + 교육 + 프로그램 활용능력 */}
           <div>
-            <SubHeading idx={1}>경력/경험/교육</SubHeading>
-            <ul>
-                 {CAREER.map((c, i) => (
-                 <li key={c.org}>
-                   {i > 0 && <div className="text-sm text-foreground/50 py-2">-</div>}
-                   <div className="font-medium text-foreground text-base">{c.org}</div>
-                   <div className="text-sm text-[var(--ink-soft)]/80 mt-0.5">{c.period}</div>
-                   <div className="text-base text-[var(--ink-soft)] mt-0.5">{c.role}</div>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 3 : 프로그램 활용능력 + 대외활동 + 자격증/어학/수상 */}
-          <div>
+            <div>
+              <SubHeading idx={1}>경력</SubHeading>
+              <CareerList items={CAREER_LIST} />
+            </div>
+            <Divider />
+            <div>
+              <SubHeading idx={3}>교육</SubHeading>
+              <CareerList items={EDU_LIST} />
+            </div>
+            <Divider />
             <div>
               <SubHeading idx={2}>프로그램 활용능력</SubHeading>
               <ul className="space-y-2.5">
@@ -424,20 +444,13 @@ function Education() {
                 ))}
               </ul>
             </div>
-            <Divider />
+          </div>
+
+          {/* Column 3 : 경험 + 자격증/어학/수상 */}
+          <div>
             <div>
-              <SubHeading idx={3}>대외활동</SubHeading>
-              <ul>
-                 {ACTIVITIES.map((a, i) => (
-                    <li key={a.title}>
-                      {i > 0 && <div className="text-sm text-foreground/50 py-2">-</div>}
-                      <div className="font-medium text-foreground text-base whitespace-nowrap">{a.title}</div>
-                      {a.period && <div className="text-sm text-[var(--ink-soft)]/80 mt-0.5">{a.period}</div>}
-                      {a.desc && <div className="text-base text-[var(--ink-soft)] mt-0.5">{a.desc}</div>}
-                      {a.extra && <div className="text-base text-[var(--ink-soft)] mt-0.5">{a.extra}</div>}
-                   </li>
-                ))}
-              </ul>
+              <SubHeading idx={3}>경험</SubHeading>
+              <CareerList items={EXPERIENCE_LIST} />
             </div>
             <Divider />
             <div>
