@@ -192,97 +192,70 @@ function Header() {
   );
 }
 
-/* 배경 그래픽 : 수직·수평선을 중심으로 다양한 대각선이 교차하며,
-   교차점에는 흐릿한 원 경계의 컬러 도트 — "서로 다른 시선을 잇는" 시각적 은유 */
+/* 배경 그래픽 : 수직선 하나 + 수평선 하나.
+   두 선의 교차점과, 각 선이 검정 대각선(PORTFOLIO 하단선 → 윤지민 하단선)과
+   만나는 지점에 흐릿한 원 경계의 교차 도트를 표시한다.
+   검정 path와 동일한 0~1 비율 좌표계(viewBox 1000x1000, none)를 공유한다. */
 function IntersectionField() {
-  // 중심이 되는 굵은 수직·수평선
-  const AXIS = [
-    { x1: 280, y1: -40, x2: 280, y2: 760, c: "var(--pop-coral)" },   // 수직 1
-    { x1: 580, y1: -40, x2: 580, y2: 760, c: "var(--pop-sky)" },    // 수직 2
-    { x1: 860, y1: -40, x2: 860, y2: 760, c: "var(--pop-lime)" },   // 수직 3
-    { x1: -40, y1: 160, x2: 1040, y2: 160, c: "var(--pop-magenta)" }, // 수평 1
-    { x1: -40, y1: 360, x2: 1040, y2: 360, c: "var(--pop-yellow)" }, // 수평 2
-    { x1: -40, y1: 560, x2: 1040, y2: 560, c: "var(--pop-purple)" }, // 수평 3
-  ];
+  // 검정 연속선의 기하학적 기준점 (Hero와 동일)
+  const A_Y = 0.2, KINK_X = 0.56, C_X = 0.76, C_Y = 0.86;
 
-  // 중심 축을 지나가는 대각선들
-  const DIAGONALS = [
-    { x1: -40, y1: 60, x2: 1040, y2: 680, c: "var(--pop-mint)" },
-    { x1: -40, y1: 680, x2: 1040, y2: 80, c: "var(--pop-orange)" },
-    { x1: 120, y1: -40, x2: 760, y2: 760, c: "var(--pop-pink)" },
-    { x1: 920, y1: -40, x2: 360, y2: 760, c: "var(--pop-lavender)" },
-    { x1: -40, y1: 260, x2: 600, y2: -40, c: "var(--pop-coral)" },
-    { x1: 1040, y1: 460, x2: 420, y2: 760, c: "var(--pop-sky)" },
-  ];
+  // 사용자가 지정한 두 직선 (비율 좌표)
+  const V_X = 0.635; // 수직선
+  const H_Y = 0.6;   // 수평선
+  const V_COLOR = "var(--pop-coral)";
+  const H_COLOR = "var(--pop-orange)";
 
-  const LINES = [...AXIS, ...DIAGONALS];
-  const DOT_COLORS = [
-    "var(--pop-coral)", "var(--pop-sky)", "var(--pop-lime)", "var(--pop-magenta)",
-    "var(--pop-yellow)", "var(--pop-purple)", "var(--pop-mint)", "var(--pop-orange)",
-    "var(--pop-pink)", "var(--pop-lavender)",
-  ];
+  // 검정 대각선: (KINK_X, A_Y) → (C_X, C_Y)
+  // 수직선과의 교점
+  const tV = (V_X - KINK_X) / (C_X - KINK_X);
+  const vDiag = { x: V_X, y: A_Y + tV * (C_Y - A_Y) };
+  // 수평선과의 교점
+  const tH = (H_Y - A_Y) / (C_Y - A_Y);
+  const hDiag = { x: KINK_X + tH * (C_X - KINK_X), y: H_Y };
 
-  // 두 직선(선분)의 교차점 계산
-  const dots: { x: number; y: number; c: string }[] = [];
-  let k = 0;
-  for (let i = 0; i < LINES.length; i++) {
-    for (let j = i + 1; j < LINES.length; j++) {
-      const a = LINES[i], b = LINES[j];
-      const d1x = a.x2 - a.x1, d1y = a.y2 - a.y1;
-      const d2x = b.x2 - b.x1, d2y = b.y2 - b.y1;
-      const denom = d1x * d2y - d1y * d2x;
-      if (Math.abs(denom) < 1e-6) continue; // 평행선
-      const t = ((b.x1 - a.x1) * d2y - (b.y1 - a.y1) * d2x) / denom;
-      const u = ((b.x1 - a.x1) * d1y - (b.y1 - a.y1) * d1x) / denom;
-      if (t < 0 || t > 1 || u < 0 || u > 1) continue; // 선분 밖 교차 제외
-      const px = a.x1 + t * d1x, py = a.y1 + t * d1y;
-      if (px < -10 || px > 1010 || py < -10 || py > 730) continue;
-      // 카피 텍스트 영역과 겹치는 도트는 제외 (가독성)
-      const inText = px < 700 && py > 230 && py < 330;
-      if (inText) continue;
-      dots.push({ x: px, y: py, c: DOT_COLORS[k++ % DOT_COLORS.length] });
-    }
-  }
+  const dots = [
+    { x: V_X, y: H_Y, c: "var(--pop-magenta)" },   // 수직 × 수평
+    { ...vDiag, c: "var(--pop-sky)" },             // 수직 × 검정 대각선
+    { ...hDiag, c: "var(--pop-lime)" },            // 수평 × 검정 대각선
+  ];
 
   return (
-    <svg
-      aria-hidden
-      className="absolute inset-0 w-full h-full pointer-events-none"
-      viewBox="0 0 1000 720"
-      preserveAspectRatio="xMidYMid slice"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <defs>
-        <filter id="dotBlur" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" />
-        </filter>
-      </defs>
+    <>
+      <svg
+        aria-hidden
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        viewBox="0 0 1000 1000"
+        preserveAspectRatio="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        {/* 수직선 · 수평선 (굵게) */}
+        <g strokeWidth="3" strokeOpacity="0.5" fill="none">
+          <line x1={V_X * 1000} y1={-40} x2={V_X * 1000} y2={1040} stroke={V_COLOR} vectorEffect="non-scaling-stroke" />
+          <line x1={-40} y1={H_Y * 1000} x2={1040} y2={H_Y * 1000} stroke={H_COLOR} vectorEffect="non-scaling-stroke" />
+        </g>
+      </svg>
 
-      {/* 중심 축선: 더 굵게, 약간 투명하게 */}
-      <g strokeWidth="3" strokeOpacity="0.42" fill="none">
-        {AXIS.map((l, i) => (
-          <line key={`a${i}`} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2} stroke={l.c} vectorEffect="non-scaling-stroke" />
-        ))}
-      </g>
-
-      {/* 대각선: 축보다 살짝 가늘게 */}
-      <g strokeWidth="2.2" strokeOpacity="0.48" fill="none">
-        {DIAGONALS.map((l, i) => (
-          <line key={`d${i}`} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2} stroke={l.c} vectorEffect="non-scaling-stroke" />
-        ))}
-      </g>
-
-      {/* 교차점: 흐릿한 원 경계 + 컬러 코어 */}
-      <g>
-        {dots.map((d, i) => (
-          <g key={`dot${i}`}>
-            <circle cx={d.x} cy={d.y} r="14" fill="var(--background)" opacity="0.55" filter="url(#dotBlur)" />
-            <circle cx={d.x} cy={d.y} r="14" fill="none" stroke={d.c} strokeOpacity="0.35" strokeWidth="2" vectorEffect="non-scaling-stroke" filter="url(#dotBlur)" />
-            <circle cx={d.x} cy={d.y} r="6.5" fill={d.c} opacity="0.95" />
-          </g>
-        ))}
-      </g>
-    </svg>
+      {/* 교차점: HTML로 렌더링해 화면 비율과 무관하게 항상 완전한 원 유지,
+          흐릿한 원 경계 + 컬러 코어 */}
+      {dots.map((d, i) => (
+        <span
+          key={`dot${i}`}
+          aria-hidden
+          className="absolute pointer-events-none rounded-full"
+          style={{
+            left: `${d.x * 100}%`,
+            top: `${d.y * 100}%`,
+            width: "0.85rem",
+            height: "0.85rem",
+            transform: "translate(-50%, -50%)",
+            background: d.c,
+            opacity: 0.95,
+            boxShadow: `0 0 0 6px color-mix(in oklab, ${d.c} 22%, transparent), 0 0 14px 8px color-mix(in oklab, ${d.c} 14%, transparent)`,
+          }}
+        />
+      ))}
+    </>
   );
 }
 
