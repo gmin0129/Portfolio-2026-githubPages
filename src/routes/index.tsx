@@ -119,18 +119,6 @@ const CERTS = [
   { title: "독일어 : Zertifikat Deutsch B1 (일상회화 가능)", period: "2023.01." },
 ];
 
-const ACTIVITIES = [
-  {
-    title: "2025 대한민국 대학생 광고대회 (KOSAC)",
-    period: "2025.03. - 2025.05.",
-    desc: "‘건강한 스마트폰 사용 캠페인’ 기획 및 참가",
-  },
-  {
-    title: "서울시자원봉사센터 현직자 연계 진로 멘토링 '청춘잡담'",
-    period: "2026.07.07. - 28.",
-    extra: "S-OIL 'HRD' 직무 멘토링 1,2차 참여",
-  },
-];
 
 
 const TILES = ["tile-1", "tile-2", "tile-3", "tile-4", "tile-5", "tile-6"];
