@@ -192,84 +192,6 @@ function Header() {
   );
 }
 
-/* 배경 그래픽 : 수직선 하나 + 수평선 하나.
-   두 선의 교차점과, 각 선이 검정 대각선(PORTFOLIO 하단선 → 윤지민 하단선)과
-   만나는 지점에 흐릿한 원 경계의 교차 도트를 표시한다.
-   검정 path와 동일한 0~1 비율 좌표계(viewBox 1000x1000, none)를 공유한다. */
-function IntersectionField() {
-  // 검정 연속선의 기하학적 기준점 (Hero와 동일)
-  const A_Y = 0.2, KINK_X = 0.56, C_X = 0.76, C_Y = 0.86;
-
-  // 사용자가 지정한 두 직선 (비율 좌표)
-  const V_X = 0.635; // 수직선
-  const H_Y = 0.6;   // 수평선
-  const H_THICK = 27;   // 가로선 두께 (px)
-  const V_THICK = 11.25; // 세로선 두께 (px)
-
-  // 검정 대각선: (KINK_X, A_Y) → (C_X, C_Y)
-  // 수직선과의 교점
-  const tV = (V_X - KINK_X) / (C_X - KINK_X);
-  const vDiag = { x: V_X, y: A_Y + tV * (C_Y - A_Y) };
-  // 수평선과의 교점
-  const tH = (H_Y - A_Y) / (C_Y - A_Y);
-  const hDiag = { x: KINK_X + tH * (C_X - KINK_X), y: H_Y };
-
-  const dots = [
-    // 가로선 위 두 점: 가로선 두께와 동일한 지름
-    { x: V_X, y: H_Y, size: H_THICK, grad: "linear-gradient(135deg, #FDE68A, #86EFAC)" },
-    { ...hDiag, size: H_THICK, grad: "linear-gradient(135deg, #FCA5A5, #C4B5FD)" },
-    // 세로선 위 점: 세로선 두께와 동일한 지름
-    { ...vDiag, size: V_THICK, grad: "linear-gradient(135deg, #93C5FD, #F9A8D4)" },
-  ];
-
-  return (
-    <>
-      <svg
-        aria-hidden
-        className="absolute inset-0 w-full h-full pointer-events-none"
-        viewBox="0 0 1000 1000"
-        preserveAspectRatio="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {/* 수평선 */}
-        <line
-          x1={-40} y1={H_Y * 1000} x2={1040} y2={H_Y * 1000}
-          stroke="var(--foreground)"
-          strokeWidth={H_THICK}
-          strokeOpacity="1"
-          vectorEffect="non-scaling-stroke"
-        />
-        {/* 수직선 */}
-        <line
-          x1={V_X * 1000} y1={-40} x2={V_X * 1000} y2={1040}
-          stroke="var(--foreground)"
-          strokeWidth={V_THICK}
-          strokeOpacity="1"
-          vectorEffect="non-scaling-stroke"
-        />
-      </svg>
-
-      {/* 교차점: 선 두께와 동일한 지름, 완전 불투명한 그라데이션 코어로 선 가림 */}
-      {dots.map((d, i) => (
-        <span
-          key={`dot${i}`}
-          aria-hidden
-          className="absolute pointer-events-none rounded-full"
-          style={{
-            left: `${d.x * 100}%`,
-            top: `${d.y * 100}%`,
-            width: d.size,
-            height: d.size,
-            transform: "translate(-50%, -50%)",
-            background: d.grad,
-            opacity: 1,
-          }}
-        />
-      ))}
-    </>
-  );
-}
-
 function Hero() {
   // 하나의 연속된 SVG path: 수평(A) → 대각선(B) → 수평(C)
   // 기하학적 기준점 (0~1 비율 좌표)
@@ -284,9 +206,7 @@ function Hero() {
   return (
     <section id="top" className="relative overflow-hidden bg-background">
       <div ref={containerRef} className="relative mx-auto max-w-[1440px] h-[92vh] min-h-[34rem]">
-        <IntersectionField />
         {/* 연속 기준선: A(수평) → B(대각선) → C(수평) */}
-
         <svg
           className="absolute inset-0 w-full h-full pointer-events-none"
           viewBox="0 0 1000 1000"
