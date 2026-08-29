@@ -227,7 +227,7 @@ function Hero() {
 
         {/* PORTFOLIO : 우측 끝('O')이 꺾이는 지점(KINK_X)과 수직 일치 */}
         <h1
-          className="absolute font-serif font-bold tracking-tight leading-none text-foreground whitespace-nowrap text-[13vw] md:text-[9vw]"
+          className="absolute font-serif font-bold tracking-tight leading-none text-foreground whitespace-nowrap text-[11vw] md:text-[6.2vw]"
           style={{
             right: `${(1 - KINK_X) * 100}%`,
             top: `calc(${A_Y * 100}% - 1.02em - 0.6rem)`,
@@ -242,7 +242,7 @@ function Hero() {
           style={{
             left: `${KINK_X * 100}%`,
             top: `${A_Y * 100}%`,
-            transform: `rotate(${angle}deg) translate(1.2rem, -3.4rem)`,
+            transform: `rotate(${angle}deg) translate(1.6rem, -3rem)`,
           }}
         >
           공감에서 출발한 기획,
