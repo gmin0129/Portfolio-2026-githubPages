@@ -121,7 +121,7 @@ const CERTS = [
   { title: "ADsP (데이터분석 준전문가)", period: "2026.06." },
   { title: "영어 : TOEIC 905점", period: "2026.03." },
   { title: "숭실튜터링 - 우수튜터상", period: "2025.08." },
-  { title: "독일어 : Zertifikat Deutsch B1 (일상회화 가능)", period: "2023.01." },
+  { title: "독일어 : Zertifikat Deutsch B1 (일상회화 가능, 2023.01.)", period: "" },
 ];
 
 
@@ -365,10 +365,10 @@ function CareerList({ items }: { items: CareerItem[] }) {
       {items.map((c, i) => (
         <li key={c.org}>
           {i > 0 && <div className="text-sm text-foreground/50 py-2">-</div>}
-          <div className="font-medium text-foreground text-base">{c.org}</div>
-          <div className="text-sm text-[var(--ink-soft)]/80 mt-0.5">{c.period}</div>
-          {c.role && <div className="text-base text-[var(--ink-soft)] mt-0.5">{c.role}</div>}
-          {c.extra && <div className="text-base text-[var(--ink-soft)] mt-0.5">{c.extra}</div>}
+          <div className="font-medium text-foreground text-[1.15rem] whitespace-nowrap">{c.org}</div>
+          <div className="text-base text-[var(--ink-soft)]/80 mt-0.5">{c.period}</div>
+          {c.role && <div className="text-[1.15rem] text-[var(--ink-soft)] mt-0.5">{c.role}</div>}
+          {c.extra && <div className="text-[1.15rem] text-[var(--ink-soft)] mt-0.5">{c.extra}</div>}
         </li>
       ))}
     </ul>
@@ -378,11 +378,11 @@ function CareerList({ items }: { items: CareerItem[] }) {
 function Education() {
   return (
     <section id="education" className="bg-[var(--paper-deep)] border-y border-border">
-      <div className="mx-auto w-full max-w-[1500px] px-6 py-12 md:py-16">
+      <div className="mx-auto w-full max-w-[1600px] px-5 py-12 md:py-16">
         <SectionHeader num="01 —" title="About" />
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
           {/* Column 1 : 사진 + 인사말 + 학력 */}
-          <div className="md:ml-4 lg:ml-6">
+          <div>
             <div className="flex items-stretch gap-4">
               <img
                 src={profileAboutAsset.url}
@@ -402,7 +402,7 @@ function Education() {
               <span className="block whitespace-nowrap text-right">타인과 화합할 줄 아는 사람으로 성장했습니다.</span>
             </p>
             <Divider />
-            <div className="my-4 space-y-1.5 text-[0.95rem] sm:text-base leading-snug tracking-[-0.01em] text-foreground break-keep">
+            <div className="my-4 space-y-1.5 text-[1.1rem] sm:text-[1.15rem] leading-snug tracking-[-0.01em] text-foreground break-keep">
               <div>🎂 2002.01.29. (24세)</div>
               <div className="break-all">✉️ yunjimin0129@naver.com</div>
               <div>📞 010-4234-5652</div>
@@ -415,8 +415,8 @@ function Education() {
               <ul className="space-y-3">
                 {EDUCATION.map((e) => (
                   <li key={e.school}>
-                    <div className="font-medium text-foreground text-base">{e.school}</div>
-                    <div className="text-sm text-[var(--ink-soft)]/80 mt-0.5">{e.period}</div>
+                    <div className="font-medium text-foreground text-[1.15rem]">{e.school}</div>
+                    <div className="text-base text-[var(--ink-soft)]/80 mt-0.5">{e.period}</div>
                   </li>
                 ))}
               </ul>
@@ -425,21 +425,21 @@ function Education() {
 
           {/* Column 2 : 경력 + 교육 + 프로그램 활용능력 */}
           <div>
-            <div className="md:w-3/4 md:ml-auto">
+            <div>
               <SubHeading idx={1}>경력</SubHeading>
               <CareerList items={CAREER_LIST} />
             </div>
-            <Divider className="md:w-3/4 md:ml-auto" />
-            <div className="md:w-3/4 md:ml-auto">
+            <Divider className="" />
+            <div>
               <SubHeading idx={3}>교육</SubHeading>
               <CareerList items={EDU_LIST} />
             </div>
-            <Divider className="md:w-3/4 md:ml-auto" />
-            <div className="md:w-3/4 md:ml-auto">
+            <Divider className="" />
+            <div>
               <SubHeading idx={2}>프로그램 활용능력</SubHeading>
               <ul className="space-y-2.5">
                 {PROGRAMS.map((p) => (
-                  <li key={p.group} className="text-base leading-snug flex gap-2">
+                  <li key={p.group} className="text-[1.15rem] leading-snug flex gap-2">
                     <span className="text-foreground">•</span>
                     <div>
                       <div className="font-medium text-foreground">{p.group}</div>
@@ -453,20 +453,20 @@ function Education() {
 
           {/* Column 3 : 경험 + 자격증/어학/수상 */}
           <div>
-            <div className="md:w-3/4 md:ml-auto">
+            <div>
               <SubHeading idx={3}>경험</SubHeading>
               <CareerList items={EXPERIENCE_LIST} />
             </div>
-            <Divider className="md:w-3/4 md:ml-auto" />
-            <div className="md:w-3/4 md:ml-auto">
+            <Divider className="" />
+            <div>
               <SubHeading idx={4}>자격증/어학/수상</SubHeading>
               <ul className="space-y-2.5">
                 {CERTS.map((c) => (
-                   <li key={c.title} className="text-base leading-snug flex gap-2">
+                   <li key={c.title} className="text-[1.15rem] leading-snug flex gap-2">
                     <span className="text-foreground">•</span>
                     <div className="flex flex-wrap items-baseline gap-x-2">
                       <span className="font-medium text-foreground">{c.title}</span>
-                      <span className="text-sm text-[var(--ink-soft)]/80">{c.period}</span>
+                      {c.period ? <span className="text-base text-[var(--ink-soft)]/80">{c.period}</span> : null}
                     </div>
                   </li>
                 ))}
