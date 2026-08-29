@@ -169,33 +169,31 @@ function Header() {
 }
 
 function Hero() {
-  // 글자 단위 계단식 대각선: 각 글자는 회전 없이 upright,
-  // 좌측 상단('공')에서 우측 하단('로')으로 떨어지는 사선 경로
+  // 레퍼런스(portfolio-title.png) 기준 좌표: 대각선은 우측 상단('공')에서
+  // 좌측 하단('로')으로 이어지는 하나의 직선 경로, 글자는 모두 수직으로 upright
   const text = "공감에서 출발한 기획, 서로 다른 시선을 잇는 콘텐츠로";
   const chars = Array.from(text);
-  const START = { x: 8, y: 0 }; // '공' 위치 (%)
-  const END = { x: 52, y: 78 }; // '로' 위치 (%)
-  const LINE_TOP = 86; // 대각선과 이어지는 가로선 y 위치 (%)
+  const START = { x: 68, y: 2 }; // '공' 위치 (%)
+  const END = { x: 50, y: 96 }; // '로' 위치 (%)
 
   return (
     <section id="top" className="relative overflow-hidden bg-background">
-      {/* 상단 타이틀: 좌측 연도, 우측 PORTFOLIO — 아래 가로선이 기준선 */}
-      <div className="mx-auto max-w-6xl px-6 pt-14 md:pt-20">
-        <div className="flex items-end justify-between gap-4 md:gap-8">
-          <span className="font-serif italic text-lg md:text-2xl text-foreground pb-2 md:pb-4 shrink-0">
-            2021 - 2026
-          </span>
-          <h1 className="font-serif font-bold tracking-tight text-[12vw] md:text-[6.5rem] lg:text-[8rem] leading-none text-foreground whitespace-nowrap">
-            PORTFOLIO
-          </h1>
+      <div className="mx-auto max-w-6xl px-6 pt-16 pb-14 md:pt-24 md:pb-20">
+        {/* Title row — 수평선은 PORTFOLIO의 'O' 끝에 맞춰 종료 */}
+        <div className="relative w-fit max-w-full">
+          <div className="flex items-end gap-4 md:gap-8">
+            <span className="font-serif italic text-lg md:text-2xl text-foreground pb-2 md:pb-4 shrink-0">
+              2021 - 2026
+            </span>
+            <h1 className="font-serif font-bold tracking-tight text-[12.5vw] md:text-[6.5rem] lg:text-[8rem] leading-none text-foreground whitespace-nowrap">
+              PORTFOLIO
+            </h1>
+          </div>
+          <div className="h-px bg-foreground mt-1" />
         </div>
-      </div>
-      {/* 뷰포트 전체 너비 가로선 — 타이틀 아래에 딱 맞게 */}
-      <div className="h-px w-full bg-foreground" />
 
-      <div className="mx-auto max-w-6xl px-6 pb-14 md:pb-20">
-        {/* 대각선 계단식 텍스트 + 연결된 가로선/이름/날짜 배치 영역 */}
-        <div className="relative h-[70vw] md:h-[28rem] lg:h-[32rem]">
+        {/* Diagonal quote + bottom row (레퍼런스 좌표 배치 영역) */}
+        <div className="relative h-[64vw] md:h-[26rem] lg:h-[30rem]">
           {chars.map((ch, i) => {
             const t = chars.length > 1 ? i / (chars.length - 1) : 0;
             const x = START.x + (END.x - START.x) * t;
@@ -211,23 +209,21 @@ function Hero() {
             );
           })}
 
-          {/* 대각선 끝('로')에서 오른쪽으로 뻗는 가로선 — 이름의 지붕 */}
-          <div
-            className="absolute h-px bg-foreground"
-            style={{ left: `${END.x + 2}%`, right: "2%", top: `${LINE_TOP}%` }}
-          />
-          {/* 이름 — 가로선 바로 아래, 우측 정렬 */}
-          <span
-            className="absolute font-serif text-xl md:text-3xl lg:text-4xl tracking-[0.25em] text-foreground text-right"
-            style={{ right: "2%", top: `calc(${LINE_TOP}% + 0.75rem)` }}
-          >
-            윤 지 민
-          </span>
-
-          {/* 날짜 — 좌측 하단 구석 */}
+          {/* 날짜 — 좌측 하단 */}
           <span className="absolute left-0 bottom-0 font-serif text-sm md:text-base text-foreground">
             2026.08.27.
           </span>
+
+          {/* 이름 — '로'가 끝나는 x 위치에서 시작하는 수평선 위에 배치 */}
+          <div
+            className="absolute bottom-0 flex flex-col items-stretch"
+            style={{ left: `${END.x + 1}%`, right: "6%" }}
+          >
+            <span className="font-serif text-xl md:text-3xl lg:text-4xl tracking-[0.25em] text-foreground text-right mb-2 md:mb-3">
+              윤 지 민
+            </span>
+            <div className="h-px bg-foreground" />
+          </div>
         </div>
 
         {/* CTAs */}
