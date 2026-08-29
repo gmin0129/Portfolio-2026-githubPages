@@ -192,22 +192,30 @@ function Header() {
   );
 }
 
-/* 배경 그래픽 : 다양한 색상의 직선들이 서로 교차하며, 교차점마다 컬러 도트
-   — "서로 다른 시선을 잇는" 문구의 시각적 은유 */
+/* 배경 그래픽 : 수직·수평선을 중심으로 다양한 대각선이 교차하며,
+   교차점에는 흐릿한 원 경계의 컬러 도트 — "서로 다른 시선을 잇는" 시각적 은유 */
 function IntersectionField() {
-  // 컬러 직선들 (viewBox 1000x720, canvas를 끝까지 관통하는 선분)
-  const LINES = [
-    { x1: -40, y1: 140, x2: 1040, y2: 40, c: "var(--pop-coral)" },
-    { x1: -40, y1: 300, x2: 1040, y2: 720, c: "var(--pop-sky)" },
-    { x1: 180, y1: -40, x2: 620, y2: 760, c: "var(--pop-lime)" },
-    { x1: 560, y1: -40, x2: 1000, y2: 500, c: "var(--pop-magenta)" },
-    { x1: -40, y1: 560, x2: 1040, y2: 200, c: "var(--pop-yellow)" },
-    { x1: 820, y1: -40, x2: 320, y2: 760, c: "var(--pop-purple)" },
-    { x1: -40, y1: 420, x2: 700, y2: -40, c: "var(--pop-mint)" },
-    { x1: 340, y1: 760, x2: 1040, y2: 640, c: "var(--pop-orange)" },
-    { x1: 60, y1: -40, x2: 200, y2: 760, c: "var(--pop-pink)" },
-    { x1: 1040, y1: 380, x2: 520, y2: 760, c: "var(--pop-lavender)" },
+  // 중심이 되는 굵은 수직·수평선
+  const AXIS = [
+    { x1: 280, y1: -40, x2: 280, y2: 760, c: "var(--pop-coral)" },   // 수직 1
+    { x1: 580, y1: -40, x2: 580, y2: 760, c: "var(--pop-sky)" },    // 수직 2
+    { x1: 860, y1: -40, x2: 860, y2: 760, c: "var(--pop-lime)" },   // 수직 3
+    { x1: -40, y1: 160, x2: 1040, y2: 160, c: "var(--pop-magenta)" }, // 수평 1
+    { x1: -40, y1: 360, x2: 1040, y2: 360, c: "var(--pop-yellow)" }, // 수평 2
+    { x1: -40, y1: 560, x2: 1040, y2: 560, c: "var(--pop-purple)" }, // 수평 3
   ];
+
+  // 중심 축을 지나가는 대각선들
+  const DIAGONALS = [
+    { x1: -40, y1: 60, x2: 1040, y2: 680, c: "var(--pop-mint)" },
+    { x1: -40, y1: 680, x2: 1040, y2: 80, c: "var(--pop-orange)" },
+    { x1: 120, y1: -40, x2: 760, y2: 760, c: "var(--pop-pink)" },
+    { x1: 920, y1: -40, x2: 360, y2: 760, c: "var(--pop-lavender)" },
+    { x1: -40, y1: 260, x2: 600, y2: -40, c: "var(--pop-coral)" },
+    { x1: 1040, y1: 460, x2: 420, y2: 760, c: "var(--pop-sky)" },
+  ];
+
+  const LINES = [...AXIS, ...DIAGONALS];
   const DOT_COLORS = [
     "var(--pop-coral)", "var(--pop-sky)", "var(--pop-lime)", "var(--pop-magenta)",
     "var(--pop-yellow)", "var(--pop-purple)", "var(--pop-mint)", "var(--pop-orange)",
@@ -244,16 +252,33 @@ function IntersectionField() {
       preserveAspectRatio="xMidYMid slice"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g strokeWidth="1.1" strokeOpacity="0.55" fill="none">
-        {LINES.map((l, i) => (
-          <line key={`l${i}`} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2} stroke={l.c} vectorEffect="non-scaling-stroke" />
+      <defs>
+        <filter id="dotBlur" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" />
+        </filter>
+      </defs>
+
+      {/* 중심 축선: 더 굵게, 약간 투명하게 */}
+      <g strokeWidth="3" strokeOpacity="0.42" fill="none">
+        {AXIS.map((l, i) => (
+          <line key={`a${i}`} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2} stroke={l.c} vectorEffect="non-scaling-stroke" />
         ))}
       </g>
+
+      {/* 대각선: 축보다 살짝 가늘게 */}
+      <g strokeWidth="2.2" strokeOpacity="0.48" fill="none">
+        {DIAGONALS.map((l, i) => (
+          <line key={`d${i}`} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2} stroke={l.c} vectorEffect="non-scaling-stroke" />
+        ))}
+      </g>
+
+      {/* 교차점: 흐릿한 원 경계 + 컬러 코어 */}
       <g>
         {dots.map((d, i) => (
-          <g key={`d${i}`}>
-            <circle cx={d.x} cy={d.y} r="9.5" fill="var(--background)" stroke="var(--foreground)" strokeOpacity="0.55" strokeWidth="0.9" vectorEffect="non-scaling-stroke" />
-            <circle cx={d.x} cy={d.y} r="5" fill={d.c} opacity="0.95" />
+          <g key={`dot${i}`}>
+            <circle cx={d.x} cy={d.y} r="14" fill="var(--background)" opacity="0.55" filter="url(#dotBlur)" />
+            <circle cx={d.x} cy={d.y} r="14" fill="none" stroke={d.c} strokeOpacity="0.35" strokeWidth="2" vectorEffect="non-scaling-stroke" filter="url(#dotBlur)" />
+            <circle cx={d.x} cy={d.y} r="6.5" fill={d.c} opacity="0.95" />
           </g>
         ))}
       </g>
