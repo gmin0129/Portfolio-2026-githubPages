@@ -58,7 +58,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "die-buehne",
     title: "DIE BÜHNE 정기공연",
-    sub: "독일어 원어연극회",
+    sub: "숭실대 독어독문학과 원어연극부",
     period: "2022.07 — 2022.09",
     contribution: "공연 기획 및 홍보물 제작",
     tags: ["#콘텐츠디자인", "#타임라인수립", "#작품분석"],
@@ -78,7 +78,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "adt",
     title: "인문학 콘텐츠 제작 소모임 A.D.T.",
-    sub: "콘텐츠 기획 · 운영",
+    sub: "숭실대 독어독문학과 인문학 소모임",
     period: "2023.03 — 2024.12",
     contribution: "운영 및 콘텐츠 기획",
     tags: ["#소모임운영", "#콘텐츠기획"],
@@ -97,10 +97,10 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "comento-hr",
-    title: "정규직 전환형 인턴 채용안 기획",
+    title: "정규직 전환형 인턴 채용안",
     sub: "코멘토 직무 부트캠프 (인사/HR)",
     period: "2026.04 — 2026.06",
-    contribution: "채용 프로세스 기획, 평가 기준 수립, 채용 공고문 기획",
+    contribution: "사업가형 인재 분석, 채용 프로세스 계획",
     tags: ["#채용기획", "#역량평가모델", "#데이터기반"],
     skills: "Gemini · PPT · 자료조사 · 채용 파이프라인 설계",
     overview:
