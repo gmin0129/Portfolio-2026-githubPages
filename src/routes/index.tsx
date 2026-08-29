@@ -2,6 +2,7 @@ import * as React from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { PROJECTS } from "@/lib/projects";
+import profileAboutAsset from "@/assets/profile-about.jpg.asset.json";
 import { EXPERIENCES } from "@/lib/experiences";
 
 export const Route = createFileRoute("/")({
@@ -330,58 +331,75 @@ function SectionHeader({ num, kicker, title }: { num: string; kicker: string; ti
 }
 
 
+function Divider() {
+  return <div className="border-t border-foreground/25 my-6" />;
+}
+
 function Education() {
   return (
     <section id="education" className="bg-[var(--paper-deep)] border-y border-border">
       <div className="mx-auto max-w-6xl px-6 py-12 md:py-16">
         <SectionHeader num="01 —" kicker="Education & Career" title="About" />
-        <div className="grid md:grid-cols-2 gap-x-10 gap-y-6">
-          {/* Left column */}
-          <div className="space-y-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10">
+          {/* Column 1 : 사진 + 인사말 + 교육 */}
+          <div>
+            <div className="flex items-start gap-4">
+              <img
+                src={profileAboutAsset.url}
+                alt="윤지민 프로필 사진"
+                className="w-40 md:w-44 aspect-[5/6] object-cover rounded-2xl shrink-0"
+              />
+              <span
+                className="font-serif text-lg text-foreground leading-none pt-1"
+                style={{ writingMode: "vertical-rl", letterSpacing: "0.35em" }}
+              >
+                안녕하세요, 윤지민입니다
+              </span>
+            </div>
+            <p className="mt-5 text-sm font-medium text-foreground leading-relaxed">
+              자신감과 소신을 잃지 않으면서도,
+              <br />
+              타인과 화합할 줄 아는 사람으로 성장했습니다.
+            </p>
+            <Divider />
             <div>
               <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-coral">교육</span></h3>
               <ul className="space-y-3">
                 {EDUCATION.map((e) => (
-                  <li key={e.school} className="grid grid-cols-[80px_1fr] gap-3">
-                    <span className="text-xs tracking-widest text-[var(--ink-soft)] pt-1">
-                      {e.period.split(" ")[0]}
-                    </span>
-                    <div>
-                      <div className="font-medium text-foreground text-sm">{e.school}</div>
-                      <div className="text-sm text-[var(--ink-soft)] mt-0.5">{e.detail}</div>
-                      <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{e.period}</div>
-                    </div>
+                  <li key={e.school}>
+                    <div className="font-medium text-foreground text-sm">{e.school}</div>
+                    <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{e.period}</div>
+                    <div className="text-sm text-[var(--ink-soft)] mt-0.5">{e.detail}</div>
                   </li>
                 ))}
               </ul>
             </div>
+          </div>
 
+          {/* Column 2 : 실무경험(1~3) + 프로그램 활용능력 */}
+          <div>
+            <div>
+              <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-lavender">실무경험</span></h3>
+              <ul className="space-y-3">
+                {CAREER.slice(0, 3).map((c) => (
+                  <li key={c.org}>
+                    <div className="font-medium text-foreground text-sm">{c.org}</div>
+                    <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{c.period}</div>
+                    <div className="text-sm text-[var(--ink-soft)] mt-0.5">{c.role}</div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <Divider />
             <div>
               <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-lime">프로그램 활용능력</span></h3>
-              <div className="space-y-1.5">
+              <ul className="space-y-2.5">
                 {PROGRAMS.map((p) => (
-                  <div key={p.group} className="text-sm leading-snug">
-                    <span className="font-medium text-foreground">{p.group}</span>
-                    <span className="text-[var(--ink-soft)] mx-1.5">-</span>
-                    <span className="text-[var(--ink-soft)]">{p.items.join(" / ")}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-coral">대외활동</span></h3>
-              <ul className="space-y-3">
-                {ACTIVITIES.map((a) => (
-                  <li key={a.title} className="grid grid-cols-[80px_1fr] gap-3">
-                    <span className="text-xs tracking-widest text-[var(--ink-soft)] pt-1">
-                      {a.period ? a.period.split(" ")[0] : ""}
-                    </span>
+                  <li key={p.group} className="text-sm leading-snug flex gap-2">
+                    <span className="text-foreground">•</span>
                     <div>
-                      <div className="font-medium text-foreground text-sm">{a.title}</div>
-                      {a.extra && <div className="text-sm text-[var(--ink-soft)] mt-0.5">{a.extra}</div>}
-                      {a.desc && <div className="text-sm text-[var(--ink-soft)] mt-0.5">{a.desc}</div>}
-                      {a.period && <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{a.period}</div>}
+                      <div className="font-medium text-foreground">{p.group}</div>
+                      <div className="text-[var(--ink-soft)] mt-0.5">{p.items.join(" / ")}</div>
                     </div>
                   </li>
                 ))}
@@ -389,42 +407,42 @@ function Education() {
             </div>
           </div>
 
-          {/* Right column */}
-          <div className="space-y-6">
+          {/* Column 3 : 실무경험(4~6) + 대외활동 + 자격증 & 어학 */}
+          <div>
+            <ul className="space-y-3">
+              {CAREER.slice(3).map((c) => (
+                <li key={c.org}>
+                  <div className="font-medium text-foreground text-sm">{c.org}</div>
+                  <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{c.period}</div>
+                  <div className="text-sm text-[var(--ink-soft)] mt-0.5">{c.role}</div>
+                </li>
+              ))}
+            </ul>
+            <Divider />
             <div>
-              <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-lavender">실무경험</span></h3>
+              <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-coral">대외활동</span></h3>
               <ul className="space-y-3">
-                {CAREER.map((c) => (
-                  <li key={c.org} className="grid grid-cols-[80px_1fr] gap-3">
-                    <span className="text-xs tracking-widest text-[var(--ink-soft)] pt-1">
-                      {c.period.split(" ")[0]}
-                    </span>
-                    <div>
-                      <div className="font-medium text-foreground text-sm">{c.org}</div>
-                      <div className="text-sm text-[var(--ink-soft)] mt-0.5">{c.role}</div>
-                      <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{c.period}</div>
-                    </div>
+                {ACTIVITIES.map((a) => (
+                  <li key={a.title}>
+                    <div className="font-medium text-foreground text-sm">{a.title}</div>
+                    {a.period && <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{a.period}</div>}
+                    {a.extra && <div className="text-sm text-[var(--ink-soft)] mt-0.5">{a.extra}</div>}
+                    {a.desc && <div className="text-sm text-[var(--ink-soft)] mt-0.5">{a.desc}</div>}
                   </li>
                 ))}
               </ul>
             </div>
-
+            <Divider />
             <div>
               <h3 className="font-serif text-xl mb-4"><span className="mark-pop mark-sky">자격증 & 어학</span></h3>
-              <div className="flex flex-col gap-2 items-start">
-                <div className="flex flex-wrap gap-2">
-                  {CERTS.slice(0, 2).map((c) => (
-                    <span key={c} className="inline-flex items-center gap-1.5 text-xs whitespace-nowrap border border-foreground/20 rounded-full px-2.5 py-1 shrink-0">
-                      <span className="font-medium">{c}</span>
-                    </span>
-                  ))}
-                </div>
-                {CERTS[2] && (
-                  <span className="inline-flex items-center gap-1.5 text-xs whitespace-nowrap border border-foreground/20 rounded-full px-2.5 py-1 shrink-0">
-                    <span className="font-medium">{CERTS[2]}</span>
-                  </span>
-                )}
-              </div>
+              <ul className="space-y-2.5">
+                {CERTS.map((c) => (
+                  <li key={c} className="text-sm leading-snug flex gap-2">
+                    <span className="text-foreground">•</span>
+                    <span className="font-medium text-foreground">{c}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
