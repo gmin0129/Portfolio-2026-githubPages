@@ -399,7 +399,7 @@ function Education() {
             </div>
             <Divider />
             <div>
-              <SubHeading idx={0}>학  력</SubHeading>
+              <SubHeading idx={0}>학&nbsp;&nbsp;력</SubHeading>
               <ul className="space-y-3">
                 {EDUCATION.map((e) => (
                   <li key={e.school}>
