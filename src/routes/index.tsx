@@ -260,7 +260,7 @@ function Hero() {
         <span
           className="absolute font-serif font-light italic text-foreground whitespace-nowrap"
           style={{
-            right: "10%",
+            left: `calc(${C_X * 100}% + 1.25rem)`,
             top: `calc(${C_Y * 100}% - 1.6em)`,
             fontSize: "clamp(1.9rem, 3.3vw, 3rem)",
             letterSpacing: "0.6em",
