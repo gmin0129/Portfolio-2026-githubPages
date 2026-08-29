@@ -238,7 +238,7 @@ function Hero() {
 
         {/* 대각선 텍스트: 컨테이너를 회전시켜 baseline이 대각선과 평행하도록 */}
         <div
-          className="absolute origin-top-left font-serif text-[2.4vw] md:text-[1.05vw] leading-relaxed text-foreground/85 whitespace-nowrap"
+          className="absolute origin-top-left font-serif text-[2.4vw] md:text-[1.05vw] leading-[1.9] tracking-[0.12em] text-foreground/85 whitespace-nowrap"
           style={{
             left: `${KINK_X * 100}%`,
             top: `${A_Y * 100}%`,
@@ -252,7 +252,7 @@ function Hero() {
 
         {/* 윤지민 : 하단 수평선(C) 바로 위, 우측 정렬 */}
         <span
-          className="absolute font-serif text-2xl md:text-4xl tracking-[0.2em] text-foreground"
+          className="absolute font-serif text-xl md:text-3xl tracking-[0.35em] text-foreground"
           style={{
             right: "4%",
             top: `calc(${C_Y * 100}% - 1.5em)`,
@@ -263,7 +263,7 @@ function Hero() {
 
         {/* 날짜 : 좌측 하단 */}
         <span className="absolute left-6 md:left-10 bottom-8 font-serif text-sm md:text-base text-foreground">
-          2026.08.27.
+          2026.08.29.
         </span>
       </div>
 
