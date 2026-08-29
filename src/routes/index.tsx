@@ -54,6 +54,11 @@ const CAREER_LIST: CareerItem[] = [
 /* 교육 — 레퍼런스 2열 중단 */
 const EDU_LIST: CareerItem[] = [
   {
+    org: "봄온 아카데미",
+    period: "2022.12. - 2023.05.",
+    role: "아나운서 종합 전문가 과정 (카르페디엠) 수료",
+  },
+  {
     org: "코멘토 X 숭실대 진로취업센터",
     period: "2026.04. - 2026.06.",
     role: "HR: 채용공고문, 컨벤션 기획: 행사제안서 제작",
@@ -83,9 +88,9 @@ const EXPERIENCE_LIST: CareerItem[] = [
     role: "소모임 기획 및 운영/참여, SNS 운영",
   },
   {
-    org: "FHWien der WKW, 오스트리아",
+    org: "FHWien der WKW, 오스트리아 (교환학생)",
     period: "2024.02. - 2024.07.",
-    role: "비엔나 교환학생, 인플루언서 마케팅 수강",
+    role: "인플루언서/글로벌 마케팅 수강",
   },
   {
     org: "숭실대학교 초등영어캠프 엔허브",
