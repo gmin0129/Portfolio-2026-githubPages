@@ -1,3 +1,4 @@
+import * as React from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { PROJECTS } from "@/lib/projects";
@@ -276,18 +277,6 @@ function Hero() {
             경험 보기 →
           </a>
         </div>
-      </div>
-
-        {/* CTAs */}
-        <div className="flex flex-wrap gap-3 mt-12">
-          <a href="#projects" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
-            프로젝트 보기 →
-          </a>
-          <a href="#experience" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
-            경험 보기 →
-          </a>
-        </div>
-      </div>
     </section>
   );
 }
