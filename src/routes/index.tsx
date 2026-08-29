@@ -491,7 +491,7 @@ function Projects() {
                 >
                   {String(i + 1).padStart(2, "0")}
                 </div>
-                <h3 className="font-serif text-xl md:text-2xl mt-1 leading-tight text-foreground">
+                <h3 className="font-serif text-xl md:text-2xl mt-1 leading-tight text-foreground whitespace-pre-line">
                   {p.title}
                   <span className="inline-block ml-2 opacity-0 group-hover:opacity-100 transition-opacity text-foreground">→</span>
                 </h3>
