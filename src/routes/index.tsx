@@ -380,7 +380,7 @@ function Education() {
     <section id="education" className="bg-[var(--paper-deep)] border-y border-border">
       <div className="mx-auto w-full max-w-[1600px] px-5 py-12 md:py-16">
         <SectionHeader num="01 —" title="About" />
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10 md:ml-8 lg:ml-14">
           {/* Column 1 : 사진 + 인사말 + 학력 */}
           <div>
             <div className="flex items-stretch gap-4">
