@@ -177,7 +177,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "kasteel-rouge",
-    title: "Kasteel Rouge 기업\n오스트리아 진출 마케팅 전략",
+    title: "Kasteel Rouge 기업\n오스트리아 진출 전략",
     sub: "오스트리아 교환학생 팀 프로젝트",
     period: "2024.02 — 2024.07",
     contribution: "시장·트렌드 분석, 페르소나 설정, KPI 수립",
