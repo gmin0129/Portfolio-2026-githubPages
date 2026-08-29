@@ -404,8 +404,8 @@ function Education() {
               <ul className="space-y-3">
                 {EDUCATION.map((e) => (
                   <li key={e.school}>
-                    <div className="font-medium text-foreground text-sm">{e.school}</div>
-                    <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{e.period}</div>
+                    <div className="font-medium text-foreground text-base">{e.school}</div>
+                    <div className="text-sm text-[var(--ink-soft)]/80 mt-0.5">{e.period}</div>
                   </li>
                 ))}
               </ul>
@@ -416,12 +416,12 @@ function Education() {
           <div>
             <SubHeading idx={1}>경력/경험/교육</SubHeading>
             <ul>
-              {CAREER.map((c, i) => (
-                <li key={c.org}>
-                  {i > 0 && <div className="text-xs text-foreground/50 py-2">-</div>}
-                  <div className="font-medium text-foreground text-sm">{c.org}</div>
-                  <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{c.period}</div>
-                  <div className="text-sm text-[var(--ink-soft)] mt-0.5">{c.role}</div>
+                 {CAREER.map((c, i) => (
+                 <li key={c.org}>
+                   {i > 0 && <div className="text-sm text-foreground/50 py-2">-</div>}
+                   <div className="font-medium text-foreground text-base">{c.org}</div>
+                   <div className="text-sm text-[var(--ink-soft)]/80 mt-0.5">{c.period}</div>
+                   <div className="text-base text-[var(--ink-soft)] mt-0.5">{c.role}</div>
                 </li>
               ))}
             </ul>
@@ -433,7 +433,7 @@ function Education() {
               <SubHeading idx={2}>프로그램 활용능력</SubHeading>
               <ul className="space-y-2.5">
                 {PROGRAMS.map((p) => (
-                  <li key={p.group} className="text-sm leading-snug flex gap-2">
+                  <li key={p.group} className="text-base leading-snug flex gap-2">
                     <span className="text-foreground">•</span>
                     <div>
                       <div className="font-medium text-foreground">{p.group}</div>
@@ -448,12 +448,12 @@ function Education() {
               <SubHeading idx={3}>대외활동</SubHeading>
               <ul>
                 {ACTIVITIES.map((a, i) => (
-                  <li key={a.title}>
-                    {i > 0 && <div className="text-xs text-foreground/50 py-2">-</div>}
-                    <div className="font-medium text-foreground text-sm">{a.title}</div>
-                    {a.period && <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{a.period}</div>}
-                    {a.desc && <div className="text-sm text-[var(--ink-soft)] mt-0.5">{a.desc}</div>}
-                    {a.extra && <div className="text-sm text-[var(--ink-soft)] mt-0.5">{a.extra}</div>}
+                   <li key={a.title}>
+                     {i > 0 && <div className="text-sm text-foreground/50 py-2">-</div>}
+                     <div className="font-medium text-foreground text-base">{a.title}</div>
+                     {a.period && <div className="text-sm text-[var(--ink-soft)]/80 mt-0.5">{a.period}</div>}
+                     {a.desc && <div className="text-base text-[var(--ink-soft)] mt-0.5">{a.desc}</div>}
+                     {a.extra && <div className="text-base text-[var(--ink-soft)] mt-0.5">{a.extra}</div>}
                   </li>
                 ))}
               </ul>
@@ -463,7 +463,7 @@ function Education() {
               <SubHeading idx={4}>자격증/어학/수상</SubHeading>
               <ul className="space-y-2.5">
                 {CERTS.map((c) => (
-                  <li key={c.title} className="text-sm leading-snug flex gap-2">
+                   <li key={c.title} className="text-base leading-snug flex gap-2">
                     <span className="text-foreground">•</span>
                     <div>
                       <div className="font-medium text-foreground">{c.title}</div>
