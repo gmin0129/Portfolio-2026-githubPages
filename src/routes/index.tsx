@@ -169,49 +169,62 @@ function Header() {
 }
 
 function Hero() {
+  // 레퍼런스(portfolio-title.png) 기준 좌표: 대각선은 우측 상단('공')에서
+  // 좌측 하단('로')으로 이어지는 하나의 직선 경로, 글자는 모두 수직으로 upright
+  const text = "공감에서 출발한 기획, 서로 다른 시선을 잇는 콘텐츠로";
+  const chars = Array.from(text);
+  const START = { x: 68, y: 2 }; // '공' 위치 (%)
+  const END = { x: 50, y: 96 }; // '로' 위치 (%)
+
   return (
     <section id="top" className="relative overflow-hidden bg-background">
       <div className="mx-auto max-w-6xl px-6 pt-16 pb-14 md:pt-24 md:pb-20">
-        {/* Title row */}
-        <div className="relative">
+        {/* Title row — 수평선은 PORTFOLIO의 'O' 끝에 맞춰 종료 */}
+        <div className="relative w-fit max-w-full">
           <div className="flex items-end gap-4 md:gap-8">
             <span className="font-serif italic text-lg md:text-2xl text-foreground pb-2 md:pb-4 shrink-0">
               2021 - 2026
             </span>
-            <h1 className="font-serif font-bold tracking-tight text-[13.5vw] md:text-[6.5rem] lg:text-[8rem] leading-none text-foreground whitespace-nowrap">
+            <h1 className="font-serif font-bold tracking-tight text-[12.5vw] md:text-[6.5rem] lg:text-[8rem] leading-none text-foreground whitespace-nowrap">
               PORTFOLIO
             </h1>
           </div>
           <div className="h-px bg-foreground mt-1" />
         </div>
 
-        {/* Diagonal quote */}
-        <div className="relative h-64 md:h-80">
-          {/* 세로로 내려가는 첫 문장 */}
-          <span
-            className="absolute left-[58%] md:left-[56%] top-0 text-xs md:text-sm tracking-[0.5em] text-foreground/85 [writing-mode:vertical-rl] rotate-[10deg] origin-top"
-            style={{ fontFamily: "var(--font-serif, serif)" }}
-          >
-            공감에서 출발한 기획,
-          </span>
-          {/* 대각선으로 내려가는 두번째 문장 */}
-          <span
-            className="absolute left-[47%] md:left-[46%] top-[52%] text-xs md:text-sm tracking-[0.25em] text-foreground/85 rotate-[32deg] origin-top-left whitespace-nowrap"
-            style={{ fontFamily: "var(--font-serif, serif)" }}
-          >
-            서로 다른 시선을 잇는 콘텐츠로
-          </span>
-        </div>
+        {/* Diagonal quote + bottom row (레퍼런스 좌표 배치 영역) */}
+        <div className="relative h-[64vw] md:h-[26rem] lg:h-[30rem]">
+          {chars.map((ch, i) => {
+            const t = chars.length > 1 ? i / (chars.length - 1) : 0;
+            const x = START.x + (END.x - START.x) * t;
+            const y = START.y + (END.y - START.y) * t;
+            return (
+              <span
+                key={i}
+                className="absolute font-serif text-[2.6vw] md:text-sm lg:text-base text-foreground/85 -translate-x-1/2 -translate-y-1/2 whitespace-pre"
+                style={{ left: `${x}%`, top: `${y}%` }}
+              >
+                {ch}
+              </span>
+            );
+          })}
 
-        {/* Bottom row */}
-        <div className="flex items-end justify-between gap-6">
-          <span className="font-serif text-sm md:text-base text-foreground">2026.08.27.</span>
-          <div className="flex flex-col items-stretch">
-            <div className="h-px bg-foreground mb-2" />
-            <span className="font-serif italic text-3xl md:text-5xl tracking-[0.25em] text-foreground">윤 지 민</span>
+          {/* 날짜 — 좌측 하단 */}
+          <span className="absolute left-0 bottom-0 font-serif text-sm md:text-base text-foreground">
+            2026.08.27.
+          </span>
+
+          {/* 이름 — '로'가 끝나는 x 위치에서 시작하는 수평선 위에 배치 */}
+          <div
+            className="absolute bottom-0 flex flex-col items-stretch"
+            style={{ left: `${END.x + 1}%`, right: "6%" }}
+          >
+            <span className="font-serif text-xl md:text-3xl lg:text-4xl tracking-[0.25em] text-foreground text-right mb-2 md:mb-3">
+              윤 지 민
+            </span>
+            <div className="h-px bg-foreground" />
           </div>
         </div>
-
 
         {/* CTAs */}
         <div className="flex flex-wrap gap-3 mt-12">
