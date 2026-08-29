@@ -192,6 +192,89 @@ function Header() {
   );
 }
 
+/* 배경 그래픽 : 서로 겹치는 원들과 교차선, 교차점마다 컬러 도트
+   — "서로 다른 시선을 잇는" 문구의 시각적 은유 */
+function IntersectionField() {
+  const CIRCLES = [
+    { x: 90, y: 120, r: 170 },
+    { x: 300, y: 60, r: 200 },
+    { x: 520, y: 210, r: 230 },
+    { x: 800, y: 90, r: 190 },
+    { x: 960, y: 300, r: 210 },
+    { x: 180, y: 430, r: 220 },
+    { x: 430, y: 560, r: 240 },
+    { x: 720, y: 500, r: 200 },
+    { x: 950, y: 620, r: 180 },
+    { x: 60, y: 660, r: 190 },
+  ];
+  const DOT_COLORS = [
+    "var(--pop-coral)", "var(--pop-sky)", "var(--pop-lime)", "var(--pop-magenta)",
+    "var(--pop-yellow)", "var(--pop-purple)", "var(--pop-mint)", "var(--pop-orange)",
+    "var(--pop-pink)", "var(--pop-lavender)",
+  ];
+
+  // 두 원의 교차점 계산
+  const dots: { x: number; y: number; c: string }[] = [];
+  let k = 0;
+  for (let i = 0; i < CIRCLES.length; i++) {
+    for (let j = i + 1; j < CIRCLES.length; j++) {
+      const a = CIRCLES[i], b = CIRCLES[j];
+      const dx = b.x - a.x, dy = b.y - a.y;
+      const d = Math.hypot(dx, dy);
+      if (d > a.r + b.r || d < Math.abs(a.r - b.r) || d === 0) continue;
+      const t = (a.r * a.r - b.r * b.r + d * d) / (2 * d);
+      const h2 = a.r * a.r - t * t;
+      if (h2 < 0) continue;
+      const h = Math.sqrt(h2);
+      const mx = a.x + (t * dx) / d, my = a.y + (t * dy) / d;
+      const ox = (-dy * h) / d, oy = (dx * h) / d;
+      dots.push({ x: mx + ox, y: my + oy, c: DOT_COLORS[k++ % DOT_COLORS.length] });
+      dots.push({ x: mx - ox, y: my - oy, c: DOT_COLORS[k++ % DOT_COLORS.length] });
+    }
+  }
+
+  // 서로 교차하는 컬러 라인 (시선의 교차)
+  const LINES = [
+    { x1: -40, y1: 520, x2: 1040, y2: 180, c: "var(--pop-sky)" },
+    { x1: 120, y1: -40, x2: 880, y2: 760, c: "var(--pop-coral)" },
+    { x1: 1040, y1: 40, x2: 160, y2: 740, c: "var(--pop-lime)" },
+    { x1: -40, y1: 260, x2: 1040, y2: 640, c: "var(--pop-magenta)" },
+  ];
+
+  return (
+    <svg
+      aria-hidden
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      viewBox="0 0 1000 720"
+      preserveAspectRatio="xMidYMid slice"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g opacity="0.5">
+        {LINES.map((l, i) => (
+          <line
+            key={`l${i}`}
+            x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2}
+            stroke={l.c}
+            strokeWidth="6"
+            strokeLinecap="round"
+            opacity="0.35"
+          />
+        ))}
+      </g>
+      <g fill="none" stroke="var(--foreground)" strokeOpacity="0.28" strokeWidth="0.9">
+        {CIRCLES.map((c, i) => (
+          <circle key={`c${i}`} cx={c.x} cy={c.y} r={c.r} vectorEffect="non-scaling-stroke" />
+        ))}
+      </g>
+      <g>
+        {dots.map((d, i) => (
+          <circle key={`d${i}`} cx={d.x} cy={d.y} r="6.5" fill={d.c} opacity="0.9" />
+        ))}
+      </g>
+    </svg>
+  );
+}
+
 function Hero() {
   // 하나의 연속된 SVG path: 수평(A) → 대각선(B) → 수평(C)
   // 기하학적 기준점 (0~1 비율 좌표)
@@ -206,7 +289,9 @@ function Hero() {
   return (
     <section id="top" className="relative overflow-hidden bg-background">
       <div ref={containerRef} className="relative mx-auto max-w-[1440px] h-[92vh] min-h-[34rem]">
+        <IntersectionField />
         {/* 연속 기준선: A(수평) → B(대각선) → C(수평) */}
+
         <svg
           className="absolute inset-0 w-full h-full pointer-events-none"
           viewBox="0 0 1000 1000"
