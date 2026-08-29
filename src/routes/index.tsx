@@ -429,12 +429,12 @@ function Education() {
               <SubHeading idx={1}>경력</SubHeading>
               <CareerList items={CAREER_LIST} />
             </div>
-            <Divider className="" />
+            <Divider className="w-[85%]" />
             <div>
               <SubHeading idx={3}>교육</SubHeading>
               <CareerList items={EDU_LIST} />
             </div>
-            <Divider className="" />
+            <Divider className="w-[85%]" />
             <div>
               <SubHeading idx={2}>프로그램 활용능력</SubHeading>
               <ul className="space-y-2.5">
@@ -457,7 +457,7 @@ function Education() {
               <SubHeading idx={3}>경험</SubHeading>
               <CareerList items={EXPERIENCE_LIST} />
             </div>
-            <Divider className="" />
+            <Divider className="w-[85%]" />
             <div>
               <SubHeading idx={4}>자격증/어학/수상</SubHeading>
               <ul className="space-y-2.5">
