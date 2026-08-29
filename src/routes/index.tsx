@@ -177,40 +177,47 @@ function Header() {
 
 function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden">
-      <div className="absolute inset-0 grain opacity-50 pointer-events-none" />
-      <div className="absolute -top-20 -left-14 w-44 h-44 md:-top-24 md:-left-20 md:w-72 md:h-72 shape-outline shape-outline-coral pointer-events-none" />
-      <div className="absolute top-20 right-0 w-80 h-80 shape-outline shape-outline-sky pointer-events-none" />
-      <div className="absolute bottom-0 left-1/3 w-72 h-72 shape-outline shape-outline-lime pointer-events-none" />
-<div className="mx-auto max-w-6xl px-6 pt-14 pb-16 md:pt-20 md:pb-20 lg:pt-24 lg:pb-24 grid md:grid-cols-12 gap-10 md:gap-12">
-<div className="md:col-span-7 flex flex-col items-start md:justify-between">
-          <p className="text-sm tracking-[0.3em] uppercase text-[var(--ink-soft)] mb-6 md:mb-0">
-            Portfolio · 2026
+    <section id="top" className="relative overflow-hidden bg-background">
+      <div className="mx-auto max-w-6xl px-6 pt-16 pb-14 md:pt-24 md:pb-20">
+        {/* Title row */}
+        <div className="relative">
+          <div className="flex items-end gap-4 md:gap-8">
+            <span className="font-serif italic text-lg md:text-2xl text-foreground pb-2 md:pb-4 shrink-0">
+              2021 - 2026
+            </span>
+            <h1 className="font-serif font-bold tracking-tight text-[13.5vw] md:text-[6.5rem] lg:text-[8rem] leading-none text-foreground whitespace-nowrap">
+              PORTFOLIO
+            </h1>
+          </div>
+          <div className="h-px bg-foreground mt-1" />
+        </div>
+
+        {/* Diagonal quote */}
+        <div className="relative h-56 md:h-72">
+          <p className="absolute left-1/2 md:left-[58%] top-2 md:top-0 -translate-x-1/2 md:translate-x-0 rotate-[24deg] origin-top-left text-sm md:text-base leading-[2.4] tracking-[0.35em] text-foreground/80 [writing-mode:vertical-rl]">
+            공감에서 출발한 기획,
+            <br />
+            서로 다른 시선을 잇는 콘텐츠로
           </p>
-          <p className="max-w-2xl text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] leading-snug md:leading-[1.35] text-foreground mb-8 md:mb-0">
-            안녕하세요, <span className="font-bold text-[var(--pop-magenta)]">윤지민</span>입니다.
-          </p>
-          <div className="flex flex-col items-start gap-8">
-            <div className="flex flex-wrap gap-3">
-              <a href="#projects" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
-                프로젝트 보기 →
-              </a>
-              <a href="#experience" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
-                경험 보기 →
-              </a>
-            </div>
-            <div className="h-[2px] w-56 bg-[var(--pop-lime)] rounded-full opacity-90" />
+        </div>
+
+        {/* Bottom row */}
+        <div className="flex items-end justify-between gap-6">
+          <span className="font-serif text-sm md:text-base text-foreground">2026.08.27.</span>
+          <div className="flex items-end gap-6 md:gap-10 flex-1 justify-end">
+            <span className="font-serif text-3xl md:text-5xl tracking-[0.25em] text-foreground">윤 지 민</span>
+            <div className="h-px bg-foreground flex-1 max-w-40 md:max-w-72 mb-2 md:mb-3" />
           </div>
         </div>
-        <div className="md:col-span-5 relative">
-          <div className="absolute -inset-4 shape-outline shape-outline-magenta pointer-events-none" />
-<img
-            src={profileImg.url}
-            alt="윤지민 프로필 사진"
-            width={896}
-            height={1152}
-            className="relative shape-squircle w-full object-cover object-top clay md:h-[460px] lg:h-[500px]"
-          />
+
+        {/* CTAs */}
+        <div className="flex flex-wrap gap-3 mt-12">
+          <a href="#projects" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
+            프로젝트 보기 →
+          </a>
+          <a href="#experience" className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-5 py-2.5 text-sm font-medium clay-sm hover:-translate-y-0.5 transition-all">
+            경험 보기 →
+          </a>
         </div>
       </div>
     </section>
