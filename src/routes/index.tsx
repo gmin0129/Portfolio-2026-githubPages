@@ -187,26 +187,7 @@ function Hero() {
   const C_Y = 0.86; // 하단 수평선 y
 
   const containerRef = React.useRef<HTMLDivElement>(null);
-  const copyRef = React.useRef<HTMLDivElement>(null);
-  const [copyLeft, setCopyLeft] = React.useState<number | null>(null);
 
-  React.useLayoutEffect(() => {
-    const update = () => {
-      const container = containerRef.current;
-      const copy = copyRef.current;
-      if (!container || !copy) return;
-      // 날짜/버튼의 시작점 = kink x - 카피 너비 (카피 시작점과 수직 일치)
-      setCopyLeft(container.clientWidth * KINK_X - copy.offsetWidth);
-    };
-    update();
-    const ro = new ResizeObserver(update);
-    if (containerRef.current) ro.observe(containerRef.current);
-    window.addEventListener("resize", update);
-    return () => {
-      ro.disconnect();
-      window.removeEventListener("resize", update);
-    };
-  }, []);
 
   return (
     <section id="top" className="relative overflow-hidden bg-background">
@@ -250,20 +231,19 @@ function Hero() {
           PORTFOLIO
         </h1>
 
-        {/* 메인 카피 : 우측 끝이 선이 꺾이는 지점(KINK_X)과 수직 일치 */}
+        {/* 메인 카피 : 시작점이 '2021 - 2026' 시작점과 수직 일치 */}
         <div
-          ref={copyRef}
-          className="absolute font-serif text-foreground/85 leading-[1.6] tracking-[0.06em] whitespace-nowrap"
+          className="absolute left-6 md:left-10 right-6 font-serif text-foreground/85 leading-[1.6] tracking-[0.06em] whitespace-nowrap"
           style={{
-            right: `${(1 - KINK_X) * 100}%`,
             top: `calc(${A_Y * 100}% + clamp(2.5rem, 6vh, 4.5rem))`,
-            fontSize: "clamp(1.9rem, 3.3vw, 3rem)",
+            fontSize: "clamp(1.05rem, 3.3vw, 3rem)",
           }}
         >
           <strong className="font-bold">공감</strong>에서 출발한 기획,
           <br />
           서로 <strong className="font-bold">다른</strong> 시선을 <strong className="font-bold">잇는</strong> 콘텐츠로
         </div>
+
 
         {/* 윤지민 : 하단 수평선(C) 바로 위, 넓은 자간으로 좌측으로 당겨 배치 */}
         <span
@@ -278,11 +258,10 @@ function Hero() {
           윤지민
         </span>
 
-        {/* 날짜 + CTAs : 하단이 '윤지민' 밑줄(C 라인)과 평행하도록 정렬 */}
+        {/* 날짜 + CTAs : 시작점을 '2021 - 2026'과 수직 정렬 */}
         <div
-          className="absolute flex flex-col items-start gap-5"
+          className="absolute left-6 md:left-10 flex flex-col items-start gap-4 sm:gap-5"
           style={{
-            left: copyLeft != null ? `${copyLeft}px` : "1.5rem",
             top: `calc(${C_Y * 100}% - 1px)`,
             transform: "translateY(-100%)",
           }}
@@ -343,27 +322,31 @@ function Divider() {
   return <div className="border-t border-foreground/25 my-6" />;
 }
 
-/* Projects 페이지 타일(tile-1~6)의 파스텔 조합을 참고한 알록달록 하이라이트 */
+/* Projects 페이지 타일(tile-1~6)의 파스텔 조합 — 투명도를 넣어 부드럽게 */
 const HEADING_ACCENTS = [
-  "linear-gradient(120deg, var(--pop-peach) 0%, var(--pop-pink) 55%, var(--pop-yellow) 110%)",
-  "linear-gradient(120deg, var(--pop-sky) 0%, var(--pop-lime) 60%, var(--pop-mint) 110%)",
-  "linear-gradient(120deg, var(--pop-coral) 0%, var(--pop-orange) 55%, var(--pop-peach) 110%)",
-  "linear-gradient(120deg, var(--pop-lavender) 0%, var(--pop-pink) 55%, var(--pop-magenta) 110%)",
-  "linear-gradient(120deg, var(--pop-lime) 0%, var(--pop-sky) 60%, var(--pop-mint) 110%)",
+  "linear-gradient(120deg, color-mix(in oklch, var(--pop-peach) 62%, transparent) 0%, color-mix(in oklch, var(--pop-pink) 58%, transparent) 55%, color-mix(in oklch, var(--pop-yellow) 55%, transparent) 110%)",
+  "linear-gradient(120deg, color-mix(in oklch, var(--pop-sky) 58%, transparent) 0%, color-mix(in oklch, var(--pop-lime) 55%, transparent) 60%, color-mix(in oklch, var(--pop-mint) 55%, transparent) 110%)",
+  "linear-gradient(120deg, color-mix(in oklch, var(--pop-coral) 55%, transparent) 0%, color-mix(in oklch, var(--pop-orange) 52%, transparent) 55%, color-mix(in oklch, var(--pop-peach) 55%, transparent) 110%)",
+  "linear-gradient(120deg, color-mix(in oklch, var(--pop-lavender) 58%, transparent) 0%, color-mix(in oklch, var(--pop-pink) 55%, transparent) 55%, color-mix(in oklch, var(--pop-magenta) 50%, transparent) 110%)",
+  "linear-gradient(120deg, color-mix(in oklch, var(--pop-lime) 55%, transparent) 0%, color-mix(in oklch, var(--pop-sky) 55%, transparent) 60%, color-mix(in oklch, var(--pop-mint) 55%, transparent) 110%)",
 ];
 
 function SubHeading({ idx, children }: { idx: number; children: React.ReactNode }) {
   return (
-    <h3 className="font-serif text-xl font-bold mb-4">
-      <span
-        className="inline-block px-2 py-0.5 rounded-md"
-        style={{ background: HEADING_ACCENTS[idx % HEADING_ACCENTS.length] }}
-      >
-        {children}
+    <h3 className="font-serif text-lg sm:text-xl font-bold mb-4">
+      <span className="relative inline-block px-2.5 py-0.5">
+        {/* 부드러운 하이라이트 : 흐린 테두리 + 투명도 */}
+        <span
+          aria-hidden
+          className="absolute inset-0 rounded-xl blur-[5px] opacity-90"
+          style={{ background: HEADING_ACCENTS[idx % HEADING_ACCENTS.length] }}
+        />
+        <span className="relative text-foreground">{children}</span>
       </span>
     </h3>
   );
 }
+
 
 function Education() {
   return (
@@ -386,17 +369,18 @@ function Education() {
                 안녕하세요, 윤지민입니다
               </span>
             </div>
-            <p className="mt-5 font-serif text-base md:text-lg font-bold text-foreground leading-relaxed">
+            <p className="mt-5 font-serif text-[0.95rem] sm:text-base md:text-lg font-bold text-foreground leading-relaxed break-keep">
               자신감과 소신을 잃지 않으면서도,
               <br />
               <span className="block whitespace-nowrap text-right">타인과 화합할 줄 아는 사람으로 성장했습니다.</span>
             </p>
             <Divider />
-            <div className="my-4 space-y-1.5 text-sm text-foreground">
+            <div className="my-4 space-y-1.5 text-[0.95rem] sm:text-base leading-snug tracking-[-0.01em] text-foreground break-keep">
               <div>🎂 2002.01.29. (24세)</div>
-              <div>✉️ yunjimin0129@naver.com</div>
+              <div className="break-all">✉️ yunjimin0129@naver.com</div>
               <div>📞 010-4234-5652</div>
               <div>🏠 서울시 동작구 상도로60가길 8 306호</div>
+
             </div>
             <Divider />
             <div>
@@ -581,7 +565,7 @@ function Contact() {
           </h2>
         </div>
         <div className="md:col-span-5 space-y-0">
-          <ContactRow label="Email" value="dbswlals0129@gmail.com" href="mailto:dbswlals0129@gmail.com" />
+          <ContactRow label="Email" value="yunjimin0129@naver.com" href="mailto:yunjimin0129@naver.com" />
           <ContactRow label="Phone" value="010-4234-5652" href="tel:+821042345652" />
         </div>
       </div>
@@ -594,7 +578,7 @@ function ContactRow({ label, value, href }: { label: string; value: string; href
     <a href={href} target="_blank" rel="noreferrer" className="group flex items-center justify-between border-b border-foreground/20 py-4 hover:border-[var(--terracotta)] transition-colors">
       <span className="text-xs uppercase tracking-widest text-[var(--ink-soft)]">{label}</span>
       <span className="font-serif text-lg group-hover:text-[var(--terracotta)] transition-colors">
-        {value} →
+        {value}
       </span>
     </a>
   );
