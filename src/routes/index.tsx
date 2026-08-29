@@ -236,7 +236,7 @@ function Hero() {
           <div className="absolute inset-0 rounded-full bg-[var(--pop-sky)] blur-[20px] opacity-85" />
           <div
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
-            style={{ width: "42%", height: "42%", backgroundColor: "oklch(0.82 0.14 350)" }}
+            style={{ width: "42%", height: "42%", backgroundColor: "oklch(0.80 0.16 350)" }}
           />
         </div>
 
