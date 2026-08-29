@@ -499,7 +499,7 @@ function Projects() {
                         <>
                           {lines[0]}
                           <br />
-                          <span className="relative inline-block text-base md:text-lg">
+                          <span className="relative inline-block text-xl md:text-2xl">
                             <span className="whitespace-nowrap">{lines[1]}</span>
                             <span className="absolute left-full top-1/2 -translate-y-1/2 ml-1 opacity-0 group-hover:opacity-100 transition-opacity text-foreground">→</span>
                           </span>
