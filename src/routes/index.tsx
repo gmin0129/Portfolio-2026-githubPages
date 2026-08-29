@@ -178,16 +178,16 @@ function Hero() {
   const C_Y = 0.86; // 하단 수평선 y
 
   const containerRef = React.useRef<HTMLDivElement>(null);
-  const titleRef = React.useRef<HTMLHeadingElement>(null);
+  const copyRef = React.useRef<HTMLDivElement>(null);
   const [copyLeft, setCopyLeft] = React.useState<number | null>(null);
 
   React.useLayoutEffect(() => {
     const update = () => {
       const container = containerRef.current;
-      const title = titleRef.current;
-      if (!container || !title) return;
-      // 카피/날짜/버튼의 시작점 = kink x - PORTFOLIO 너비 (타이틀 시작점과 수직 일치)
-      setCopyLeft(container.clientWidth * KINK_X - title.offsetWidth);
+      const copy = copyRef.current;
+      if (!container || !copy) return;
+      // 날짜/버튼의 시작점 = kink x - 카피 너비 (카피 시작점과 수직 일치)
+      setCopyLeft(container.clientWidth * KINK_X - copy.offsetWidth);
     };
     update();
     const ro = new ResizeObserver(update);
@@ -231,7 +231,6 @@ function Hero() {
 
         {/* PORTFOLIO : 우측 끝('O')이 선이 꺾이는 지점(KINK_X)과 수직 일치 */}
         <h1
-          ref={titleRef}
           className="absolute font-serif font-bold tracking-tight leading-none text-foreground whitespace-nowrap"
           style={{
             right: `${(1 - KINK_X) * 100}%`,
@@ -242,12 +241,12 @@ function Hero() {
           PORTFOLIO
         </h1>
 
-        {/* 메인 카피 : 시작점이 PORTFOLIO 시작점과 수직 일치 */}
+        {/* 메인 카피 : 우측 끝이 선이 꺾이는 지점(KINK_X)과 수직 일치 */}
         <div
+          ref={copyRef}
           className="absolute font-serif text-foreground/85 leading-[1.6] tracking-[0.06em] whitespace-nowrap"
           style={{
-            left: copyLeft != null ? `${copyLeft}px` : undefined,
-            visibility: copyLeft != null ? "visible" : "hidden",
+            right: `${(1 - KINK_X) * 100}%`,
             top: `calc(${A_Y * 100}% + clamp(2.5rem, 6vh, 4.5rem))`,
             fontSize: "clamp(1.9rem, 3.3vw, 3rem)",
           }}
@@ -261,7 +260,7 @@ function Hero() {
         <span
           className="absolute font-serif font-light italic text-foreground whitespace-nowrap"
           style={{
-            right: "10%",
+            left: `calc(${C_X * 100}% + 1.25rem)`,
             top: `calc(${C_Y * 100}% - 1.6em)`,
             fontSize: "clamp(1.9rem, 3.3vw, 3rem)",
             letterSpacing: "0.6em",
