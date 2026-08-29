@@ -418,23 +418,18 @@ function Education() {
             </div>
           </div>
 
-          {/* Column 2 : 경력/경험/교육 */}
+          {/* Column 2 : 경력 + 교육 + 프로그램 활용능력 */}
           <div>
-            <SubHeading idx={1}>경력/경험/교육</SubHeading>
-            <ul>
-                 {CAREER.map((c, i) => (
-                 <li key={c.org}>
-                   {i > 0 && <div className="text-sm text-foreground/50 py-2">-</div>}
-                   <div className="font-medium text-foreground text-base">{c.org}</div>
-                   <div className="text-sm text-[var(--ink-soft)]/80 mt-0.5">{c.period}</div>
-                   <div className="text-base text-[var(--ink-soft)] mt-0.5">{c.role}</div>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 3 : 프로그램 활용능력 + 대외활동 + 자격증/어학/수상 */}
-          <div>
+            <div>
+              <SubHeading idx={1}>경력</SubHeading>
+              <CareerList items={CAREER_LIST} />
+            </div>
+            <Divider />
+            <div>
+              <SubHeading idx={3}>교육</SubHeading>
+              <CareerList items={EDU_LIST} />
+            </div>
+            <Divider />
             <div>
               <SubHeading idx={2}>프로그램 활용능력</SubHeading>
               <ul className="space-y-2.5">
@@ -449,20 +444,13 @@ function Education() {
                 ))}
               </ul>
             </div>
-            <Divider />
+          </div>
+
+          {/* Column 3 : 경험 + 자격증/어학/수상 */}
+          <div>
             <div>
-              <SubHeading idx={3}>대외활동</SubHeading>
-              <ul>
-                 {ACTIVITIES.map((a, i) => (
-                    <li key={a.title}>
-                      {i > 0 && <div className="text-sm text-foreground/50 py-2">-</div>}
-                      <div className="font-medium text-foreground text-base whitespace-nowrap">{a.title}</div>
-                      {a.period && <div className="text-sm text-[var(--ink-soft)]/80 mt-0.5">{a.period}</div>}
-                      {a.desc && <div className="text-base text-[var(--ink-soft)] mt-0.5">{a.desc}</div>}
-                      {a.extra && <div className="text-base text-[var(--ink-soft)] mt-0.5">{a.extra}</div>}
-                   </li>
-                ))}
-              </ul>
+              <SubHeading idx={3}>경험</SubHeading>
+              <CareerList items={EXPERIENCE_LIST} />
             </div>
             <Divider />
             <div>
