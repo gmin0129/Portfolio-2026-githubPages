@@ -238,14 +238,6 @@ function IntersectionField() {
     }
   }
 
-  // 서로 교차하는 컬러 라인 (시선의 교차)
-  const LINES = [
-    { x1: -40, y1: 520, x2: 1040, y2: 180, c: "var(--pop-sky)" },
-    { x1: 120, y1: -40, x2: 880, y2: 760, c: "var(--pop-coral)" },
-    { x1: 1040, y1: 40, x2: 160, y2: 740, c: "var(--pop-lime)" },
-    { x1: -40, y1: 260, x2: 1040, y2: 640, c: "var(--pop-magenta)" },
-  ];
-
   return (
     <svg
       aria-hidden
@@ -254,18 +246,6 @@ function IntersectionField() {
       preserveAspectRatio="xMidYMid slice"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g opacity="0.5">
-        {LINES.map((l, i) => (
-          <line
-            key={`l${i}`}
-            x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2}
-            stroke={l.c}
-            strokeWidth="6"
-            strokeLinecap="round"
-            opacity="0.35"
-          />
-        ))}
-      </g>
       <g fill="none" stroke="var(--foreground)" strokeOpacity="0.28" strokeWidth="0.9">
         {CIRCLES.map((c, i) => (
           <circle key={`c${i}`} cx={c.x} cy={c.y} r={c.r} vectorEffect="non-scaling-stroke" />
