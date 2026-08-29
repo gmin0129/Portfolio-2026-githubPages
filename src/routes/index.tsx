@@ -303,16 +303,13 @@ function Marquee() {
   );
 }
 
-function SectionHeader({ num, kicker, title }: { num: string; kicker: string; title: string }) {
+function SectionHeader({ num, title }: { num: string; title: string }) {
   return (
     <div className="flex items-end justify-between mb-12 border-b border-foreground/15 pb-4">
       <div>
         <span className="section-num text-lg">{num}</span>
         <h2 className="font-serif text-4xl md:text-5xl font-medium mt-1">{title}</h2>
       </div>
-      <span className="text-xs tracking-[0.3em] uppercase text-[var(--ink-soft)] hidden md:block">
-        {kicker}
-      </span>
     </div>
   );
 }
@@ -352,7 +349,7 @@ function Education() {
   return (
     <section id="education" className="bg-[var(--paper-deep)] border-y border-border">
       <div className="mx-auto max-w-6xl px-6 py-12 md:py-16">
-        <SectionHeader num="01 —" kicker="Education & Career" title="About" />
+        <SectionHeader num="01 —" title="About" />
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10">
           {/* Column 1 : 사진 + 인사말 + 학력 */}
           <div>
@@ -431,14 +428,14 @@ function Education() {
             <div>
               <SubHeading idx={3}>대외활동</SubHeading>
               <ul>
-                {ACTIVITIES.map((a, i) => (
-                   <li key={a.title}>
-                     {i > 0 && <div className="text-sm text-foreground/50 py-2">-</div>}
-                     <div className="font-medium text-foreground text-base">{a.title}</div>
-                     {a.period && <div className="text-sm text-[var(--ink-soft)]/80 mt-0.5">{a.period}</div>}
-                     {a.desc && <div className="text-base text-[var(--ink-soft)] mt-0.5">{a.desc}</div>}
-                     {a.extra && <div className="text-base text-[var(--ink-soft)] mt-0.5">{a.extra}</div>}
-                  </li>
+                 {ACTIVITIES.map((a, i) => (
+                    <li key={a.title}>
+                      {i > 0 && <div className="text-sm text-foreground/50 py-2">-</div>}
+                      <div className="font-medium text-foreground text-base whitespace-nowrap">{a.title}</div>
+                      {a.period && <div className="text-sm text-[var(--ink-soft)]/80 mt-0.5">{a.period}</div>}
+                      {a.desc && <div className="text-base text-[var(--ink-soft)] mt-0.5">{a.desc}</div>}
+                      {a.extra && <div className="text-base text-[var(--ink-soft)] mt-0.5">{a.extra}</div>}
+                   </li>
                 ))}
               </ul>
             </div>
@@ -476,9 +473,6 @@ function Projects() {
             <span className="font-serif italic text-lg text-[var(--terracotta)]">02 —</span>
             <h2 className="font-serif text-4xl md:text-5xl font-medium mt-1 text-foreground">Projects</h2>
           </div>
-          <span className="text-xs tracking-[0.3em] uppercase text-[var(--ink-soft)] hidden md:block">
-            Things I built
-          </span>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
@@ -528,7 +522,7 @@ function Projects() {
 function Experience() {
   return (
     <section id="experience" className="mx-auto max-w-6xl px-6 py-24">
-      <SectionHeader num="03 —" kicker="Beyond the desk" title="Experiences" />
+      <SectionHeader num="03 —" title="Experiences" />
       <div className="grid md:grid-cols-2 gap-8">
         {EXPERIENCES.map((e, i) => (
           <Link
