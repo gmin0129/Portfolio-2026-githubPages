@@ -121,7 +121,7 @@ const CERTS = [
   { title: "ADsP (데이터분석 준전문가)", period: "2026.06." },
   { title: "영어 : TOEIC 905점", period: "2026.03." },
   { title: "숭실튜터링 - 우수튜터상", period: "2025.08." },
-  { title: "독일어 : Zertifikat Deutsch B1 (일상회화 가능, 2023.01.)", period: "" },
+  { title: "독일어 : Zertifikat Deutsch B1 (일상회화 가능)", period: "2023.01." },
 ];
 
 
