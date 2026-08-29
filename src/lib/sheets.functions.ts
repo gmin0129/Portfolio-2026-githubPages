@@ -33,7 +33,8 @@ function colIndex(letter: string) {
   return letter.charCodeAt(0) - 65;
 }
 
-export type SheetField = { label: string; value: string };
+export type SheetTextRun = { startIndex?: number; format?: { bold?: boolean } };
+export type SheetField = { label: string; value: string; runs?: SheetTextRun[] };
 export type SheetSection = { title: string; fields: SheetField[] };
 export type SheetDetail = {
   meta: { title: string; period: string; task: string };
@@ -43,13 +44,42 @@ export type SheetDetail = {
 } | null;
 export type ProjectSheetDetail = SheetDetail;
 
-async function sheetsFetch(range: string): Promise<string[][]> {
+type GridCell = {
+  formattedValue?: string;
+  textFormatRuns?: SheetTextRun[];
+  effectiveFormat?: { textFormat?: { bold?: boolean } };
+};
+type GridResponse = {
+  sheets?: { data?: { rowData?: { values?: GridCell[] }[] }[] }[];
+};
+
+type RichCell = { value: string; runs?: SheetTextRun[] };
+
+function toRichCell(cell: GridCell | undefined): RichCell {
+  const value = (cell?.formattedValue ?? "").trim();
+  if (!value) return { value };
+  if (cell?.effectiveFormat?.textFormat?.bold) {
+    return { value, runs: [{ startIndex: 0, format: { bold: true } }] };
+  }
+  const runs = (cell?.textFormatRuns ?? []).filter((r) => r.format?.bold);
+  return runs.length ? { value, runs: cell!.textFormatRuns } : { value };
+}
+
+/** Fetches rows with cell formatting (bold runs) via grid data. */
+async function sheetsFetchGrid(ranges: string[]): Promise<RichCell[][]> {
   const lovableKey = process.env["LOVABLE_API_KEY"];
   const sheetsKey = process.env["GOOGLE_SHEETS_API_KEY"];
   if (!lovableKey || !sheetsKey) {
     throw new Error("Google Sheets gateway credentials are not configured");
   }
-  const res = await fetch(`${GATEWAY}/spreadsheets/${SPREADSHEET_ID}/values/${range}`, {
+  const params = new URLSearchParams();
+  for (const range of ranges) params.append("ranges", range);
+  params.set("includeGridData", "true");
+  params.set(
+    "fields",
+    "sheets.data.rowData.values(formattedValue,textFormatRuns,effectiveFormat.textFormat.bold)",
+  );
+  const res = await fetch(`${GATEWAY}/spreadsheets/${SPREADSHEET_ID}?${params.toString()}`, {
     headers: {
       Authorization: `Bearer ${lovableKey}`,
       "X-Connection-Api-Key": sheetsKey,
@@ -58,39 +88,40 @@ async function sheetsFetch(range: string): Promise<string[][]> {
   if (!res.ok) {
     throw new Error(`Google Sheets ${res.status}: ${await res.text()}`);
   }
-  const json = (await res.json()) as { values?: string[][] };
-  return json.values ?? [];
+  const json = (await res.json()) as GridResponse;
+  const data = json.sheets?.[0]?.data ?? [];
+  return data.map((block) => (block.rowData?.[0]?.values ?? []).map(toRichCell));
 }
 
 function buildSection(
   title: string,
   cols: readonly string[],
-  headers: string[],
-  row: string[],
+  headers: RichCell[],
+  row: RichCell[],
 ): SheetSection {
   const fields: SheetField[] = [];
   for (const col of cols) {
     const i = colIndex(col);
-    const label = (headers[i] ?? "").trim();
-    const value = (row[i] ?? "").trim();
-    if (!label || !value) continue;
-    fields.push({ label, value });
+    const label = (headers[i]?.value ?? "").trim();
+    const cell = row[i] ?? { value: "" };
+    if (!label || !cell.value) continue;
+    fields.push({ label, value: cell.value, runs: cell.runs });
   }
   return { title, fields };
 }
 
 async function loadRow(rowNumber: number): Promise<SheetDetail> {
   try {
-    const [headers = [], row = []] = await Promise.all([
-      sheetsFetch(`${SHEET_NAME}!A${HEADER_ROW}:L${HEADER_ROW}`).then((v) => v[0] ?? []),
-      sheetsFetch(`${SHEET_NAME}!A${rowNumber}:L${rowNumber}`).then((v) => v[0] ?? []),
+    const [headers = [], row = []] = await sheetsFetchGrid([
+      `${SHEET_NAME}!A${HEADER_ROW}:L${HEADER_ROW}`,
+      `${SHEET_NAME}!A${rowNumber}:L${rowNumber}`,
     ]);
     if (!row.length) return null;
     return {
       meta: {
-        title: (row[0] ?? "").trim(),
-        period: (row[1] ?? "").trim(),
-        task: (row[2] ?? "").trim(),
+        title: (row[0]?.value ?? "").trim(),
+        period: (row[1]?.value ?? "").trim(),
+        task: (row[2]?.value ?? "").trim(),
       },
       background: buildSection("프로젝트 배경", BACKGROUND_COLS, headers, row),
       process: buildSection("진행과정", PROCESS_COLS, headers, row),
