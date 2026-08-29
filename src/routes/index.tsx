@@ -277,6 +277,7 @@ function Hero() {
             경험 보기 →
           </a>
         </div>
+      </div>
     </section>
   );
 }
