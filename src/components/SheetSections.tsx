@@ -47,11 +47,13 @@ export function SheetRow({
   fields,
   layout,
   marker,
+  hideBulletsFor,
 }: {
   title: string;
   fields: SheetField[];
   layout: "four" | "two" | "columns" | "background" | "rows";
   marker: "arrow" | "diamond";
+  hideBulletsFor?: string[];
 }) {
   if (!fields.length) return null;
 
