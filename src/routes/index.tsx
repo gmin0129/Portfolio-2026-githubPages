@@ -565,7 +565,7 @@ function Contact() {
           </h2>
         </div>
         <div className="md:col-span-5 space-y-0">
-          <ContactRow label="Email" value="dbswlals0129@gmail.com" href="mailto:dbswlals0129@gmail.com" />
+          <ContactRow label="Email" value="yunjimin0129@naver.com" href="mailto:yunjimin0129@naver.com" />
           <ContactRow label="Phone" value="010-4234-5652" href="tel:+821042345652" />
         </div>
       </div>
@@ -578,7 +578,7 @@ function ContactRow({ label, value, href }: { label: string; value: string; href
     <a href={href} target="_blank" rel="noreferrer" className="group flex items-center justify-between border-b border-foreground/20 py-4 hover:border-[var(--terracotta)] transition-colors">
       <span className="text-xs uppercase tracking-widest text-[var(--ink-soft)]">{label}</span>
       <span className="font-serif text-lg group-hover:text-[var(--terracotta)] transition-colors">
-        {value} →
+        {value}
       </span>
     </a>
   );
