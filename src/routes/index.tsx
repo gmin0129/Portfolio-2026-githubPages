@@ -203,6 +203,8 @@ function IntersectionField() {
   // 사용자가 지정한 두 직선 (비율 좌표)
   const V_X = 0.635; // 수직선
   const H_Y = 0.6;   // 수평선
+  const H_THICK = 27;   // 가로선 두께 (px)
+  const V_THICK = 11.25; // 세로선 두께 (px)
 
   // 검정 대각선: (KINK_X, A_Y) → (C_X, C_Y)
   // 수직선과의 교점
@@ -213,9 +215,11 @@ function IntersectionField() {
   const hDiag = { x: KINK_X + tH * (C_X - KINK_X), y: H_Y };
 
   const dots = [
-    { x: V_X, y: H_Y, size: "1.15rem", grad: "linear-gradient(135deg, #FDE68A, #86EFAC)" },      // 수직 × 수평
-    { ...vDiag, size: "1.55rem", grad: "linear-gradient(135deg, #93C5FD, #F9A8D4)" },              // 수직 × 검정 대각선
-    { ...hDiag, size: "0.85rem", grad: "linear-gradient(135deg, #FCA5A5, #C4B5FD)" },              // 수평 × 검정 대각선
+    // 가로선 위 두 점: 가로선 두께와 동일한 지름
+    { x: V_X, y: H_Y, size: H_THICK, grad: "linear-gradient(135deg, #FDE68A, #86EFAC)" },
+    { ...hDiag, size: H_THICK, grad: "linear-gradient(135deg, #FCA5A5, #C4B5FD)" },
+    // 세로선 위 점: 세로선 두께와 동일한 지름
+    { ...vDiag, size: V_THICK, grad: "linear-gradient(135deg, #93C5FD, #F9A8D4)" },
   ];
 
   return (
@@ -227,25 +231,25 @@ function IntersectionField() {
         preserveAspectRatio="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* 수평선: 2배 더 두껍게 (13.5 → 27) */}
+        {/* 수평선 */}
         <line
           x1={-40} y1={H_Y * 1000} x2={1040} y2={H_Y * 1000}
           stroke="var(--foreground)"
-          strokeWidth="27"
-          strokeOpacity="0.55"
+          strokeWidth={H_THICK}
+          strokeOpacity="1"
           vectorEffect="non-scaling-stroke"
         />
-        {/* 수직선: 1.5배 더 두껍게 (7.5 → 11.25) */}
+        {/* 수직선 */}
         <line
           x1={V_X * 1000} y1={-40} x2={V_X * 1000} y2={1040}
           stroke="var(--foreground)"
-          strokeWidth="11.25"
-          strokeOpacity="0.55"
+          strokeWidth={V_THICK}
+          strokeOpacity="1"
           vectorEffect="non-scaling-stroke"
         />
       </svg>
 
-      {/* 교차점: 파스텔 그라데이션 코어 + 불투명 경계, 자연스러운 비율의 서로 다른 크기 */}
+      {/* 교차점: 선 두께와 동일한 지름, 완전 불투명한 그라데이션 코어로 선 가림 */}
       {dots.map((d, i) => (
         <span
           key={`dot${i}`}
@@ -259,7 +263,6 @@ function IntersectionField() {
             transform: "translate(-50%, -50%)",
             background: d.grad,
             opacity: 1,
-            boxShadow: "0 0 0 4px rgba(0,0,0,0.95), 0 0 18px 6px rgba(0,0,0,0.35)",
           }}
         />
       ))}
