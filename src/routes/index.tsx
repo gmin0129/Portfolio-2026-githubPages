@@ -384,11 +384,13 @@ function Education() {
           {/* Column 1 : 사진 + 인사말 + 학력 */}
           <div>
             <div className="flex items-stretch gap-4">
-              <img
-                src={profileAboutAsset.url}
-                alt="윤지민 프로필 사진"
-                className="flex-1 min-w-0 aspect-[5/6] object-cover rounded-2xl"
-              />
+              <div className="w-[85%]">
+                <img
+                  src={profileAboutAsset.url}
+                  alt="윤지민 프로필 사진"
+                  className="w-full min-w-0 aspect-[5/6] object-cover rounded-2xl"
+                />
+              </div>
               <span
                 className="font-serif text-2xl md:text-3xl text-foreground leading-none"
                 style={{ writingMode: "vertical-rl", letterSpacing: "0.12em" }}
