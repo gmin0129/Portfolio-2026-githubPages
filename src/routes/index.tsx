@@ -349,7 +349,7 @@ function Education() {
   return (
     <section id="education" className="bg-[var(--paper-deep)] border-y border-border">
       <div className="mx-auto max-w-6xl px-6 py-12 md:py-16">
-        <SectionHeader num="01 —" kicker="Education & Career" title="About" />
+        <SectionHeader num="01 —" title="About" />
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10">
           {/* Column 1 : 사진 + 인사말 + 학력 */}
           <div>
@@ -522,7 +522,7 @@ function Projects() {
 function Experience() {
   return (
     <section id="experience" className="mx-auto max-w-6xl px-6 py-24">
-      <SectionHeader num="03 —" kicker="Beyond the desk" title="Experiences" />
+      <SectionHeader num="03 —" title="Experiences" />
       <div className="grid md:grid-cols-2 gap-8">
         {EXPERIENCES.map((e, i) => (
           <Link
