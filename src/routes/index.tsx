@@ -509,7 +509,7 @@ function Projects() {
                 >
                   {String(i + 1).padStart(2, "0")}
                 </div>
-                <h3 className="font-serif text-xl md:text-2xl mt-1 leading-tight text-foreground whitespace-pre-line break-keep">
+                <h3 className={`font-serif text-xl md:text-2xl mt-1 leading-tight text-foreground whitespace-pre-line break-keep ${p.title === "숭실 튜터링 (기초독일어)" ? "whitespace-nowrap" : ""}`}>
                   {(() => {
                     const lines = p.title.split("\n");
                     if (p.title.includes("전략") && lines.length === 2) {
