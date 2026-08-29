@@ -369,17 +369,18 @@ function Education() {
                 안녕하세요, 윤지민입니다
               </span>
             </div>
-            <p className="mt-5 font-serif text-base md:text-lg font-bold text-foreground leading-relaxed">
+            <p className="mt-5 font-serif text-[0.95rem] sm:text-base md:text-lg font-bold text-foreground leading-relaxed break-keep">
               자신감과 소신을 잃지 않으면서도,
               <br />
               <span className="block whitespace-nowrap text-right">타인과 화합할 줄 아는 사람으로 성장했습니다.</span>
             </p>
             <Divider />
-            <div className="my-4 space-y-1.5 text-sm text-foreground">
+            <div className="my-4 space-y-1.5 text-[0.95rem] sm:text-base leading-snug tracking-[-0.01em] text-foreground break-keep">
               <div>🎂 2002.01.29. (24세)</div>
-              <div>✉️ yunjimin0129@naver.com</div>
+              <div className="break-all">✉️ yunjimin0129@naver.com</div>
               <div>📞 010-4234-5652</div>
               <div>🏠 서울시 동작구 상도로60가길 8 306호</div>
+
             </div>
             <Divider />
             <div>
