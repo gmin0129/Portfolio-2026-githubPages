@@ -383,11 +383,11 @@ function Education() {
             </div>
           </div>
 
-          {/* Column 2 : 경력/경험/교육(상위 3개) + 프로그램 활용능력 */}
+          {/* Column 2 : 경력/경험/교육 */}
           <div>
             <h3 className="font-serif text-xl mb-4">[ 경력/경험/교육 ]</h3>
             <ul>
-              {CAREER.slice(0, 3).map((c, i) => (
+              {CAREER.map((c, i) => (
                 <li key={c.org}>
                   {i > 0 && <div className="text-xs text-foreground/50 py-2">-</div>}
                   <div className="font-medium text-foreground text-sm">{c.org}</div>
@@ -396,7 +396,10 @@ function Education() {
                 </li>
               ))}
             </ul>
-            <Divider />
+          </div>
+
+          {/* Column 3 : 프로그램 활용능력 + 대외활동 + 자격증/어학/수상 */}
+          <div>
             <div>
               <h3 className="font-serif text-xl mb-4">[ 프로그램 활용능력 ]</h3>
               <ul className="space-y-2.5">
@@ -411,20 +414,6 @@ function Education() {
                 ))}
               </ul>
             </div>
-          </div>
-
-          {/* Column 3 : 경력/경험/교육(하위 6개) + 대외활동 + 자격증/어학/수상 */}
-          <div>
-            <ul>
-              {CAREER.slice(3).map((c, i) => (
-                <li key={c.org}>
-                  {i > 0 && <div className="text-xs text-foreground/50 py-2">-</div>}
-                  <div className="font-medium text-foreground text-sm">{c.org}</div>
-                  <div className="text-xs text-[var(--ink-soft)]/80 mt-0.5">{c.period}</div>
-                  <div className="text-sm text-[var(--ink-soft)] mt-0.5">{c.role}</div>
-                </li>
-              ))}
-            </ul>
             <Divider />
             <div>
               <h3 className="font-serif text-xl mb-4">[ 대 외 활 동 ]</h3>
