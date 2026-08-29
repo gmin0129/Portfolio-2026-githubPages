@@ -160,7 +160,7 @@ export function SheetRow({
               <ul className="mt-2 space-y-2 text-[var(--ink-soft)] leading-relaxed text-[0.95rem]">
                 {toItems(f.value).map((item, i) => (
                   <li key={`${f.label}-${i}`} className="flex items-start gap-3">
-                    <Bullet marker={marker} />
+                    {!hideBulletsFor?.includes(item) && <Bullet marker={marker} />}
                     <span className="whitespace-pre-line">{item}</span>
                   </li>
                 ))}
