@@ -177,6 +177,28 @@ function Hero() {
   const C_X = 0.76; // 대각선이 끝나고 다시 수평이 되는 x
   const C_Y = 0.86; // 하단 수평선 y
 
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const titleRef = React.useRef<HTMLHeadingElement>(null);
+  const [copyLeft, setCopyLeft] = React.useState<number | null>(null);
+
+  React.useLayoutEffect(() => {
+    const update = () => {
+      const container = containerRef.current;
+      const title = titleRef.current;
+      if (!container || !title) return;
+      // 카피/날짜/버튼의 시작점 = kink x - PORTFOLIO 너비 (타이틀 시작점과 수직 일치)
+      setCopyLeft(container.clientWidth * KINK_X - title.offsetWidth);
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    if (containerRef.current) ro.observe(containerRef.current);
+    window.addEventListener("resize", update);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
   return (
     <section id="top" className="relative overflow-hidden bg-background">
       <div className="relative mx-auto max-w-[1440px] h-[92vh] min-h-[34rem]">
