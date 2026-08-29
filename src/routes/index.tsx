@@ -229,31 +229,32 @@ function Hero() {
           2021 - 2026
         </span>
 
-        {/* PORTFOLIO + 메인 카피 : 카피 시작점이 PORTFOLIO 시작점과 수직 일치 */}
-        <div
-          className="absolute flex flex-col items-start"
+        {/* PORTFOLIO : 우측 끝('O')이 선이 꺾이는 지점(KINK_X)과 수직 일치 */}
+        <h1
+          ref={titleRef}
+          className="absolute font-serif font-bold tracking-tight leading-none text-foreground whitespace-nowrap"
           style={{
             right: `${(1 - KINK_X) * 100}%`,
             top: `calc(${A_Y * 100}% - clamp(2.75rem, 7vw, 6.5rem) * 1.02 - 0.6rem)`,
+            fontSize: "clamp(2.75rem, 7vw, 6.5rem)",
           }}
         >
-          <h1
-            className="font-serif font-bold tracking-tight leading-none text-foreground whitespace-nowrap"
-            style={{ fontSize: "clamp(2.75rem, 7vw, 6.5rem)" }}
-          >
-            PORTFOLIO
-          </h1>
-          <div
-            className="font-serif text-foreground/85 leading-[1.6] tracking-[0.06em] whitespace-nowrap"
-            style={{
-              marginTop: "clamp(2.5rem, 6vh, 4.5rem)",
-              fontSize: "clamp(1.9rem, 3.3vw, 3rem)",
-            }}
-          >
-            <strong className="font-bold">공감</strong>에서 출발한 기획,
-            <br />
-            서로 <strong className="font-bold">다른</strong> 시선을 <strong className="font-bold">잇는</strong> 콘텐츠로
-          </div>
+          PORTFOLIO
+        </h1>
+
+        {/* 메인 카피 : 시작점이 PORTFOLIO 시작점과 수직 일치 */}
+        <div
+          className="absolute font-serif text-foreground/85 leading-[1.6] tracking-[0.06em] whitespace-nowrap"
+          style={{
+            left: copyLeft != null ? `${copyLeft}px` : undefined,
+            visibility: copyLeft != null ? "visible" : "hidden",
+            top: `calc(${A_Y * 100}% + clamp(2.5rem, 6vh, 4.5rem))`,
+            fontSize: "clamp(1.9rem, 3.3vw, 3rem)",
+          }}
+        >
+          <strong className="font-bold">공감</strong>에서 출발한 기획,
+          <br />
+          서로 <strong className="font-bold">다른</strong> 시선을 <strong className="font-bold">잇는</strong> 콘텐츠로
         </div>
 
         {/* 윤지민 : 하단 수평선(C) 바로 위, 넓은 자간으로 좌측으로 당겨 배치 */}
