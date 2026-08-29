@@ -329,8 +329,8 @@ function SectionHeader({ num, title }: { num: string; title: string }) {
 }
 
 
-function Divider() {
-  return <div className="border-t border-foreground/25 my-6" />;
+function Divider({ className = "" }: { className?: string }) {
+  return <div className={`border-t border-foreground/25 my-6 ${className}`} />;
 }
 
 /* Projects 페이지 타일(tile-1~6)의 파스텔 조합 — 투명도를 넣어 부드럽게 */
@@ -425,17 +425,17 @@ function Education() {
 
           {/* Column 2 : 경력 + 교육 + 프로그램 활용능력 */}
           <div>
-            <div>
+            <div className="md:w-3/4 md:ml-auto">
               <SubHeading idx={1}>경력</SubHeading>
               <CareerList items={CAREER_LIST} />
             </div>
-            <Divider />
-            <div>
+            <Divider className="md:w-3/4 md:ml-auto" />
+            <div className="md:w-3/4 md:ml-auto">
               <SubHeading idx={3}>교육</SubHeading>
               <CareerList items={EDU_LIST} />
             </div>
-            <Divider />
-            <div>
+            <Divider className="md:w-3/4 md:ml-auto" />
+            <div className="md:w-3/4 md:ml-auto">
               <SubHeading idx={2}>프로그램 활용능력</SubHeading>
               <ul className="space-y-2.5">
                 {PROGRAMS.map((p) => (
@@ -453,12 +453,12 @@ function Education() {
 
           {/* Column 3 : 경험 + 자격증/어학/수상 */}
           <div>
-            <div>
+            <div className="md:w-3/4 md:ml-auto">
               <SubHeading idx={3}>경험</SubHeading>
               <CareerList items={EXPERIENCE_LIST} />
             </div>
-            <Divider />
-            <div>
+            <Divider className="md:w-3/4 md:ml-auto" />
+            <div className="md:w-3/4 md:ml-auto">
               <SubHeading idx={4}>자격증/어학/수상</SubHeading>
               <ul className="space-y-2.5">
                 {CERTS.map((c) => (
