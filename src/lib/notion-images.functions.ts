@@ -226,6 +226,15 @@ export type NotionPagePayload = {
   highlights: string[];
 };
 
+const IMAGE_REORDERS: Record<string, (images: string[]) => string[]> = {
+  // Move the first image to the end of the gallery for this project.
+  "photogray-shyungshyung": (images) => {
+    if (images.length <= 1) return images;
+    const [first, ...rest] = images;
+    return [...rest, first];
+  },
+};
+
 export const getNotionPage = createServerFn({ method: "GET" })
   .inputValidator((input: { kind: "project" | "experience"; slug: string }) => input)
   .handler(async ({ data }): Promise<NotionPagePayload> => {
@@ -238,7 +247,8 @@ export const getNotionPage = createServerFn({ method: "GET" })
         collectTextFromBlocks(pageId).catch(() => [] as TextChunk[]),
       ]);
       const { summary, highlights } = summarize(chunks);
-      return { images, summary, highlights };
+      const reordered = IMAGE_REORDERS[data.slug]?.(images) ?? images;
+      return { images: reordered, summary, highlights };
     } catch (err) {
       console.error("[getNotionPage] failed:", err);
       return { images: [], summary: "", highlights: [] };
