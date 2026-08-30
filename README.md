@@ -24,3 +24,19 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+## GitHub Pages 배포
+
+이 프로젝트는 `gmin0129.github.io` 사용자 페이지 저장소의 루트 주소에
+배포되도록 설정되어 있습니다.
+
+1. GitHub에서 공개 저장소 `gmin0129.github.io`를 만듭니다.
+2. 이 프로젝트를 해당 저장소의 `main` 브랜치에 올립니다.
+3. 저장소의 **Settings → Pages → Build and deployment → Source**에서
+   **GitHub Actions**를 선택합니다.
+4. `Deploy to GitHub Pages` 작업이 끝나면
+   <https://gmin0129.github.io/>에서 확인합니다.
+
+GitHub Pages는 정적 호스팅이므로 Lovable의 Notion/Google Sheets 서버 연동은
+실행되지 않습니다. 배포본에서는 저장소에 포함된 정적 포트폴리오 데이터를
+사용합니다.
