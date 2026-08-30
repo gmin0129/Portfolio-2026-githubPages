@@ -9,10 +9,6 @@ const FALLBACK_ORIGIN =
   "https://id-preview--7af69fa8-433e-470d-990e-c12e96027377.lovable.app";
 
 export function assetUrl(url: string): string {
-  if (typeof window === "undefined") return url;
   if (!url.startsWith("/")) return url;
-  if (window.location.hostname.endsWith("lovableproject.com")) {
-    return `${FALLBACK_ORIGIN}${url}`;
-  }
-  return url;
+  return `${FALLBACK_ORIGIN}${url}`;
 }
