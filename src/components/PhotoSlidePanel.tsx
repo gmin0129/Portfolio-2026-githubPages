@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { assetUrl } from "@/lib/asset-url";
 
 type Props = {
   title: string;
@@ -127,7 +128,7 @@ export function PhotoSlidePanel({ title, images, children }: Props) {
               {images.map((src, i) => (
                 <figure key={src + i} className="overflow-hidden rounded-md border border-border bg-muted">
                   <img
-                    src={src}
+                    src={assetUrl(src)}
                     alt={`${title} 사진 ${i + 1}`}
                     className="w-full h-auto object-cover"
                     loading="lazy"

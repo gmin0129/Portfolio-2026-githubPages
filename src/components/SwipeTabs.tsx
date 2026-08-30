@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { assetUrl } from "@/lib/asset-url";
 
 type Props = {
   title: string;
@@ -152,7 +153,7 @@ function PhotoGallery({ title, images }: { title: string; images: string[] }) {
               style={{ minHeight: "20rem", maxHeight: "70vh" }}
             >
               <img
-                src={src}
+                src={assetUrl(src)}
                 alt={`${title} 사진 ${i + 1}`}
                 className="max-w-full max-h-[70vh] w-auto h-auto object-contain"
                 loading="lazy"

@@ -1,4 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
+import { staticNotionPage } from "./static-notion-data";
 
 /**
  * Maps local slug -> Notion page ID for projects.
@@ -262,9 +263,22 @@ export function notionPageQueryOptions(kind: "project" | "experience", slug: str
     "daljjanheun-haru": 2,
   };
   const version = VERSIONS[slug] ?? 1;
+  const fallback = staticNotionPage(kind, slug);
+  const fetchPage = async (): Promise<NotionPagePayload> => {
+    try {
+      const live = await getNotionPage({ data: { kind, slug } });
+      if (live && (live.images.length || live.summary || live.highlights.length)) return live;
+    } catch (err) {
+      // Static hosting (e.g. GitHub Pages) has no server function at all.
+      console.error("[notion] fetch failed:", err);
+    }
+    return fallback ?? { images: [], summary: "", highlights: [] };
+  };
   return {
     queryKey: ["notion-page", kind, slug, version] as const,
-    queryFn: () => getNotionPage({ data: { kind, slug } }),
+    queryFn: fetchPage,
+    initialData: fallback,
+    placeholderData: (prev: NotionPagePayload | undefined) => prev ?? fallback,
     // Always refetch on mount so Notion edits show up immediately.
     staleTime: 0,
     gcTime: 5 * 60 * 1000,
