@@ -183,6 +183,10 @@ export const PROJECTS: Project[] = [
       "팔로워 10% 증가·신규 고객 2.5만 명 유치를 목표로 한 종합 전략 수립",
       "트래픽·인게이지먼트·전환율 기반 KPI 및 성과 측정 방안 마련",
     ],
+    pdf: {
+      url: "/__l5e/assets-v1/3a105fe6-4dec-4b65-a7c5-74e098748d7d/Waynabox_Social_Media_Marketing_Strategy.pdf",
+      label: "Waynabox SNS 마케팅 전략 PDF",
+    },
   },
   {
     slug: "kasteel-rouge",
