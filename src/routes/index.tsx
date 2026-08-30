@@ -2,7 +2,7 @@ import * as React from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { PROJECTS } from "@/lib/projects";
-import profileAboutAsset from "@/assets/profile-about.jpg.asset.json";
+const profileAboutUrl = "/assets/profile-about.jpg";
 import { EXPERIENCES } from "@/lib/experiences";
 
 export const Route = createFileRoute("/")({
