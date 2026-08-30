@@ -116,7 +116,7 @@ export const PROJECTS: Project[] = [
       "8주 인턴십 운영 타임라인과 정규직 전환 심사 기준 수립",
     ],
     pdf: {
-      url: "/__l5e/assets-v1/9bc986a8-8625-4d47-92dd-5ab75b1a3dbb/comento-hr-recruiting.pdf",
+      url: "/assets/comento-hr-recruiting.pdf",
       label: "정규직 전환형 인턴 채용안",
     },
   },
@@ -140,7 +140,7 @@ export const PROJECTS: Project[] = [
       "타깃 눈높이에 맞춘 실현 가능한 박람회 운영안 도출",
     ],
     pdf: {
-      url: "/__l5e/assets-v1/b82cc890-b324-4a9b-b1b5-49c8c5db0d27/youth-career-fair-plan.pdf",
+      url: "/assets/youth-career-fair-plan.pdf",
       label: "청소년 진로박람회 기획안",
     },
   },
@@ -164,10 +164,10 @@ export const PROJECTS: Project[] = [
       "케이터링·동선·안전 통제를 포함한 오프라인 행사 무사고 운영",
     ],
     images: [
-      "/__l5e/assets-v1/781121cf-3361-4257-abc6-e0c89a3d2c9f/urisigak-IMG_5769.jpg",
-      "/__l5e/assets-v1/368be18e-0dd4-4cb4-9b89-25f74ce9385c/urisigak-IMG_7093.jpg",
-      "/__l5e/assets-v1/6d915ebe-b1c3-4204-9668-2497f459bf2a/urisigak-IMG_7725.jpg",
-      "/__l5e/assets-v1/8a8aef9e-7474-401e-b2db-02c314ca9b63/urisigak-IMG_7767.jpg",
+      "/assets/urisigak-IMG_5769.jpg",
+      "/assets/urisigak-IMG_7093.jpg",
+      "/assets/urisigak-IMG_7725.jpg",
+      "/assets/urisigak-IMG_7767.jpg",
     ],
   },
 
@@ -191,7 +191,7 @@ export const PROJECTS: Project[] = [
       "트래픽·인게이지먼트·전환율 기반 KPI 및 성과 측정 방안 마련",
     ],
     pdf: {
-      url: "/__l5e/assets-v1/3a105fe6-4dec-4b65-a7c5-74e098748d7d/Waynabox_Social_Media_Marketing_Strategy.pdf",
+      url: "/assets/Waynabox_Social_Media_Marketing_Strategy.pdf",
       label: "Waynabox SNS 마케팅 전략",
     },
   },
@@ -215,7 +215,7 @@ export const PROJECTS: Project[] = [
       "Bar 중심 유통 전략과 온·오프라인 통합 마케팅 플랜 도출",
     ],
     pdf: {
-      url: "/__l5e/assets-v1/0b834e6a-3c95-41f6-b906-034d140f35b3/Kasteel_Rouge_International_Communication_Plan.pdf",
+      url: "/assets/Kasteel_Rouge_International_Communication_Plan.pdf",
       label: "Kasteel Rouge\nInternational Communication Plan",
     },
   },
@@ -239,8 +239,8 @@ export const PROJECTS: Project[] = [
       "학습자 성적 향상 및 ‘우수튜터상’ 수상",
     ],
     images: [
-      "/__l5e/assets-v1/2622be6d-5bf7-4f70-9dd5-648b7ff51a37/ssu-tutoring-class.png",
-      "/__l5e/assets-v1/30e9f85f-052a-4b42-9a16-b23e884ed02b/ssu-tutoring-worksheet.png",
+      "/assets/ssu-tutoring-class.png",
+      "/assets/ssu-tutoring-worksheet.png",
     ],
   },
 ];
