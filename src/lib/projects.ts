@@ -232,7 +232,7 @@ export const PROJECTS: Project[] = [
       "학습자 성적 향상 및 ‘우수튜터상’ 수상",
     ],
     images: [
-      "/__l5e/assets-v1/c6c3d1f9-e8bd-43a6-ae7c-8b0d2eab01a6/ssu-tutoring-class.png",
+      "/__l5e/assets-v1/2622be6d-5bf7-4f70-9dd5-648b7ff51a37/ssu-tutoring-class.png",
       "/__l5e/assets-v1/30e9f85f-052a-4b42-9a16-b23e884ed02b/ssu-tutoring-worksheet.png",
     ],
   },
