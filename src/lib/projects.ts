@@ -231,6 +231,10 @@ export const PROJECTS: Project[] = [
       "총 9회 튜터링 운영, 중도 포기율 0% 달성",
       "학습자 성적 향상 및 ‘우수튜터상’ 수상",
     ],
+    images: [
+      "/__l5e/assets-v1/2622be6d-5bf7-4f70-9dd5-648b7ff51a37/ssu-tutoring-class.png",
+      "/__l5e/assets-v1/30e9f85f-052a-4b42-9a16-b23e884ed02b/ssu-tutoring-worksheet.png",
+    ],
   },
 ];
 
