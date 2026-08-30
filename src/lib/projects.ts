@@ -139,6 +139,10 @@ export const PROJECTS: Project[] = [
       "5대 산업군 블렌딩 체험 부스 및 커스텀 키캡 게이미피케이션 기획",
       "타깃 눈높이에 맞춘 실현 가능한 박람회 운영안 도출",
     ],
+    pdf: {
+      url: "/__l5e/assets-v1/b82cc890-b324-4a9b-b1b5-49c8c5db0d27/youth-career-fair-plan.pdf",
+      label: "청소년 진로박람회 기획안 PDF",
+    },
   },
   {
     slug: "urisigak",
