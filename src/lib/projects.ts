@@ -117,7 +117,7 @@ export const PROJECTS: Project[] = [
     ],
     pdf: {
       url: "/__l5e/assets-v1/9bc986a8-8625-4d47-92dd-5ab75b1a3dbb/comento-hr-recruiting.pdf",
-      label: "정규직 전환형 인턴 채용안 PDF",
+      label: "정규직 전환형 인턴 채용안",
     },
   },
   {
@@ -141,7 +141,7 @@ export const PROJECTS: Project[] = [
     ],
     pdf: {
       url: "/__l5e/assets-v1/b82cc890-b324-4a9b-b1b5-49c8c5db0d27/youth-career-fair-plan.pdf",
-      label: "청소년 진로박람회 기획안 PDF",
+      label: "청소년 진로박람회 기획안",
     },
   },
   {
@@ -185,7 +185,7 @@ export const PROJECTS: Project[] = [
     ],
     pdf: {
       url: "/__l5e/assets-v1/3a105fe6-4dec-4b65-a7c5-74e098748d7d/Waynabox_Social_Media_Marketing_Strategy.pdf",
-      label: "Waynabox SNS 마케팅 전략 PDF",
+      label: "Waynabox SNS 마케팅 전략",
     },
   },
   {
@@ -209,7 +209,7 @@ export const PROJECTS: Project[] = [
     ],
     pdf: {
       url: "/__l5e/assets-v1/0b834e6a-3c95-41f6-b906-034d140f35b3/Kasteel_Rouge_International_Communication_Plan.pdf",
-      label: "Kasteel Rouge\nInternational Communication Plan\nPDF",
+      label: "Kasteel Rouge\nInternational Communication Plan",
     },
   },
   {
