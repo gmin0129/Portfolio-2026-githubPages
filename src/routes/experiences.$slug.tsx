@@ -78,11 +78,44 @@ function ExperienceDetail() {
         loading={isLoading}
         hidePhotos={experience.slug === "kosac-2025" || experience.slug === "dyb-choisun"}
       >
-      {hasSheet ? (
+      {hasSheet || experience.slug === "exchange-vienna" ? (
         <section className="mx-auto max-w-5xl px-6 py-16 space-y-12 break-keep">
-          <SheetRow title={sheet!.background.title} fields={sheet!.background.fields} layout="four" marker="arrow" />
-          <SheetRow title={sheet!.process.title} fields={sheet!.process.fields} layout="two" marker="arrow" />
-          <SheetRow title={sheet!.outcome.title} fields={sheet!.outcome.fields} layout="columns" marker="diamond" />
+          {hasSheet ? (
+            <>
+              <SheetRow title={sheet!.background.title} fields={sheet!.background.fields} layout="four" marker="arrow" />
+              <SheetRow title={sheet!.process.title} fields={sheet!.process.fields} layout="two" marker="arrow" />
+              <SheetRow title={sheet!.outcome.title} fields={sheet!.outcome.fields} layout="columns" marker="diamond" />
+            </>
+          ) : (
+            <>
+              <SheetRow
+                title="프로젝트 배경"
+                fields={[
+                  { label: "기간", value: experience.period },
+                  { label: "장소", value: experience.place },
+                  ...(overview ? [{ label: "Overview", value: overview }] : []),
+                ]}
+                layout="four"
+                marker="arrow"
+              />
+              {role && role.length > 0 && (
+                <SheetRow
+                  title="진행과정"
+                  fields={[{ label: "My Role", value: role.join("\n") }]}
+                  layout="two"
+                  marker="arrow"
+                />
+              )}
+              {experience.outcome && experience.outcome.length > 0 && (
+                <SheetRow
+                  title="성과 및 인사이트"
+                  fields={[{ label: "Outcome", value: experience.outcome.join("\n") }]}
+                  layout="columns"
+                  marker="diamond"
+                />
+              )}
+            </>
+          )}
         </section>
       ) : (
       <section className="mx-auto max-w-5xl px-6 py-16 grid md:grid-cols-3 gap-12">
