@@ -99,7 +99,12 @@ function ProjectDetail() {
         </div>
 
         <div className="w-full flex-1 min-w-0">
-          <SwipeTabs title={project.title} images={images} loading={isLoading}>
+          <SwipeTabs
+            title={project.title}
+            images={images}
+            loading={isLoading}
+            hidePhotos={project.slug === "comento-convention"}
+          >
             {hasSheet ? (
               <section className="w-full px-6 py-16 space-y-12">
 <SheetRow title={sheet!.background.title} fields={sheet!.background.fields} layout="background" marker="arrow" />
