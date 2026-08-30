@@ -11,6 +11,7 @@ export type Project = {
   role?: string[];
   outcome?: string[];
   images?: string[];
+  pdf?: { url: string; label: string };
 };
 
 export const PROJECTS: Project[] = [
@@ -114,6 +115,10 @@ export const PROJECTS: Project[] = [
       "3단계 특화 선발 프로세스(공고 필터링 · 데이터 분석 과제 · 실무 PT) 설계",
       "8주 인턴십 운영 타임라인과 정규직 전환 심사 기준 수립",
     ],
+    pdf: {
+      url: "/__l5e/assets-v1/9bc986a8-8625-4d47-92dd-5ab75b1a3dbb/comento-hr-recruiting.pdf",
+      label: "정규직 전환형 인턴 채용안 PDF",
+    },
   },
   {
     slug: "comento-convention",

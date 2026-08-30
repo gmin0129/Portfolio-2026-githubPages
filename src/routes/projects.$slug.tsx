@@ -70,7 +70,32 @@ function ProjectDetail() {
       </header>
 
       <main className="w-full mx-auto max-w-[1440px] px-6 pt-4 flex flex-col md:flex-row gap-12">
-        <TitleCard project={project} idx={idx} className="w-full md:w-[30%] md:sticky md:top-16 h-fit shrink-0 md:pt-6" />
+        <div className="w-full md:w-[30%] md:sticky md:top-16 h-fit shrink-0 md:pt-6 space-y-4">
+          <TitleCard project={project} idx={idx} />
+          {project.pdf && (
+            <a
+              href={project.pdf.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block rounded-full border border-border bg-background/60 backdrop-blur px-5 py-4 hover:border-[var(--terracotta)] transition-colors"
+            >
+              <div className="flex items-center gap-3">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--terracotta)]/15 text-[var(--terracotta)] font-serif text-xs font-bold">
+                  PDF
+                </div>
+                <div className="min-w-0">
+                  <div className="uppercase tracking-widest text-xs text-[var(--ink-soft)]">
+                    기획서
+                  </div>
+                  <div className="mt-0.5 text-foreground group-hover:text-[var(--terracotta)] transition-colors truncate">
+                    {project.pdf.label}
+                  </div>
+                </div>
+                <span className="ml-auto text-[var(--ink-soft)] group-hover:text-[var(--terracotta)] transition-colors">↗</span>
+              </div>
+            </a>
+          )}
+        </div>
 
         <div className="w-full flex-1 min-w-0">
           <SwipeTabs title={project.title} images={images} loading={isLoading}>
