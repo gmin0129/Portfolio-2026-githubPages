@@ -207,6 +207,10 @@ export const PROJECTS: Project[] = [
       "‘현지 생산 무알코올 체리 맥주’ 신규 라인업 포지셔닝 제안",
       "Bar 중심 유통 전략과 온·오프라인 통합 마케팅 플랜 도출",
     ],
+    pdf: {
+      url: "/__l5e/assets-v1/0b834e6a-3c95-41f6-b906-034d140f35b3/Kasteel_Rouge_International_Communication_Plan.pdf",
+      label: "Kasteel Rouge International Communication Plan PDF",
+    },
   },
   {
     slug: "ssu-tutoring",
