@@ -11,9 +11,9 @@ const PROJECT_PAGE_IDS: Record<string, string> = {
 };
 
 const EXPERIENCE_PAGE_IDS: Record<string, string> = {
-  "exchange-vienna": "196e574e-4279-83a6-b614-012bcc403e5f",
   "kosac-2025": "332e574e-4279-8096-af47-d112411d85b6",
 };
+
 
 const GATEWAY = "https://connector-gateway.lovable.dev/notion/v1";
 

@@ -78,7 +78,7 @@ function ExperienceDetail() {
         loading={isLoading}
         hidePhotos={experience.slug === "kosac-2025" || experience.slug === "dyb-choisun"}
       >
-      {hasSheet || experience.slug === "exchange-vienna" ? (
+      {hasSheet ? (
         <section className="mx-auto max-w-5xl px-6 py-16 space-y-12 break-keep">
           {hasSheet ? (
             <>
