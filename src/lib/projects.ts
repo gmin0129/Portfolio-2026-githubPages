@@ -163,7 +163,14 @@ export const PROJECTS: Project[] = [
       "멘토링 진행 상황을 상시 점검해 교육 품질 유지",
       "케이터링·동선·안전 통제를 포함한 오프라인 행사 무사고 운영",
     ],
+    images: [
+      "/__l5e/assets-v1/781121cf-3361-4257-abc6-e0c89a3d2c9f/urisigak-IMG_5769.jpg",
+      "/__l5e/assets-v1/368be18e-0dd4-4cb4-9b89-25f74ce9385c/urisigak-IMG_7093.jpg",
+      "/__l5e/assets-v1/6d915ebe-b1c3-4204-9668-2497f459bf2a/urisigak-IMG_7725.jpg",
+      "/__l5e/assets-v1/8a8aef9e-7474-401e-b2db-02c314ca9b63/urisigak-IMG_7767.jpg",
+    ],
   },
+
   {
     slug: "waynabox",
     title: "Waynabox 기업\nSNS 마케팅 전략",
