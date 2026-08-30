@@ -4,6 +4,7 @@ import { getProject, PROJECTS, type Project } from "@/lib/projects";
 import { SwipeTabs } from "@/components/SwipeTabs";
 import { useQuery } from "@tanstack/react-query";
 import { notionPageQueryOptions } from "@/lib/notion-images.functions";
+import { STATIC_PROJECT_IMAGES } from "@/lib/static-project-images";
 import { projectSheetQueryOptions } from "@/lib/sheets.queries";
 import { SheetRow } from "@/components/SheetSections";
 import { ExternalLink } from "lucide-react";
@@ -47,7 +48,12 @@ function ProjectDetail() {
   const next = PROJECTS[(idx + 1) % PROJECTS.length];
   const { data, isLoading } = useQuery(notionPageQueryOptions("project", project.slug));
   const { data: sheet } = useQuery(projectSheetQueryOptions(project.slug));
-  const images = data?.images?.length ? data.images : project.images;
+  const staticImages = STATIC_PROJECT_IMAGES[project.slug];
+  const images = data?.images?.length
+    ? data.images
+    : staticImages?.length
+      ? staticImages
+      : project.images;
   const overview = data?.summary?.trim() ? data.summary : project.overview;
   const role = data?.highlights?.length ? data.highlights : project.role;
 
