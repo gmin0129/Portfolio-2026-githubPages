@@ -1,20 +1,32 @@
 import type { SheetDetail } from "./sheets.functions";
 import { getProjectSheetDetail, getExperienceSheetDetail } from "./sheets.functions";
+import { STATIC_PROJECT_SHEETS, STATIC_EXPERIENCE_SHEETS } from "./static-sheet-data";
 
-/** Never let a transient server-fn/network failure break the page or the poll loop. */
-async function safeCall(fn: () => Promise<SheetDetail>): Promise<SheetDetail> {
+/**
+ * Never let a transient server-fn/network failure break the page or the poll loop.
+ * On static hosting (e.g. GitHub Pages) the server function does not exist at all,
+ * so we fall back to the committed snapshot of the sheet.
+ */
+async function safeCall(
+  fn: () => Promise<SheetDetail>,
+  fallback: SheetDetail,
+): Promise<SheetDetail> {
   try {
-    return await fn();
+    const result = await fn();
+    return result ?? fallback;
   } catch (err) {
     console.error("[sheets] fetch failed:", err);
-    return null;
+    return fallback;
   }
 }
 
 export function projectSheetQueryOptions(slug: string) {
+  const fallback = STATIC_PROJECT_SHEETS[slug] ?? null;
   return {
     queryKey: ["project-sheet", slug] as const,
-    queryFn: () => safeCall(() => getProjectSheetDetail({ data: { slug } })),
+    queryFn: () => safeCall(() => getProjectSheetDetail({ data: { slug } }), fallback),
+    initialData: fallback ?? undefined,
+    placeholderData: (prev: SheetDetail | undefined) => prev ?? fallback ?? undefined,
     staleTime: 0,
     gcTime: 5 * 60 * 1000,
     refetchOnMount: "always" as const,
@@ -24,9 +36,12 @@ export function projectSheetQueryOptions(slug: string) {
 }
 
 export function experienceSheetQueryOptions(slug: string) {
+  const fallback = STATIC_EXPERIENCE_SHEETS[slug] ?? null;
   return {
     queryKey: ["experience-sheet", slug] as const,
-    queryFn: () => safeCall(() => getExperienceSheetDetail({ data: { slug } })),
+    queryFn: () => safeCall(() => getExperienceSheetDetail({ data: { slug } }), fallback),
+    initialData: fallback ?? undefined,
+    placeholderData: (prev: SheetDetail | undefined) => prev ?? fallback ?? undefined,
     staleTime: 0,
     gcTime: 5 * 60 * 1000,
     refetchOnMount: "always" as const,
