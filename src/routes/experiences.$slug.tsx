@@ -45,7 +45,7 @@ function ExperienceDetail() {
   const prev = EXPERIENCES[(idx - 1 + EXPERIENCES.length) % EXPERIENCES.length];
   const next = EXPERIENCES[(idx + 1) % EXPERIENCES.length];
   const { data, isLoading } = useQuery(notionPageQueryOptions("experience", experience.slug));
-  const { data: sheet } = useQuery(experienceSheetQueryOptions(experience.slug));
+  const { data: sheet, isPending: isSheetPending } = useQuery(experienceSheetQueryOptions(experience.slug));
   const images = data?.images?.length ? data.images : experience.images;
   const overview = data?.summary?.trim() ? data.summary : experience.overview;
   const role = data?.highlights?.length ? data.highlights : experience.role;
@@ -78,7 +78,9 @@ function ExperienceDetail() {
         loading={isLoading}
         hidePhotos={experience.slug === "kosac-2025" || experience.slug === "dyb-choisun"}
       >
-      {hasSheet ? (
+      {isSheetPending ? (
+        <ContentLoading />
+      ) : hasSheet ? (
         <section className="mx-auto max-w-5xl px-6 py-16 space-y-12 break-keep">
           {hasSheet ? (
             <>
@@ -221,6 +223,27 @@ function Meta({ k, v }: { k: string; v: string }) {
       <div className="uppercase tracking-widest text-xs text-[var(--ink-soft)]">{k}</div>
       <div className="mt-1 text-foreground">{v}</div>
     </div>
+  );
+}
+
+function ContentLoading() {
+  return (
+    <section
+      className="mx-auto max-w-5xl px-6 py-16 space-y-10"
+      aria-busy="true"
+      aria-label="경력 내용을 불러오는 중"
+    >
+      {["w-40", "w-32", "w-44"].map((width, index) => (
+        <div key={index} className="space-y-4 animate-pulse">
+          <div className={`h-7 ${width} rounded bg-border/70`} />
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="h-24 rounded-2xl bg-border/45" />
+            <div className="h-24 rounded-2xl bg-border/45" />
+          </div>
+        </div>
+      ))}
+      <p className="sr-only">경력 데이터를 불러오고 있습니다.</p>
+    </section>
   );
 }
 

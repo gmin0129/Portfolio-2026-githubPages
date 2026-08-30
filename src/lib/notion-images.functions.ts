@@ -277,8 +277,6 @@ export function notionPageQueryOptions(kind: "project" | "experience", slug: str
   return {
     queryKey: ["notion-page", kind, slug, version] as const,
     queryFn: fetchPage,
-    initialData: fallback,
-    placeholderData: (prev: NotionPagePayload | undefined) => prev ?? fallback,
     // Always refetch on mount so Notion edits show up immediately.
     staleTime: 0,
     gcTime: 5 * 60 * 1000,

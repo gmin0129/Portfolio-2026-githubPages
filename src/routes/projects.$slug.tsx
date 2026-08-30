@@ -47,7 +47,7 @@ function ProjectDetail() {
   const prev = PROJECTS[(idx - 1 + PROJECTS.length) % PROJECTS.length];
   const next = PROJECTS[(idx + 1) % PROJECTS.length];
   const { data, isLoading } = useQuery(notionPageQueryOptions("project", project.slug));
-  const { data: sheet } = useQuery(projectSheetQueryOptions(project.slug));
+  const { data: sheet, isPending: isSheetPending } = useQuery(projectSheetQueryOptions(project.slug));
   const staticImages = STATIC_PROJECT_IMAGES[project.slug];
   const images = data?.images?.length
     ? data.images
@@ -111,7 +111,9 @@ function ProjectDetail() {
             loading={isLoading}
             hidePhotos={project.slug === "comento-convention" || project.slug === "comento-hr" || project.slug === "waynabox" || project.slug === "kasteel-rouge"}
           >
-            {hasSheet ? (
+            {isSheetPending ? (
+              <ContentLoading />
+            ) : hasSheet ? (
               <section className="w-full px-6 py-16 space-y-12">
 <SheetRow title={sheet!.background.title} fields={sheet!.background.fields} layout="background" marker="arrow" />
                 <SheetRow
@@ -209,6 +211,27 @@ function Meta({ k, v }: { k: string; v: string }) {
       <div className="uppercase tracking-widest text-xs text-[var(--ink-soft)]">{k}</div>
       <div className="mt-1 text-foreground">{v}</div>
     </div>
+  );
+}
+
+function ContentLoading() {
+  return (
+    <section
+      className="w-full px-6 py-16 space-y-10"
+      aria-busy="true"
+      aria-label="프로젝트 내용을 불러오는 중"
+    >
+      {["w-40", "w-32", "w-44"].map((width, index) => (
+        <div key={index} className="space-y-4 animate-pulse">
+          <div className={`h-7 ${width} rounded bg-border/70`} />
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="h-24 rounded-2xl bg-border/45" />
+            <div className="h-24 rounded-2xl bg-border/45" />
+          </div>
+        </div>
+      ))}
+      <p className="sr-only">프로젝트 데이터를 불러오고 있습니다.</p>
+    </section>
   );
 }
 
