@@ -103,7 +103,7 @@ function ProjectDetail() {
             title={project.title}
             images={images}
             loading={isLoading}
-            hidePhotos={project.slug === "comento-convention"}
+            hidePhotos={project.slug === "comento-convention" || project.slug === "comento-hr"}
           >
             {hasSheet ? (
               <section className="w-full px-6 py-16 space-y-12">
