@@ -111,7 +111,7 @@ function ProjectDetail() {
                 <SheetRow
                   title={sheet!.process.title}
                   fields={sheet!.process.fields}
-                  layout={project.slug === "kasteel-rouge" || project.slug === "urisigak" || project.slug === "comento-hr" ? "two" : "rows"}
+                  layout={project.slug === "kasteel-rouge" || project.slug === "urisigak" || project.slug === "comento-hr" || project.slug === "ssu-tutoring" ? "two" : "rows"}
                   marker="arrow"
                 />
                 <SheetRow
