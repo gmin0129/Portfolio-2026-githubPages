@@ -7,6 +7,7 @@ import { notionPageQueryOptions } from "@/lib/notion-images.functions";
 import { projectSheetQueryOptions } from "@/lib/sheets.queries";
 import { SheetRow } from "@/components/SheetSections";
 import { ExternalLink } from "lucide-react";
+import { assetUrl } from "@/lib/asset-url";
 
 
 export const Route = createFileRoute("/projects/$slug")({
@@ -74,7 +75,7 @@ function ProjectDetail() {
           <TitleCard project={project} idx={idx} />
           {project.pdf && (
             <a
-              href={project.pdf.url}
+              href={assetUrl(project.pdf.url)}
               target="_blank"
               rel="noopener noreferrer"
               className="group block rounded-full border border-border bg-background/60 backdrop-blur px-5 py-4 hover:border-[var(--terracotta)] transition-colors"
