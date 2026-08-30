@@ -209,7 +209,7 @@ export const PROJECTS: Project[] = [
     ],
     pdf: {
       url: "/__l5e/assets-v1/0b834e6a-3c95-41f6-b906-034d140f35b3/Kasteel_Rouge_International_Communication_Plan.pdf",
-      label: "Kasteel Rouge International Communication Plan PDF",
+      label: "Kasteel Rouge\nInternational Communication Plan\nPDF",
     },
   },
   {

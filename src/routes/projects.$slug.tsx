@@ -78,7 +78,7 @@ function ProjectDetail() {
               href={assetUrl(project.pdf.url)}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block rounded-full border border-border bg-background/60 backdrop-blur px-5 py-4 hover:border-[var(--terracotta)] transition-colors"
+              className="group block rounded-full border border-border bg-background/60 backdrop-blur px-5 py-6 hover:border-[var(--terracotta)] transition-colors"
             >
               <div className="flex items-center gap-3">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--terracotta)]/15 text-[var(--terracotta)] font-serif text-xs font-bold">
@@ -88,11 +88,11 @@ function ProjectDetail() {
                   <div className="uppercase tracking-widest text-xs text-[var(--ink-soft)]">
                     기획서
                   </div>
-                  <div className="mt-0.5 text-foreground group-hover:text-[var(--terracotta)] transition-colors truncate">
+                  <div className="mt-0.5 text-foreground group-hover:text-[var(--terracotta)] transition-colors whitespace-pre-line leading-tight">
                     {project.pdf.label}
                   </div>
                 </div>
-                <span className="ml-auto text-[var(--ink-soft)] group-hover:text-[var(--terracotta)] transition-colors">↗</span>
+                <span className="ml-auto text-[var(--ink-soft)] group-hover:text-[var(--terracotta)] transition-colors self-center">↗</span>
               </div>
             </a>
           )}
