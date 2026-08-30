@@ -10,5 +10,7 @@ const FALLBACK_ORIGIN =
 
 export function assetUrl(url: string): string {
   if (!url.startsWith("/")) return url;
-  return `${FALLBACK_ORIGIN}${url}`;
+  if (url.startsWith("/__l5e/")) return `${FALLBACK_ORIGIN}${url}`;
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  return `${base}${url}`;
 }

@@ -14,6 +14,7 @@ export default defineConfig({
         crawlLinks: true,
         autoSubfolderIndex: true,
         failOnError: true,
+        filter: ({ path }) => !path.startsWith("/Portfolio-2026-githubPages/assets/"),
       },
     }),
     viteReact(),

@@ -2,6 +2,7 @@ import * as React from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { PROJECTS } from "@/lib/projects";
+import { assetUrl } from "@/lib/asset-url";
 const profileAboutUrl = "/assets/profile-about.jpg";
 import { EXPERIENCES } from "@/lib/experiences";
 
@@ -404,7 +405,7 @@ function Education() {
             <div className="flex items-stretch gap-4">
               <div className="w-[85%]">
                 <img
-                  src={profileAboutUrl}
+                  src={assetUrl(profileAboutUrl)}
                   alt="윤지민 프로필 사진"
                   className="w-full min-w-0 aspect-[5/6] object-cover rounded-2xl"
                 />
