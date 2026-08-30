@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { notionPageQueryOptions } from "@/lib/notion-images.functions";
 import { experienceSheetQueryOptions } from "@/lib/sheets.queries";
 import { SheetRow } from "@/components/SheetSections";
+import { assetUrl } from "@/lib/asset-url";
 
 
 export const Route = createFileRoute("/experiences/$slug")({
@@ -91,7 +92,7 @@ function ExperienceDetail() {
           <Meta k="장소" v={experience.place} />
           {experience.pdf && (
             <a
-              href={experience.pdf.url}
+              href={assetUrl(experience.pdf.url)}
               target="_blank"
               rel="noopener noreferrer"
               download={`${experience.slug}.pdf`}
